@@ -22,7 +22,7 @@ See writeups of machines below.
 - [[Andy Index|Andy (10.0.0.1)]]
 
 **Network B**
-- [[Sandy Index|Sandy (10.1.0.1)]]
+- [[pc Index|Sandy (10.1.0.1)]]
 
 ### Linux Machines
 
