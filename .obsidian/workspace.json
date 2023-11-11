@@ -1,0 +1,168 @@
+{
+  "main": {
+    "id": "bea15cceb57f4394",
+    "type": "split",
+    "children": [
+      {
+        "id": "074b215c25257802",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d44fd81e822bd315",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Labs/10.10.11.214 (pc)/05 - Enumeration.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "48a69cb62838b173",
+    "type": "split",
+    "children": [
+      {
+        "id": "3d56c7d1e4c65a46",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6b56727c0304a287",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e4d175e95e2d2644",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "109013c198f7bd72",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "73a0d9940b5d0b2c",
+    "type": "split",
+    "children": [
+      {
+        "id": "1bedab3616afddf6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "97a5f0f819561d88",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Labs/10.10.11.214 (pc)/05 - Enumeration.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9c51da86e115a8f5",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Labs/10.10.11.214 (pc)/05 - Enumeration.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "8eb94ec01900e987",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "ad81c4f56e348cb3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Labs/10.10.11.214 (pc)/05 - Enumeration.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "d44fd81e822bd315",
+  "lastOpenFiles": [
+    "2023-11-11.md",
+    "Untitled 1.canvas",
+    "Labs/10.10.11.214 (pc)/05 - Enumeration.md",
+    "Labs/10.10.11.214 (pc)/Commands.md",
+    "Labs/10.10.11.214 (pc)/Nmap SSH.md",
+    "Labs/10.10.11.214 (pc)/pc Index.md",
+    "Labs/10.10.11.214 (pc)/PortScan - Top TCP Ports.md",
+    "Labs/10.10.11.214 (pc)/PortScan - All TCP Ports.md",
+    "Labs/10.10.11.214 (pc)/00 - Overview.md",
+    "Pasted image 20231111150658.png",
+    "Pasted image 20231111144000.png",
+    "Pasted image 20231111143346.png",
+    "Pasted image 20231111143333.png",
+    "Pasted image 20231111135732.png",
+    "Pasted image 20231111135704.png",
+    "Pasted image 20231111135129.png"
+  ]
+}
