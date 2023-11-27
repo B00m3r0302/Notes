@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Course Notes/Chapter 9 - Common Web Application Attacks.md",
+                "file": "Course Notes/Chapter 11 - Client-side Attacks.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Course Notes/Chapter 9 - Common Web Application Attacks.md",
+                "file": "Course Notes/Chapter 11 - Client-side Attacks.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Course Notes/Chapter 9 - Common Web Application Attacks.md",
+                "file": "Course Notes/Chapter 11 - Client-side Attacks.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Course Notes/Chapter 9 - Common Web Application Attacks.md"
+                "file": "Course Notes/Chapter 11 - Client-side Attacks.md"
               }
             }
           }
@@ -148,12 +148,13 @@
   },
   "active": "d44fd81e822bd315",
   "lastOpenFiles": [
+    "Course Notes/Chapter Y - Title 1 1 1 1.md",
+    "Course Notes/Chapter 11 - Client-side Attacks.md",
+    "Course Notes/Chapter 10 - SQL Injection Attacks.md",
+    "Course Notes/Chapter 9 - Common Web Application Attacks.md",
     "Course Notes/Chapter 8 - Introduction To Web Application Attacks.md",
     "Course Notes/Chapter 6 - Information Gathering.md",
-    "Course Notes/Chapter 9 - Common Web Application Attacks.md",
     "Labs/10.0.0.2/00 - Overview.md",
-    "Course Notes/Chapter Y - Title 1 1.md",
-    "Course Notes/Chapter Y - Title 1 1 1.md",
     "Course Notes/General Notes.md",
     "Course Notes/Course Notes Index.md",
     "Cheatsheets/Untitled.md",
