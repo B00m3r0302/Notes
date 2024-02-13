@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
+                "file": "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
+                "file": "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
+                "file": "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md"
+                "file": "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md"
               }
             }
           }
@@ -148,9 +148,15 @@
   },
   "active": "d44fd81e822bd315",
   "lastOpenFiles": [
-    "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md",
+    "Resources/domain_enum_function.ps1.md",
+    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+    "Resources/domain_information_complete.ps1.md",
+    "Resources/domain_enumeration_v2.ps1.md",
+    "Resources/domain_enumeration.ps1.md",
+    "Resources/Get_domain_information.ps1.md",
     "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
-    "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1.md",
+    "Course Notes/Chapter 19 Tunneling Through Deep Packet Inspection.md",
+    "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md",
     "Course Notes/Chapter 17 Linux Privilege Escalation.md",
     "Course Notes/Chapter 16 windows Privilege Escalation.md",
     "Resources/AddUser.c.md",
@@ -170,12 +176,6 @@
     "Course Notes/Chapter 10 - SQL Injection Attacks.md",
     "Cheatsheets/Common Tools/NMAP.md",
     "Course Notes/Chapter 6 - Information Gathering.md",
-    "Course Notes/Chapter 8 - Introduction To Web Application Attacks.md",
-    "Cheatsheets/Privilege Escalation - Windows/File Transfer - SMB Server.md",
-    "Course Notes/Chapter 11 - Client-side Attacks.md",
-    "Labs/10.0.0.2/00 - Overview.md",
-    "Course Notes/General Notes.md",
-    "Course Notes/Course Notes Index.md",
     "Pasted image 20231111150658.png",
     "Pasted image 20231111144000.png",
     "Pasted image 20231111143346.png",
