@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cheatsheets/Password Cracking.md",
+                "file": "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Cheatsheets/Password Cracking.md",
+                "file": "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Cheatsheets/Password Cracking.md",
+                "file": "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Cheatsheets/Password Cracking.md"
+                "file": "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md"
               }
             }
           }
@@ -148,10 +148,20 @@
   },
   "active": "d44fd81e822bd315",
   "lastOpenFiles": [
+    "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md",
+    "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
+    "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1.md",
+    "Course Notes/Chapter 17 Linux Privilege Escalation.md",
+    "Course Notes/Chapter 16 windows Privilege Escalation.md",
+    "Resources/AddUser.c.md",
+    "2023-11-11.md",
+    "Untitled 1.canvas",
+    "Untitled.canvas",
+    "README.md",
+    "Course Notes/Chapter 15 Password Attacks.md",
     "Course Notes/Chapter 14 - Antivirus Evasion.md",
     "Cheatsheets/Password Cracking.md",
     "Cheatsheets/FTP.md",
-    "Course Notes/Chapter Y - Title 1 1 1 1 1.md",
     "Cheatsheets/File uploads.md",
     "Cheatsheets/SMB.md",
     "Cheatsheets/Reverse Shells.md",
@@ -161,21 +171,11 @@
     "Cheatsheets/Common Tools/NMAP.md",
     "Course Notes/Chapter 6 - Information Gathering.md",
     "Course Notes/Chapter 8 - Introduction To Web Application Attacks.md",
-    "Untitled.canvas",
-    "Untitled 1.canvas",
     "Cheatsheets/Privilege Escalation - Windows/File Transfer - SMB Server.md",
     "Course Notes/Chapter 11 - Client-side Attacks.md",
     "Labs/10.0.0.2/00 - Overview.md",
     "Course Notes/General Notes.md",
     "Course Notes/Course Notes Index.md",
-    "Cheatsheets/Useful Commands - Linux/Find Writeable Directories.md",
-    "Cheatsheets/Common Tools/Git Dumper.md",
-    "Cheatsheets/Common Exploits/Potato Exploits.md",
-    "Labs/10.0.0.2/05 - Enumeration.md",
-    "Labs/10.10.11.214 (pc)/05 - Enumeration.md",
-    "2023-11-11.md",
-    "Labs/10.10.11.214 (pc)/Commands.md",
-    "Labs/10.10.11.214 (pc)/Nmap SSH.md",
     "Pasted image 20231111150658.png",
     "Pasted image 20231111144000.png",
     "Pasted image 20231111143346.png",
