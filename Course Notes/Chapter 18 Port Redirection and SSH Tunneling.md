@@ -22,6 +22,10 @@ for i in $(seq 1 254); do nc -zv -w 1 IP.$i 445; done
 ```
 ssh -N -L 0.0.0.0:4455:<TARGET_IP>:445
 ```
+- sshuttle forwarding 
+```
+sshttle pi@pi_ip TARGET_IP/24 
+```
 ### 18.3.2 Dynamic Port Forwarding
 - Dynamic port forward with 
 ```
@@ -31,6 +35,15 @@ ssh -N -D 0.0.0.0:9999 <TARGET_USER>@<TARGET_IP>
 	- edit proxychains.conf 
 	- THEN
 		- run proxychains before your command
+- On the pi run 
+```
+ssh -D 127.0.0.1:9052 pi@pi_ip
+```
+- Then
+```
+ssh -R 127.0.0.1:9051:127.0.0.1:9052 kali_username@kali_ip
+```
+- Run your commands on the target with proxychains prefix
 ### 18.3.3 Remote Port Forwarding
 - ssh remote port forward option is -R and takes two arguments 
 	- First is the listening socket then the forwarding socket
