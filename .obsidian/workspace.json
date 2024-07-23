@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "074b215c25257802",
+        "id": "415c40241f7a945b",
         "type": "tabs",
         "children": [
           {
-            "id": "d44fd81e822bd315",
+            "id": "ea33c929205ca331",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md",
+                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md",
+                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md",
+                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md"
+                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md"
               }
             }
           }
@@ -146,13 +146,23 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d44fd81e822bd315",
+  "active": "ea33c929205ca331",
   "lastOpenFiles": [
-    "Course Notes/Chapter 19 Tunneling Through Deep Packet Inspection.md",
+    "Course Notes/Chapter 15 Password Attacks.md",
+    "Course Notes/Chapter 11 - Client-side Attacks.md",
+    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+    "Course Notes/Chapter 16 windows Privilege Escalation.md",
+    "Labs/Medtech/Privilege Escalation.md",
+    "Course Notes/General Notes.md",
+    "Course Notes/Chapter 6 - Information Gathering.md",
+    "Labs/Medtech/CREDS.md",
+    "Labs/Medtech/Explolit.md",
+    "Labs/Medtech/Recon",
+    "Labs/Medtech",
     "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md",
+    "Course Notes/Chapter 19 Tunneling Through Deep Packet Inspection.md",
     "Course Notes/Chapter 9 - Common Web Application Attacks.md",
     "Course Notes/Chapter 8 - Introduction To Web Application Attacks.md",
-    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
     "Resources/domain_enum_function.ps1.md",
     "Resources/domain_information_complete.ps1.md",
     "Resources/domain_enumeration_v2.ps1.md",
@@ -160,22 +170,14 @@
     "Resources/Get_domain_information.ps1.md",
     "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
     "Course Notes/Chapter 17 Linux Privilege Escalation.md",
-    "Course Notes/Chapter 16 windows Privilege Escalation.md",
     "Resources/AddUser.c.md",
     "2023-11-11.md",
     "Untitled 1.canvas",
     "Untitled.canvas",
     "README.md",
-    "Course Notes/Chapter 15 Password Attacks.md",
     "Course Notes/Chapter 14 - Antivirus Evasion.md",
     "Cheatsheets/Password Cracking.md",
     "Cheatsheets/FTP.md",
-    "Cheatsheets/File uploads.md",
-    "Cheatsheets/SMB.md",
-    "Cheatsheets/Reverse Shells.md",
-    "Cheatsheets/Generating Payloads.md",
-    "Course Notes/Chapter 10 - SQL Injection Attacks.md",
-    "Cheatsheets/Common Tools/NMAP.md",
     "Pasted image 20231111150658.png",
     "Pasted image 20231111144000.png",
     "Pasted image 20231111143346.png",
