@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md",
+                "file": "Labs/medtech/192.168.227.121/Creds.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md",
+                "file": "Labs/medtech/192.168.227.121/Creds.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md",
+                "file": "Labs/medtech/192.168.227.121/Creds.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md"
+                "file": "Labs/medtech/192.168.227.121/Creds.md"
               }
             }
           }
@@ -148,17 +148,39 @@
   },
   "active": "ea33c929205ca331",
   "lastOpenFiles": [
-    "Course Notes/Chapter 15 Password Attacks.md",
-    "Course Notes/Chapter 11 - Client-side Attacks.md",
-    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+    "Labs/medtech/192.168.227.121/Notes.md",
+    "Labs/medtech/192.168.227.121/Creds.md",
     "Course Notes/Chapter 16 windows Privilege Escalation.md",
+    "Untitled 1.canvas",
+    "Labs/medtech/192.168.227.121/scans/tcp47001/tcp_47001_http_screenshot.png",
+    "Labs/medtech/192.168.227.121/scans/tcp47001/tcp_47001_http_feroxbuster_dirbuster.txt",
+    "Labs/medtech/192.168.227.121/scans/tcp49671/xml/tcp_49671_rpc_nmap.xml",
+    "Labs/medtech/192.168.227.121/scans/tcp49671/tcp_49671_rpc_nmap.txt",
+    "Labs/medtech/192.168.227.121/scans/tcp49667/xml/tcp_49667_rpc_nmap.xml",
+    "Labs/medtech/192.168.227.121/scans/tcp49667/tcp_49667_rpc_nmap.txt",
+    "Labs/medtech/192.168.227.121/scans/tcp47001/tcp_47001_http_whatweb.txt",
+    "Labs/medtech/192.168.227.121/scans/tcp47001/tcp_47001_http_curl.html",
+    "Labs/medtech/192.168.227.121/scans/tcp49670/xml/tcp_49670_rpc_nmap.xml",
+    "Labs/medtech/192.168.227.121/scans/tcp49670/tcp_49670_rpc_nmap.txt",
+    "Labs/medtech/192.168.227.121/scans/tcp49668/xml/tcp_49668_rpc_nmap.xml",
+    "Labs/medtech/192.168.227.122/scans/report.md/192.168.227.122/Commands.md",
+    "Labs/medtech/192.168.227.122/scans/report.md/192.168.227.122/Manual Commands.md",
+    "Labs/medtech/192.168.227.122/scans/report.md/192.168.227.122/Services/Service - tcp-22-ssh/Nmap SSH.md",
+    "Labs/medtech/192.168.227.122/scans/report.md/192.168.227.122/Port Scans/PortScan - Top TCP Ports.md",
+    "Labs/medtech/192.168.227.122/scans/report.md/192.168.227.122/Port Scans/PortScan - Top 100 UDP Ports.md",
+    "Labs/medtech/192.168.227.122/scans/report.md/192.168.227.122/Port Scans/PortScan - All TCP Ports.md",
+    "Labs/medtech/192.168.227.122/scans/report.md",
+    "Labs/medtech/192.168.227.121/scans/tcp80/tcp_80_http_screenshot.png",
+    "Labs/medtech/192.168.227.120/scans/tcp80/tcp_80_http_screenshot.png",
+    "Untitled.canvas",
+    "Course Notes/Chapter 15 Password Attacks.md",
+    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+    "Course Notes/Chapter 11 - Client-side Attacks.md",
     "Labs/Medtech/Privilege Escalation.md",
     "Course Notes/General Notes.md",
     "Course Notes/Chapter 6 - Information Gathering.md",
     "Labs/Medtech/CREDS.md",
     "Labs/Medtech/Explolit.md",
-    "Labs/Medtech/Recon",
-    "Labs/Medtech",
     "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md",
     "Course Notes/Chapter 19 Tunneling Through Deep Packet Inspection.md",
     "Course Notes/Chapter 9 - Common Web Application Attacks.md",
@@ -167,17 +189,6 @@
     "Resources/domain_information_complete.ps1.md",
     "Resources/domain_enumeration_v2.ps1.md",
     "Resources/domain_enumeration.ps1.md",
-    "Resources/Get_domain_information.ps1.md",
-    "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
-    "Course Notes/Chapter 17 Linux Privilege Escalation.md",
-    "Resources/AddUser.c.md",
-    "2023-11-11.md",
-    "Untitled 1.canvas",
-    "Untitled.canvas",
-    "README.md",
-    "Course Notes/Chapter 14 - Antivirus Evasion.md",
-    "Cheatsheets/Password Cracking.md",
-    "Cheatsheets/FTP.md",
     "Pasted image 20231111150658.png",
     "Pasted image 20231111144000.png",
     "Pasted image 20231111143346.png",

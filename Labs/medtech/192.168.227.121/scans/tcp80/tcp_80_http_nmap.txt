@@ -1,0 +1,1490 @@
+# Nmap 7.94SVN scan initiated Mon Jul 29 07:57:02 2024 as: nmap -vv --reason -Pn -T4 -sV -p 80 "--script=banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)" -oN /home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp80/tcp_80_http_nmap.txt -oX /home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp80/xml/tcp_80_http_nmap.xml 192.168.227.121
+Nmap scan report for 192.168.227.121
+Host is up, received user-set (0.072s latency).
+Scanned at 2024-07-29 07:57:03 EDT for 249s
+
+PORT   STATE SERVICE REASON          VERSION
+80/tcp open  http    syn-ack ttl 125 Microsoft IIS httpd 10.0
+| http-methods: 
+|   Supported Methods: OPTIONS TRACE GET HEAD POST
+|_  Potentially risky methods: TRACE
+|_http-drupal-enum: Nothing found amongst the top 100 resources,use --script-args number=<number|all> for deeper analysis)
+| http-headers: 
+|   Cache-Control: private
+|   Content-Length: 25997
+|   Content-Type: text/html; charset=utf-8
+|   Server: Microsoft-IIS/10.0
+|   X-AspNet-Version: 4.0.30319
+|   X-Powered-By: ASP.NET
+|   Date: Mon, 29 Jul 2024 11:57:11 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+|_http-feed: Couldn't find any feeds.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /assets/css/
+|       css: 3
+|     /assets/img/gallery/
+|       png: 1
+|     /assets/img/icon/
+|       png: 1; svg: 2
+|     /assets/img/logo/
+|       png: 1
+|     /assets/js/
+|       js: 11
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /assets/img/icon/
+|   Total files found (by extension):
+|_    Other: 1; css: 3; js: 11; png: 3; svg: 2
+| http-php-version: Logo query returned unknown hash 0faa118f02b8bdc9bc7087d0855e38a4
+|_Credits query returned unknown hash 0faa118f02b8bdc9bc7087d0855e38a4
+|_http-litespeed-sourcecode-download: Request with null byte did not work. This web server might not be vulnerable
+| http-waf-detect: IDS/IPS/WAF detected:
+|_192.168.227.121:80/?p4yl04d3=<script>alert(document.cookie)</script>
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=192.168.227.121
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|   	http://192.168.227.121:80/blog_details.aspx
+|   
+|   Error Code: 404
+|_  	http://192.168.227.121:80/site.webmanifest
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-devframework: ASP.NET detected. Found related header.
+| http-vhosts: 
+|_128 names had status 200
+| http-security-headers: 
+|   Cache_Control: 
+|_    Header: Cache-Control: private
+|_http-wordpress-enum: Nothing found amongst the top 100 resources,use --script-args search-limit=<number|all> for deeper analysis)
+|_http-mobileversion-checker: No mobile version detected.
+|_http-malware-host: Host appears to be clean
+|_http-fetch: Please enter the complete path of the directory to save data in.
+|_http-wordpress-users: [Error] Wordpress installation was not found. We couldn't find wp-login.php
+| http-aspnet-debug: 
+|_  status: DEBUG is enabled
+|_http-date: Mon, 29 Jul 2024 11:57:12 GMT; -1s from local time.
+|_http-title: MedTech
+|_http-server-header: Microsoft-IIS/10.0
+| http-fileupload-exploiter: 
+|   
+|_    Couldn't find a file-type field.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-chrono: Request times for /; avg: 471.88ms; min: 386.28ms; max: 621.99ms
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.227.121
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.227.121:80/
+|     Form id: newsletter-form-email
+|     Form action: https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&id=92a4423d01
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Form id: newsletter-form-email
+|_    Form action: https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&id=92a4423d01
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.227.121
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 528
+|     Comment: 
+|          // just in case form has element with name/id of 'submit'
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 576
+|     Comment: 
+|          // response not received yet
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 940
+|     Comment: 
+|         /**
+|          * Serializes all field elements in the jQuery object into a query string.
+|          * This method will return a string in the format: name1=value1&amp;name2=value2
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 409
+|     Comment: 
+|         /* Better Font Rendering =========== */
+|     
+|     Path: http://192.168.227.121:80/assets/css/owl.carousel.min.css
+|     Line number: 1
+|     Comment: 
+|         /**
+|          * Owl Carousel v2.2.1
+|          * Copyright 2013-2017 David Deutsch
+|          * Licensed under  ()
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 634
+|     Comment: 
+|          // account for browsers injecting pre around json response
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 71
+|     Comment: 
+|         <!-- Mobile Menu -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 82
+|     Comment: 
+|         <!--? Slider Area Start-->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 534
+|     Comment: 
+|          // reset attrs and remove "extra" input elements
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 160
+|     Comment: 
+|         <!-- Section Tittle -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 478
+|     Comment: 
+|          // look for server aborts
+|     
+|     Path: http://192.168.227.121:80/
+|     Line number: 235
+|     Comment: 
+|         <!-- Services Area End -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 672
+|     Comment: 
+|          // ordering of these callbacks/triggers is odd, but that's how $.ajax does it
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 996
+|     Comment: 
+|         /* Show at 960px (60em x 16px) */
+|     
+|     Path: http://192.168.227.121:80/assets/css/slicknav.css
+|     Line number: 144
+|     Comment: 
+|         /*===== mobile menu slicknav =====*/
+|     
+|     Path: http://192.168.227.121:80/
+|     Line number: 11
+|     Comment: 
+|         <!-- page content -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 625
+|     Comment: 
+|          // see if user embedded response in textarea
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 501
+|     Comment: 
+|          // if using the $.param format that allows for multiple values with the same name
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1098
+|     Comment: 
+|          // includeHidden can be the value true, or it can be a selector string
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 119
+|     Comment: 
+|          // provide opportunity to alter form data before it is serialized
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 79
+|     Comment: 
+|         /*jshint scripturl:true */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 453
+|     Comment: 
+|          // make sure form attrs are set
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 99
+|     Comment: 
+|          // clean url (don't include hash vaue)
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 257
+|     Comment: 
+|         /* List - Material Design */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 192
+|     Comment: 
+|          // https://github.com/malsup/form/commit/588306aedba1de01388032d5f42a60159eea9228#commitcomment-2180219
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 2082
+|     Comment: 
+|         /* Blue 700 */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 2072
+|     Comment: 
+|         /* Gray 300 */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 429
+|     Comment: 
+|          // successful getting content
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 355
+|     Comment: 
+|         <!-- social -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 724
+|     Comment: 
+|         /*jslint evil:true */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 15
+|     Comment: 
+|         /*
+|             Usage Note:
+|             -----------
+|             Do not use both ajaxSubmit and ajaxForm on the same form.  These
+|             functions are mutually exclusive.  Use ajaxSubmit if you want
+|             to bind your own submit handler to the form.  For example,
+|         
+|             $(document).ready(function() {
+|                 $('#myForm').on('submit', function(e) {
+|                     e.preventDefault(); // <-- important
+|                     $(this).ajaxSubmit({
+|                         target: '#output'
+|                     });
+|                 });
+|             });
+|         
+|             Use ajaxForm when you want the plugin to manage all the event binding
+|             for you.  For example,
+|         
+|             $(document).ready(function() {
+|                 $('#myForm').ajaxForm({
+|                     target: '#output'
+|                 });
+|             });
+|         
+|             You can also use ajaxForm with delegation (requires jQuery v1.7+), so the
+|             form does not have to exist when you invoke ajaxForm:
+|         
+|             $('#myForm').ajaxForm({
+|                 delegation: true,
+|                 target: '#output'
+|             });
+|         
+|             When using ajaxForm, the ajaxSubmit function will be invoked for you
+|             at the appropriate time.
+|         */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 803
+|     Comment: 
+|         
+|         // private event handlers
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1046
+|     Comment: 
+|          // extra pain for IE...
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 1710
+|     Comment: 
+|         /* fontawesome */
+|     
+|     Path: http://192.168.227.121:80/
+|     Line number: 103
+|     Comment: 
+|         <!-- Video icon -->
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 1696
+|     Comment: 
+|         /* Glyphicons */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 1681
+|     Comment: 
+|         /* Material Icons */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 1663
+|     Comment: 
+|         /*color: rgba(0, 0, 0, 1);*/
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 495
+|     Comment: 
+|          // add "extra" data to form if provided in options
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 1647
+|     Comment: 
+|         /* Indigo A200 */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 848
+|     Comment: 
+|         /* Bootstrap Theme */
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 102
+|     Comment: 
+|         <!-- Slider Area End -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 368
+|     Comment: 
+|         <!-- Form -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 882
+|     Comment: 
+|          // handle image inputs on the fly when semantic == true
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1115
+|     Comment: 
+|          // note that IE reports the reset function as an 'object'
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1109
+|     Comment: 
+|         /**
+|          * Resets the form data.  Causes all form elements to be reset to their original value.
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 1003
+|     Comment: 
+|         /* Show at 1,120px (70em x 16px) */
+|     
+|     Path: http://192.168.227.121:80/assets/css/magnific-popup.css
+|     Line number: 244
+|     Comment: 
+|         /* Main image in popup */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 931
+|     Comment: 
+|         /**
+|          * Serializes form data into a 'submittable' string. This method will return a string
+|          * in the format: name1=value1&amp;name2=value2
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 616
+|     Comment: 
+|          // support for XHR 'status' & 'statusText' emulation :
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 146
+|     Comment: 
+|         <!--? Team End-->
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 322
+|     Comment: 
+|         /* Picker */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 975
+|     Comment: 
+|         /* Show at 480px (30em x 16px) */
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 422
+|     Comment: 
+|         <!-- Jquery Mobile Menu -->
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 968
+|     Comment: 
+|         /* Show at 320px (20em x 16px) */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 209
+|     Comment: 
+|          // see:  http://groups.google.com/group/jquery-dev/browse_thread/thread/36395b7ab510dd5d
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 152
+|     Comment: 
+|         /* border-bottom: 2px solid rgba(0,0,0,.42); */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 978
+|     Comment: 
+|          // if no values are entered into the text inputs
+|     
+|     Path: http://192.168.227.121:80/assets/css/slicknav.css
+|     Line number: 177
+|     Comment: 
+|         /* .slicknav_menu .slicknav_open .slicknav_icon-bar:nth-child(2) {
+|             opacity: 0;
+|             -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+|         }
+|         .slicknav_menu .slicknav_open .slicknav_icon-bar:nth-child(1) {
+|             -webkit-transform: rotate(45deg) translate(1px, 7px);
+|             -ms-transform: rotate(45deg) translate(1px, 7px);
+|                 transform: rotate(45deg) translate(1px, 7px);
+|         }
+|         .slicknav_menu .slicknav_open .slicknav_icon-bar:nth-child(3) {
+|             -webkit-transform: rotate(-45deg) translateY(-6px);
+|             -ms-transform: rotate(-45deg) translateY(-6px);
+|                 transform: rotate(-45deg) translateY(-6px);
+|                 position: relative;
+|                 top: -1px;
+|         } */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1074
+|     Comment: 
+|         /**
+|          * Clears the selected form elements.
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 928
+|     Comment: 
+|         /* Gray 200 */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1060
+|     Comment: 
+|         /**
+|          * Clears the form data.  Takes the following actions on the form's input fields:
+|          *  - input text fields will have their 'value' property set to the empty string
+|          *  - select elements will have their 'selectedIndex' property set to -1
+|          *  - checkbox and radio inputs will have their 'checked' property set to false
+|          *  - inputs of type submit, button, reset, and hidden will *not* be effected
+|          *  - button elements will *not* be effected
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 818
+|     Comment: 
+|          // is this a child element of the submit el?  (ex: a span within a button)
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 170
+|     Comment: 
+|          // perform a load on the target only if dataType is not provided
+|     
+|     Path: http://192.168.227.121:80/assets/css/slicknav.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * SlickNav Responsive Mobile Menu v1.0.10
+|          * (c) 2016 Josh Cope
+|          * licensed under MIT
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 333
+|     Comment: 
+|         /* Material Design */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 965
+|     Comment: 
+|         /**
+|          * Returns the value(s) of the element in the matched set.  For example, consider the following form:
+|          *
+|          *  <form><fieldset>
+|          *      <input name="A" type="text" />
+|          *      <input name="A" type="text" />
+|          *      <input name="B" type="checkbox" value="B1" />
+|          *      <input name="B" type="checkbox" value="B2"/>
+|          *      <input name="C" type="radio" value="C1" />
+|          *      <input name="C" type="radio" value="C2" />
+|          *  </fieldset></form>
+|          *
+|          *  var v = $('input[type=text]').fieldValue();
+|          *  // if no values are entered into the text inputs
+|          *  v == ['','']
+|          *  // if values entered into the text inputs are 'foo' and 'bar'
+|          *  v == ['foo','bar']
+|          *
+|          *  var v = $('input[type=checkbox]').fieldValue();
+|          *  // if neither checkbox is checked
+|          *  v === undefined
+|          *  // if both checkboxes are checked
+|          *  v == ['B1', 'B2']
+|          *
+|          *  var v = $('input[type=radio]').fieldValue();
+|          *  // if neither radio is checked
+|          *  v === undefined
+|          *  // if first radio is checked
+|          *  v == ['C1']
+|          *
+|          * The successful argument controls whether or not the field element must be 'successful'
+|          * (per http://www.w3.org/TR/html4/interact/forms.html#successful-controls).
+|          * The default value of the successful argument is true.  If this value is false the value(s)
+|          * for each element is returned.
+|          *
+|          * Note: This method *always* returns an array.  If no valid value can be determined the
+|          *    array will be empty, otherwise it will contain one or more values.
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 1237
+|     Comment: 
+|         /* Bootstrap 4 */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 246
+|     Comment: 
+|          // #278; use array instead of object storage, favoring array serializations
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 784
+|     Comment: 
+|          // is your DOM ready?  http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 845
+|     Comment: 
+|         
+|         // ajaxFormUnbind unbinds the event handlers that were bound by ajaxForm
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 603
+|     Comment: 
+|          //throw 'DOMException: not available';
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 667
+|     Comment: 
+|         /** Bootstrap 4 **/
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 445
+|     Comment: 
+|         <!-- contact js -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 428
+|     Comment: 
+|         <!-- One Page, Animated-HeadLin -->
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 138
+|     Comment: 
+|         /* width: 100%; */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 391
+|     Comment: 
+|         /* use !important to prevent issues with browser extensions that change fonts */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 368
+|     Comment: 
+|         /* Bootstrap */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 61
+|     Comment: 
+|         
+|         // attr2 uses prop when it can but checks the return type for
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 283
+|     Comment: 
+|         /*event.position is deprecated*/
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 313
+|     Comment: 
+|         /* Gray 500 */
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 41
+|     Comment: 
+|         <!--? Header Start -->
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 221
+|     Comment: 
+|         /* unicode zero width space character */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 159
+|     Comment: 
+|          // data is the query string for 'post'
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 55
+|     Comment: 
+|         /** Material Design */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 236
+|     Comment: 
+|          // utility fn for deep serialization
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 425
+|     Comment: 
+|          // IE8 access denied under ssl & missing protocol
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 2200
+|     Comment: 
+|         /*width: 38px;*/
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 224
+|     Comment: 
+|         /* List - Bootstrap */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 277
+|     Comment: 
+|          // workaround because jqXHR does not expose upload property
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 264
+|     Comment: 
+|         /* Gray 700 */
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 410
+|     Comment: 
+|         <!-- Scroll Up -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 74
+|     Comment: 
+|         /**
+|          * ajaxSubmit() provides a mechanism for immediately submitting
+|          * an HTML form using AJAX.
+|          */
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 54
+|     Comment: 
+|         <!-- Main-menu -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 206
+|     Comment: 
+|          // 06-NOV-09: now defaulting to iframe mode if file input is detected
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 144
+|     Comment: 
+|         /* padding: 15px 15px; */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1101
+|     Comment: 
+|          // the above would clean hidden inputs that have the class of 'special'
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 443
+|     Comment: 
+|          // Rails CSRF hack (thanks to Yvan Barthelemy)
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 549
+|     Comment: 
+|          // this lets dom updates render
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 840
+|     Comment: 
+|          // clear form vars
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 400
+|     Comment: 
+|         /* Enable Ligatures ================ */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 143
+|     Comment: 
+|          // fire vetoable 'validate' event
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 136
+|     Comment: 
+|         /* padding: 4px 0px; */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 24
+|     Comment: 
+|          // <-- important
+|     
+|     Path: http://192.168.227.121:80/assets/css/magnific-popup.css
+|     Line number: 255
+|     Comment: 
+|         /* The shadow behind the image */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 878
+|     Comment: 
+|         /* Material Design Theme */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 451
+|     Comment: 
+|          // take a breath so that pending repaints get some cpu time before the upload starts
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 130
+|     Comment: 
+|         /* border: none; */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 392
+|     Comment: 
+|          // add submitting element to data if we know it
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 178
+|     Comment: 
+|         <!--? Testimonial Area Start -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 228
+|     Comment: 
+|          // clear element array
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1078
+|     Comment: 
+|          // 'hidden' is not in this list
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.nice-select.min.js
+|     Line number: 1
+|     Comment: 
+|         /*  jQuery Nice Select - v1.0
+|             https://github.com/hernansartorio/jquery-nice-select
+|             Made by Hern\xC3\xA1n Sartorio  */
+|     
+|     Path: http://192.168.227.121:80/assets/css/magnific-popup.css
+|     Line number: 301
+|     Comment: 
+|         /**
+|                * Remove all paddings around the image on small screen
+|                */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 433
+|     Comment: 
+|          // simply checking may throw in ie8 under ssl or mismatched protocol
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 989
+|     Comment: 
+|         /* Show at 800px (50em x 16px) */
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 221
+|     Comment: 
+|         <!-- Testimonial End -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 183
+|     Comment: 
+|          // jQuery 1.4+ supports scope context
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 452
+|     Comment: 
+|         <!-- Jquery Plugins, main Jquery -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 980
+|     Comment: 
+|          // if values entered into the text inputs are 'foo' and 'bar'
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 433
+|     Comment: 
+|         <!-- Date Picker -->
+|     
+|     Path: http://192.168.227.121:80/assets/css/magnific-popup.css
+|     Line number: 1
+|     Comment: 
+|         /* Magnific Popup CSS */
+|     
+|     Path: http://192.168.227.121:80/assets/js/animated.headline.js
+|     Line number: 6
+|     Comment: 
+|          //3000 is the duration of the transition on the loading bar - set in the scss/css file
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 103
+|     Comment: 
+|         <!--? Team Area Start-->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 415
+|     Comment: 
+|         <!-- JS here -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 807
+|     Comment: 
+|          // if event has been canceled, don't proceed
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 982
+|     Comment: 
+|         /* Show at 640px (40em x 16px) */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1099
+|     Comment: 
+|          // indicating a special test; for example:
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 425
+|     Comment: 
+|         <!-- Jquery Slick , Owl-Carousel Plugins -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 184
+|     Comment: 
+|         <!-- Testimonial Start -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 239
+|     Comment: 
+|         <!--? Blog Area Start -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 712
+|     Comment: 
+|          // use parseXML if available (jQuery 1.5+)
+|     
+|     Path: http://192.168.227.121:80/assets/css/bootstrap.min.css
+|     Line number: 7
+|     Comment: 
+|         /*# sourceMappingURL=bootstrap.min.css.map */
+|     
+|     Path: http://192.168.227.121:80/assets/css/bootstrap.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v4.1.3 (https://getbootstrap.com/)
+|          * Copyright 2011-2018 The Bootstrap Authors
+|          * Copyright 2011-2018 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 436
+|     Comment: 
+|          // last attempt
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 227
+|     Comment: 
+|         <!--? Testimonial Area End -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 296
+|     Comment: 
+|         <!-- Blog Area End -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 774
+|     Comment: 
+|          // in jQuery 1.3+ we can fix mistakes with the ready state
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.ajaxchimp.min.js
+|     Line number: 69
+|     Comment: 
+|          // Translate and display message
+|     
+|     Path: http://192.168.227.121:80/
+|     Line number: 174
+|     Comment: 
+|         <!-- About-2 Area End -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/popper.min.js
+|     Line number: 1
+|     Comment: 
+|         /*
+|          Copyright (C) Federico Zivolo 2017
+|          Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 595
+|     Comment: 
+|          // in some browsers (Opera) the iframe DOM is not always traversable when
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 79
+|     Comment: 
+|         <!-- Header End -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 192
+|     Comment: 
+|         <!-- founder -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1150
+|     Comment: 
+|          // deselect all other options
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1114
+|     Comment: 
+|          // guard against an input with the name of 'reset'
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 353
+|     Comment: 
+|          // #214, #257
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 140
+|     Comment: 
+|         /* text-align: ; */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 372
+|     Comment: 
+|          // trigger ajax global events so that activity/block indicators work like normal
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 465
+|     Comment: 
+|          // ie borks in some cases when setting encoding
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1161
+|     Comment: 
+|         
+|         // helper fn for console logging
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 1961
+|     Comment: 
+|         /* background-image: url(../img/logo/date-picker-icon.png); */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 992
+|     Comment: 
+|          // if first radio is checked
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 990
+|     Comment: 
+|          // if neither radio is checked
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 986
+|     Comment: 
+|          // if both checkboxes are checked
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 920
+|     Comment: 
+|          // input type=='image' are not found in elements array! handle it here
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 100
+|     Comment: 
+|         /*font-size: 1.3rem;
+|             margin-right: 4px;*/
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 950
+|     Comment: 
+|         /* Hide all prioritized columns by default */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 936
+|     Comment: 
+|          //hand off to jQuery.param for proper encoding
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 111
+|     Comment: 
+|          // convenient for use with rich editors like tinyMCE or FCKEditor
+|     
+|     Path: http://192.168.227.121:80/assets/css/slicknav.css
+|     Line number: 106
+|     Comment: 
+|         /* padding: 5px 10px; */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 410
+|     Comment: 
+|         /* it looks like contentWindow or contentDocument do not
+|                      * carry the protocol property in ie8, when running under ssl
+|                      * frame.document is the only valid response document, since
+|                      * the protocol is know but not on the other two objects. strange?
+|                      * "Same origin policy" http://en.wikipedia.org/wiki/Same_origin_policy
+|                      */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 1195
+|     Comment: 
+|         /* Bootstrap 3 */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 680
+|     Comment: 
+|         /** Material Design **/
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 147
+|     Comment: 
+|         <!-- Services End-->
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 2068
+|     Comment: 
+|         /* Gray 400 */
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 39
+|     Comment: 
+|         <!-- Preloader Start -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.ajaxchimp.min.js
+|     Line number: 103
+|     Comment: 
+|          // Translate and display submit message
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 728
+|     Comment: 
+|          // mostly lifted from jq1.4.4
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 156
+|     Comment: 
+|          // data is null for 'get'
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * jQuery Form Plugin
+|          * version: 3.32.0-2013.04.09
+|          * @requires jQuery v1.5 or later
+|          * Copyright (c) 2013 M. Alsup
+|          * Examples and documentation at: http://malsup.com/jquery/form/
+|          * Project repository: https://github.com/malsup/form
+|          * Dual licensed under the MIT and GPL licenses.
+|          * https://github.com/malsup/form#copyright-and-license
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 704
+|     Comment: 
+|          // clean up
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 668
+|     Comment: 
+|          // we've set xhr.status
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 81
+|     Comment: 
+|          // fast fail if nothing selected (http://dev.jquery.com/ticket/2752)
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1122
+|     Comment: 
+|         /**
+|          * Enables or disables any matching elements.
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 243
+|     Comment: 
+|          // #252; undo param space replacement
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 606
+|     Comment: 
+|          //log('response detected');
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 602
+|     Comment: 
+|          //log('Could not access iframe DOM after mutiple tries.');
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 601
+|     Comment: 
+|          // let this fall through because server response could be an empty document
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 596
+|     Comment: 
+|          // the onload callback fires, so we loop a bit to accommodate
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1100
+|     Comment: 
+|          //  $('#myForm').clearForm('.special:hidden')
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 339
+|     Comment: 
+|          // mock object
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 196
+|     Comment: 
+|         /* List */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 189
+|     Comment: 
+|          // are there files to upload?
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 324
+|     Comment: 
+|         <!-- About Law End-->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 12
+|     Comment: 
+|         <!-- CSS here -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 148
+|     Comment: 
+|         <!--? About-2 Area Start -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 46
+|     Comment: 
+|         <!-- Logo -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1158
+|     Comment: 
+|         
+|         // expose debug var
+|     
+|     Path: http://192.168.227.121:80/assets/js/contact.js
+|     Line number: 11
+|     Comment: 
+|          // validate contactForm form
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 11
+|     Comment: 
+|         /*global ActiveXObject */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 805
+|     Comment: 
+|         /*jshint validthis:true */
+|     
+|     Path: http://192.168.227.121:80/
+|     Line number: 519
+|     Comment: 
+|         <!-- Footer stuffs for every page, if desired -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 418
+|     Comment: 
+|         <!-- Jquery, Popper, Bootstrap -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 208
+|     Comment: 
+|          // hack to fix Safari hang (thanks to Tim Molendijk for this)
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 153
+|     Comment: 
+|         <!-- about-img -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 516
+|     Comment: 
+|          // add iframe to doc and submit the form
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 52
+|     Comment: 
+|         /**
+|          * Feature detection
+|          */
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 85
+|     Comment: 
+|         <!-- Slider Single -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 360
+|     Comment: 
+|          // abort op in progress
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 311
+|     Comment: 
+|          // ensure that every serialized input is still enabled
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 191
+|     Comment: 
+|          // [value] (issue #113), also see comment:
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 654
+|     Comment: 
+|         /** Bootstrap 3 **/
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 228
+|     Comment: 
+|         <!--? video_start -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 232
+|     Comment: 
+|          // fire 'notify' event
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 333
+|     Comment: 
+|         <!-- logo -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1018
+|     Comment: 
+|         /**
+|          * Returns the value of the field element.
+|          */
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 238
+|     Comment: 
+|         <!-- video_end -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 28
+|     Comment: 
+|         <!-- ? Preloader Start -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 435
+|     Comment: 
+|         <!-- Nice-select, sticky -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 850
+|     Comment: 
+|         /**
+|          * formToArray() gathers form element data into an array of objects that can
+|          * be passed to any of the following ajax functions: $.get, $.post, or load.
+|          * Each object in the array has both a 'name' and 'value' property.  An example of
+|          * an array for a simple login form might be:
+|          *
+|          * [ { name: 'username', value: 'jresig' }, { name: 'password', value: 'secret' } ]
+|          *
+|          * It is this array that is passed to pre-submit callback functions provided to the
+|          * ajaxSubmit() and ajaxForm() methods.
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 932
+|     Comment: 
+|         /* Grey 100 */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 1134
+|     Comment: 
+|         /**
+|          * Checks/unchecks any matching checkboxes or radio buttons and
+|          * selects/deselects and matching option elements.
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 63
+|     Comment: 
+|         
+|         // contains inputs with names like "action" or "method"; in those
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 419
+|     Comment: 
+|          // IE8 cascading access check
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 110
+|     Comment: 
+|          // hook for manipulating the form data before it is extracted;
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 456
+|     Comment: 
+|          // update form attrs in IE friendly way
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 137
+|     Comment: 
+|          // give pre-submit callback an opportunity to abort the submit
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 182
+|     Comment: 
+|          // jQuery 1.4+ passes xhr as 3rd arg
+|     
+|     Path: http://192.168.227.121:80/assets/js/popper.min.js
+|     Line number: 5
+|     Comment: 
+|         
+|         //# sourceMappingURL=popper.min.js.map
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 473
+|     Comment: 
+|          // support timout
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 131
+|     Comment: 
+|         /* border-bottom: 1px solid rgba(0,0,0,.42); */
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 439
+|     Comment: 
+|         <!-- counter , waypoint,Hover Direction -->
+|     
+|     Path: http://192.168.227.121:80/assets/css/fontawesome-all.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Font Awesome Free 5.0.6 by @fontawesome - http://fontawesome.com
+|          * License - http://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 252
+|     Comment: 
+|          // XMLHttpRequest Level 2 file uploads (big hat tip to francois2metz)
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 984
+|     Comment: 
+|          // if neither checkbox is checked
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 399
+|     Comment: 
+|         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 297
+|     Comment: 
+|         <!--? About Law Start-->
+|     
+|     Path: http://192.168.227.121:80/
+|     Line number: 192
+|     Comment: 
+|         <!--? Services Area Start -->
+|     
+|     Path: http://192.168.227.121:80/
+|     Line number: 8
+|     Comment: 
+|         <!-- Header stuffs for every page, if desired -->
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 186
+|     Comment: 
+|         <!-- Single Testimonial -->
+|     
+|     Path: http://192.168.227.121:80/assets/css/gijgo.css
+|     Line number: 145
+|     Comment: 
+|         /* text-align: center; */
+|     
+|     Path: http://192.168.227.121:80/about.aspx
+|     Line number: 392
+|     Comment: 
+|         <!-- footer-bottom area -->
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 755
+|     Comment: 
+|         /**
+|          * ajaxForm() provides a mechanism for fully automating form submission.
+|          *
+|          * The advantages of using this method instead of ajaxSubmit() are:
+|          *
+|          * 1: This method will include coordinates for <input type="image" /> elements (if the element
+|          *    is used to submit the form).
+|          * 2. This method will include the submit element's name/value data (for the element that was
+|          *    used to submit the form).
+|          * 3. This method binds the submit() method to the form for you.
+|          *
+|          * The options argument for ajaxForm works exactly as it does for ajaxSubmit.  ajaxForm merely
+|          * passes the options argument along after properly binding events for submit elements and
+|          * the form itself.
+|          */
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 305
+|     Comment: 
+|          // private function for handling file uploads (hat tip to YAHOO!)
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 908
+|     Comment: 
+|          // #180
+|     
+|     Path: http://192.168.227.121:80/assets/js/jquery.form.js
+|     Line number: 205
+|     Comment: 
+|_         // options.iframe allows user to force iframe mode
+|_http-jsonp-detection: Couldn't find any JSONP endpoints.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|_  /login.aspx: Possible admin folder
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jul 29 08:01:12 2024 -- 1 IP address (1 host up) scanned in 250.21 seconds

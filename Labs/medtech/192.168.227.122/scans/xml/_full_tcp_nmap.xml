@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Mon Jul 29 07:55:21 2024 as: nmap -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Notes/Labs/medtech/192.168.227.122/scans/_full_tcp_nmap.txt -oX /home/kali/Notes/Labs/medtech/192.168.227.122/scans/xml/_full_tcp_nmap.xml 192.168.227.122 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Notes/Labs/medtech/192.168.227.122/scans/_full_tcp_nmap.txt -oX /home/kali/Notes/Labs/medtech/192.168.227.122/scans/xml/_full_tcp_nmap.xml 192.168.227.122" start="1722254121" startstr="Mon Jul 29 07:55:21 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1722254122"/>
+<taskend task="NSE" time="1722254122"/>
+<taskbegin task="NSE" time="1722254122"/>
+<taskend task="NSE" time="1722254122"/>
+<taskbegin task="NSE" time="1722254122"/>
+<taskend task="NSE" time="1722254122"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1722254122"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1722254122"/>
+<taskbegin task="SYN Stealth Scan" time="1722254122"/>
+<taskprogress task="SYN Stealth Scan" time="1722254153" percent="5.16" remaining="571" etc="1722254723"/>
+<taskprogress task="SYN Stealth Scan" time="1722254183" percent="7.90" remaining="712" etc="1722254895"/>
+<taskprogress task="SYN Stealth Scan" time="1722254237" percent="14.61" remaining="673" etc="1722254909"/>
+<taskprogress task="SYN Stealth Scan" time="1722254276" percent="19.60" remaining="632" etc="1722254908"/>
+<taskprogress task="SYN Stealth Scan" time="1722254306" percent="23.74" remaining="592" etc="1722254897"/>
+<taskprogress task="SYN Stealth Scan" time="1722254336" percent="28.05" remaining="550" etc="1722254885"/>
+<taskprogress task="SYN Stealth Scan" time="1722254366" percent="32.33" remaining="511" etc="1722254877"/>
+<taskprogress task="SYN Stealth Scan" time="1722254399" percent="37.08" remaining="471" etc="1722254869"/>
+<taskprogress task="SYN Stealth Scan" time="1722254435" percent="41.99" remaining="433" etc="1722254867"/>
+<taskprogress task="SYN Stealth Scan" time="1722254480" percent="47.69" remaining="393" etc="1722254873"/>
+<taskprogress task="SYN Stealth Scan" time="1722254522" percent="53.14" remaining="353" etc="1722254875"/>
+<taskprogress task="SYN Stealth Scan" time="1722254591" percent="60.03" remaining="313" etc="1722254903"/>
+<taskprogress task="SYN Stealth Scan" time="1722254633" percent="65.38" remaining="271" etc="1722254904"/>
+<taskprogress task="SYN Stealth Scan" time="1722254672" percent="70.41" remaining="232" etc="1722254903"/>
+<taskprogress task="SYN Stealth Scan" time="1722254720" percent="75.84" remaining="191" etc="1722254911"/>
+<taskprogress task="SYN Stealth Scan" time="1722254759" percent="80.97" remaining="150" etc="1722254909"/>
+<taskprogress task="SYN Stealth Scan" time="1722254795" percent="85.96" remaining="110" etc="1722254905"/>
+<taskprogress task="SYN Stealth Scan" time="1722254849" percent="91.14" remaining="71" etc="1722254920"/>
+<taskend task="SYN Stealth Scan" time="1722254959" extrainfo="65535 total ports"/>
+<taskbegin task="Service scan" time="1722254959"/>
+<taskend task="Service scan" time="1722254965" extrainfo="2 services on 1 host"/>
+<taskbegin task="Traceroute" time="1722254980"/>
+<taskend task="Traceroute" time="1722254980"/>
+<taskbegin task="Parallel DNS resolution of 4 hosts." time="1722254980"/>
+<taskend task="Parallel DNS resolution of 4 hosts." time="1722254980"/>
+<taskbegin task="NSE" time="1722254980"/>
+<taskend task="NSE" time="1722254984"/>
+<taskbegin task="NSE" time="1722254984"/>
+<taskend task="NSE" time="1722254984"/>
+<taskbegin task="NSE" time="1722254984"/>
+<taskend task="NSE" time="1722254984"/>
+<host starttime="1722254122" endtime="1722254984"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.227.122" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65527">
+<extrareasons reason="reset" count="65527" proto="tcp" ports="1-21,23-1193,1195-4273,4275-18178,18180-37653,37655-38029,38031-49850,49852-56475,56477-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="ssh" product="OpenSSH" version="8.9p1 Ubuntu 3ubuntu0.10" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:8.9p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  256 60:f9:e1:44:6a:40:bc:90:e0:3f:1d:d8:86:bc:a9:3d (ECDSA)&#xa;ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJ0/iBLK4jYimQjBeuwnG2ZFeJODcJDLQFBZoX/Gzn/BQc4aaYlaqHfDH/OwHFwffCzK6Ud/boKS1Hxo084jaLI=&#xa;  256 24:97:84:f2:58:53:7b:a3:f7:40:e9:ad:3d:12:1e:c7 (ED25519)&#xa;ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAQKZnihoyWylk5RZg92RJyNHGV/3pGU9wPbfOFhtBQd"><table>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="bits">256</elem>
+<elem key="fingerprint">60f9e1446a40bc90e03f1dd886bca93d</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJ0/iBLK4jYimQjBeuwnG2ZFeJODcJDLQFBZoX/Gzn/BQc4aaYlaqHfDH/OwHFwffCzK6Ud/boKS1Hxo084jaLI=</elem>
+</table>
+<table>
+<elem key="type">ssh-ed25519</elem>
+<elem key="bits">256</elem>
+<elem key="fingerprint">249784f258537ba3f740e9ad3d121ec7</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIAQKZnihoyWylk5RZg92RJyNHGV/3pGU9wPbfOFhtBQd</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="1194"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="openvpn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="4274"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="vrml-multi-use" method="table" conf="3"/></port>
+<port protocol="tcp" portid="18179"><state state="filtered" reason="no-response" reason_ttl="0"/></port>
+<port protocol="tcp" portid="37654"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="unisys-eportal" method="table" conf="3"/></port>
+<port protocol="tcp" portid="38030"><state state="filtered" reason="no-response" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49851"><state state="filtered" reason="no-response" reason_ttl="0"/></port>
+<port protocol="tcp" portid="56476"><state state="filtered" reason="no-response" reason_ttl="0"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<portused state="closed" proto="udp" portid="34986"/>
+<osmatch name="Linux 2.6.32" accuracy="88" line="54325">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="88"><cpe>cpe:/o:linux:linux_kernel:2.6.32</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.39" accuracy="88" line="58235">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="88"><cpe>cpe:/o:linux:linux_kernel:2.6.39</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 3.10 - 3.12" accuracy="88" line="63348">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="88"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 3.4" accuracy="88" line="65506">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="88"><cpe>cpe:/o:linux:linux_kernel:3.4</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 3.5" accuracy="88" line="65602">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="88"><cpe>cpe:/o:linux:linux_kernel:3.5</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 4.2" accuracy="88" line="67270">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="4.X" accuracy="88"><cpe>cpe:/o:linux:linux_kernel:4.2</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 4.4" accuracy="88" line="67452">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="4.X" accuracy="88"><cpe>cpe:/o:linux:linux_kernel:4.4</cpe></osclass>
+</osmatch>
+<osmatch name="Synology DiskStation Manager 5.1" accuracy="88" line="68524">
+<osclass type="storage-misc" vendor="Linux" osfamily="Linux" accuracy="88"><cpe>cpe:/o:linux:linux_kernel</cpe></osclass>
+<osclass type="storage-misc" vendor="Synology" osfamily="DiskStation Manager" osgen="5.X" accuracy="88"><cpe>cpe:/a:synology:diskstation_manager:5.1</cpe></osclass>
+</osmatch>
+<osmatch name="WatchGuard Fireware 11.8" accuracy="88" line="104867">
+<osclass type="firewall" vendor="WatchGuard" osfamily="Fireware" osgen="11.X" accuracy="88"><cpe>cpe:/o:watchguard:fireware:11.8</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.35" accuracy="87" line="57214">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="87"><cpe>cpe:/o:linux:linux_kernel:2.6.35</cpe></osclass>
+</osmatch>
+<osfingerprint fingerprint="OS:SCAN(V=7.94SVN%E=4%D=7/29%OT=22%CT=1%CU=34986%PV=Y%DS=4%DC=T%G=Y%TM=66A7&#xa;OS:8688%P=x86_64-pc-linux-gnu)SEQ(SP=105%GCD=1%ISR=10B%TI=Z%TS=A)SEQ(SP=105&#xa;OS:%GCD=1%ISR=10B%TI=Z%II=I%TS=A)SEQ(SP=105%GCD=1%ISR=10B%TI=Z%II=I%TS=C)OP&#xa;OS:S(O1=M551ST11NW7%O2=M551ST11NW7%O3=M551NNT11NW7%O4=M551ST11NW7%O5=M551ST&#xa;OS:11NW7%O6=M551ST11)WIN(W1=FE88%W2=FE88%W3=FE88%W4=FE88%W5=FE88%W6=FE88)EC&#xa;OS:N(R=Y%DF=Y%T=40%W=FAF0%O=M551NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=&#xa;OS:AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=N)T5(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD&#xa;OS:=0%Q=)T6(R=N)T7(R=N)U1(R=Y%DF=N%T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%R&#xa;OS:UCK=7CAA%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)&#xa;"/>
+</os>
+<uptime seconds="3773164" lastboot="Sat Jun 15 16:03:40 2024"/>
+<distance value="4"/>
+<tcpsequence index="261" difficulty="Good luck!" values="34A5AFB1,95B3B8F6,63CD564E,57B00ED6,A119CE58,112DEAFA"/>
+<ipidsequence class="All zeros" values="0,0,0,0,0,0"/>
+<tcptssequence class="1000HZ" values="E0E5D3C3,E0E5D428,E0E5D49F,E0E5D4EF,E0E5D54F,E0E5D5B5"/>
+<trace port="143" proto="tcp">
+<hop ttl="1" ipaddr="192.168.45.1" rtt="103.93"/>
+<hop ttl="2" ipaddr="192.168.45.254" rtt="103.91"/>
+<hop ttl="3" ipaddr="192.168.251.1" rtt="103.97"/>
+<hop ttl="4" ipaddr="192.168.227.122" rtt="104.05"/>
+</trace>
+<times srtt="128804" rttvar="29589" to="247160"/>
+</host>
+<taskbegin task="NSE" time="1722254984"/>
+<taskend task="NSE" time="1722254984"/>
+<taskbegin task="NSE" time="1722254984"/>
+<taskend task="NSE" time="1722254984"/>
+<taskbegin task="NSE" time="1722254984"/>
+<taskend task="NSE" time="1722254984"/>
+<runstats><finished time="1722254984" timestr="Mon Jul 29 08:09:44 2024" summary="Nmap done at Mon Jul 29 08:09:44 2024; 1 IP address (1 host up) scanned in 863.04 seconds" elapsed="863.04" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
