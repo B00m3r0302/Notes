@@ -1,3 +1,10 @@
+```bash
+feroxbuster -u http://192.168.227.120:80/ -t 10 -w /root/.local/share/AutoRecon/wordlists/dirbuster.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -q -e -r -o "/home/kali/Notes/Labs/medtech/192.168.227.120/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt"
+```
+
+[/home/kali/Notes/Labs/medtech/192.168.227.120/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt](file:///home/kali/Notes/Labs/medtech/192.168.227.120/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt):
+
+```
 Configuration {
     kind: "configuration",
     wordlist: "/root/.local/share/AutoRecon/wordlists/dirbuster.txt",
@@ -274,3 +281,5 @@ Configuration {
 404      GET        0l        0w     4328c http://192.168.227.120/pontdinca.asp
 404      GET        0l        0w     4328c http://192.168.227.120/pondera.aspx
 404      GET        0l        0w     4328c http://192.168.227.120/pontons.txt
+
+```

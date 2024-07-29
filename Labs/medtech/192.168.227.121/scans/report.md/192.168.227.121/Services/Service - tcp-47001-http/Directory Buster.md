@@ -1,3 +1,10 @@
+```bash
+feroxbuster -u http://192.168.227.121:47001/ -t 10 -w /root/.local/share/AutoRecon/wordlists/dirbuster.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -q -e -r -o "/home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp47001/tcp_47001_http_feroxbuster_dirbuster.txt"
+```
+
+[/home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp47001/tcp_47001_http_feroxbuster_dirbuster.txt](file:///home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp47001/tcp_47001_http_feroxbuster_dirbuster.txt):
+
+```
 Configuration {
     kind: "configuration",
     wordlist: "/root/.local/share/AutoRecon/wordlists/dirbuster.txt",
@@ -7,7 +14,7 @@ Configuration {
     server_certs: [],
     client_cert: "",
     client_key: "",
-    target_url: "http://192.168.227.120:80/",
+    target_url: "http://192.168.227.121:47001/",
     status_codes: [
         100,
         101,
@@ -165,7 +172,7 @@ Configuration {
     auto_tune: false,
     requester_policy: Default,
     json: false,
-    output: "/home/kali/Notes/Labs/medtech/192.168.227.120/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt",
+    output: "/home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp47001/tcp_47001_http_feroxbuster_dirbuster.txt",
     debug_log: "",
     user_agent: "feroxbuster/2.10.4",
     random_agent: false,
@@ -258,19 +265,5 @@ Configuration {
     force_recursion: false,
     update_app: false,
 }
-200      GET        2l       59w     1205c http://192.168.227.120/feed.xml
-200      GET     1684l    10883w    90927c http://192.168.227.120/assets/css/main.css
-200      GET        6l     1641w   122324c http://192.168.227.120/assets/js/main.min.js
-200      GET      217l      348w     4649c http://192.168.227.120/
-200      GET      190l      374w     4746c http://192.168.227.120/about/
-200      GET       29l       94w     1149c http://192.168.227.120/assets/
-200      GET      217l      348w     4649c http://192.168.227.120/index
-200      GET      217l      348w     4649c http://192.168.227.120/index.html
-200      GET        1l        2w       36c http://192.168.227.120/robots.txt
-200      GET       13l       19w      503c http://192.168.227.120/sitemap.xml
-200      GET       28l       88w     1034c http://192.168.227.120/static/
-404      GET        0l        0w     4328c http://192.168.227.120/errorhandling.html
-404      GET        0l        0w     4328c http://192.168.227.120/Visitmexico.txt
-404      GET        0l        0w     4328c http://192.168.227.120/pontdinca.asp
-404      GET        0l        0w     4328c http://192.168.227.120/pondera.aspx
-404      GET        0l        0w     4328c http://192.168.227.120/pontons.txt
+
+```

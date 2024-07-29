@@ -1,0 +1,72 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN "/home/kali/Notes/Labs/medtech/192.168.227.121/scans/_quick_tcp_nmap.txt" -oX "/home/kali/Notes/Labs/medtech/192.168.227.121/scans/xml/_quick_tcp_nmap.xml" 192.168.227.121
+```
+
+[/home/kali/Notes/Labs/medtech/192.168.227.121/scans/_quick_tcp_nmap.txt](file:///home/kali/Notes/Labs/medtech/192.168.227.121/scans/_quick_tcp_nmap.txt):
+
+```
+# Nmap 7.94SVN scan initiated Mon Jul 29 07:55:21 2024 as: nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN /home/kali/Notes/Labs/medtech/192.168.227.121/scans/_quick_tcp_nmap.txt -oX /home/kali/Notes/Labs/medtech/192.168.227.121/scans/xml/_quick_tcp_nmap.xml 192.168.227.121
+Increasing send delay for 192.168.227.121 from 0 to 5 due to 97 out of 242 dropped probes since last increase.
+Increasing send delay for 192.168.227.121 from 5 to 10 due to 11 out of 14 dropped probes since last increase.
+Nmap scan report for 192.168.227.121
+Host is up, received user-set (0.074s latency).
+Scanned at 2024-07-29 07:55:22 EDT for 100s
+Not shown: 996 closed tcp ports (reset)
+PORT    STATE SERVICE       REASON          VERSION
+80/tcp  open  http          syn-ack ttl 125 Microsoft IIS httpd 10.0
+|_http-title: MedTech
+|_http-server-header: Microsoft-IIS/10.0
+| http-methods: 
+|   Supported Methods: OPTIONS TRACE GET HEAD POST
+|_  Potentially risky methods: TRACE
+135/tcp open  msrpc         syn-ack ttl 125 Microsoft Windows RPC
+139/tcp open  netbios-ssn   syn-ack ttl 125 Microsoft Windows netbios-ssn
+445/tcp open  microsoft-ds? syn-ack ttl 125
+Device type: general purpose
+Running (JUST GUESSING): Microsoft Windows 2022 (87%)
+Aggressive OS guesses: Microsoft Windows Server 2022 (87%)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.94SVN%E=4%D=7/29%OT=80%CT=1%CU=34185%PV=Y%DS=4%DC=T%G=Y%TM=66A7
+OS:838E%P=x86_64-pc-linux-gnu)SEQ(SP=F9%GCD=1%ISR=10D%TS=A)OPS(O1=M551NW8ST
+OS:11%O2=M551NW8ST11%O3=M551NW8NNT11%O4=M551NW8ST11%O5=M551NW8ST11%O6=M551S
+OS:T11)WIN(W1=FFFF%W2=FFFF%W3=FFFF%W4=FFFF%W5=FFFF%W6=FFDC)ECN(R=Y%DF=Y%T=8
+OS:0%W=FFFF%O=M551NW8NNS%CC=Y%Q=)T1(R=Y%DF=Y%T=80%S=O%A=S+%F=AS%RD=0%Q=)T2(
+OS:R=N)T3(R=N)T4(R=N)T5(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=N)T
+OS:7(R=N)U1(R=Y%DF=N%T=80%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=5359%RUD=G
+OS:)IE(R=N)
+
+Uptime guess: 0.014 days (since Mon Jul 29 07:37:16 2024)
+Network Distance: 4 hops
+TCP Sequence Prediction: Difficulty=249 (Good luck!)
+IP ID Sequence Generation: Busy server or unknown class
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: 0s
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 18369/tcp): CLEAN (Couldn't connect)
+|   Check 2 (port 19543/tcp): CLEAN (Couldn't connect)
+|   Check 3 (port 26084/udp): CLEAN (Failed to receive data)
+|   Check 4 (port 24583/udp): CLEAN (Timeout)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+| smb2-time: 
+|   date: 2024-07-29T11:56:56
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+
+TRACEROUTE (using port 1025/tcp)
+HOP RTT      ADDRESS
+1   72.40 ms 192.168.45.1
+2   72.37 ms 192.168.45.254
+3   74.66 ms 192.168.251.1
+4   76.99 ms 192.168.227.121
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jul 29 07:57:02 2024 -- 1 IP address (1 host up) scanned in 101.03 seconds
+
+```

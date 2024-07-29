@@ -1,0 +1,21 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -p 49665 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp49665/tcp_49665_rpc_nmap.txt" -oX "/home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp49665/xml/tcp_49665_rpc_nmap.xml" 192.168.227.121
+```
+
+[/home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp49665/tcp_49665_rpc_nmap.txt](file:///home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp49665/tcp_49665_rpc_nmap.txt):
+
+```
+# Nmap 7.94SVN scan initiated Mon Jul 29 08:11:41 2024 as: nmap -vv --reason -Pn -T4 -sV -p 49665 --script=banner,msrpc-enum,rpc-grind,rpcinfo -oN /home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp49665/tcp_49665_rpc_nmap.txt -oX /home/kali/Notes/Labs/medtech/192.168.227.121/scans/tcp49665/xml/tcp_49665_rpc_nmap.xml 192.168.227.121
+Nmap scan report for 192.168.227.121
+Host is up, received user-set (0.074s latency).
+Scanned at 2024-07-29 08:11:42 EDT for 70s
+
+PORT      STATE SERVICE REASON          VERSION
+49665/tcp open  msrpc   syn-ack ttl 125 Microsoft Windows RPC
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jul 29 08:12:52 2024 -- 1 IP address (1 host up) scanned in 70.79 seconds
+
+```

