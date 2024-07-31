@@ -1,0 +1,75 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN "/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/_quick_tcp_nmap.txt" -oX "/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/xml/_quick_tcp_nmap.xml" 172.16.185.83
+```
+
+[/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/_quick_tcp_nmap.txt](file:///home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/_quick_tcp_nmap.txt):
+
+```
+# Nmap 7.94SVN scan initiated Wed Jul 31 12:32:58 2024 as: nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/_quick_tcp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/xml/_quick_tcp_nmap.xml 172.16.185.83
+Nmap scan report for 172.16.185.83
+Host is up, received user-set (0.15s latency).
+Scanned at 2024-07-31 12:32:58 EDT for 150s
+Not shown: 997 filtered tcp ports (no-response)
+PORT    STATE SERVICE       REASON         VERSION
+135/tcp open  msrpc         syn-ack ttl 64 Microsoft Windows RPC
+139/tcp open  netbios-ssn   syn-ack ttl 64 Microsoft Windows netbios-ssn
+445/tcp open  microsoft-ds? syn-ack ttl 64
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+OS fingerprint not ideal because: Missing a closed TCP port so results incomplete
+Aggressive OS guesses: IBM OS/2 Warp 2.0 (87%), Cisco SG 300-10, Dell PowerConnect 2748, Linksys SLM2024, SLM2048, or SLM224P, or Netgear FS728TP or GS724TP switch (86%), Dell PowerConnect 5316M switch (86%), Linksys SRW2000-series or Allied Telesyn AT-8000S switch (86%), Linksys SRW2024 switch (86%), Netgear FS700TS Smart Switch (86%), OpenBSD 3.6 (x86) (85%), OpenBSD 4.0 (x86) (85%)
+No exact OS matches for host (test conditions non-ideal).
+TCP/IP fingerprint:
+SCAN(V=7.94SVN%E=4%D=7/31%OT=135%CT=%CU=%PV=Y%G=N%TM=66AA67D0%P=x86_64-pc-linux-gnu)
+SEQ(TI=RD%CI=I)
+SEQ(SP=106%GCD=1%ISR=108%TI=I%CI=I%II=RI%TS=B)
+OPS(O1=M5B4NNT11NW7%O2=M5B4NNT11NW7%O3=M5B4NNT11NW7%O4=M5B4NNT11NW7%O5=M5B4NNT11NW7%O6=M5B4NNT11)
+WIN(W1=7200%W2=7200%W3=7200%W4=7200%W5=7200%W6=7200)
+ECN(R=Y%DF=N%TG=40%W=7200%O=M5B4NW7%CC=N%Q=)
+T1(R=Y%DF=N%TG=40%S=O%A=S+%F=AS%RD=0%Q=)
+T2(R=Y%DF=N%TG=40%W=0%S=Z%A=S%F=AR%O=%RD=0%Q=)
+T3(R=Y%DF=N%TG=40%W=7200%S=O%A=S+%F=AS%O=M5B4NNT11NW7%RD=0%Q=)
+T4(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)
+T6(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)
+T7(R=Y%DF=N%TG=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)
+U1(R=N)
+IE(R=Y%DFI=S%TG=40%CD=S)
+
+Uptime guess: 19.094 days (since Fri Jul 12 10:19:55 2024)
+TCP Sequence Prediction: Difficulty=262 (Good luck!)
+IP ID Sequence Generation: Incrementing by 2
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| nbstat: NetBIOS name: CLIENT02, NetBIOS user: <unknown>, NetBIOS MAC: 00:50:56:bf:6d:f3 (VMware)
+| Names:
+|   CLIENT02<20>         Flags: <unique><active>
+|   CLIENT02<00>         Flags: <unique><active>
+|   MEDTECH<00>          Flags: <group><active>
+| Statistics:
+|   00:50:56:bf:6d:f3:00:00:00:00:00:00:00:00:00:00:00
+|   00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
+|_  00:00:00:00:00:00:00:00:00:00:00:00:00:00
+| smb2-time: 
+|   date: 2024-07-31T16:34:49
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 53052/tcp): CLEAN (Timeout)
+|   Check 2 (port 43167/tcp): CLEAN (Timeout)
+|   Check 3 (port 46505/udp): CLEAN (Timeout)
+|   Check 4 (port 48446/udp): CLEAN (Timeout)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+|_clock-skew: 0s
+
+TRACEROUTE
+HOP RTT       ADDRESS
+1   149.92 ms 172.16.185.83
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jul 31 12:35:28 2024 -- 1 IP address (1 host up) scanned in 150.33 seconds
+
+```

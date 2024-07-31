@@ -1,3 +1,10 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -p- -oN "/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/_full_tcp_nmap.txt" -oX "/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/xml/_full_tcp_nmap.xml" 172.16.185.83
+```
+
+[/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/_full_tcp_nmap.txt](file:///home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/_full_tcp_nmap.txt):
+
+```
 # Nmap 7.94SVN scan initiated Wed Jul 31 12:33:11 2024 as: nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -p- -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/_full_tcp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.83/scans/xml/_full_tcp_nmap.xml 172.16.185.83
 Increasing send delay for 172.16.185.83 from 0 to 5 due to 402 out of 1004 dropped probes since last increase.
 Increasing send delay for 172.16.185.83 from 5 to 10 due to 11 out of 11 dropped probes since last increase.
@@ -64,3 +71,5 @@ HOP RTT      ADDRESS
 Read data files from: /usr/bin/../share/nmap
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 # Nmap done at Wed Jul 31 13:42:25 2024 -- 1 IP address (1 host up) scanned in 4154.02 seconds
+
+```
