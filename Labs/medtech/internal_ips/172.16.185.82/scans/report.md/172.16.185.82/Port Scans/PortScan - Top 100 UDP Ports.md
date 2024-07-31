@@ -1,0 +1,51 @@
+```bash
+nmap -vv --reason -Pn -T4 -sU -A --top-ports 100 -oN "/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.82/scans/_top_100_udp_nmap.txt" -oX "/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.82/scans/xml/_top_100_udp_nmap.xml" 172.16.185.82
+```
+
+[/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.82/scans/_top_100_udp_nmap.txt](file:///home/kali/Notes/Labs/medtech/internal_ips/172.16.185.82/scans/_top_100_udp_nmap.txt):
+
+```
+# Nmap 7.94SVN scan initiated Wed Jul 31 12:32:56 2024 as: nmap -vv --reason -Pn -T4 -sU -A --top-ports 100 -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.82/scans/_top_100_udp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.82/scans/xml/_top_100_udp_nmap.xml 172.16.185.82
+Nmap scan report for 172.16.185.82
+Host is up, received user-set (0.24s latency).
+Scanned at 2024-07-31 12:32:57 EDT for 2119s
+Not shown: 99 open|filtered udp ports (no-response)
+PORT    STATE SERVICE    REASON              VERSION
+137/udp open  netbios-ns udp-response ttl 64 Microsoft Windows or Samba netbios-ns (workgroup: MEDTECH)
+| nbns-interfaces: 
+|   hostname: CLIENT01
+|   interfaces: 
+|_    172.16.185.82
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: game console
+Running: Nintendo embedded
+OS CPE: cpe:/h:nintendo:wii
+OS details: Nintendo Wii game console
+TCP/IP fingerprint:
+OS:SCAN(V=7.94SVN%E=4%D=7/31%OT=%CT=%CU=%PV=Y%G=N%TM=66AA6F80%P=x86_64-pc-l
+OS:inux-gnu)SEQ(CI=I)SEQ(CI=I%II=RI)T6(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD
+OS:=0%Q=)T7(R=Y%DF=N%TG=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=N)IE(R=Y%DFI=S
+OS:%TG=40%CD=S)
+
+Service Info: Host: CLIENT01
+
+Host script results:
+| nbstat: NetBIOS name: CLIENT01, NetBIOS user: <unknown>, NetBIOS MAC: 00:50:56:bf:0c:26 (VMware)
+| Names:
+|   CLIENT01<20>         Flags: <unique><active>
+|   CLIENT01<00>         Flags: <unique><active>
+|   MEDTECH<00>          Flags: <group><active>
+| Statistics:
+|   00:50:56:bf:0c:26:00:00:00:00:00:00:00:00:00:00:00
+|   00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
+|_  00:00:00:00:00:00:00:00:00:00:00:00:00:00
+
+TRACEROUTE
+HOP RTT       ADDRESS
+1   241.51 ms 172.16.185.82
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jul 31 13:08:16 2024 -- 1 IP address (1 host up) scanned in 2120.28 seconds
+
+```

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Jul 31 13:03:16 2024 as: nmap -vv -&#45;reason -Pn -T4 -sU -sV -p 137 &quot;-&#45;script=banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.12/scans/udp137/udp_137_smb_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.12/scans/udp137/xml/udp_137_smb_nmap.xml 172.16.185.12 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sU -sV -p 137 &quot;-&#45;script=banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.12/scans/udp137/udp_137_smb_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.12/scans/udp137/xml/udp_137_smb_nmap.xml 172.16.185.12" start="1722445396" startstr="Wed Jul 31 13:03:16 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="1" services="137"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1722445396"/>
+<taskend task="NSE" time="1722445396"/>
+<taskbegin task="NSE" time="1722445396"/>
+<taskend task="NSE" time="1722445396"/>
+<taskbegin task="NSE" time="1722445396"/>
+<taskend task="NSE" time="1722445396"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1722445396"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1722445396"/>
+<taskbegin task="UDP Scan" time="1722445396"/>
+<taskend task="UDP Scan" time="1722445396" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1722445396"/>
+<taskend task="Service scan" time="1722445396" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1722445396"/>
+<taskend task="NSE" time="1722445397"/>
+<taskbegin task="NSE" time="1722445397"/>
+<taskend task="NSE" time="1722445397"/>
+<taskbegin task="NSE" time="1722445397"/>
+<taskend task="NSE" time="1722445397"/>
+<host starttime="1722445396" endtime="1722445397"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="172.16.185.12" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="udp" portid="137"><state state="open" reason="udp-response" reason_ttl="64"/><service name="netbios-ns" product="Microsoft Windows netbios-ns" extrainfo="workgroup: MEDTECH" hostname="DEV04" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+</ports>
+<hostscript><script id="nbstat" output="NetBIOS name: DEV04, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 00:50:56:bf:7b:40 (VMware)&#xa;Names:&#xa;  DEV04&lt;00&gt;            Flags: &lt;unique&gt;&lt;active&gt;&#xa;  DEV04&lt;20&gt;            Flags: &lt;unique&gt;&lt;active&gt;&#xa;  MEDTECH&lt;00&gt;          Flags: &lt;group&gt;&lt;active&gt;&#xa;Statistics:&#xa;  00:50:56:bf:7b:40:00:00:00:00:00:00:00:00:00:00:00&#xa;  00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00&#xa;  00:00:00:00:00:00:00:00:00:00:00:00:00:00"/></hostscript><times srtt="230583" rttvar="230583" to="1152915"/>
+</host>
+<taskbegin task="NSE" time="1722445397"/>
+<taskend task="NSE" time="1722445397"/>
+<taskbegin task="NSE" time="1722445397"/>
+<taskend task="NSE" time="1722445397"/>
+<taskbegin task="NSE" time="1722445397"/>
+<taskend task="NSE" time="1722445397"/>
+<runstats><finished time="1722445397" timestr="Wed Jul 31 13:03:17 2024" summary="Nmap done at Wed Jul 31 13:03:17 2024; 1 IP address (1 host up) scanned in 1.07 seconds" elapsed="1.07" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

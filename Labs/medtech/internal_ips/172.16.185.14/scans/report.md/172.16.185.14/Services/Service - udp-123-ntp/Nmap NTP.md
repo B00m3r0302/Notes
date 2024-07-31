@@ -1,0 +1,43 @@
+```bash
+nmap -vv --reason -Pn -T4 -sU -sV -p 123 --script="banner,(ntp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/udp123/udp_123_ntp_nmap.txt" -oX "/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/udp123/xml/udp_123_ntp_nmap.xml" 172.16.185.14
+```
+
+[/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/udp123/udp_123_ntp_nmap.txt](file:///home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/udp123/udp_123_ntp_nmap.txt):
+
+```
+# Nmap 7.94SVN scan initiated Wed Jul 31 13:03:57 2024 as: nmap -vv --reason -Pn -T4 -sU -sV -p 123 "--script=banner,(ntp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/udp123/udp_123_ntp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/udp123/xml/udp_123_ntp_nmap.xml 172.16.185.14
+Nmap scan report for 172.16.185.14
+Host is up, received user-set (0.25s latency).
+Scanned at 2024-07-31 13:03:58 EDT for 10s
+
+PORT    STATE SERVICE REASON              VERSION
+123/udp open  ntp     udp-response ttl 64 NTP v4.2.8p15@1.3728-o (unsynchronized)
+| ntp-info: 
+|   version: ntpd 4.2.8p15@1.3728-o Wed Sep 23 11:46:38 UTC 2020 (1)
+|   processor: x86_64
+|   system: Linux/5.10.0-18-amd64
+|   leap: 3
+|   stratum: 16
+|   precision: -24
+|   rootdelay: 0.000
+|   rootdisp: 0.000
+|   refid: .
+|   reftime: 0x00000000.00000000
+|   clock: 0xea54ed08.3d2d9f68
+|   peer: 0
+|   tc: 3
+|   mintc: 3
+|   offset: 0.000000
+|   frequency: -20.035
+|   sys_jitter: 0.000000
+|   clk_jitter: 0.000
+|   clk_wander: 0.000
+|   leapsec: 201701010000
+|_  expire: 202212280000\x0D
+Service Info: OS: Linux/5.10.0-18-amd64
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jul 31 13:04:08 2024 -- 1 IP address (1 host up) scanned in 10.96 seconds
+
+```
