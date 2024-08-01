@@ -1,0 +1,72 @@
+# Nmap 7.94SVN scan initiated Thu Aug  1 10:36:59 2024 as: nmap -vv --reason -Pn -T4 -sV -p 47001 "--script=banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)" -oN /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.11/scans/tcp47001/tcp_47001_http_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.11/scans/tcp47001/xml/tcp_47001_http_nmap.xml 172.16.185.11
+Nmap scan report for 172.16.185.11
+Host is up, received user-set (0.30s latency).
+Scanned at 2024-08-01 10:37:00 EDT for 131s
+
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE REASON         VERSION
+47001/tcp open  http    syn-ack ttl 64 Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-jsonp-detection: Couldn't find any JSONP endpoints.
+|_http-feed: Couldn't find any feeds.
+| http-vhosts: 
+| crs
+| mx0
+| mailgate
+|_125 names had status 404
+|_http-malware-host: Host appears to be clean
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-wordpress-enum: Nothing found amongst the top 100 resources,use --script-args search-limit=<number|all> for deeper analysis)
+|_http-comments-displayer: Couldn't find any comments.
+| http-headers: 
+|   Content-Type: text/html; charset=us-ascii
+|   Server: Microsoft-HTTPAPI/2.0
+|   Date: Thu, 01 Aug 2024 14:37:21 GMT
+|   Connection: close
+|   Content-Length: 315
+|   
+|_  (Request type: GET)
+|_http-chrono: Request times for /; avg: 3410.86ms; min: 209.65ms; max: 16067.45ms
+|_http-mobileversion-checker: No mobile version detected.
+|_http-title: Not Found
+| http-useragent-tester: 
+|   Status for browser useragent: 404
+|   Allowed User Agents: 
+|     libwww
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|_    Wget/1.13.4 (linux-gnu)
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-fetch: Please enter the complete path of the directory to save data in.
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=172.16.185.11
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://172.16.185.11:47001/
+|_http-wordpress-users: [Error] Wordpress installation was not found. We couldn't find wp-login.php
+|_http-date: Thu, 01 Aug 2024 14:37:12 GMT; 0s from local time.
+|_http-litespeed-sourcecode-download: Request with null byte did not work. This web server might not be vulnerable
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Aug  1 10:39:11 2024 -- 1 IP address (1 host up) scanned in 131.98 seconds

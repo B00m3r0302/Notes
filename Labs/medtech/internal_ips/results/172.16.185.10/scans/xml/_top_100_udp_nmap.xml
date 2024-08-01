@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Thu Aug  1 10:26:30 2024 as: nmap -vv -&#45;reason -Pn -T4 -sU -A -&#45;top-ports 100 -oN /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/_top_100_udp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/xml/_top_100_udp_nmap.xml 172.16.185.10 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sU -A -&#45;top-ports 100 -oN /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/_top_100_udp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/xml/_top_100_udp_nmap.xml 172.16.185.10" start="1722522390" startstr="Thu Aug  1 10:26:30 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="100" services="7,9,17,19,49,53,67-69,80,88,111,120,123,135-139,158,161-162,177,427,443,445,497,500,514-515,518,520,593,623,626,631,996-999,1022-1023,1025-1030,1433-1434,1645-1646,1701,1718-1719,1812-1813,1900,2000,2048-2049,2222-2223,3283,3456,3703,4444,4500,5000,5060,5353,5632,9200,10000,17185,20031,30718,31337,32768-32769,32771,32815,33281,49152-49154,49156,49181-49182,49185-49186,49188,49190-49194,49200-49201,65024"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1722522390"/>
+<taskend task="NSE" time="1722522390"/>
+<taskbegin task="NSE" time="1722522390"/>
+<taskend task="NSE" time="1722522390"/>
+<taskbegin task="NSE" time="1722522390"/>
+<taskend task="NSE" time="1722522390"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1722522390"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1722522390"/>
+<taskbegin task="UDP Scan" time="1722522390"/>
+<taskend task="UDP Scan" time="1722522396" extrainfo="100 total ports"/>
+<taskbegin task="Service scan" time="1722522396"/>
+<taskprogress task="Service scan" time="1722522493" percent="5.00" remaining="1844" etc="1722524336"/>
+<taskprogress task="Service scan" time="1722522591" percent="35.00" remaining="363" etc="1722522953"/>
+<taskprogress task="Service scan" time="1722522621" percent="64.00" remaining="127" etc="1722522748"/>
+<taskprogress task="Service scan" time="1722522688" percent="65.00" remaining="158" etc="1722522845"/>
+<taskend task="Service scan" time="1722522791" extrainfo="100 services on 1 host"/>
+<taskbegin task="NSE" time="1722522796"/>
+<taskprogress task="NSE" time="1722522827" percent="98.62" remaining="1" etc="1722522827"/>
+<taskprogress task="NSE" time="1722522857" percent="98.65" remaining="1" etc="1722522858"/>
+<taskprogress task="NSE" time="1722522887" percent="98.70" remaining="2" etc="1722522888"/>
+<taskprogress task="NSE" time="1722522917" percent="98.71" remaining="2" etc="1722522919"/>
+<taskprogress task="NSE" time="1722522947" percent="98.75" remaining="2" etc="1722522949"/>
+<taskprogress task="NSE" time="1722522977" percent="98.76" remaining="3" etc="1722522979"/>
+<taskprogress task="NSE" time="1722523007" percent="98.81" remaining="3" etc="1722523010"/>
+<taskprogress task="NSE" time="1722523037" percent="98.84" remaining="3" etc="1722523040"/>
+<taskprogress task="NSE" time="1722523067" percent="98.88" remaining="4" etc="1722523070"/>
+<taskprogress task="NSE" time="1722523097" percent="98.90" remaining="4" etc="1722523100"/>
+<taskprogress task="NSE" time="1722523127" percent="98.91" remaining="4" etc="1722523131"/>
+<taskprogress task="NSE" time="1722523157" percent="98.94" remaining="4" etc="1722523161"/>
+<taskprogress task="NSE" time="1722523187" percent="98.99" remaining="5" etc="1722523191"/>
+<taskprogress task="NSE" time="1722523217" percent="99.01" remaining="5" etc="1722523221"/>
+<taskprogress task="NSE" time="1722523247" percent="99.07" remaining="5" etc="1722523251"/>
+<taskprogress task="NSE" time="1722523277" percent="99.09" remaining="5" etc="1722523281"/>
+<taskprogress task="NSE" time="1722523307" percent="99.12" remaining="5" etc="1722523312"/>
+<taskprogress task="NSE" time="1722523337" percent="99.16" remaining="5" etc="1722523342"/>
+<taskprogress task="NSE" time="1722523367" percent="99.17" remaining="5" etc="1722523372"/>
+<taskprogress task="NSE" time="1722523397" percent="99.21" remaining="5" etc="1722523402"/>
+<taskprogress task="NSE" time="1722523427" percent="99.24" remaining="5" etc="1722523432"/>
+<taskprogress task="NSE" time="1722523457" percent="99.27" remaining="5" etc="1722523462"/>
+<taskprogress task="NSE" time="1722523487" percent="99.32" remaining="5" etc="1722523492"/>
+<taskprogress task="NSE" time="1722523517" percent="99.33" remaining="5" etc="1722523522"/>
+<taskprogress task="NSE" time="1722523547" percent="99.35" remaining="5" etc="1722523552"/>
+<taskprogress task="NSE" time="1722523577" percent="99.40" remaining="5" etc="1722523582"/>
+<taskprogress task="NSE" time="1722523607" percent="99.42" remaining="5" etc="1722523612"/>
+<taskprogress task="NSE" time="1722523637" percent="99.45" remaining="5" etc="1722523642"/>
+<taskprogress task="NSE" time="1722523667" percent="99.50" remaining="5" etc="1722523671"/>
+<taskprogress task="NSE" time="1722523697" percent="99.52" remaining="5" etc="1722523701"/>
+<taskprogress task="NSE" time="1722523727" percent="99.57" remaining="5" etc="1722523731"/>
+<taskprogress task="NSE" time="1722523757" percent="99.58" remaining="5" etc="1722523761"/>
+<taskprogress task="NSE" time="1722523787" percent="99.61" remaining="4" etc="1722523791"/>
+<taskprogress task="NSE" time="1722523817" percent="99.64" remaining="4" etc="1722523821"/>
+<taskprogress task="NSE" time="1722523847" percent="99.65" remaining="4" etc="1722523851"/>
+<taskprogress task="NSE" time="1722523877" percent="99.71" remaining="4" etc="1722523880"/>
+<taskprogress task="NSE" time="1722523907" percent="99.72" remaining="4" etc="1722523910"/>
+<taskprogress task="NSE" time="1722523937" percent="99.78" remaining="3" etc="1722523939"/>
+<taskprogress task="NSE" time="1722523967" percent="99.80" remaining="3" etc="1722523969"/>
+<taskprogress task="NSE" time="1722523997" percent="99.83" remaining="3" etc="1722523999"/>
+<taskprogress task="NSE" time="1722524027" percent="99.86" remaining="2" etc="1722524029"/>
+<taskprogress task="NSE" time="1722524057" percent="99.90" remaining="2" etc="1722524058"/>
+<taskprogress task="NSE" time="1722524087" percent="99.93" remaining="1" etc="1722524088"/>
+<taskprogress task="NSE" time="1722524117" percent="99.97" remaining="1" etc="1722524117"/>
+<taskend task="NSE" time="1722524142"/>
+<taskbegin task="NSE" time="1722524142"/>
+<taskend task="NSE" time="1722524147"/>
+<taskbegin task="NSE" time="1722524147"/>
+<taskend task="NSE" time="1722524147"/>
+<host starttime="1722522391" endtime="1722524147"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="172.16.185.10" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="96">
+<extrareasons reason="no-response" count="96" proto="udp" ports="7,9,17,19,49,67-69,80,111,120,135-136,138-139,158,161-162,177,427,443,445,497,500,514-515,518,520,593,623,626,631,996-999,1022-1023,1025-1030,1433-1434,1645-1646,1701,1718-1719,1812-1813,1900,2000,2048-2049,2222-2223,3283,3456,3703,4444,4500,5000,5060,5353,5632,9200,10000,17185,20031,30718,31337,32768-32769,32771,32815,33281,49152-49154,49156,49181-49182,49185-49186,49188,49190-49194,49200-49201,65024"/>
+</extraports>
+<port protocol="udp" portid="53"><state state="open" reason="udp-response" reason_ttl="64"/><service name="domain" extrainfo="generic dns response: NOTIMP" servicefp="SF-Port53-UDP:V=7.94SVN%I=7%D=8/1%Time=66AB9B2B%P=x86_64-pc-linux-gnu%r(NBTStat,32,&quot;\x80\xf0\x80\x82\0\x01\0\0\0\0\0\0\x20CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01&quot;);" method="probed" conf="10"/><script id="dns-recursion" output="Recursion appears to be enabled"/><script id="fingerprint-strings" output="&#xa;  NBTStat: &#xa;    CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"><elem key="NBTStat">&#xa;    CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</elem>
+</script></port>
+<port protocol="udp" portid="88"><state state="open" reason="udp-response" reason_ttl="0"/><service name="kerberos-sec" product="Microsoft Windows Kerberos" extrainfo="server time: 2024-08-01 14:26:41Z" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:kerberos</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="udp" portid="123"><state state="open" reason="udp-response" reason_ttl="64"/><service name="ntp" product="NTP" version="v3" method="probed" conf="10"/><script id="ntp-info" output="&#xa;  receive time stamp: 2024-08-01T14:33:28"><elem key="receive time stamp">2024-08-01T14:33:28</elem>
+</script></port>
+<port protocol="udp" portid="137"><state state="open" reason="udp-response" reason_ttl="64"/><service name="netbios-ns" product="Microsoft Windows or Samba netbios-ns" extrainfo="workgroup: MEDTECH" hostname="DC01" method="probed" conf="10"/><script id="nbns-interfaces" output="&#xa;  hostname: DC01&#xa;  interfaces: &#xa;    172.16.185.10"><elem key="hostname">DC01</elem>
+<table key="interfaces">
+<elem>172.16.185.10</elem>
+</table>
+</script></port>
+</ports>
+<os><osmatch name="Sanyo PLC-XU88 digital video projector" accuracy="95" line="96419">
+<osclass type="media device" vendor="Sanyo" osfamily="embedded" accuracy="95"><cpe>cpe:/h:sanyo:plc-xu88</cpe></osclass>
+</osmatch>
+<osmatch name="Linux 2.6.18" accuracy="93" line="48991">
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="93"><cpe>cpe:/o:linux:linux_kernel:2.6.18</cpe></osclass>
+</osmatch>
+<osmatch name="Buffalo BS-GS switch" accuracy="92" line="12218">
+<osclass type="switch" vendor="Buffalo" osfamily="embedded" accuracy="92"/>
+</osmatch>
+<osmatch name="Printronix T5304 label printer" accuracy="92" line="94141">
+<osclass type="printer" vendor="Printronix" osfamily="embedded" accuracy="92"/>
+</osmatch>
+<osmatch name="Asus WL-500gP wireless broadband router" accuracy="92" line="8463">
+<osclass type="WAP" vendor="Asus" osfamily="embedded" accuracy="92"><cpe>cpe:/h:asus:wl-500gp</cpe></osclass>
+</osmatch>
+<osmatch name="AXIS 70U Network Document Server" accuracy="92" line="9224">
+<osclass type="specialized" vendor="AXIS" osfamily="embedded" accuracy="92"/>
+</osmatch>
+<osmatch name="Brother HL-2700CN printer" accuracy="92" line="11273">
+<osclass type="printer" vendor="Brother" osfamily="embedded" accuracy="92"><cpe>cpe:/h:brother:hl-2700cn</cpe></osclass>
+</osmatch>
+<osmatch name="Brother MFC-7820N printer" accuracy="92" line="11675">
+<osclass type="printer" vendor="Brother" osfamily="embedded" accuracy="92"><cpe>cpe:/h:brother:mfc-7820n</cpe></osclass>
+</osmatch>
+<osmatch name="IBM 6400 printer (software version 7.0.9.6)" accuracy="92" line="39028">
+<osclass type="printer" vendor="IBM" osfamily="embedded" accuracy="92"><cpe>cpe:/h:ibm:6400</cpe></osclass>
+</osmatch>
+<osmatch name="Intel Express 510T, 520T, or 550T switch" accuracy="92" line="40560">
+<osclass type="switch" vendor="Intel" osfamily="embedded" accuracy="92"/>
+</osmatch>
+<osfingerprint fingerprint="SCAN(V=7.94SVN%E=4%D=8/1%OT=%CT=%CU=%PV=Y%G=N%TM=66ABA1F4%P=x86_64-pc-linux-gnu)&#xa;SEQ(CI=I)&#xa;SEQ(CI=I%II=RI)&#xa;T6(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)&#xa;T7(R=Y%DF=N%TG=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)&#xa;U1(R=N)&#xa;IE(R=N)&#xa;IE(R=Y%DFI=S%TG=40%CD=S)&#xa;"/>
+</os>
+<hostscript><script id="nbstat" output="NetBIOS name: DC01, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 00:50:56:bf:2d:3a (VMware)&#xa;Names:&#xa;  DC01&lt;20&gt;             Flags: &lt;unique&gt;&lt;active&gt;&#xa;  DC01&lt;00&gt;             Flags: &lt;unique&gt;&lt;active&gt;&#xa;  MEDTECH&lt;00&gt;          Flags: &lt;group&gt;&lt;active&gt;&#xa;  MEDTECH&lt;1c&gt;          Flags: &lt;group&gt;&lt;active&gt;&#xa;  MEDTECH&lt;1b&gt;          Flags: &lt;unique&gt;&lt;active&gt;&#xa;Statistics:&#xa;  00:50:56:bf:2d:3a:00:00:00:00:00:00:00:00:00:00:00&#xa;  00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00&#xa;  00:00:00:00:00:00:00:00:00:00:00:00:00:00"/><script id="clock-skew" output="10s"><elem key="count">1</elem>
+<elem key="median">10</elem>
+<elem key="mean">10</elem>
+<elem key="stddev">0</elem>
+</script></hostscript><trace>
+<hop ttl="1" ipaddr="172.16.185.10" rtt="100.44"/>
+</trace>
+<times srtt="100437" rttvar="91952" to="468245"/>
+</host>
+<taskbegin task="NSE" time="1722524148"/>
+<taskend task="NSE" time="1722524148"/>
+<taskbegin task="NSE" time="1722524148"/>
+<taskend task="NSE" time="1722524148"/>
+<taskbegin task="NSE" time="1722524148"/>
+<taskend task="NSE" time="1722524148"/>
+<runstats><finished time="1722524148" timestr="Thu Aug  1 10:55:48 2024" summary="Nmap done at Thu Aug  1 10:55:48 2024; 1 IP address (1 host up) scanned in 1757.56 seconds" elapsed="1757.56" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

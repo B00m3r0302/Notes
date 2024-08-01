@@ -1,0 +1,61 @@
+```bash
+nmap -vv --reason -Pn -T4 -sU -sV -p 53 --script="banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/udp53/udp_53_dns_nmap.txt" -oX "/home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/udp53/xml/udp_53_dns_nmap.xml" 172.16.185.10
+```
+
+[/home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/udp53/udp_53_dns_nmap.txt](file:///home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/udp53/udp_53_dns_nmap.txt):
+
+```
+# Nmap 7.94SVN scan initiated Thu Aug  1 10:55:48 2024 as: nmap -vv --reason -Pn -T4 -sU -sV -p 53 "--script=banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/udp53/udp_53_dns_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/udp53/xml/udp_53_dns_nmap.xml 172.16.185.10
+Nmap scan report for 172.16.185.10
+Host is up, received user-set (0.16s latency).
+Scanned at 2024-08-01 10:55:48 EDT for 38s
+
+PORT   STATE SERVICE REASON              VERSION
+53/udp open  domain  udp-response ttl 64 (generic dns response: NOTIMP)
+| dns-cache-snoop: 1 of 100 tested domains are cached.
+|_www.wikipedia.org
+|_dns-recursion: Recursion appears to be enabled
+|_dns-nsec-enum: Can't determine domain for host 172.16.185.10; use dns-nsec-enum.domains script arg.
+| fingerprint-strings: 
+|   NBTStat: 
+|     CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+|     root-servers
+|     root-servers
+|     root-servers
+|     root-servers
+|     root-servers
+|     root-servers
+|     root-servers
+|     root-servers
+|     root-servers
+|     root-servers
+|     root-servers
+|     root-servers
+|_    root-servers
+|_dns-nsec3-enum: Can't determine domain for host 172.16.185.10; use dns-nsec3-enum.domains script arg.
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port53-UDP:V=7.94SVN%I=7%D=8/1%Time=66ABA203%P=x86_64-pc-linux-gnu%r(NB
+SF:TStat,1F1,"\x80\xf0\x80\x80\0\x01\0\0\0\r\0\x02\x20CKAAAAAAAAAAAAAAAAAA
+SF:AAAAAAAAAAAA\0\0!\0\x01\0\0\x02\0\x01\0\x01L\xc0\0\x14\x01i\x0croot-ser
+SF:vers\x03net\0\xc02\0\x02\0\x01\0\x01L\xc0\0\x14\x01g\x0croot-servers\x0
+SF:3net\0\xc02\0\x02\0\x01\0\x01L\xc0\0\x14\x01h\x0croot-servers\x03net\0\
+SF:xc02\0\x02\0\x01\0\x01L\xc0\0\x14\x01c\x0croot-servers\x03net\0\xc02\0\
+SF:x02\0\x01\0\x01L\xc0\0\x14\x01l\x0croot-servers\x03net\0\xc02\0\x02\0\x
+SF:01\0\x01L\xc0\0\x14\x01b\x0croot-servers\x03net\0\xc02\0\x02\0\x01\0\x0
+SF:1L\xc0\0\x14\x01m\x0croot-servers\x03net\0\xc02\0\x02\0\x01\0\x01L\xc0\
+SF:0\x14\x01j\x0croot-servers\x03net\0\xc02\0\x02\0\x01\0\x01L\xc0\0\x14\x
+SF:01e\x0croot-servers\x03net\0\xc02\0\x02\0\x01\0\x01L\xc0\0\x14\x01a\x0c
+SF:root-servers\x03net\0\xc02\0\x02\0\x01\0\x01L\xc0\0\x14\x01k\x0croot-se
+SF:rvers\x03net\0\xc02\0\x02\0\x01\0\x01L\xc0\0\x14\x01d\x0croot-servers\x
+SF:03net\0\xc02\0\x02\0\x01\0\x01L\xc0\0\x14\x01f\x0croot-servers\x03net\0
+SF:\xc1\x9d\0\x01\0\x01\0\x01L\xc0\0\x04\xc7\x07\[\r\xc1\xbd\0\x01\0\x01\0
+SF:\x01Qu\0\x04\xc0\x05\x05\xf1");
+
+Host script results:
+|_dns-brute: Can't guess domain of "172.16.185.10"; use dns-brute.domain script argument.
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Aug  1 10:56:26 2024 -- 1 IP address (1 host up) scanned in 38.56 seconds
+
+```

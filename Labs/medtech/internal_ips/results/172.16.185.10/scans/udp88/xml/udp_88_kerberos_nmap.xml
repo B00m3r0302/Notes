@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Thu Aug  1 10:55:48 2024 as: nmap -vv -&#45;reason -Pn -T4 -sU -sV -p 88 -&#45;script=banner,krb5-enum-users -oN /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/udp88/udp_88_kerberos_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/udp88/xml/udp_88_kerberos_nmap.xml 172.16.185.10 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sU -sV -p 88 -&#45;script=banner,krb5-enum-users -oN /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/udp88/udp_88_kerberos_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/udp88/xml/udp_88_kerberos_nmap.xml 172.16.185.10" start="1722524148" startstr="Thu Aug  1 10:55:48 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="1" services="88"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1722524148"/>
+<taskend task="NSE" time="1722524148"/>
+<taskbegin task="NSE" time="1722524148"/>
+<taskend task="NSE" time="1722524148"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1722524148"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1722524148"/>
+<taskbegin task="UDP Scan" time="1722524148"/>
+<taskend task="UDP Scan" time="1722524149" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1722524149"/>
+<taskbegin task="NSE" time="1722524149"/>
+<taskend task="NSE" time="1722524149"/>
+<taskbegin task="NSE" time="1722524149"/>
+<taskend task="NSE" time="1722524149"/>
+<host starttime="1722524148" endtime="1722524149"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="172.16.185.10" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="udp" portid="88"><state state="open" reason="udp-response" reason_ttl="64"/><service name="kerberos-sec" product="Microsoft Windows Kerberos" extrainfo="server time: 2024-08-01 14:55:49Z" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:kerberos</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+</ports>
+<times srtt="165348" rttvar="165348" to="826740"/>
+</host>
+<taskbegin task="NSE" time="1722524149"/>
+<taskend task="NSE" time="1722524149"/>
+<taskbegin task="NSE" time="1722524149"/>
+<taskend task="NSE" time="1722524149"/>
+<runstats><finished time="1722524149" timestr="Thu Aug  1 10:55:49 2024" summary="Nmap done at Thu Aug  1 10:55:49 2024; 1 IP address (1 host up) scanned in 1.05 seconds" elapsed="1.05" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,91 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN "/home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/_quick_tcp_nmap.txt" -oX "/home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/xml/_quick_tcp_nmap.xml" 172.16.185.10
+```
+
+[/home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/_quick_tcp_nmap.txt](file:///home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/_quick_tcp_nmap.txt):
+
+```
+# Nmap 7.94SVN scan initiated Thu Aug  1 10:26:30 2024 as: nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/_quick_tcp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/xml/_quick_tcp_nmap.xml 172.16.185.10
+adjust_timeouts2: packet supposedly had rtt of -1007069 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -1007069 microseconds.  Ignoring time.
+Nmap scan report for 172.16.185.10
+Host is up, received user-set (0.062s latency).
+Scanned at 2024-08-01 10:26:30 EDT for 551s
+Not shown: 989 filtered tcp ports (no-response)
+PORT     STATE SERVICE       REASON         VERSION
+53/tcp   open  domain?       syn-ack ttl 64
+88/tcp   open  kerberos-sec  syn-ack ttl 64 Microsoft Windows Kerberos (server time: 2024-08-01 14:26:52Z)
+135/tcp  open  msrpc         syn-ack ttl 64 Microsoft Windows RPC
+139/tcp  open  netbios-ssn   syn-ack ttl 64 Microsoft Windows netbios-ssn
+389/tcp  open  ldap          syn-ack ttl 64 Microsoft Windows Active Directory LDAP (Domain: medtech.com0., Site: Default-First-Site-Name)
+445/tcp  open  microsoft-ds? syn-ack ttl 64
+464/tcp  open  kpasswd5?     syn-ack ttl 64
+593/tcp  open  ncacn_http    syn-ack ttl 64 Microsoft Windows RPC over HTTP 1.0
+636/tcp  open  tcpwrapped    syn-ack ttl 64
+3268/tcp open  ldap          syn-ack ttl 64 Microsoft Windows Active Directory LDAP (Domain: medtech.com0., Site: Default-First-Site-Name)
+3269/tcp open  tcpwrapped    syn-ack ttl 64
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+OS fingerprint not ideal because: Missing a closed TCP port so results incomplete
+Aggressive OS guesses: Nokia 3600i mobile phone (92%), Apple Time Capsule NAS device (92%), Cisco SF300 or SG300 switch (90%), Sony Ericsson W705 or W715 Walkman mobile phone (90%), Sony PlayStation 3 game console (88%), Cisco ATA 188 VoIP adapter (88%), Netgear SC101 Storage Central NAS device (86%), GoPro HERO3 camera (86%), Samsung CLP-310N or CLX-3175RW, or Xerox Phaser 6110 printer (85%)
+No exact OS matches for host (test conditions non-ideal).
+TCP/IP fingerprint:
+SCAN(V=7.94SVN%E=4%D=8/1%OT=53%CT=%CU=%PV=Y%G=N%TM=66AB9D3D%P=x86_64-pc-linux-gnu)
+SEQ(CI=I)
+SEQ(SP=107%GCD=1%ISR=10E%TI=RD%CI=I%II=RI%TS=3)
+OPS(O1=M5B4NNT11NW7%O2=M5B4NNT11NW7%O3=M5B4NNT11NW7%O4=M5B4NNT11NW7%O5=M5B4NNT11NW7%O6=M5B4NNT11)
+WIN(W1=7200%W2=7200%W3=7200%W4=7200%W5=7200%W6=7200)
+ECN(R=N)
+ECN(R=Y%DF=N%TG=40%W=7200%O=M5B4NW7%CC=N%Q=)
+T1(R=N)
+T1(R=Y%DF=N%TG=40%S=O%A=O%F=AS%RD=0%Q=)
+T2(R=Y%DF=N%TG=40%W=0%S=Z%A=S%F=AR%O=%RD=0%Q=)
+T3(R=N)
+T3(R=Y%DF=N%TG=40%W=7200%S=O%A=O%F=AS%O=M5B4NNT11NW7%RD=0%Q=)
+T4(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)
+T6(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)
+T7(R=Y%DF=N%TG=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)
+U1(R=N)
+IE(R=N)
+IE(R=Y%DFI=S%TG=40%CD=S)
+
+Uptime guess: 0.001 days (since Thu Aug  1 10:34:56 2024)
+TCP Sequence Prediction: Difficulty=263 (Good luck!)
+IP ID Sequence Generation: Randomized
+Service Info: Host: DC01; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time: 
+|   date: 2024-08-01T14:34:59
+|_  start_date: N/A
+|_clock-skew: 0s
+| nbstat: NetBIOS name: DC01, NetBIOS user: <unknown>, NetBIOS MAC: 00:50:56:bf:2d:3a (VMware)
+| Names:
+|   DC01<20>             Flags: <unique><active>
+|   DC01<00>             Flags: <unique><active>
+|   MEDTECH<00>          Flags: <group><active>
+|   MEDTECH<1c>          Flags: <group><active>
+|   MEDTECH<1b>          Flags: <unique><active>
+| Statistics:
+|   00:50:56:bf:2d:3a:00:00:00:00:00:00:00:00:00:00:00
+|   00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
+|_  00:00:00:00:00:00:00:00:00:00:00:00:00:00
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 13527/tcp): CLEAN (Timeout)
+|   Check 2 (port 44619/tcp): CLEAN (Timeout)
+|   Check 3 (port 61706/udp): CLEAN (Timeout)
+|   Check 4 (port 36322/udp): CLEAN (Timeout)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+
+TRACEROUTE
+HOP RTT      ADDRESS
+1   61.92 ms 172.16.185.10
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Aug  1 10:35:41 2024 -- 1 IP address (1 host up) scanned in 551.52 seconds
+
+```

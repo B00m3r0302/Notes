@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Thu Aug  1 10:26:30 2024 as: nmap -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.11/scans/_full_tcp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.11/scans/xml/_full_tcp_nmap.xml 172.16.185.11 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.11/scans/_full_tcp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.11/scans/xml/_full_tcp_nmap.xml 172.16.185.11" start="1722522390" startstr="Thu Aug  1 10:26:30 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1722522390"/>
+<taskend task="NSE" time="1722522390"/>
+<taskbegin task="NSE" time="1722522390"/>
+<taskend task="NSE" time="1722522390"/>
+<taskbegin task="NSE" time="1722522390"/>
+<taskend task="NSE" time="1722522390"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1722522390"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1722522390"/>
+<taskbegin task="SYN Stealth Scan" time="1722522390"/>
+<taskprogress task="SYN Stealth Scan" time="1722522421" percent="5.33" remaining="551" etc="1722522972"/>
+<taskprogress task="SYN Stealth Scan" time="1722522451" percent="12.08" remaining="444" etc="1722522895"/>
+<taskprogress task="SYN Stealth Scan" time="1722522481" percent="14.84" remaining="523" etc="1722523003"/>
+<taskprogress task="SYN Stealth Scan" time="1722522511" percent="20.81" remaining="461" etc="1722522972"/>
+<taskprogress task="SYN Stealth Scan" time="1722522541" percent="29.54" remaining="361" etc="1722522901"/>
+<taskprogress task="SYN Stealth Scan" time="1722522571" percent="38.46" remaining="290" etc="1722522861"/>
+<taskprogress task="SYN Stealth Scan" time="1722522601" percent="46.31" remaining="245" etc="1722522846"/>
+<taskprogress task="SYN Stealth Scan" time="1722522631" percent="56.43" remaining="187" etc="1722522817"/>
+<taskprogress task="SYN Stealth Scan" time="1722522661" percent="65.47" remaining="143" etc="1722522804"/>
+<taskprogress task="SYN Stealth Scan" time="1722522691" percent="71.22" remaining="122" etc="1722522813"/>
+<taskprogress task="SYN Stealth Scan" time="1722522721" percent="77.33" remaining="98" etc="1722522818"/>
+<taskprogress task="SYN Stealth Scan" time="1722522751" percent="83.71" remaining="71" etc="1722522821"/>
+<taskprogress task="SYN Stealth Scan" time="1722522781" percent="89.37" remaining="47" etc="1722522827"/>
+<taskend task="SYN Stealth Scan" time="1722522839" extrainfo="65535 total ports"/>
+<taskbegin task="Service scan" time="1722522839"/>
+<taskprogress task="Service scan" time="1722522891" percent="41.67" remaining="73" etc="1722522964"/>
+<taskend task="Service scan" time="1722522910" extrainfo="12 services on 1 host"/>
+<taskbegin task="NSE" time="1722522916"/>
+<taskprogress task="NSE" time="1722522947" percent="99.16" remaining="1" etc="1722522947"/>
+<taskprogress task="NSE" time="1722522977" percent="99.40" remaining="1" etc="1722522977"/>
+<taskprogress task="NSE" time="1722523007" percent="99.88" remaining="1" etc="1722523007"/>
+<taskend task="NSE" time="1722523017"/>
+<taskbegin task="NSE" time="1722523017"/>
+<taskend task="NSE" time="1722523018"/>
+<taskbegin task="NSE" time="1722523018"/>
+<taskend task="NSE" time="1722523018"/>
+<host starttime="1722522390" endtime="1722523018"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="172.16.185.11" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65523">
+<extrareasons reason="no-response" count="65523" proto="tcp" ports="1-134,136-138,140-444,446-5984,5986-47000,47002-49663,49671-65535"/>
+</extraports>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script></port>
+<port protocol="tcp" portid="47001"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="64"/></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="64"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="64"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="64"/></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="64"/></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="64"/></port>
+<port protocol="tcp" portid="49670"><state state="open" reason="syn-ack" reason_ttl="64"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="135"/>
+<osfingerprint fingerprint="SCAN(V=7.94SVN%E=4%D=8/1%OT=135%CT=%CU=%PV=Y%G=N%TM=66AB9D8A%P=x86_64-pc-linux-gnu)&#xa;SEQ(SP=105%GCD=1%ISR=10A%TI=I%CI=I%II=RI%TS=A)&#xa;OPS(O1=M5B4NNT11NW7%O2=M5B4NNT11NW7%O3=M5B4NNT11NW7%O4=M5B4NNT11NW7%O5=M5B4NNT11NW7%O6=M5B4NNT11)&#xa;WIN(W1=7200%W2=7200%W3=7200%W4=7200%W5=7200%W6=7200)&#xa;ECN(R=Y%DF=N%TG=40%W=7200%O=M5B4NW7%CC=N%Q=)&#xa;T1(R=Y%DF=N%TG=40%S=O%A=S+%F=AS%RD=0%Q=)&#xa;T2(R=Y%DF=N%TG=40%W=0%S=Z%A=S%F=AR%O=%RD=0%Q=)&#xa;T3(R=Y%DF=N%TG=40%W=7200%S=O%A=S+%F=AS%O=M5B4NNT11NW7%RD=0%Q=)&#xa;T4(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)&#xa;T6(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)&#xa;T7(R=Y%DF=N%TG=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)&#xa;U1(R=N)&#xa;IE(R=Y%DFI=S%TG=40%CD=S)&#xa;"/>
+</os>
+<uptime seconds="3236039" lastboot="Mon Jun 24 23:42:59 2024"/>
+<tcpsequence index="261" difficulty="Good luck!" values="9FF04273,9EA84872,3A17A425,8E223814,D5596798,96834CF"/>
+<ipidsequence class="Incrementing by 2" values="C51F,C521,C523,C525,C527,C529"/>
+<tcptssequence class="1000HZ" values="C0E06F31,C0E06FD9,C0E06FE0,C0E07081,C0E070D5,C0E070F2"/>
+<hostscript><script id="nbstat" output="NetBIOS name: FILES02, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 00:50:56:bf:11:b2 (VMware)&#xa;Names:&#xa;  FILES02&lt;20&gt;          Flags: &lt;unique&gt;&lt;active&gt;&#xa;  FILES02&lt;00&gt;          Flags: &lt;unique&gt;&lt;active&gt;&#xa;  MEDTECH&lt;00&gt;          Flags: &lt;group&gt;&lt;active&gt;&#xa;Statistics:&#xa;  00:50:56:bf:11:b2:00:00:00:00:00:00:00:00:00:00:00&#xa;  00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00&#xa;  00:00:00:00:00:00:00:00:00:00:00:00:00:00"/><script id="p2p-conficker" output="&#xa;  Checking for Conficker.C or higher...&#xa;  Check 1 (port 21219/tcp): CLEAN (Timeout)&#xa;  Check 2 (port 6851/tcp): CLEAN (Timeout)&#xa;  Check 3 (port 51945/udp): CLEAN (Timeout)&#xa;  Check 4 (port 40270/udp): CLEAN (Timeout)&#xa;  0/4 checks are positive: Host is CLEAN or ports are blocked&#xa;"/><script id="smb2-security-mode" output="&#xa;  3:1:1: &#xa;    Message signing enabled but not required"><table key="3:1:1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb2-time" output="&#xa;  date: 2024-08-01T14:35:16&#xa;  start_date: N/A"><elem key="date">2024-08-01T14:35:16</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="clock-skew" output="0s"><elem key="count">1</elem>
+<elem key="median">0</elem>
+<elem key="mean">0</elem>
+<elem key="stddev">0</elem>
+</script></hostscript><trace>
+<hop ttl="1" ipaddr="172.16.185.11" rtt="78.46"/>
+</trace>
+<times srtt="78464" rttvar="61690" to="325224"/>
+</host>
+<taskbegin task="NSE" time="1722523018"/>
+<taskend task="NSE" time="1722523018"/>
+<taskbegin task="NSE" time="1722523018"/>
+<taskend task="NSE" time="1722523018"/>
+<taskbegin task="NSE" time="1722523018"/>
+<taskend task="NSE" time="1722523018"/>
+<runstats><finished time="1722523018" timestr="Thu Aug  1 10:36:58 2024" summary="Nmap done at Thu Aug  1 10:36:58 2024; 1 IP address (1 host up) scanned in 628.26 seconds" elapsed="628.26" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
