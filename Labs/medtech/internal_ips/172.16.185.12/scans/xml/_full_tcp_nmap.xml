@@ -52,3 +52,102 @@
 <taskprogress task="SYN Stealth Scan" time="1722447669" percent="92.06" remaining="365" etc="1722448033"/>
 <taskprogress task="SYN Stealth Scan" time="1722448035" percent="92.46" remaining="375" etc="1722448409"/>
 <taskprogress task="SYN Stealth Scan" time="1722448410" percent="92.87" remaining="381" etc="1722448791"/>
+<taskprogress task="SYN Stealth Scan" time="1722448791" percent="93.29" remaining="385" etc="1722449175"/>
+<taskprogress task="SYN Stealth Scan" time="1722449175" percent="93.72" remaining="385" etc="1722449559"/>
+<taskprogress task="SYN Stealth Scan" time="1722449562" percent="94.14" remaining="381" etc="1722449942"/>
+<taskprogress task="SYN Stealth Scan" time="1722449943" percent="94.56" remaining="374" etc="1722450316"/>
+<taskprogress task="SYN Stealth Scan" time="1722450318" percent="94.98" remaining="364" etc="1722450681"/>
+<taskprogress task="SYN Stealth Scan" time="1722450681" percent="95.38" remaining="351" etc="1722451032"/>
+<taskprogress task="SYN Stealth Scan" time="1722451035" percent="95.77" remaining="336" etc="1722451370"/>
+<taskprogress task="SYN Stealth Scan" time="1722451371" percent="96.14" remaining="319" etc="1722451689"/>
+<taskprogress task="SYN Stealth Scan" time="1722451689" percent="96.49" remaining="300" etc="1722451989"/>
+<taskprogress task="SYN Stealth Scan" time="1722451992" percent="96.82" remaining="281" etc="1722452272"/>
+<taskprogress task="SYN Stealth Scan" time="1722452274" percent="97.14" remaining="261" etc="1722452534"/>
+<taskprogress task="SYN Stealth Scan" time="1722452535" percent="97.42" remaining="241" etc="1722452775"/>
+<taskprogress task="SYN Stealth Scan" time="1722452775" percent="97.69" remaining="221" etc="1722452996"/>
+<taskprogress task="SYN Stealth Scan" time="1722452997" percent="97.93" remaining="202" etc="1722453199"/>
+<taskprogress task="SYN Stealth Scan" time="1722453201" percent="98.16" remaining="184" etc="1722453384"/>
+<taskprogress task="SYN Stealth Scan" time="1722453387" percent="98.36" remaining="166" etc="1722453552"/>
+<taskprogress task="SYN Stealth Scan" time="1722453552" percent="98.55" remaining="150" etc="1722453701"/>
+<taskprogress task="SYN Stealth Scan" time="1722453702" percent="98.71" remaining="135" etc="1722453836"/>
+<taskprogress task="SYN Stealth Scan" time="1722453837" percent="98.86" remaining="120" etc="1722453957"/>
+<taskprogress task="SYN Stealth Scan" time="1722453960" percent="99.00" remaining="107" etc="1722454067"/>
+<taskprogress task="SYN Stealth Scan" time="1722454068" percent="99.11" remaining="95" etc="1722454163"/>
+<taskprogress task="SYN Stealth Scan" time="1722454164" percent="99.22" remaining="85" etc="1722454248"/>
+<taskprogress task="SYN Stealth Scan" time="1722454251" percent="99.32" remaining="75" etc="1722454325"/>
+<taskprogress task="SYN Stealth Scan" time="1722454326" percent="99.40" remaining="66" etc="1722454392"/>
+<taskprogress task="SYN Stealth Scan" time="1722454392" percent="99.47" remaining="59" etc="1722454450"/>
+<taskprogress task="SYN Stealth Scan" time="1722454452" percent="99.54" remaining="52" etc="1722454503"/>
+<taskprogress task="SYN Stealth Scan" time="1722454506" percent="99.60" remaining="45" etc="1722454551"/>
+<taskprogress task="SYN Stealth Scan" time="1722454551" percent="99.65" remaining="40" etc="1722454590"/>
+<taskprogress task="SYN Stealth Scan" time="1722454593" percent="99.69" remaining="35" etc="1722454627"/>
+<taskend task="SYN Stealth Scan" time="1722454872" extrainfo="65535 total ports"/>
+<taskbegin task="Service scan" time="1722454872"/>
+<taskend task="Service scan" time="1722454877" extrainfo="12 services on 1 host"/>
+<taskbegin task="NSE" time="1722454884"/>
+<taskprogress task="NSE" time="1722454915" percent="98.26" remaining="1" etc="1722454916"/>
+<taskprogress task="NSE" time="1722454945" percent="98.44" remaining="1" etc="1722454946"/>
+<taskprogress task="NSE" time="1722454975" percent="98.50" remaining="2" etc="1722454976"/>
+<taskend task="NSE" time="1722454979"/>
+<taskbegin task="NSE" time="1722454979"/>
+<taskprogress task="NSE" time="1722455010" percent="97.92" remaining="1" etc="1722455011"/>
+<taskprogress task="NSE" time="1722455040" percent="98.96" remaining="1" etc="1722455041"/>
+<taskprogress task="NSE" time="1722455070" percent="98.96" remaining="1" etc="1722455071"/>
+<taskend task="NSE" time="1722455099"/>
+<taskbegin task="NSE" time="1722455099"/>
+<taskend task="NSE" time="1722455099"/>
+<host starttime="1722443446" endtime="1722455099"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="172.16.185.12" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65523">
+<extrareasons reason="no-response" count="65523" proto="tcp" ports="1-134,136-138,140-444,446-3388,3390-5984,5986-49663,49670,49672-65535"/>
+</extraports>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49671"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="49671"/>
+<osmatch name="Cisco SF300 or SG300 switch" accuracy="94" line="14461">
+<osclass type="switch" vendor="Cisco" osfamily="embedded" accuracy="94"><cpe>cpe:/h:cisco:sf300</cpe><cpe>cpe:/h:cisco:sg300</cpe></osclass>
+</osmatch>
+<osmatch name="Sony PlayStation 3 game console" accuracy="90" line="99257">
+<osclass type="game console" vendor="Sony" osfamily="embedded" accuracy="90"><cpe>cpe:/h:sony:playstation_3</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco SG 500 switch" accuracy="88" line="14536">
+<osclass type="switch" vendor="Cisco" osfamily="embedded" accuracy="88"><cpe>cpe:/h:cisco:sg_500</cpe></osclass>
+</osmatch>
+<osmatch name="Nokia 3600i mobile phone" accuracy="87" line="89296">
+<osclass type="phone" vendor="Nokia" osfamily="Symbian OS" accuracy="87"><cpe>cpe:/o:nokia:symbian_os</cpe></osclass>
+</osmatch>
+<osmatch name="Apple Time Capsule NAS device" accuracy="87" line="3397">
+<osclass type="storage-misc" vendor="Apple" osfamily="embedded" accuracy="87"/>
+</osmatch>
+<osmatch name="Sony Ericsson W705 or W715 Walkman mobile phone" accuracy="86" line="99127">
+<osclass type="phone" vendor="Sony Ericsson" osfamily="embedded" accuracy="86"><cpe>cpe:/h:sonyericsson:w705</cpe><cpe>cpe:/h:sonyericsson:w715</cpe></osclass>
+</osmatch>
+<osfingerprint fingerprint="SCAN(V=7.94SVN%E=4%D=7/31%OT=49671%CT=%CU=%PV=Y%G=N%TM=66AA943B%P=x86_64-pc-linux-gnu)&#xa;SEQ(CI=I%II=RI)&#xa;ECN(R=N)&#xa;T1(R=N)&#xa;T2(R=Y%DF=N%TG=40%W=0%S=Z%A=S%F=AR%O=%RD=0%Q=)&#xa;T3(R=N)&#xa;T4(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)&#xa;T6(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)&#xa;T7(R=Y%DF=N%TG=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)&#xa;U1(R=N)&#xa;IE(R=Y%DFI=S%TG=40%CD=S)&#xa;"/>
+</os>
+<hostscript><script id="nbstat" output="NetBIOS name: DEV04, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 00:50:56:bf:7b:40 (VMware)&#xa;Names:&#xa;  DEV04&lt;00&gt;            Flags: &lt;unique&gt;&lt;active&gt;&#xa;  DEV04&lt;20&gt;            Flags: &lt;unique&gt;&lt;active&gt;&#xa;  MEDTECH&lt;00&gt;          Flags: &lt;group&gt;&lt;active&gt;&#xa;Statistics:&#xa;  00:50:56:bf:7b:40:00:00:00:00:00:00:00:00:00:00:00&#xa;  00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00&#xa;  00:00:00:00:00:00:00:00:00:00:00:00:00:00"/><script id="smb2-security-mode" output="Couldn&apos;t establish a SMBv2 connection."/><script id="smb2-time" output="Protocol negotiation failed (SMB2)"/><script id="p2p-conficker" output="&#xa;  Checking for Conficker.C or higher...&#xa;  Check 1 (port 53547/tcp): CLEAN (Timeout)&#xa;  Check 2 (port 58868/tcp): CLEAN (Timeout)&#xa;  Check 3 (port 42793/udp): CLEAN (Timeout)&#xa;  Check 4 (port 15125/udp): CLEAN (Timeout)&#xa;  0/4 checks are positive: Host is CLEAN or ports are blocked&#xa;"/></hostscript><trace>
+<hop ttl="1" ipaddr="172.16.185.12" rtt="54.54"/>
+</trace>
+<times srtt="54541" rttvar="75227" to="355449"/>
+</host>
+<taskbegin task="NSE" time="1722455099"/>
+<taskend task="NSE" time="1722455099"/>
+<taskbegin task="NSE" time="1722455099"/>
+<taskend task="NSE" time="1722455099"/>
+<taskbegin task="NSE" time="1722455099"/>
+<taskend task="NSE" time="1722455099"/>
+<runstats><finished time="1722455099" timestr="Wed Jul 31 15:44:59 2024" summary="Nmap done at Wed Jul 31 15:44:59 2024; 1 IP address (1 host up) scanned in 11653.64 seconds" elapsed="11653.64" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
