@@ -1,0 +1,405 @@
+```bash
+feroxbuster -u http://192.168.185.141:80/ -t 10 -w /root/.local/share/AutoRecon/wordlists/dirbuster.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -q -e -r -o "/home/kali/Notes/Labs/A/192.168.185.141/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt"
+```
+
+[/home/kali/Notes/Labs/A/192.168.185.141/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt](file:///home/kali/Notes/Labs/A/192.168.185.141/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt):
+
+```
+Configuration {
+    kind: "configuration",
+    wordlist: "/root/.local/share/AutoRecon/wordlists/dirbuster.txt",
+    config: "/etc/feroxbuster/ferox-config.toml",
+    proxy: "",
+    replay_proxy: "",
+    server_certs: [],
+    client_cert: "",
+    client_key: "",
+    target_url: "http://192.168.185.141:80/",
+    status_codes: [
+        100,
+        101,
+        102,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        226,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        307,
+        308,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        421,
+        422,
+        423,
+        424,
+        426,
+        428,
+        429,
+        431,
+        451,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        510,
+        511,
+        103,
+        425,
+    ],
+    replay_codes: [
+        100,
+        101,
+        102,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        226,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        307,
+        308,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        421,
+        422,
+        423,
+        424,
+        426,
+        428,
+        429,
+        431,
+        451,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        510,
+        511,
+        103,
+        425,
+    ],
+    filter_status: [],
+    client: Client {
+        accepts: Accepts,
+        proxies: [
+            Proxy(
+                System(
+                    {},
+                ),
+                None,
+            ),
+        ],
+        referer: true,
+        default_headers: {
+            "accept": "*/*",
+            "user-agent": "feroxbuster/2.10.4",
+        },
+        timeout: 7s,
+    },
+    replay_client: None,
+    threads: 10,
+    timeout: 7,
+    verbosity: 1,
+    silent: false,
+    quiet: true,
+    output_level: Quiet,
+    auto_bail: false,
+    auto_tune: false,
+    requester_policy: Default,
+    json: false,
+    output: "/home/kali/Notes/Labs/A/192.168.185.141/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt",
+    debug_log: "",
+    user_agent: "feroxbuster/2.10.4",
+    random_agent: false,
+    redirects: true,
+    insecure: true,
+    extensions: [
+        "txt",
+        "html",
+        "php",
+        "asp",
+        "aspx",
+        "jsp",
+    ],
+    methods: [
+        "GET",
+    ],
+    data: [],
+    headers: {},
+    queries: [],
+    no_recursion: true,
+    extract_links: true,
+    add_slash: false,
+    stdin: false,
+    depth: 4,
+    scan_limit: 0,
+    parallel: 0,
+    rate_limit: 0,
+    filter_size: [],
+    filter_line_count: [],
+    filter_word_count: [],
+    filter_regex: [],
+    dont_filter: false,
+    resumed: false,
+    resume_from: "",
+    save_state: true,
+    time_limit: "",
+    filter_similar: [],
+    url_denylist: [],
+    regex_denylist: [],
+    collect_extensions: false,
+    dont_collect: [
+        "tif",
+        "tiff",
+        "ico",
+        "cur",
+        "bmp",
+        "webp",
+        "svg",
+        "png",
+        "jpg",
+        "jpeg",
+        "jfif",
+        "gif",
+        "avif",
+        "apng",
+        "pjpeg",
+        "pjp",
+        "mov",
+        "wav",
+        "mpg",
+        "mpeg",
+        "mp3",
+        "mp4",
+        "m4a",
+        "m4p",
+        "m4v",
+        "ogg",
+        "webm",
+        "ogv",
+        "oga",
+        "flac",
+        "aac",
+        "3gp",
+        "css",
+        "zip",
+        "xls",
+        "xml",
+        "gz",
+        "tgz",
+    ],
+    collect_backups: false,
+    backup_extensions: [
+        "~",
+        ".bak",
+        ".bak2",
+        ".old",
+        ".1",
+    ],
+    collect_words: false,
+    force_recursion: false,
+    update_app: false,
+}
+200      GET       22l      148w    11627c http://192.168.185.141/images/6.png
+200      GET       32l      130w    10021c http://192.168.185.141/images/9.png
+200      GET       25l      148w    12449c http://192.168.185.141/images/5.png
+200      GET      163l      657w    53223c http://192.168.185.141/images/happy-man-with-long-thick-ginger-beard-has-friendly-smile_273609-16616.jpg
+200      GET       28l       69w     2985c http://192.168.185.141/images/8.png
+200      GET       19l       93w     6283c http://192.168.185.141/images/10.png
+200      GET        6l       46w     2873c http://192.168.185.141/images/11.png
+200      GET       32l      240w    15730c http://192.168.185.141/images/4.png
+200      GET      381l     2285w   181857c http://192.168.185.141/images/pexels-photo-4316302.jpeg
+200      GET       28l       69w     3004c http://192.168.185.141/images/7.png
+200      GET      114l      942w    57690c http://192.168.185.141/images/ddddddd.jpg
+200      GET     1965l     3441w    32038c http://192.168.185.141/Home.css
+200      GET      247l     1030w    73110c http://192.168.185.141/images/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction_176420-15187.jpg
+200      GET      454l     2311w    36835c http://192.168.185.141/Home.html
+200      GET        2l     1297w    89476c http://192.168.185.141/jquery.js
+200      GET       41l     2644w   179436c http://192.168.185.141/nicepage.js
+200      GET    36435l    78744w  1230366c http://192.168.185.141/nicepage.css
+200      GET      454l     2313w    36890c http://192.168.185.141/
+200      GET       78l      332w    62209c http://192.168.185.141/Blog/post-4.html
+200      GET       78l      332w    44713c http://192.168.185.141/Blog/post-2.html
+200      GET       78l      332w    44713c http://192.168.185.141/Blog/post-5.html
+200      GET       78l      332w    56085c http://192.168.185.141/Blog/post.html
+200      GET       78l      332w    62209c http://192.168.185.141/Blog/post-1.html
+200      GET       78l      332w    56085c http://192.168.185.141/Blog/post-3.html
+200      GET      122l      622w   299314c http://192.168.185.141/Blog/blog.html
+200      GET       22l      127w     2237c http://192.168.185.141/Blog/
+200      GET       11l       83w     5785c http://192.168.185.141/images/82896c5cfbeb3e9d628d685761d5106b.jpeg
+200      GET        9l       73w     4740c http://192.168.185.141/images/f9e95c14b7f65aff23628e89fe290e03.jpeg
+200      GET       15l       64w     4334c http://192.168.185.141/images/8dc52c0f711979602e472cb74088d53b.jpeg
+200      GET       10l       95w     5460c http://192.168.185.141/images/e55bae5793cb5e5848bd5882209fecba.jpeg
+200      GET       13l       91w     5581c http://192.168.185.141/images/e7176968fc88a5540a57f287ff13ce4e.jpeg
+200      GET      267l     1386w   121071c http://192.168.185.141/images/pexels-photo-3694884.jpeg
+200      GET       32l      240w    15730c http://192.168.185.141/Images/4.png
+200      GET       32l      130w    10021c http://192.168.185.141/Images/9.png
+200      GET       15l       64w     4334c http://192.168.185.141/Images/8dc52c0f711979602e472cb74088d53b.jpeg
+200      GET       22l      148w    11627c http://192.168.185.141/Images/6.png
+200      GET       19l       93w     6283c http://192.168.185.141/Images/10.png
+200      GET       10l       95w     5460c http://192.168.185.141/Images/e55bae5793cb5e5848bd5882209fecba.jpeg
+200      GET      454l     2313w    36890c http://192.168.185.141/Index
+200      GET      247l     1030w    73110c http://192.168.185.141/Images/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction_176420-15187.jpg
+200      GET        6l       46w     2873c http://192.168.185.141/Images/11.png
+200      GET        9l       73w     4740c http://192.168.185.141/Images/f9e95c14b7f65aff23628e89fe290e03.jpeg
+200      GET      295l     1853w   142785c http://192.168.185.141/images/pexelsphoto3694703.jpeg
+200      GET       11l       83w     5785c http://192.168.185.141/Images/82896c5cfbeb3e9d628d685761d5106b.jpeg
+200      GET      257l     1644w   151247c http://192.168.185.141/images/Untitled-3.jpg
+200      GET      102l      836w    98239c http://192.168.185.141/Images/default-image.jpg
+200      GET       92l      607w    66833c http://192.168.185.141/Images/1.jpeg
+200      GET       25l      148w    12449c http://192.168.185.141/Images/5.png
+200      GET      114l      942w    57690c http://192.168.185.141/Images/ddddddd.jpg
+200      GET      445l     2204w   201165c http://192.168.185.141/images/pexelsphoto3694710.jpeg
+200      GET      454l     2313w    36890c http://192.168.185.141/Index.html
+200      GET      381l     2285w   181857c http://192.168.185.141/Images/pexels-photo-4316302.jpeg
+200      GET       77l      553w    76801c http://192.168.185.141/Images/2.jpeg
+200      GET      438l     2681w   218619c http://192.168.185.141/images/pexelsphoto3694884.jpeg
+200      GET     1965l     3441w    32038c http://192.168.185.141/Home
+200      GET      295l     1853w   142785c http://192.168.185.141/Images/pexelsphoto3694703.jpeg
+200      GET       28l       69w     2985c http://192.168.185.141/Images/8.png
+200      GET       13l       91w     5581c http://192.168.185.141/Images/e7176968fc88a5540a57f287ff13ce4e.jpeg
+200      GET       28l       69w     3004c http://192.168.185.141/Images/7.png
+200      GET       53l      363w    52008c http://192.168.185.141/Images/3.jpeg
+200      GET      445l     2204w   201165c http://192.168.185.141/Images/pexelsphoto3694710.jpeg
+200      GET      438l     2681w   218619c http://192.168.185.141/Images/pexelsphoto3694884.jpeg
+200      GET      257l     1644w   151247c http://192.168.185.141/Images/Untitled-3.jpg
+200      GET      267l     1386w   121071c http://192.168.185.141/Images/pexels-photo-3694884.jpeg
+200      GET      163l      657w    53223c http://192.168.185.141/Images/happy-man-with-long-thick-ginger-beard-has-friendly-smile_273609-16616.jpg
+200      GET       41l      309w     6651c http://192.168.185.141/Images/
+200      GET       78l      332w    56085c http://192.168.185.141/blog/post.html
+200      GET       78l      332w    44713c http://192.168.185.141/blog/post-5.html
+200      GET       78l      332w    62209c http://192.168.185.141/blog/post-1.html
+200      GET       78l      332w    62209c http://192.168.185.141/blog/post-4.html
+200      GET       78l      332w    56085c http://192.168.185.141/blog/post-3.html
+200      GET       78l      332w    44713c http://192.168.185.141/blog/post-2.html
+200      GET      122l      622w   299314c http://192.168.185.141/blog/blog.html
+200      GET       22l      127w     2237c http://192.168.185.141/blog/
+200      GET     1965l     3441w    32038c http://192.168.185.141/home
+200      GET      454l     2311w    36835c http://192.168.185.141/home.html
+200      GET       92l      607w    66833c http://192.168.185.141/images/1.jpeg
+200      GET       53l      363w    52008c http://192.168.185.141/images/3.jpeg
+200      GET       77l      553w    76801c http://192.168.185.141/images/2.jpeg
+200      GET      102l      836w    98239c http://192.168.185.141/images/default-image.jpg
+200      GET       41l      309w     6651c http://192.168.185.141/images/
+200      GET      454l     2313w    36890c http://192.168.185.141/index
+200      GET      454l     2313w    36890c http://192.168.185.141/index.html
+200      GET        2l     1297w    89476c http://192.168.185.141/jquery
+200      GET      371l     1658w    20700c http://192.168.185.141/script/GPO.ps1
+200      GET        9l       31w      262c http://192.168.185.141/script/how%20to%20use%20the%20program.txt
+200      GET       17l       77w     1210c http://192.168.185.141/script/
+200      GET        9l       31w      262c http://192.168.185.141/SCRIPT/how%20to%20use%20the%20program.txt
+200      GET      371l     1658w    20700c http://192.168.185.141/SCRIPT/GPO.ps1
+200      GET       17l       77w     1210c http://192.168.185.141/SCRIPT/
+200      GET        9l       31w      262c http://192.168.185.141/Script/how%20to%20use%20the%20program.txt
+200      GET      371l     1658w    20700c http://192.168.185.141/Script/GPO.ps1
+200      GET       17l       77w     1210c http://192.168.185.141/Script/
+200      GET        6l       46w     2873c http://192.168.185.141/IMAGES/11.png
+200      GET       92l      607w    66833c http://192.168.185.141/IMAGES/1.jpeg
+200      GET       32l      240w    15730c http://192.168.185.141/IMAGES/4.png
+200      GET       22l      148w    11627c http://192.168.185.141/IMAGES/6.png
+200      GET       19l       93w     6283c http://192.168.185.141/IMAGES/10.png
+200      GET       15l       64w     4334c http://192.168.185.141/IMAGES/8dc52c0f711979602e472cb74088d53b.jpeg
+200      GET        9l       73w     4740c http://192.168.185.141/IMAGES/f9e95c14b7f65aff23628e89fe290e03.jpeg
+200      GET       10l       95w     5460c http://192.168.185.141/IMAGES/e55bae5793cb5e5848bd5882209fecba.jpeg
+200      GET      163l      657w    53223c http://192.168.185.141/IMAGES/happy-man-with-long-thick-ginger-beard-has-friendly-smile_273609-16616.jpg
+200      GET       32l      130w    10021c http://192.168.185.141/IMAGES/9.png
+200      GET       13l       91w     5581c http://192.168.185.141/IMAGES/e7176968fc88a5540a57f287ff13ce4e.jpeg
+200      GET      102l      836w    98239c http://192.168.185.141/IMAGES/default-image.jpg
+200      GET       77l      553w    76801c http://192.168.185.141/IMAGES/2.jpeg
+200      GET      247l     1030w    73110c http://192.168.185.141/IMAGES/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction_176420-15187.jpg
+200      GET       53l      363w    52008c http://192.168.185.141/IMAGES/3.jpeg
+200      GET       28l       69w     2985c http://192.168.185.141/IMAGES/8.png
+200      GET       28l       69w     3004c http://192.168.185.141/IMAGES/7.png
+200      GET       11l       83w     5785c http://192.168.185.141/IMAGES/82896c5cfbeb3e9d628d685761d5106b.jpeg
+200      GET      267l     1386w   121071c http://192.168.185.141/IMAGES/pexels-photo-3694884.jpeg
+200      GET       25l      148w    12449c http://192.168.185.141/IMAGES/5.png
+200      GET      114l      942w    57690c http://192.168.185.141/IMAGES/ddddddd.jpg
+200      GET      445l     2204w   201165c http://192.168.185.141/IMAGES/pexelsphoto3694710.jpeg
+200      GET      295l     1853w   142785c http://192.168.185.141/IMAGES/pexelsphoto3694703.jpeg
+200      GET      257l     1644w   151247c http://192.168.185.141/IMAGES/Untitled-3.jpg
+200      GET      381l     2285w   181857c http://192.168.185.141/IMAGES/pexels-photo-4316302.jpeg
+200      GET      438l     2681w   218619c http://192.168.185.141/IMAGES/pexelsphoto3694884.jpeg
+200      GET       41l      309w     6651c http://192.168.185.141/IMAGES/
+200      GET        2l     1297w    89476c http://192.168.185.141/jQuery
+200      GET     1965l     3441w    32038c http://192.168.185.141/HOME
+200      GET      454l     2311w    36835c http://192.168.185.141/HOME.html
+200      GET       78l      332w    44713c http://192.168.185.141/BLOG/post-5.html
+200      GET       78l      332w    56085c http://192.168.185.141/BLOG/post-3.html
+200      GET       78l      332w    56085c http://192.168.185.141/BLOG/post.html
+200      GET       78l      332w    62209c http://192.168.185.141/BLOG/post-1.html
+200      GET       78l      332w    62209c http://192.168.185.141/BLOG/post-4.html
+200      GET       78l      332w    44713c http://192.168.185.141/BLOG/post-2.html
+200      GET      122l      622w   299314c http://192.168.185.141/BLOG/blog.html
+200      GET       22l      127w     2237c http://192.168.185.141/BLOG/
+200      GET        2l     1297w    89476c http://192.168.185.141/JQuery
+200      GET      454l     2313w    36890c http://192.168.185.141/INDEX
+200      GET      454l     2313w    36890c http://192.168.185.141/INDEX.html
+200      GET        2l     1297w    89476c http://192.168.185.141/Jquery
+200      GET      100l      168w     1526c http://192.168.185.141/post-template
+
+```

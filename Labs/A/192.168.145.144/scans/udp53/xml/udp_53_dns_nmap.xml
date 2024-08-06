@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Mon Aug  5 22:30:11 2024 as: nmap -vv -&#45;reason -Pn -T4 -sU -sV -p 53 &quot;-&#45;script=banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/A/192.168.145.144/scans/udp53/udp_53_dns_nmap.txt -oX /home/kali/Notes/Labs/A/192.168.145.144/scans/udp53/xml/udp_53_dns_nmap.xml 192.168.145.144 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sU -sV -p 53 &quot;-&#45;script=banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/A/192.168.145.144/scans/udp53/udp_53_dns_nmap.txt -oX /home/kali/Notes/Labs/A/192.168.145.144/scans/udp53/xml/udp_53_dns_nmap.xml 192.168.145.144" start="1722911411" startstr="Mon Aug  5 22:30:11 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="1" services="53"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1722911411"/>
+<taskend task="NSE" time="1722911411"/>
+<taskbegin task="NSE" time="1722911411"/>
+<taskend task="NSE" time="1722911411"/>
+<taskbegin task="NSE" time="1722911411"/>
+<taskend task="NSE" time="1722911411"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1722911411"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1722911411"/>
+<taskbegin task="UDP Scan" time="1722911411"/>
+<taskend task="UDP Scan" time="1722911411" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1722911411"/>
+<taskbegin task="NSE" time="1722911411"/>
+<taskend task="NSE" time="1722911414"/>
+<taskbegin task="NSE" time="1722911414"/>
+<taskend task="NSE" time="1722911414"/>
+<taskbegin task="NSE" time="1722911414"/>
+<taskend task="NSE" time="1722911414"/>
+<host starttime="1722911411" endtime="1722911414"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.145.144" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="udp" portid="53"><state state="open" reason="udp-response" reason_ttl="58"/><service name="domain" product="Unbound" method="probed" conf="10"><cpe>cpe:/a:nlnetlabs:unbound</cpe></service><script id="dns-nsec3-enum" output="Can&apos;t determine domain for host 192.168.145.144; use dns-nsec3-enum.domains script arg."/><script id="dns-nsec-enum" output="Can&apos;t determine domain for host 192.168.145.144; use dns-nsec-enum.domains script arg."/><script id="dns-cache-snoop" output="30 of 100 tested domains are cached.&#xa;www.google.com&#xa;yahoo.com&#xa;www.yahoo.com&#xa;baidu.com&#xa;amazon.com&#xa;qq.com&#xa;live.com&#xa;www.live.com&#xa;www.linkedin.com&#xa;twitter.com&#xa;www.twitter.com&#xa;bing.com&#xa;www.yahoo.co.jp&#xa;yandex.ru&#xa;wordpress.com&#xa;www.wordpress.com&#xa;vk.com&#xa;ebay.com&#xa;msn.com&#xa;www.msn.com&#xa;www.ask.com&#xa;mail.ru&#xa;pinterest.com&#xa;microsoft.com&#xa;xvideos.com&#xa;www.xvideos.com&#xa;www.craigslist.org&#xa;paypal.com&#xa;www.paypal.com&#xa;apple.com"/><script id="dns-recursion" output="Recursion appears to be enabled"/></port>
+</ports>
+<hostscript><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.145.144&quot;; use dns-brute.domain script argument."/></hostscript><times srtt="25295" rttvar="25295" to="126475"/>
+</host>
+<taskbegin task="NSE" time="1722911414"/>
+<taskend task="NSE" time="1722911414"/>
+<taskbegin task="NSE" time="1722911414"/>
+<taskend task="NSE" time="1722911414"/>
+<taskbegin task="NSE" time="1722911414"/>
+<taskend task="NSE" time="1722911414"/>
+<runstats><finished time="1722911414" timestr="Mon Aug  5 22:30:14 2024" summary="Nmap done at Mon Aug  5 22:30:14 2024; 1 IP address (1 host up) scanned in 3.61 seconds" elapsed="3.61" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

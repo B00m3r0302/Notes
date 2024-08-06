@@ -1,0 +1,133 @@
+# Nmap 7.94SVN scan initiated Mon Aug  5 22:16:33 2024 as: nmap -vv --reason -Pn -T4 -sV -p 443 "--script=banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)" -oN /home/kali/Notes/Labs/A/192.168.185.143/scans/tcp443/tcp_443_http_nmap.txt -oX /home/kali/Notes/Labs/A/192.168.185.143/scans/tcp443/xml/tcp_443_http_nmap.xml 192.168.185.143
+Nmap scan report for 192.168.185.143
+Host is up, received user-set (0.069s latency).
+Scanned at 2024-08-05 22:16:34 EDT for 268s
+
+PORT    STATE SERVICE REASON         VERSION
+443/tcp open  http    syn-ack ttl 61 Apache httpd 2.4.41
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-drupal-enum: Nothing found amongst the top 100 resources,use --script-args number=<number|all> for deeper analysis)
+|_http-date: Tue, 06 Aug 2024 02:16:48 GMT; -1s from local time.
+|_http-chrono: Request times for /; avg: 328.02ms; min: 277.64ms; max: 381.70ms
+|_http-jsonp-detection: Couldn't find any JSONP endpoints.
+| http-php-version: Logo query returned unknown hash 3526531ccd6c6a1d2340574a305a18f8
+|_Credits query returned unknown hash 3526531ccd6c6a1d2340574a305a18f8
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-malware-host: Host appears to be clean
+|_http-litespeed-sourcecode-download: Request with null byte did not work. This web server might not be vulnerable
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=192.168.185.143
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://192.168.185.143:443/manual
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /icons/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /icons/
+|   Total files found (by extension):
+|_    Other: 1; png: 1
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-title: Apache2 Ubuntu Default Page: It works
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+|_http-wordpress-users: [Error] Wordpress installation was not found. We couldn't find wp-login.php
+|_http-wordpress-enum: Nothing found amongst the top 100 resources,use --script-args search-limit=<number|all> for deeper analysis)
+|_http-fetch: Please enter the complete path of the directory to save data in.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-vhosts: 
+|_128 names had status 200
+|_http-mobileversion-checker: No mobile version detected.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.185.143
+|     
+|     Path: http://192.168.185.143:443/
+|     Line number: 201
+|     Comment: 
+|         <!--      <div class="table_of_contents floating_element">
+|                 <div class="section_header section_header_grey">
+|                   TABLE OF CONTENTS
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#about">About</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#changes">Changes</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#scope">Scope</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#files">Config files</a>
+|                 </div>
+|               </div>
+|         -->
+|     
+|     Path: http://192.168.185.143:443/
+|     Line number: 4
+|     Comment: 
+|         <!--
+|             Modified from the Debian original for Ubuntu
+|             Last updated: 2016-11-16
+|             See: https://launchpad.net/bugs/1288690
+|_          -->
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Date: Tue, 06 Aug 2024 02:16:48 GMT
+|   Server: Apache/2.4.41 (Ubuntu)
+|   Last-Modified: Mon, 10 May 2021 22:21:34 GMT
+|   ETag: "2aa6-5c20133410907"
+|   Accept-Ranges: bytes
+|   Content-Length: 10918
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+| http-methods: 
+|_  Supported Methods: GET POST OPTIONS HEAD
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+| http-grep: 
+|   (1) http://192.168.185.143:443/manual: 
+|     (1) ip: 
+|_      + 192.168.185.143
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://192.168.185.143:443/themes/default/js/modernizr-3.3.1-custom.min.js
+|   https://192.168.185.143:443/themes/default/js/utils.js
+|_  https://192.168.185.143:443/themes/default/js/pico.js
+| http-enum: 
+|   /0/: Potentially interesting folder
+|_  /index/: Potentially interesting folder
+Service Info: Host: 192.168.185.143
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Aug  5 22:21:02 2024 -- 1 IP address (1 host up) scanned in 269.79 seconds
