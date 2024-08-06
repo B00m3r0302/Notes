@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Jul 31 12:30:46 2024 as: nmap -vv -&#45;reason -Pn -T4 -sU -A -&#45;top-ports 100 -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.13/scans/_top_100_udp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.13/scans/xml/_top_100_udp_nmap.xml 172.16.185.13 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sU -A -&#45;top-ports 100 -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.13/scans/_top_100_udp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.13/scans/xml/_top_100_udp_nmap.xml 172.16.185.13" start="1722443446" startstr="Wed Jul 31 12:30:46 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="100" services="7,9,17,19,49,53,67-69,80,88,111,120,123,135-139,158,161-162,177,427,443,445,497,500,514-515,518,520,593,623,626,631,996-999,1022-1023,1025-1030,1433-1434,1645-1646,1701,1718-1719,1812-1813,1900,2000,2048-2049,2222-2223,3283,3456,3703,4444,4500,5000,5060,5353,5632,9200,10000,17185,20031,30718,31337,32768-32769,32771,32815,33281,49152-49154,49156,49181-49182,49185-49186,49188,49190-49194,49200-49201,65024"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1722443446"/>
+<taskend task="NSE" time="1722443446"/>
+<taskbegin task="NSE" time="1722443446"/>
+<taskend task="NSE" time="1722443446"/>
+<taskbegin task="NSE" time="1722443446"/>
+<taskend task="NSE" time="1722443446"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1722443446"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1722443446"/>
+<taskbegin task="UDP Scan" time="1722443446"/>
+<taskend task="UDP Scan" time="1722443452" extrainfo="100 total ports"/>
+<taskbegin task="Service scan" time="1722443452"/>
+<taskprogress task="Service scan" time="1722443550" percent="2.00" remaining="4802" etc="1722448352"/>
+<taskprogress task="Service scan" time="1722443647" percent="32.00" remaining="415" etc="1722444061"/>
+<taskprogress task="Service scan" time="1722443745" percent="62.00" remaining="180" etc="1722443925"/>
+<taskprogress task="Service scan" time="1722443775" percent="91.00" remaining="32" etc="1722443807"/>
+<taskprogress task="Service scan" time="1722443847" percent="92.00" remaining="35" etc="1722443881"/>
+<taskend task="Service scan" time="1722443852" extrainfo="100 services on 1 host"/>
+<taskbegin task="NSE" time="1722443858"/>
+<taskprogress task="NSE" time="1722443889" percent="98.58" remaining="1" etc="1722443889"/>
+<taskprogress task="NSE" time="1722443919" percent="98.60" remaining="1" etc="1722443920"/>
+<taskprogress task="NSE" time="1722443949" percent="98.65" remaining="2" etc="1722443950"/>
+<taskprogress task="NSE" time="1722443979" percent="98.68" remaining="2" etc="1722443981"/>
+<taskprogress task="NSE" time="1722444009" percent="98.70" remaining="2" etc="1722444011"/>
+<taskprogress task="NSE" time="1722444039" percent="98.73" remaining="3" etc="1722444041"/>
+<taskprogress task="NSE" time="1722444069" percent="98.76" remaining="3" etc="1722444072"/>
+<taskprogress task="NSE" time="1722444099" percent="98.78" remaining="3" etc="1722444102"/>
+<taskprogress task="NSE" time="1722444129" percent="98.81" remaining="4" etc="1722444132"/>
+<taskprogress task="NSE" time="1722444159" percent="98.86" remaining="4" etc="1722444162"/>
+<taskprogress task="NSE" time="1722444189" percent="98.88" remaining="4" etc="1722444193"/>
+<taskprogress task="NSE" time="1722444219" percent="98.91" remaining="4" etc="1722444223"/>
+<taskprogress task="NSE" time="1722444249" percent="98.95" remaining="5" etc="1722444253"/>
+<taskprogress task="NSE" time="1722444279" percent="98.96" remaining="5" etc="1722444283"/>
+<taskprogress task="NSE" time="1722444309" percent="99.02" remaining="5" etc="1722444313"/>
+<taskprogress task="NSE" time="1722444339" percent="99.05" remaining="5" etc="1722444344"/>
+<taskprogress task="NSE" time="1722444369" percent="99.07" remaining="5" etc="1722444374"/>
+<taskprogress task="NSE" time="1722444399" percent="99.09" remaining="5" etc="1722444404"/>
+<taskprogress task="NSE" time="1722444429" percent="99.15" remaining="5" etc="1722444434"/>
+<taskprogress task="NSE" time="1722444459" percent="99.16" remaining="6" etc="1722444464"/>
+<taskprogress task="NSE" time="1722444489" percent="99.20" remaining="6" etc="1722444494"/>
+<taskprogress task="NSE" time="1722444519" percent="99.24" remaining="6" etc="1722444524"/>
+<taskprogress task="NSE" time="1722444549" percent="99.26" remaining="6" etc="1722444554"/>
+<taskprogress task="NSE" time="1722444579" percent="99.30" remaining="6" etc="1722444584"/>
+<taskprogress task="NSE" time="1722444609" percent="99.32" remaining="6" etc="1722444614"/>
+<taskprogress task="NSE" time="1722444639" percent="99.34" remaining="6" etc="1722444644"/>
+<taskprogress task="NSE" time="1722444669" percent="99.38" remaining="6" etc="1722444674"/>
+<taskprogress task="NSE" time="1722444699" percent="99.41" remaining="6" etc="1722444704"/>
+<taskprogress task="NSE" time="1722444729" percent="99.46" remaining="5" etc="1722444734"/>
+<taskprogress task="NSE" time="1722444759" percent="99.49" remaining="5" etc="1722444764"/>
+<taskprogress task="NSE" time="1722444789" percent="99.51" remaining="5" etc="1722444794"/>
+<taskprogress task="NSE" time="1722444819" percent="99.54" remaining="5" etc="1722444823"/>
+<taskprogress task="NSE" time="1722444849" percent="99.56" remaining="5" etc="1722444853"/>
+<taskprogress task="NSE" time="1722444879" percent="99.58" remaining="5" etc="1722444883"/>
+<taskprogress task="NSE" time="1722444909" percent="99.62" remaining="4" etc="1722444913"/>
+<taskprogress task="NSE" time="1722444939" percent="99.65" remaining="4" etc="1722444943"/>
+<taskprogress task="NSE" time="1722444969" percent="99.70" remaining="4" etc="1722444972"/>
+<taskprogress task="NSE" time="1722444999" percent="99.72" remaining="4" etc="1722445002"/>
+<taskprogress task="NSE" time="1722445029" percent="99.76" remaining="3" etc="1722445032"/>
+<taskprogress task="NSE" time="1722445059" percent="99.78" remaining="3" etc="1722445062"/>
+<taskprogress task="NSE" time="1722445089" percent="99.83" remaining="3" etc="1722445091"/>
+<taskprogress task="NSE" time="1722445119" percent="99.84" remaining="3" etc="1722445121"/>
+<taskprogress task="NSE" time="1722445149" percent="99.89" remaining="2" etc="1722445150"/>
+<taskprogress task="NSE" time="1722445179" percent="99.91" remaining="2" etc="1722445180"/>
+<taskprogress task="NSE" time="1722445209" percent="99.96" remaining="1" etc="1722445210"/>
+<taskprogress task="NSE" time="1722445239" percent="99.99" remaining="1" etc="1722445239"/>
+<taskend task="NSE" time="1722445246"/>
+<taskbegin task="NSE" time="1722445246"/>
+<taskend task="NSE" time="1722445251"/>
+<taskbegin task="NSE" time="1722445251"/>
+<taskend task="NSE" time="1722445251"/>
+<host starttime="1722443446" endtime="1722445251"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="172.16.185.13" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="open|filtered" count="99">
+<extrareasons reason="no-response" count="99" proto="udp" ports="7,9,17,19,49,53,67-69,80,88,111,120,123,135-136,138-139,158,161-162,177,427,443,445,497,500,514-515,518,520,593,623,626,631,996-999,1022-1023,1025-1030,1433-1434,1645-1646,1701,1718-1719,1812-1813,1900,2000,2048-2049,2222-2223,3283,3456,3703,4444,4500,5000,5060,5353,5632,9200,10000,17185,20031,30718,31337,32768-32769,32771,32815,33281,49152-49154,49156,49181-49182,49185-49186,49188,49190-49194,49200-49201,65024"/>
+</extraports>
+<port protocol="udp" portid="137"><state state="open" reason="udp-response" reason_ttl="64"/><service name="netbios-ns" product="Microsoft Windows or Samba netbios-ns" extrainfo="workgroup: MEDTECH" hostname="PROD01" method="probed" conf="10"/><script id="nbns-interfaces" output="&#xa;  hostname: PROD01&#xa;  interfaces: &#xa;    172.16.185.13"><elem key="hostname">PROD01</elem>
+<table key="interfaces">
+<elem>172.16.185.13</elem>
+</table>
+</script></port>
+</ports>
+<os><osmatch name="Rockwell Automation 1761-NET-ENI Ethernet-to-RS-232-C interface module" accuracy="94" line="95561">
+<osclass type="specialized" vendor="Rockwell Automation" osfamily="embedded" accuracy="94"><cpe>cpe:/h:rockwellautomation:1761-net-eni</cpe></osclass>
+</osmatch>
+<osmatch name="XigmaNAS (FreeBSD 11.2-RELEASE)" accuracy="94" line="26637">
+<osclass type="storage-misc" vendor="FreeBSD" osfamily="FreeBSD" osgen="11.X" accuracy="94"><cpe>cpe:/a:xigmanas:xigmanas</cpe><cpe>cpe:/o:freebsd:freebsd:11.2</cpe></osclass>
+</osmatch>
+<osmatch name="AVM FRITZ!Box FON WLAN 7170 WAP (Linux 2.6.13)" accuracy="94" line="60952">
+<osclass type="WAP" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="94"><cpe>cpe:/h:avm:fritz%21box_fon_wlan_7170</cpe><cpe>cpe:/o:linux:linux_kernel:2.6.13</cpe></osclass>
+</osmatch>
+<osmatch name="XigmaNAS (FreeBSD 12.2-RELEASE)" accuracy="94" line="108281">
+<osclass type="storage-misc" vendor="FreeBSD" osfamily="FreeBSD" osgen="12.X" accuracy="94"><cpe>cpe:/o:freebsd:freebsd:12.2</cpe></osclass>
+</osmatch>
+<osmatch name="Cisco SG 300-10, Dell PowerConnect 2748, Linksys SLM2024, SLM2048, or SLM224P, or Netgear FS728TP or GS724TP switch" accuracy="94" line="14509">
+<osclass type="switch" vendor="Cisco" osfamily="embedded" accuracy="94"><cpe>cpe:/h:cisco:sg_300-10</cpe></osclass>
+<osclass type="switch" vendor="Dell" osfamily="embedded" accuracy="94"><cpe>cpe:/h:dell:powerconnect_2748</cpe></osclass>
+<osclass type="switch" vendor="Linksys" osfamily="embedded" accuracy="94"><cpe>cpe:/h:linksys:slm2024</cpe><cpe>cpe:/h:linksys:slm2048</cpe><cpe>cpe:/h:linksys:slm224p</cpe></osclass>
+<osclass type="switch" vendor="Netgear" osfamily="embedded" accuracy="94"><cpe>cpe:/h:netgear:fs728tp</cpe><cpe>cpe:/h:netgear:prosafe_gs724tp</cpe></osclass>
+</osmatch>
+<osmatch name="Dell PowerConnect 5316M switch" accuracy="94" line="22438">
+<osclass type="switch" vendor="Dell" osfamily="embedded" accuracy="94"><cpe>cpe:/h:dell:powerconnect_5316m</cpe></osclass>
+</osmatch>
+<osmatch name="Linksys SRW2000-series or Allied Telesyn AT-8000S switch" accuracy="94" line="43932">
+<osclass type="switch" vendor="Linksys" osfamily="embedded" accuracy="94"/>
+<osclass type="switch" vendor="Allied Telesyn" osfamily="embedded" accuracy="94"><cpe>cpe:/h:alliedtelesyn:at-8000s</cpe></osclass>
+</osmatch>
+<osmatch name="Linksys SRW2024 switch" accuracy="94" line="43969">
+<osclass type="switch" vendor="Linksys" osfamily="embedded" accuracy="94"><cpe>cpe:/h:linksys:srw2024</cpe></osclass>
+</osmatch>
+<osmatch name="Netgear FS700TS Smart Switch" accuracy="94" line="88231">
+<osclass type="switch" vendor="Netgear" osfamily="embedded" accuracy="94"/>
+</osmatch>
+<osmatch name="Blue Coat SGOS 4.2.2.2" accuracy="94" line="10227">
+<osclass type="proxy server" vendor="Blue Coat" osfamily="SGOS" osgen="4.X" accuracy="94"><cpe>cpe:/o:bluecoat:sgos:4.2.2.2</cpe></osclass>
+</osmatch>
+<osfingerprint fingerprint="SCAN(V=7.94SVN%E=4%D=7/31%OT=%CT=%CU=%PV=Y%G=N%TM=66AA6DC3%P=x86_64-pc-linux-gnu)&#xa;SEQ(CI=I%II=RI)&#xa;T6(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)&#xa;T7(R=Y%DF=N%TG=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)&#xa;U1(R=N)&#xa;IE(R=Y%DFI=S%TG=40%CD=S)&#xa;"/>
+</os>
+<hostscript><script id="nbstat" output="NetBIOS name: PROD01, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 00:50:56:bf:60:6a (VMware)&#xa;Names:&#xa;  PROD01&lt;20&gt;           Flags: &lt;unique&gt;&lt;active&gt;&#xa;  PROD01&lt;00&gt;           Flags: &lt;unique&gt;&lt;active&gt;&#xa;  MEDTECH&lt;00&gt;          Flags: &lt;group&gt;&lt;active&gt;&#xa;Statistics:&#xa;  00:50:56:bf:60:6a:00:00:00:00:00:00:00:00:00:00:00&#xa;  00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00&#xa;  00:00:00:00:00:00:00:00:00:00:00:00:00:00"/></hostscript><trace>
+<hop ttl="1" ipaddr="172.16.185.13" rtt="124.05"/>
+</trace>
+<times srtt="124046" rttvar="74080" to="420366"/>
+</host>
+<taskbegin task="NSE" time="1722445251"/>
+<taskend task="NSE" time="1722445251"/>
+<taskbegin task="NSE" time="1722445251"/>
+<taskend task="NSE" time="1722445251"/>
+<taskbegin task="NSE" time="1722445251"/>
+<taskend task="NSE" time="1722445251"/>
+<runstats><finished time="1722445251" timestr="Wed Jul 31 13:00:51 2024" summary="Nmap done at Wed Jul 31 13:00:51 2024; 1 IP address (1 host up) scanned in 1805.72 seconds" elapsed="1805.72" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

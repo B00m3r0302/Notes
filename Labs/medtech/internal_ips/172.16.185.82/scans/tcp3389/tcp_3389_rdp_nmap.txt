@@ -1,0 +1,102 @@
+# Nmap 7.94SVN scan initiated Wed Jul 31 12:32:57 2024 as: nmap -vv --reason -Pn -T4 -sV -p 3389 "--script=banner,(rdp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.82/scans/tcp3389/tcp_3389_rdp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.82/scans/tcp3389/xml/tcp_3389_rdp_nmap.xml 172.16.185.82
+Nmap scan report for 172.16.185.82
+Host is up, received user-set (0.46s latency).
+Scanned at 2024-07-31 12:32:58 EDT for 40s
+
+PORT     STATE SERVICE       REASON         VERSION
+3389/tcp open  ms-wbt-server syn-ack ttl 64 Microsoft Terminal Services
+| rdp-enum-encryption: 
+|   Security layer
+|     CredSSP (NLA): SUCCESS
+|     CredSSP with Early User Auth: SUCCESS
+|_    RDSTLS: SUCCESS
+| rdp-ntlm-info: 
+|   Target_Name: MEDTECH
+|   NetBIOS_Domain_Name: MEDTECH
+|   NetBIOS_Computer_Name: CLIENT01
+|   DNS_Domain_Name: medtech.com
+|   DNS_Computer_Name: CLIENT01.medtech.com
+|   DNS_Tree_Name: medtech.com
+|   Product_Version: 10.0.22000
+|_  System_Time: 2024-07-31T16:33:06+00:00
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|_  least strength: C
+|_ssl-date: 2024-07-31T16:33:25+00:00; -1s from scanner time.
+| ssl-cert: Subject: commonName=CLIENT01.medtech.com
+| Issuer: commonName=CLIENT01.medtech.com
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2024-03-27T17:51:36
+| Not valid after:  2024-09-26T17:51:36
+| MD5:   9743:a548:0c0b:e2e5:2e18:7b43:0001:0590
+| SHA-1: 19ee:9922:08a3:66cd:5131:85da:1464:0b3a:9bca:f38a
+| -----BEGIN CERTIFICATE-----
+| MIIC7DCCAdSgAwIBAgIQHsNrvwlTSqJNpCcAGClo7TANBgkqhkiG9w0BAQsFADAf
+| MR0wGwYDVQQDExRDTElFTlQwMS5tZWR0ZWNoLmNvbTAeFw0yNDAzMjcxNzUxMzZa
+| Fw0yNDA5MjYxNzUxMzZaMB8xHTAbBgNVBAMTFENMSUVOVDAxLm1lZHRlY2guY29t
+| MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8tXN5KHieP7QofCQlJnO
+| FzR1qh5rPzLM1hi6GKUdwwDhQ6ve2q13GLh2a6Ht2UPfm468Bhi/kNL2Ul4pygOC
+| ijoiyJGdgkHoTJCA6p7rfRfpQgkyowBmglfIzAm4CTyqp23gfhuHtF9gJmgQeS+F
+| 6PD9Rs+lDbtHNRfWDZyBttiCeEe1VQxC9L+rlcJm0lnY5kCfv74/pd5H4l4ddnRp
+| qhIN3sIX9Iyp45Awpt7I7ZGKweMBc7iVoUew0wva28ReNy9QzgbPaykXyTcwJKun
+| XYC2GsPYoKhC9kTX05VXZr5DmveGXnFgcfyG1pCwleWkAlb6JHnjIKqQ2WYh1/tC
+| kQIDAQABoyQwIjATBgNVHSUEDDAKBggrBgEFBQcDATALBgNVHQ8EBAMCBDAwDQYJ
+| KoZIhvcNAQELBQADggEBACJHO5/xF5ccTlTq5D9x1Bjpf7g57vmo6rDDQviZ9pcZ
+| 4rQcPSbGYiqqLNMtNz/QMhJG05pz1WKHCPDM/m5v/T23p9aJTMZ5QtDVdMm+molm
+| 6o32Ib5NLezgVoSuf2DmT1JbmhaZtbt3SCuA021BTNqlhxS11VorvNOHKlccgJUG
+| eMavduRT38pCWWi/wA9P7lSO0jvZJ5hUVNYlkbkf8hibiYikEUZTpO4e4L7a1mfM
+| YBHvol1GKVoEnpzPdjSv/K/30qCiekM33h7YCGawbBd7wFoAUS0xqWKbGJsw+SlT
+| qUe6WZOyjVTkP+2c9+5wdJBp3vu8xj0W8EU69BBpDug=
+|_-----END CERTIFICATE-----
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jul 31 12:33:38 2024 -- 1 IP address (1 host up) scanned in 40.29 seconds

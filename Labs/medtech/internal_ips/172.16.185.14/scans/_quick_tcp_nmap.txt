@@ -1,0 +1,42 @@
+# Nmap 7.94SVN scan initiated Wed Jul 31 12:30:46 2024 as: nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/_quick_tcp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/xml/_quick_tcp_nmap.xml 172.16.185.14
+Nmap scan report for 172.16.185.14
+Host is up, received user-set (0.071s latency).
+Scanned at 2024-07-31 12:30:46 EDT for 27s
+Not shown: 999 filtered tcp ports (no-response)
+PORT   STATE SERVICE REASON         VERSION
+22/tcp open  ssh     syn-ack ttl 64 OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)
+| ssh-hostkey: 
+|   256 74:51:ee:1e:8f:61:d6:0f:c5:11:52:2e:f9:ef:ac:29 (ECDSA)
+| ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGwFTqEZP9KsUhzre7Z2nJ6/YHiUfHW5zWxNCiviqLXDJUsMo4MVwKeO6rYPsLOISAuWZenBExqDQrnFPU4JxC4=
+|   256 5f:4f:29:47:7a:14:65:4d:bc:f3:74:40:a7:45:7e:94 (ED25519)
+|_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHHwHXiqjZl6NZ5xLeRgTgglfE1QKVkzdhqmRZhvW3rv
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+OS fingerprint not ideal because: Missing a closed TCP port so results incomplete
+No OS matches for host
+TCP/IP fingerprint:
+SCAN(V=7.94SVN%E=4%D=7/31%OT=22%CT=%CU=%PV=Y%G=N%TM=66AA66D1%P=x86_64-pc-linux-gnu)
+SEQ(SP=101%GCD=1%ISR=10D%TI=I%CI=I%II=RI%TS=A)
+OPS(O1=M5B4NNT11NW7%O2=M5B4NNT11NW7%O3=M5B4NNT11NW7%O4=M5B4NNT11NW7%O5=M5B4NNT11NW7%O6=M5B4NNT11)
+WIN(W1=7200%W2=7200%W3=7200%W4=7200%W5=7200%W6=7200)
+ECN(R=Y%DF=N%TG=40%W=7200%O=M5B4NW7%CC=N%Q=)
+T1(R=Y%DF=N%TG=40%S=O%A=S+%F=AS%RD=0%Q=)
+T2(R=Y%DF=N%TG=40%W=0%S=Z%A=S%F=AR%O=%RD=0%Q=)
+T3(R=Y%DF=N%TG=40%W=7200%S=O%A=S+%F=AS%O=M5B4NNT11NW7%RD=0%Q=)
+T4(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)
+T6(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)
+T7(R=Y%DF=N%TG=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)
+U1(R=N)
+IE(R=Y%DFI=S%TG=40%CD=S)
+
+Uptime guess: 14.993 days (since Tue Jul 16 12:41:57 2024)
+TCP Sequence Prediction: Difficulty=257 (Good luck!)
+IP ID Sequence Generation: Incrementing by 2
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE
+HOP RTT      ADDRESS
+1   70.80 ms 172.16.185.14
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jul 31 12:31:13 2024 -- 1 IP address (1 host up) scanned in 27.28 seconds

@@ -1,0 +1,112 @@
+```bash
+enum4linux-ng -A -d -v 172.16.185.10 2>&1
+```
+
+[/home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/tcp139/enum4linux-ng.txt](file:///home/kali/Notes/Labs/medtech/internal_ips/results/172.16.185.10/scans/tcp139/enum4linux-ng.txt):
+
+```
+[92mENUM4LINUX - next generation (v1.3.3)[0m
+
+ ==========================
+|    Target Information    |
+ ==========================
+[94m[*] Target ........... 172.16.185.10[0m
+[94m[*] Username ......... ''[0m
+[94m[*] Random Username .. 'dulppauw'[0m
+[94m[*] Password ......... ''[0m
+[94m[*] Timeout .......... 5 second(s)[0m
+
+ ======================================
+|    Listener Scan on 172.16.185.10    |
+ ======================================
+[94m[*] Checking LDAP[0m
+[92m[+] LDAP is accessible on 389/tcp[0m
+[94m[*] Checking LDAPS[0m
+[92m[+] LDAPS is accessible on 636/tcp[0m
+[94m[*] Checking SMB[0m
+[92m[+] SMB is accessible on 445/tcp[0m
+[94m[*] Checking SMB over NetBIOS[0m
+[92m[+] SMB over NetBIOS is accessible on 139/tcp[0m
+
+ =====================================================
+|    Domain Information via LDAP for 172.16.185.10    |
+ =====================================================
+[94m[*] Trying LDAP[0m
+[92m[+] Appears to be root/parent DC[0m
+[92m[+] Long domain name is: medtech.com[0m
+
+ ============================================================
+|    NetBIOS Names and Workgroup/Domain for 172.16.185.10    |
+ ============================================================
+[V] Trying to get NetBIOS names information, running command: nmblookup -s /tmp/tmpaosu3e0d -A 172.16.185.10
+[92m[+] Got domain/workgroup name: MEDTECH[0m
+[92m[+] Full NetBIOS names information:
+- DC01            <20> -         B <ACTIVE>  File Server Service
+- DC01            <00> -         B <ACTIVE>  Workstation Service
+- MEDTECH         <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
+- MEDTECH         <1c> - <GROUP> B <ACTIVE>  Domain Controllers
+- MEDTECH         <1b> -         B <ACTIVE>  Domain Master Browser
+- MAC Address = 00-50-56-BF-2D-3A[0m
+
+ ==========================================
+|    SMB Dialect Check on 172.16.185.10    |
+ ==========================================
+[94m[*] Trying on 445/tcp[0m
+[92m[+] Supported dialects and settings:
+Supported dialects:
+  SMB 1.0: false
+  SMB 2.02: true
+  SMB 2.1: true
+  SMB 3.0: true
+  SMB 3.1.1: true
+Preferred dialect: SMB 3.0
+SMB1 only: false
+SMB signing required: true[0m
+
+ ============================================================
+|    Domain Information via SMB session for 172.16.185.10    |
+ ============================================================
+[94m[*] Enumerating via unauthenticated SMB session on 445/tcp[0m
+[92m[+] Found domain information via SMB
+NetBIOS computer name: DC01
+NetBIOS domain name: MEDTECH
+DNS domain: medtech.com
+FQDN: DC01.medtech.com
+Derived membership: domain member
+Derived domain: MEDTECH[0m
+
+ ==========================================
+|    RPC Session Check on 172.16.185.10    |
+ ==========================================
+[94m[*] Check for null session[0m
+[V] Attempting to make session, running command: smbclient -W MEDTECH -U % -s /tmp/tmpaosu3e0d -t 5 -c help '//172.16.185.10/ipc$'
+[91m[-] Could not establish null session: STATUS_ACCESS_DENIED[0m
+[94m[*] Check for random user[0m
+[V] Attempting to make session, running command: smbclient -W MEDTECH -U dulppauw% -s /tmp/tmpaosu3e0d -t 5 -c help '//172.16.185.10/ipc$'
+[91m[-] Could not establish random user session: STATUS_LOGON_FAILURE[0m
+[91m[-] Sessions failed, neither null nor user sessions were possible[0m
+
+ ================================================
+|    OS Information via RPC for 172.16.185.10    |
+ ================================================
+[94m[*] Enumerating via unauthenticated SMB session on 445/tcp[0m
+[92m[+] Found OS information via SMB[0m
+[94m[*] Enumerating via 'srvinfo'[0m
+[91m[-] Skipping 'srvinfo' run, not possible with provided credentials[0m
+[92m[+] After merging OS information we have the following result:
+OS: Windows 10, Windows Server 2019, Windows Server 2016
+OS version: '10.0'
+OS release: ''
+OS build: '20348'
+Native OS: not supported
+Native LAN manager: not supported
+Platform id: null
+Server type: null
+Server type string: null[0m
+
+[93m[!] Aborting remainder of tests since sessions failed, rerun with valid credentials[0m
+
+Completed after 6.41 seconds
+
+
+```

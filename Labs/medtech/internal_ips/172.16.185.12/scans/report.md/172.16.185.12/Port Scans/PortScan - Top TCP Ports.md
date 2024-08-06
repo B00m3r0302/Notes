@@ -1,0 +1,111 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN "/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.12/scans/_quick_tcp_nmap.txt" -oX "/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.12/scans/xml/_quick_tcp_nmap.xml" 172.16.185.12
+```
+
+[/home/kali/Notes/Labs/medtech/internal_ips/172.16.185.12/scans/_quick_tcp_nmap.txt](file:///home/kali/Notes/Labs/medtech/internal_ips/172.16.185.12/scans/_quick_tcp_nmap.txt):
+
+```
+# Nmap 7.94SVN scan initiated Wed Jul 31 12:30:46 2024 as: nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.12/scans/_quick_tcp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.12/scans/xml/_quick_tcp_nmap.xml 172.16.185.12
+Nmap scan report for 172.16.185.12
+Host is up, received user-set (0.10s latency).
+Scanned at 2024-07-31 12:30:46 EDT for 145s
+Not shown: 996 filtered tcp ports (no-response)
+PORT     STATE SERVICE       REASON         VERSION
+135/tcp  open  msrpc         syn-ack ttl 64 Microsoft Windows RPC
+139/tcp  open  netbios-ssn   syn-ack ttl 64 Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds? syn-ack ttl 64
+3389/tcp open  ms-wbt-server syn-ack ttl 64 Microsoft Terminal Services
+|_ssl-date: 2024-07-31T16:33:10+00:00; -1s from scanner time.
+| ssl-cert: Subject: commonName=DEV04.medtech.com
+| Issuer: commonName=DEV04.medtech.com
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2024-03-27T16:42:35
+| Not valid after:  2024-09-26T16:42:35
+| MD5:   803b:ae23:b24f:09a9:eb0f:80ba:66ed:3cf9
+| SHA-1: 44a6:ffb3:588c:eb5f:3cf8:6196:7eb1:dd34:939b:c0f5
+| -----BEGIN CERTIFICATE-----
+| MIIC5jCCAc6gAwIBAgIQJm901NTO1apHis4EZCIUTzANBgkqhkiG9w0BAQsFADAc
+| MRowGAYDVQQDExFERVYwNC5tZWR0ZWNoLmNvbTAeFw0yNDAzMjcxNjQyMzVaFw0y
+| NDA5MjYxNjQyMzVaMBwxGjAYBgNVBAMTEURFVjA0Lm1lZHRlY2guY29tMIIBIjAN
+| BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvIFTa7TBQIlgDDYoq1gc3lduoG5e
+| 8AtHjB7RxRLC/z0ZGeFKRhQBlspqwryL2R/3Br7q6DtyJ1swTNj0XH3IAmNYtm88
+| mwDPTpLgFE/BCvFZJFcD8oFbtC2H7Xn0/S6rSYhkWif0qHGQjLLomrLv6gcy8C5W
+| 47ozjcCq/ft/FFbbKojISztlQVxfclOzZZMIig/VBK5M062Vp8S9SVDgVCSZxHSx
+| zkSLslgvWDcZ0je2i+t65jYdAy5s2n97ltk+xDk1oXRCYHFG2/XDc+q7UlGdHmj/
+| +DjJ7P200J/03YC5jsGkEZBqAQUzLOWsejA5VPIY3mCkNi5x57um819MZQIDAQAB
+| oyQwIjATBgNVHSUEDDAKBggrBgEFBQcDATALBgNVHQ8EBAMCBDAwDQYJKoZIhvcN
+| AQELBQADggEBAEv1jx+KhH2e7IGvTLGw7H0tfKUx+kGlyRlxY4CLxW/bjIpU6zAR
+| H96GeI+EuIsDshIYAmb4WXWJm4aHAqxnTTYtBJyAtwS+OBKdVTMHwSW+o4RSKcnF
+| e1tGc87UQLnSN63V8G3XQYmV0ktGiJbjctQRvmPq2AXhznzm41u9y0lytH/KxzYj
+| SKnoBvlpm49DlkOILVgNpAdF9NLCeiZffpr9RVvC1eB29fQ/XxaHd77SQE+Ps8V3
+| Pl22KglhAm/KgSVl3jpUVaVq0aFxZlSnwL/fMtjeE3kVLv0w70qIwbAKtY3A5XPJ
+| SjI7zYEYzxh3m1hpV+zEGwVwUjEqcu2zpbA=
+|_-----END CERTIFICATE-----
+| rdp-ntlm-info: 
+|   Target_Name: MEDTECH
+|   NetBIOS_Domain_Name: MEDTECH
+|   NetBIOS_Computer_Name: DEV04
+|   DNS_Domain_Name: medtech.com
+|   DNS_Computer_Name: DEV04.medtech.com
+|   DNS_Tree_Name: medtech.com
+|   Product_Version: 10.0.20348
+|_  System_Time: 2024-07-31T16:32:31+00:00
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+OS fingerprint not ideal because: Missing a closed TCP port so results incomplete
+No OS matches for host
+TCP/IP fingerprint:
+SCAN(V=7.94SVN%E=4%D=7/31%OT=135%CT=%CU=%PV=Y%G=N%TM=66AA6747%P=x86_64-pc-linux-gnu)
+SEQ(SP=106%GCD=1%ISR=10E%TI=I%CI=I%II=RI%TS=A)
+OPS(O1=M5B4NNT11NW7%O2=M5B4NNT11NW7%O3=M5B4NNT11NW7%O4=M5B4NNT11NW7%O5=M5B4NNT11NW7%O6=M5B4NNT11)
+WIN(W1=7200%W2=7200%W3=7200%W4=7200%W5=7200%W6=7200)
+ECN(R=Y%DF=N%TG=40%W=7200%O=M5B4NW7%CC=N%Q=)
+T1(R=Y%DF=N%TG=40%S=O%A=S+%F=AS%RD=0%Q=)
+T2(R=Y%DF=N%TG=40%W=0%S=Z%A=S%F=AR%O=%RD=0%Q=)
+T3(R=Y%DF=N%TG=40%W=7200%S=O%A=S+%F=AS%O=M5B4NNT11NW7%RD=0%Q=)
+T4(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)
+T6(R=Y%DF=N%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)
+T7(R=Y%DF=N%TG=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)
+U1(R=N)
+IE(R=Y%DFI=S%TG=40%CD=S)
+
+Uptime guess: 11.645 days (since Fri Jul 19 21:05:02 2024)
+TCP Sequence Prediction: Difficulty=262 (Good luck!)
+IP ID Sequence Generation: Incrementing by 2
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time: 
+|   date: 2024-07-31T16:32:31
+|_  start_date: N/A
+| nbstat: NetBIOS name: DEV04, NetBIOS user: <unknown>, NetBIOS MAC: 00:50:56:bf:7b:40 (VMware)
+| Names:
+|   DEV04<00>            Flags: <unique><active>
+|   DEV04<20>            Flags: <unique><active>
+|   MEDTECH<00>          Flags: <group><active>
+| Statistics:
+|   00:50:56:bf:7b:40:00:00:00:00:00:00:00:00:00:00:00
+|   00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00
+|_  00:00:00:00:00:00:00:00:00:00:00:00:00:00
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 53547/tcp): CLEAN (Timeout)
+|   Check 2 (port 58868/tcp): CLEAN (Timeout)
+|   Check 3 (port 42793/udp): CLEAN (Timeout)
+|   Check 4 (port 15125/udp): CLEAN (Timeout)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+|_clock-skew: mean: 0s, deviation: 0s, median: 0s
+
+TRACEROUTE
+HOP RTT       ADDRESS
+1   101.00 ms 172.16.185.12
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jul 31 12:33:11 2024 -- 1 IP address (1 host up) scanned in 145.10 seconds
+
+```

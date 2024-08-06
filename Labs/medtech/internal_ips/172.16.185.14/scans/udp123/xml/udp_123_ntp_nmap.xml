@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Jul 31 13:03:57 2024 as: nmap -vv -&#45;reason -Pn -T4 -sU -sV -p 123 &quot;-&#45;script=banner,(ntp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/udp123/udp_123_ntp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/udp123/xml/udp_123_ntp_nmap.xml 172.16.185.14 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sU -sV -p 123 &quot;-&#45;script=banner,(ntp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/udp123/udp_123_ntp_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/udp123/xml/udp_123_ntp_nmap.xml 172.16.185.14" start="1722445437" startstr="Wed Jul 31 13:03:57 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="1" services="123"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1722445437"/>
+<taskend task="NSE" time="1722445437"/>
+<taskbegin task="NSE" time="1722445437"/>
+<taskend task="NSE" time="1722445437"/>
+<taskbegin task="NSE" time="1722445437"/>
+<taskend task="NSE" time="1722445437"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1722445437"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1722445438"/>
+<taskbegin task="UDP Scan" time="1722445438"/>
+<taskend task="UDP Scan" time="1722445438" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1722445438"/>
+<taskend task="Service scan" time="1722445438" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1722445438"/>
+<taskend task="NSE" time="1722445448"/>
+<taskbegin task="NSE" time="1722445448"/>
+<taskend task="NSE" time="1722445448"/>
+<taskbegin task="NSE" time="1722445448"/>
+<taskend task="NSE" time="1722445448"/>
+<host starttime="1722445438" endtime="1722445448"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="172.16.185.14" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="udp" portid="123"><state state="open" reason="udp-response" reason_ttl="64"/><service name="ntp" product="NTP" version="v4.2.8p15@1.3728-o" extrainfo="unsynchronized" ostype="Linux/5.10.0-18-amd64" method="probed" conf="10"/><script id="ntp-info" output="&#xa;  version: ntpd 4.2.8p15@1.3728-o Wed Sep 23 11:46:38 UTC 2020 (1)&#xa;  processor: x86_64&#xa;  system: Linux/5.10.0-18-amd64&#xa;  leap: 3&#xa;  stratum: 16&#xa;  precision: -24&#xa;  rootdelay: 0.000&#xa;  rootdisp: 0.000&#xa;  refid: .&#xa;  reftime: 0x00000000.00000000&#xa;  clock: 0xea54ed08.3d2d9f68&#xa;  peer: 0&#xa;  tc: 3&#xa;  mintc: 3&#xa;  offset: 0.000000&#xa;  frequency: -20.035&#xa;  sys_jitter: 0.000000&#xa;  clk_jitter: 0.000&#xa;  clk_wander: 0.000&#xa;  leapsec: 201701010000&#xa;  expire: 202212280000&#xd;&#xa;"><elem key="version">ntpd 4.2.8p15@1.3728-o Wed Sep 23 11:46:38 UTC 2020 (1)</elem>
+<elem key="processor">x86_64</elem>
+<elem key="system">Linux/5.10.0-18-amd64</elem>
+<elem key="leap">3</elem>
+<elem key="stratum">16</elem>
+<elem key="precision">-24</elem>
+<elem key="rootdelay">0.000</elem>
+<elem key="rootdisp">0.000</elem>
+<elem key="refid">.</elem>
+<elem key="reftime">0x00000000.00000000</elem>
+<elem key="clock">0xea54ed08.3d2d9f68</elem>
+<elem key="peer">0</elem>
+<elem key="tc">3</elem>
+<elem key="mintc">3</elem>
+<elem key="offset">0.000000</elem>
+<elem key="frequency">-20.035</elem>
+<elem key="sys_jitter">0.000000</elem>
+<elem key="clk_jitter">0.000</elem>
+<elem key="clk_wander">0.000</elem>
+<elem key="leapsec">201701010000</elem>
+<elem key="expire">202212280000&#xd;&#xa;</elem>
+</script></port>
+</ports>
+<times srtt="248075" rttvar="248075" to="1240375"/>
+</host>
+<taskbegin task="NSE" time="1722445448"/>
+<taskend task="NSE" time="1722445448"/>
+<taskbegin task="NSE" time="1722445448"/>
+<taskend task="NSE" time="1722445448"/>
+<taskbegin task="NSE" time="1722445448"/>
+<taskend task="NSE" time="1722445448"/>
+<runstats><finished time="1722445448" timestr="Wed Jul 31 13:04:08 2024" summary="Nmap done at Wed Jul 31 13:04:08 2024; 1 IP address (1 host up) scanned in 10.96 seconds" elapsed="10.96" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

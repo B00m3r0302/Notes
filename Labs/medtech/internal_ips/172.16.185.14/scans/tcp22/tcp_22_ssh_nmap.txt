@@ -1,0 +1,57 @@
+# Nmap 7.94SVN scan initiated Wed Jul 31 12:31:13 2024 as: nmap -vv --reason -Pn -T4 -sV -p 22 --script=banner,ssh2-enum-algos,ssh-hostkey,ssh-auth-methods -oN /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/tcp22/tcp_22_ssh_nmap.txt -oX /home/kali/Notes/Labs/medtech/internal_ips/172.16.185.14/scans/tcp22/xml/tcp_22_ssh_nmap.xml 172.16.185.14
+Nmap scan report for 172.16.185.14
+Host is up, received user-set (0.14s latency).
+Scanned at 2024-07-31 12:31:13 EDT for 2s
+
+PORT   STATE SERVICE REASON         VERSION
+22/tcp open  ssh     syn-ack ttl 64 OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)
+|_banner: SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u1
+|_ssh-auth-methods: ERROR: Script execution failed (use -d to debug)
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|       curve25519-sha256
+|       curve25519-sha256@libssh.org
+|       ecdh-sha2-nistp256
+|       ecdh-sha2-nistp384
+|       ecdh-sha2-nistp521
+|       diffie-hellman-group-exchange-sha256
+|       diffie-hellman-group16-sha512
+|       diffie-hellman-group18-sha512
+|       diffie-hellman-group14-sha256
+|   server_host_key_algorithms: (5)
+|       rsa-sha2-512
+|       rsa-sha2-256
+|       ssh-rsa
+|       ecdsa-sha2-nistp256
+|       ssh-ed25519
+|   encryption_algorithms: (6)
+|       chacha20-poly1305@openssh.com
+|       aes128-ctr
+|       aes192-ctr
+|       aes256-ctr
+|       aes128-gcm@openssh.com
+|       aes256-gcm@openssh.com
+|   mac_algorithms: (10)
+|       umac-64-etm@openssh.com
+|       umac-128-etm@openssh.com
+|       hmac-sha2-256-etm@openssh.com
+|       hmac-sha2-512-etm@openssh.com
+|       hmac-sha1-etm@openssh.com
+|       umac-64@openssh.com
+|       umac-128@openssh.com
+|       hmac-sha2-256
+|       hmac-sha2-512
+|       hmac-sha1
+|   compression_algorithms: (2)
+|       none
+|_      zlib@openssh.com
+| ssh-hostkey: 
+|   256 74:51:ee:1e:8f:61:d6:0f:c5:11:52:2e:f9:ef:ac:29 (ECDSA)
+| ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGwFTqEZP9KsUhzre7Z2nJ6/YHiUfHW5zWxNCiviqLXDJUsMo4MVwKeO6rYPsLOISAuWZenBExqDQrnFPU4JxC4=
+|   256 5f:4f:29:47:7a:14:65:4d:bc:f3:74:40:a7:45:7e:94 (ED25519)
+|_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHHwHXiqjZl6NZ5xLeRgTgglfE1QKVkzdhqmRZhvW3rv
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jul 31 12:31:15 2024 -- 1 IP address (1 host up) scanned in 2.23 seconds

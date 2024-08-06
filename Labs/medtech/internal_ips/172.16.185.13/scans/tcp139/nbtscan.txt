@@ -1,0 +1,15 @@
+Doing NBT name scan for addresses from 172.16.185.13
+
+
+NetBIOS Name Table for Host 172.16.185.13:
+
+Incomplete packet, 155 bytes long.
+Name             Service          Type
+----------------------------------------
+PROD01           File Server Service
+PROD01           Workstation Service
+MEDTECH          Domain Name
+
+Adapter address: 00:50:56:bf:60:6a
+----------------------------------------
+
