@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Mon Aug 19 15:04:29 2024 as: nmap -vv -&#45;reason -Pn -T4 -sU -A -&#45;top-ports 100 -oN /home/kali/Notes/Labs/A/192.168.114.141/scans/_top_100_udp_nmap.txt -oX /home/kali/Notes/Labs/A/192.168.114.141/scans/xml/_top_100_udp_nmap.xml 192.168.114.141 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sU -A -&#45;top-ports 100 -oN /home/kali/Notes/Labs/A/192.168.114.141/scans/_top_100_udp_nmap.txt -oX /home/kali/Notes/Labs/A/192.168.114.141/scans/xml/_top_100_udp_nmap.xml 192.168.114.141" start="1724079869" startstr="Mon Aug 19 15:04:29 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="100" services="7,9,17,19,49,53,67-69,80,88,111,120,123,135-139,158,161-162,177,427,443,445,497,500,514-515,518,520,593,623,626,631,996-999,1022-1023,1025-1030,1433-1434,1645-1646,1701,1718-1719,1812-1813,1900,2000,2048-2049,2222-2223,3283,3456,3703,4444,4500,5000,5060,5353,5632,9200,10000,17185,20031,30718,31337,32768-32769,32771,32815,33281,49152-49154,49156,49181-49182,49185-49186,49188,49190-49194,49200-49201,65024"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1724079870"/>
+<taskend task="NSE" time="1724079870"/>
+<taskbegin task="NSE" time="1724079870"/>
+<taskend task="NSE" time="1724079870"/>
+<taskbegin task="NSE" time="1724079870"/>
+<taskend task="NSE" time="1724079870"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1724079870"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1724079870"/>
+<taskbegin task="UDP Scan" time="1724079870"/>
+<taskend task="UDP Scan" time="1724079882" extrainfo="100 total ports"/>
+<taskbegin task="Service scan" time="1724079882"/>

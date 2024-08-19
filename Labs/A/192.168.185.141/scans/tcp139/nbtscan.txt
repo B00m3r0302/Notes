@@ -1,3 +1,0 @@
-Doing NBT name scan for addresses from 192.168.185.141
-
-

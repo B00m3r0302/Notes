@@ -1,0 +1,1 @@
+# Nmap 7.94SVN scan initiated Mon Aug 19 15:04:29 2024 as: nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN /home/kali/Notes/Labs/A/192.168.114.140/scans/_quick_tcp_nmap.txt -oX /home/kali/Notes/Labs/A/192.168.114.140/scans/xml/_quick_tcp_nmap.xml 192.168.114.140
