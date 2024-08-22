@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Aug 21 13:38:06 2024 as: nmap -vv -&#45;reason -Pn -T4 -sU -sV -p 161 &quot;-&#45;script=banner,(snmp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/udp161/udp_161_snmp-nmap.txt -oX /home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/udp161/xml/udp_161_snmp_nmap.xml 192.168.196.145 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sU -sV -p 161 &quot;-&#45;script=banner,(snmp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/udp161/udp_161_snmp-nmap.txt -oX /home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/udp161/xml/udp_161_snmp_nmap.xml 192.168.196.145" start="1724261886" startstr="Wed Aug 21 13:38:06 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="udp" protocol="udp" numservices="1" services="161"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1724261887"/>
+<taskend task="NSE" time="1724261887"/>
+<taskbegin task="NSE" time="1724261887"/>
+<taskend task="NSE" time="1724261887"/>
+<taskbegin task="NSE" time="1724261887"/>
+<taskend task="NSE" time="1724261887"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1724261887"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1724261891"/>
+<taskbegin task="UDP Scan" time="1724261891"/>
+<taskend task="UDP Scan" time="1724261892" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1724261892"/>
+<taskbegin task="NSE" time="1724261892"/>
+<taskprogress task="NSE" time="1724261923" percent="92.86" remaining="3" etc="1724261925"/>
+<taskend task="NSE" time="1724261943"/>
+<taskbegin task="NSE" time="1724261943"/>
+<taskend task="NSE" time="1724261943"/>
+<taskbegin task="NSE" time="1724261943"/>
+<taskend task="NSE" time="1724261943"/>
+<host starttime="1724261891" endtime="1724261943"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.196.145" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="udp" portid="161"><state state="open" reason="udp-response" reason_ttl="125"/><service name="snmp" product="SNMPv1 server" extrainfo="public" hostname="oscp" method="probed" conf="10"/><script id="snmp-win32-users" output="&#xa;  Administrator&#xa;  DefaultAccount&#xa;  Guest&#xa;  WDAGUtilityAccount&#xa;  offsec&#xa;  zachary"><elem>Administrator</elem>
+<elem>DefaultAccount</elem>
+<elem>Guest</elem>
+<elem>WDAGUtilityAccount</elem>
+<elem>offsec</elem>
+<elem>zachary</elem>
+</script><script id="snmp-processes" output="&#xa;  1: &#xa;  4: &#xa;  92: &#xa;  368: &#xa;  460: &#xa;  468: &#xa;  472: &#xa;  572: &#xa;  580: &#xa;  664: &#xa;  700: &#xa;  704: &#xa;  712: &#xa;  820: &#xa;  828: &#xa;  836: &#xa;  904: &#xa;  948: &#xa;  1000: &#xa;  1084: &#xa;  1156: &#xa;  1196: &#xa;  1212: &#xa;  1224: &#xa;  1288: &#xa;  1340: &#xa;  1428: &#xa;  1444: &#xa;  1456: &#xa;  1464: &#xa;  1484: &#xa;  1504: &#xa;  1592: &#xa;  1600: &#xa;  1624: &#xa;  1636: &#xa;  1760: &#xa;  1776: &#xa;  1892: &#xa;  1916: &#xa;  1932: &#xa;  1948: &#xa;  1996: "><table key="1">
+</table>
+<table key="4">
+</table>
+<table key="92">
+</table>
+<table key="368">
+</table>
+<table key="460">
+</table>
+<table key="468">
+</table>
+<table key="472">
+</table>
+<table key="572">
+</table>
+<table key="580">
+</table>
+<table key="664">
+</table>
+<table key="700">
+</table>
+<table key="704">
+</table>
+<table key="712">
+</table>
+<table key="820">
+</table>
+<table key="828">
+</table>
+<table key="836">
+</table>
+<table key="904">
+</table>
+<table key="948">
+</table>
+<table key="1000">
+</table>
+<table key="1084">
+</table>
+<table key="1156">
+</table>
+<table key="1196">
+</table>
+<table key="1212">
+</table>
+<table key="1224">
+</table>
+<table key="1288">
+</table>
+<table key="1340">
+</table>
+<table key="1428">
+</table>
+<table key="1444">
+</table>
+<table key="1456">
+</table>
+<table key="1464">
+</table>
+<table key="1484">
+</table>
+<table key="1504">
+</table>
+<table key="1592">
+</table>
+<table key="1600">
+</table>
+<table key="1624">
+</table>
+<table key="1636">
+</table>
+<table key="1760">
+</table>
+<table key="1776">
+</table>
+<table key="1892">
+</table>
+<table key="1916">
+</table>
+<table key="1932">
+</table>
+<table key="1948">
+</table>
+<table key="1996">
+</table>
+</script><script id="snmp-win32-software" output=""></script><script id="snmp-win32-services" output="&#xa;  AVCTP service&#xa;  Base Filtering Engine&#xa;  CNG Key Isolation&#xa;  COM+ Event System&#xa;  Contact Data_66f74&#xa;  CoreMessaging&#xa;  Credential Manager&#xa;  Cryptographic Services&#xa;  DHCP Client&#xa;  DNS Client&#xa;  Data Sharing Service&#xa;  Data Usage&#xa;  Device Setup Manager&#xa;  IP Helper&#xa;  IPsec Policy Agent&#xa;  Local Session Manager&#xa;  Microsoft FTP Service&#xa;  Network Connections&#xa;  Network List Service&#xa;  Plug and Play&#xa;  Power&#xa;  Print Spooler&#xa;  RPC Endpoint Mapper&#xa;  SNMP Service&#xa;  SSDP Discovery&#xa;  Security Center&#xa;  Server&#xa;  Storage Service&#xa;  Sync Host_66f74&#xa;  SysMain&#xa;  System Events Broker&#xa;  TCP/IP NetBIOS Helper&#xa;  Task Scheduler&#xa;  Themes&#xa;  Time Broker&#xa;  User Manager&#xa;  User Profile Service&#xa;  VMware Tools&#xa;  Web Account Manager&#xa;  Windows Audio&#xa;  Windows Event Log&#xa;  Windows Search&#xa;  Workstation"><elem>AVCTP service</elem>
+<elem>Base Filtering Engine</elem>
+<elem>CNG Key Isolation</elem>
+<elem>COM+ Event System</elem>
+<elem>Contact Data_66f74</elem>
+<elem>CoreMessaging</elem>
+<elem>Credential Manager</elem>
+<elem>Cryptographic Services</elem>
+<elem>DHCP Client</elem>
+<elem>DNS Client</elem>
+<elem>Data Sharing Service</elem>
+<elem>Data Usage</elem>
+<elem>Device Setup Manager</elem>
+<elem>IP Helper</elem>
+<elem>IPsec Policy Agent</elem>
+<elem>Local Session Manager</elem>
+<elem>Microsoft FTP Service</elem>
+<elem>Network Connections</elem>
+<elem>Network List Service</elem>
+<elem>Plug and Play</elem>
+<elem>Power</elem>
+<elem>Print Spooler</elem>
+<elem>RPC Endpoint Mapper</elem>
+<elem>SNMP Service</elem>
+<elem>SSDP Discovery</elem>
+<elem>Security Center</elem>
+<elem>Server</elem>
+<elem>Storage Service</elem>
+<elem>Sync Host_66f74</elem>
+<elem>SysMain</elem>
+<elem>System Events Broker</elem>
+<elem>TCP/IP NetBIOS Helper</elem>
+<elem>Task Scheduler</elem>
+<elem>Themes</elem>
+<elem>Time Broker</elem>
+<elem>User Manager</elem>
+<elem>User Profile Service</elem>
+<elem>VMware Tools</elem>
+<elem>Web Account Manager</elem>
+<elem>Windows Audio</elem>
+<elem>Windows Event Log</elem>
+<elem>Windows Search</elem>
+<elem>Workstation</elem>
+</script><script id="snmp-sysdescr" output="Hardware: AMD64 Family 23 Model 1 Stepping 2 AT/AT COMPATIBLE - Software: Windows Version 6.3 (Build 19041 Multiprocessor Free)&#xa;  System uptime: 80d00h32m32.69s (691395269 timeticks)"/><script id="snmp-netstat" output="&#xa;  TCP  0.0.0.0:21           0.0.0.0:0&#xa;  TCP  0.0.0.0:80           0.0.0.0:0&#xa;  TCP  0.0.0.0:135          0.0.0.0:0&#xa;  TCP  0.0.0.0:445          0.0.0.0:0&#xa;  TCP  0.0.0.0:1978         0.0.0.0:0&#xa;  TCP  0.0.0.0:3389         0.0.0.0:0&#xa;  TCP  0.0.0.0:5040         0.0.0.0:0&#xa;  TCP  0.0.0.0:49664        0.0.0.0:0&#xa;  TCP  0.0.0.0:49665        0.0.0.0:0&#xa;  TCP  0.0.0.0:49666        0.0.0.0:0&#xa;  TCP  0.0.0.0:49667        0.0.0.0:0&#xa;  TCP  0.0.0.0:49668        0.0.0.0:0&#xa;  UDP  0.0.0.0:161          *:*&#xa;  UDP  0.0.0.0:2007         *:*&#xa;  UDP  0.0.0.0:3389         *:*&#xa;"/></port>
+</ports>
+<times srtt="354279" rttvar="354279" to="1250000"/>
+</host>
+<taskbegin task="NSE" time="1724261944"/>
+<taskend task="NSE" time="1724261944"/>
+<taskbegin task="NSE" time="1724261944"/>
+<taskend task="NSE" time="1724261944"/>
+<taskbegin task="NSE" time="1724261944"/>
+<taskend task="NSE" time="1724261944"/>
+<runstats><finished time="1724261944" timestr="Wed Aug 21 13:39:04 2024" summary="Nmap done at Wed Aug 21 13:39:04 2024; 1 IP address (1 host up) scanned in 58.48 seconds" elapsed="58.48" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

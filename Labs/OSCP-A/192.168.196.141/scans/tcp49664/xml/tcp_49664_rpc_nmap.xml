@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Aug 21 13:38:05 2024 as: nmap -vv -&#45;reason -Pn -T4 -sV -p 49664 -&#45;script=banner,msrpc-enum,rpc-grind,rpcinfo -oN /home/kali/Notes/Labs/OSCP-A/192.168.196.141/scans/tcp49664/tcp_49664_rpc_nmap.txt -oX /home/kali/Notes/Labs/OSCP-A/192.168.196.141/scans/tcp49664/xml/tcp_49664_rpc_nmap.xml 192.168.196.141 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sV -p 49664 -&#45;script=banner,msrpc-enum,rpc-grind,rpcinfo -oN /home/kali/Notes/Labs/OSCP-A/192.168.196.141/scans/tcp49664/tcp_49664_rpc_nmap.txt -oX /home/kali/Notes/Labs/OSCP-A/192.168.196.141/scans/tcp49664/xml/tcp_49664_rpc_nmap.xml 192.168.196.141" start="1724261885" startstr="Wed Aug 21 13:38:05 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="49664"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1724261887"/>
+<taskend task="NSE" time="1724261887"/>
+<taskbegin task="NSE" time="1724261887"/>
+<taskend task="NSE" time="1724261887"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1724261887"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1724261890"/>
+<taskbegin task="SYN Stealth Scan" time="1724261890"/>
+<taskend task="SYN Stealth Scan" time="1724261891" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1724261892"/>
+<taskend task="Service scan" time="1724261948" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1724261948"/>
+<taskend task="NSE" time="1724261958"/>
+<taskbegin task="NSE" time="1724261958"/>
+<taskend task="NSE" time="1724261960"/>
+<host starttime="1724261891" endtime="1724261960"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.196.141" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+</ports>
+<times srtt="431228" rttvar="431228" to="1250000"/>
+</host>
+<taskbegin task="NSE" time="1724261960"/>
+<taskend task="NSE" time="1724261960"/>
+<taskbegin task="NSE" time="1724261960"/>
+<taskend task="NSE" time="1724261960"/>
+<runstats><finished time="1724261960" timestr="Wed Aug 21 13:39:20 2024" summary="Nmap done at Wed Aug 21 13:39:20 2024; 1 IP address (1 host up) scanned in 74.97 seconds" elapsed="74.97" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,91 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/_quick_tcp_nmap.txt" -oX "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/xml/_quick_tcp_nmap.xml" 192.168.196.145
+
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/_quick_tcp_nmap.txt" -oX "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/xml/_quick_tcp_nmap.xml" 192.168.196.145
+
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -p- -oN "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/_full_tcp_nmap.txt" -oX "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/xml/_full_tcp_nmap.xml" 192.168.196.145
+
+nmap -vv --reason -Pn -T4 -sU -A --top-ports 100 -oN "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/_top_100_udp_nmap.txt" -oX "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/xml/_top_100_udp_nmap.xml" 192.168.196.145
+
+nmap -vv --reason -Pn -T4 -sV -p 21 --script="banner,(ftp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp21/tcp_21_ftp_nmap.txt" -oX "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp21/xml/tcp_21_ftp_nmap.xml" 192.168.196.145
+
+feroxbuster -u http://192.168.196.145:80/ -t 10 -w /root/.local/share/AutoRecon/wordlists/dirbuster.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -q -e -r -o "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt"
+
+curl -sSikf http://192.168.196.145:80/.well-known/security.txt
+
+curl -sSikf http://192.168.196.145:80/robots.txt
+
+curl -sSik http://192.168.196.145:80/
+
+nikto -ask=no -Tuning=x4567890ac -nointeractive -host http://192.168.196.145:80 2>&1 | tee "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp80/tcp_80_http_nikto.txt"
+
+nmap -vv --reason -Pn -T4 -sV -p 80 --script="banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)" -oN "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp80/tcp_80_http_nmap.txt" -oX "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp80/xml/tcp_80_http_nmap.xml" 192.168.196.145
+
+whatweb --color=never --no-errors -a 3 -v http://192.168.196.145:80 2>&1
+
+wkhtmltoimage --format png http://192.168.196.145:80/ /home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp80/tcp_80_http_screenshot.png
+
+impacket-getArch -target 192.168.196.145
+
+nmap -vv --reason -Pn -T4 -sV -p 135 --script="banner,msrpc-enum,rpc-grind,rpcinfo" -oN "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp135/tcp_135_rpc_nmap.txt" -oX "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp135/xml/tcp_135_rpc_nmap.xml" 192.168.196.145
+
+impacket-rpcdump -port 135 192.168.196.145
+
+enum4linux-ng -A -d -v 192.168.196.145 2>&1
+
+nbtscan -rvh 192.168.196.145 2>&1
+
+nmap -vv --reason -Pn -T4 -sV -p 139 --script="banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp139/tcp_139_smb_nmap.txt" -oX "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp139/xml/tcp_139_smb_nmap.xml" 192.168.196.145
+
+smbclient -L //192.168.196.145 -N -I 192.168.196.145 2>&1
+
+smbmap -H 192.168.196.145 -P 139 2>&1
+
+nmap -vv --reason -Pn -T4 -sV -p 445 --script="banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp445/tcp_445_smb_nmap.txt" -oX "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp445/xml/tcp_445_smb_nmap.xml" 192.168.196.145
+
+smbmap -H 192.168.196.145 -P 445 2>&1
+
+nmap -vv --reason -Pn -T4 -sV -p 3389 --script="banner,(rdp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp3389/tcp_3389_rdp_nmap.txt" -oX "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/tcp3389/xml/tcp_3389_rdp_nmap.xml" 192.168.196.145
+
+smbmap -u null -p "" -H 192.168.196.145 -P 445 2>&1
+
+smbmap -u null -p "" -H 192.168.196.145 -P 139 2>&1
+
+smbmap -H 192.168.196.145 -P 445 -r 2>&1
+
+smbmap -H 192.168.196.145 -P 139 -r 2>&1
+
+smbmap -u null -p "" -H 192.168.196.145 -P 445 -r 2>&1
+
+smbmap -u null -p "" -H 192.168.196.145 -P 139 -r 2>&1
+
+smbmap -H 192.168.196.145 -P 139 -x "ipconfig /all" 2>&1
+
+smbmap -H 192.168.196.145 -P 445 -x "ipconfig /all" 2>&1
+
+smbmap -u null -p "" -H 192.168.196.145 -P 139 -x "ipconfig /all" 2>&1
+
+smbmap -u null -p "" -H 192.168.196.145 -P 445 -x "ipconfig /all" 2>&1
+
+nmap -vv --reason -Pn -T4 -sU -sV -p 161 --script="banner,(snmp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/udp161/udp_161_snmp-nmap.txt" -oX "/home/kali/Notes/Labs/OSCP-A/192.168.196.145/scans/udp161/xml/udp_161_snmp_nmap.xml" 192.168.196.145
+
+onesixtyone -c /usr/share/seclists/Discovery/SNMP/common-snmp-community-strings-onesixtyone.txt -dd 192.168.196.145 2>&1
+
+snmpwalk -c public -v 1 192.168.196.145 2>&1
+
+snmpwalk -c public -v 1 192.168.196.145 1.3.6.1.2.1.25.1.6.0 2>&1
+
+snmpwalk -c public -v 1 192.168.196.145 1.3.6.1.2.1.25.4.2.1.2 2>&1
+
+snmpwalk -c public -v 1 192.168.196.145 1.3.6.1.2.1.25.4.2.1.4 2>&1
+
+snmpwalk -c public -v 1 192.168.196.145 1.3.6.1.2.1.25.2.3.1.4 2>&1
+
+snmpwalk -c public -v 1 192.168.196.145 1.3.6.1.2.1.25.2.3.1.4 2>&1
+
+snmpwalk -c public -v 1 192.168.196.145 1.3.6.1.4.1.77.1.2.25 2>&1
+
+snmpwalk -c public -v 1 192.168.196.145 1.3.6.1.2.1.6.13.1.3 2>&1
+
+
+```

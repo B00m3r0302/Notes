@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Aug 21 13:02:08 2024 as: nmap -vv -&#45;reason -Pn -T4 -sV -p 22 -&#45;script=banner,ssh2-enum-algos,ssh-hostkey,ssh-auth-methods -oN /home/kali/Notes/Labs/OSCP-A/192.168.196.141/scans/tcp22/tcp_22_ssh_nmap.txt -oX /home/kali/Notes/Labs/OSCP-A/192.168.196.141/scans/tcp22/xml/tcp_22_ssh_nmap.xml 192.168.196.141 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sV -p 22 -&#45;script=banner,ssh2-enum-algos,ssh-hostkey,ssh-auth-methods -oN /home/kali/Notes/Labs/OSCP-A/192.168.196.141/scans/tcp22/tcp_22_ssh_nmap.txt -oX /home/kali/Notes/Labs/OSCP-A/192.168.196.141/scans/tcp22/xml/tcp_22_ssh_nmap.xml 192.168.196.141" start="1724259728" startstr="Wed Aug 21 13:02:08 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="22"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1724259728"/>
+<taskend task="NSE" time="1724259728"/>
+<taskbegin task="NSE" time="1724259728"/>
+<taskend task="NSE" time="1724259728"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1724259729"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1724259732"/>
+<taskbegin task="SYN Stealth Scan" time="1724259732"/>
+<taskend task="SYN Stealth Scan" time="1724259733" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1724259733"/>
+<taskbegin task="NSE" time="1724259733"/>
+<taskend task="NSE" time="1724259733"/>
+<taskbegin task="NSE" time="1724259733"/>
+<taskend task="NSE" time="1724259733"/>
+<host starttime="1724259732" endtime="1724259733"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.196.141" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+</ports>
+</host>
+<taskbegin task="NSE" time="1724259733"/>
+<taskend task="NSE" time="1724259733"/>
+<taskbegin task="NSE" time="1724259733"/>
+<taskend task="NSE" time="1724259733"/>
+<runstats><finished time="1724259733" timestr="Wed Aug 21 13:02:13 2024" summary="Nmap done at Wed Aug 21 13:02:13 2024; 1 IP address (1 host up) scanned in 5.21 seconds" elapsed="5.21" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

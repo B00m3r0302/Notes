@@ -1,0 +1,31 @@
+```bash
+nikto -ask=no -Tuning=x4567890ac -nointeractive -host http://192.168.196.144:80 2>&1 | tee "/home/kali/Notes/Labs/OSCP-A/192.168.196.144/scans/tcp80/tcp_80_http_nikto.txt"
+```
+
+[/home/kali/Notes/Labs/OSCP-A/192.168.196.144/scans/tcp80/tcp_80_http_nikto.txt](file:///home/kali/Notes/Labs/OSCP-A/192.168.196.144/scans/tcp80/tcp_80_http_nikto.txt):
+
+```
+- Nikto v2.5.0
+---------------------------------------------------------------------------
++ Target IP:          192.168.196.144
++ Target Hostname:    192.168.196.144
++ Target Port:        80
++ Start Time:         2024-08-21 13:00:48 (GMT-4)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.52 (Ubuntu)
++ /: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
++ /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Apache/2.4.52 appears to be outdated (current is at least Apache/2.4.54). Apache 2.2.34 is the EOL for the 2.x branch.
++ /images: IP address found in the 'location' header. The IP is "127.0.0.2". See: https://portswigger.net/kb/issues/00600300_private-ip-addresses-disclosed
++ /images: The web server may reveal its internal or real IP in the Location header via a request to with HTTP/1.0. The value is "127.0.0.2". See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2000-0649
++ /: Server may leak inodes via ETags, header found with file /, inode: b417, size: 5ee0dedabd440, mtime: gzip. See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-1418
++ OPTIONS: Allowed HTTP Methods: POST, OPTIONS, HEAD, GET .
++ /images/: Directory indexing found.
++ ERROR: Error limit (20) reached for host, giving up. Last error: 
++ Scan terminated: 0 error(s) and 8 item(s) reported on remote host
++ End Time:           2024-08-21 13:46:25 (GMT-4) (2737 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+```

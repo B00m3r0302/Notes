@@ -1,0 +1,97 @@
+```bash
+whatweb --color=never --no-errors -a 3 -v http://192.168.196.144:80 2>&1
+```
+
+[/home/kali/Notes/Labs/OSCP-A/192.168.196.144/scans/tcp80/tcp_80_http_whatweb.txt](file:///home/kali/Notes/Labs/OSCP-A/192.168.196.144/scans/tcp80/tcp_80_http_whatweb.txt):
+
+```
+WhatWeb report for http://192.168.196.144:80
+Status    : 200 OK
+Title     : Home
+IP        : 192.168.196.144
+Country   : RESERVED, ZZ
+
+Summary   : Apache[2.4.52], Email[hello@theme.com,info@challenge.pwk], HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.52 (Ubuntu)], JQuery, MetaGenerator[Nicepage 4.21.12, nicepage.com], Open-Graph-Protocol[website], Script[application/ld+json,text/javascript]
+
+Detected Plugins:
+[ Apache ]
+	The Apache HTTP Server Project is an effort to develop and
+	maintain an open-source HTTP server for modern operating
+	systems including UNIX and Windows NT. The goal of this
+	project is to provide a secure, efficient and extensible
+	server that provides HTTP services in sync with the current
+	HTTP standards.
+
+	Version      : 2.4.52 (from HTTP Server Header)
+	Google Dorks: (3)
+	Website     : http://httpd.apache.org/
+
+[ Email ]
+	Extract email addresses. Find valid email address and
+	syntactically invalid email addresses from mailto: link
+	tags. We match syntactically invalid links containing
+	mailto: to catch anti-spam email addresses, eg. bob at
+	gmail.com. This uses the simplified email regular
+	expression from
+	http://www.regular-expressions.info/email.html for valid
+	email address matching.
+
+	String       : hello@theme.com,info@challenge.pwk
+	String       : hello@theme.com
+
+[ HTML5 ]
+	HTML version 5, detected by the doctype declaration
+
+
+[ HTTPServer ]
+	HTTP server header string. This plugin also attempts to
+	identify the operating system from the server header.
+
+	OS           : Ubuntu Linux
+	String       : Apache/2.4.52 (Ubuntu) (from server string)
+
+[ JQuery ]
+	A fast, concise, JavaScript that simplifies how to traverse
+	HTML documents, handle events, perform animations, and add
+	AJAX.
+
+	Website     : http://jquery.com/
+
+[ MetaGenerator ]
+	This plugin identifies meta generator tags and extracts its
+	value.
+
+	String       : Nicepage 4.21.12, nicepage.com
+
+[ Open-Graph-Protocol ]
+	The Open Graph protocol enables you to integrate your Web
+	pages into the social graph. It is currently designed for
+	Web pages representing profiles of real-world things .
+	things like movies, sports teams, celebrities, and
+	restaurants. Including Open Graph tags on your Web page,
+	makes your page equivalent to a Facebook Page.
+
+	Version      : website
+
+[ Script ]
+	This plugin detects instances of script HTML elements and
+	returns the script language/type.
+
+	String       : application/ld+json,text/javascript
+
+HTTP Headers:
+	HTTP/1.1 200 OK
+	Date: Wed, 21 Aug 2024 17:00:47 GMT
+	Server: Apache/2.4.52 (Ubuntu)
+	Last-Modified: Tue, 22 Nov 2022 12:01:13 GMT
+	ETag: "b417-5ee0dedabd440-gzip"
+	Accept-Ranges: bytes
+	Vary: Accept-Encoding
+	Content-Encoding: gzip
+	Content-Length: 9035
+	Connection: close
+	Content-Type: text/html
+
+
+
+```

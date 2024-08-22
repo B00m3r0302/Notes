@@ -1,0 +1,630 @@
+```bash
+feroxbuster -u http://192.168.196.143:443/ -t 10 -w /root/.local/share/AutoRecon/wordlists/dirbuster.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -q -e -r -o "/home/kali/Notes/Labs/OSCP-A/192.168.196.143/scans/tcp443/tcp_443_http_feroxbuster_dirbuster.txt"
+```
+
+[/home/kali/Notes/Labs/OSCP-A/192.168.196.143/scans/tcp443/tcp_443_http_feroxbuster_dirbuster.txt](file:///home/kali/Notes/Labs/OSCP-A/192.168.196.143/scans/tcp443/tcp_443_http_feroxbuster_dirbuster.txt):
+
+```
+Configuration {
+    kind: "configuration",
+    wordlist: "/root/.local/share/AutoRecon/wordlists/dirbuster.txt",
+    config: "/etc/feroxbuster/ferox-config.toml",
+    proxy: "",
+    replay_proxy: "",
+    server_certs: [],
+    client_cert: "",
+    client_key: "",
+    target_url: "http://192.168.196.143:443/",
+    status_codes: [
+        100,
+        101,
+        102,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        226,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        307,
+        308,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        421,
+        422,
+        423,
+        424,
+        426,
+        428,
+        429,
+        431,
+        451,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        510,
+        511,
+        103,
+        425,
+    ],
+    replay_codes: [
+        100,
+        101,
+        102,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        226,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        307,
+        308,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        418,
+        421,
+        422,
+        423,
+        424,
+        426,
+        428,
+        429,
+        431,
+        451,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        510,
+        511,
+        103,
+        425,
+    ],
+    filter_status: [],
+    client: Client {
+        accepts: Accepts,
+        proxies: [
+            Proxy(
+                System(
+                    {},
+                ),
+                None,
+            ),
+        ],
+        referer: true,
+        default_headers: {
+            "accept": "*/*",
+            "user-agent": "feroxbuster/2.10.4",
+        },
+        timeout: 7s,
+    },
+    replay_client: None,
+    threads: 10,
+    timeout: 7,
+    verbosity: 1,
+    silent: false,
+    quiet: true,
+    output_level: Quiet,
+    auto_bail: false,
+    auto_tune: false,
+    requester_policy: Default,
+    json: false,
+    output: "/home/kali/Notes/Labs/OSCP-A/192.168.196.143/scans/tcp443/tcp_443_http_feroxbuster_dirbuster.txt",
+    debug_log: "",
+    user_agent: "feroxbuster/2.10.4",
+    random_agent: false,
+    redirects: true,
+    insecure: true,
+    extensions: [
+        "txt",
+        "html",
+        "php",
+        "asp",
+        "aspx",
+        "jsp",
+    ],
+    methods: [
+        "GET",
+    ],
+    data: [],
+    headers: {},
+    queries: [],
+    no_recursion: true,
+    extract_links: true,
+    add_slash: false,
+    stdin: false,
+    depth: 4,
+    scan_limit: 0,
+    parallel: 0,
+    rate_limit: 0,
+    filter_size: [],
+    filter_line_count: [],
+    filter_word_count: [],
+    filter_regex: [],
+    dont_filter: false,
+    resumed: false,
+    resume_from: "",
+    save_state: true,
+    time_limit: "",
+    filter_similar: [],
+    url_denylist: [],
+    regex_denylist: [],
+    collect_extensions: false,
+    dont_collect: [
+        "tif",
+        "tiff",
+        "ico",
+        "cur",
+        "bmp",
+        "webp",
+        "svg",
+        "png",
+        "jpg",
+        "jpeg",
+        "jfif",
+        "gif",
+        "avif",
+        "apng",
+        "pjpeg",
+        "pjp",
+        "mov",
+        "wav",
+        "mpg",
+        "mpeg",
+        "mp3",
+        "mp4",
+        "m4a",
+        "m4p",
+        "m4v",
+        "ogg",
+        "webm",
+        "ogv",
+        "oga",
+        "flac",
+        "aac",
+        "3gp",
+        "css",
+        "zip",
+        "xls",
+        "xml",
+        "gz",
+        "tgz",
+    ],
+    collect_backups: false,
+    backup_extensions: [
+        "~",
+        ".bak",
+        ".bak2",
+        ".old",
+        ".1",
+    ],
+    collect_words: false,
+    force_recursion: false,
+    update_app: false,
+}
+200      GET       15l       74w     6147c http://192.168.196.143:443/icons/ubuntu-logo.png
+200      GET      375l      964w    10918c http://192.168.196.143:443/
+404      GET        0l        0w     4035c http://192.168.196.143:443/.well-known/jmap.html
+200      GET        1l       29w      353c http://192.168.196.143:443/themes/default/img/pico-white.svg
+200      GET       61l      223w     2022c http://192.168.196.143:443/themes/default/css/fontello.css
+200      GET      134l      401w     4168c http://192.168.196.143:443/themes/default/js/utils.js
+200      GET        3l      116w     4577c http://192.168.196.143:443/themes/default/js/modernizr-3.3.1-custom.min.js
+200      GET       85l      500w     5842c http://192.168.196.143:443/sub/page
+200      GET      386l     1148w     8882c http://192.168.196.143:443/themes/default/css/style.css
+200      GET       74l      180w     2388c http://192.168.196.143:443/themes/default/js/pico.js
+200      GET      506l     3886w    33915c http://192.168.196.143:443/0
+200      GET       21l      172w     1085c http://192.168.196.143:443/LICENSE
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments/configurations
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments.txt
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments/configurations.txt
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments.html
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments/configurations.html
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments.php
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments/configurations.php
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments.asp
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments.aspx
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments/configurations.asp
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments/configurations.aspx
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments.jsp
+404      GET        9l       31w      278c http://192.168.196.143:443/api/experiments/configurations.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/categories.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/centres.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/cpanel.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/email.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/emailafriend
+404      GET        0l        0w     4035c http://192.168.196.143:443/emailhandler
+404      GET        0l        0w     4035c http://192.168.196.143:443/elmar.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/email-a-friend.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/elements.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/emailing
+404      GET        0l        0w     4035c http://192.168.196.143:443/family
+404      GET        0l        0w     4035c http://192.168.196.143:443/failed.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/flash-intro.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/foia.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/forgot-password.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/forms1.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/formslogin.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/foundation.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/grants.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/graph
+404      GET        0l        0w     4035c http://192.168.196.143:443/grafik.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/hourly.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/house.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/idbc.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/id_rsa.pub.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/icons.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/iisadmin.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/imagefolio.php
+200      GET      506l     3886w    33915c http://192.168.196.143:443/index
+200      GET      375l      964w    10918c http://192.168.196.143:443/index.html
+200      GET      506l     3886w    33915c http://192.168.196.143:443/index.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/market.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/me.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/membre.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/patents.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/paypalcancel.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/pdfs.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/person.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/people.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/photography.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/phpMyAdmin2.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/pkginfo
+404      GET        0l        0w     4035c http://192.168.196.143:443/pkg.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/pixel.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/pl
+404      GET        0l        0w     4035c http://192.168.196.143:443/pixelpost.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/places
+404      GET        0l        0w     4035c http://192.168.196.143:443/playing
+404      GET        0l        0w     4035c http://192.168.196.143:443/playlist
+404      GET        0l        0w     4035c http://192.168.196.143:443/pls
+404      GET        0l        0w     4035c http://192.168.196.143:443/playing.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/plx.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/profile.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/reader
+404      GET        0l        0w     4035c http://192.168.196.143:443/request
+404      GET        0l        0w     4035c http://192.168.196.143:443/restaurants.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/reverted.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/room
+404      GET        0l        0w     4035c http://192.168.196.143:443/rorindex.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/rortopics.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/sample.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/scope
+404      GET        0l        0w     4035c http://192.168.196.143:443/select.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/securimage.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/selection.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/sendmessage
+404      GET        0l        0w     4035c http://192.168.196.143:443/sendtofriend
+404      GET        0l        0w     4035c http://192.168.196.143:443/sign.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/sms.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/statistics.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/stop.txt
+200      GET       85l      503w     5865c http://192.168.196.143:443/sub
+404      GET        0l        0w     4035c http://192.168.196.143:443/talks.php
+200      GET      246l     3452w    27703c http://192.168.196.143:443/theme
+404      GET        0l        0w     4035c http://192.168.196.143:443/this.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/yearly.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/202.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/368
+404      GET        0l        0w     4035c http://192.168.196.143:443/73.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/976.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/M_images
+404      GET        0l        0w     4035c http://192.168.196.143:443/DEMO.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/PrivacyPolicy.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/TEST.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/TESTS
+404      GET        0l        0w     4035c http://192.168.196.143:443/Prova.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/_alt.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/_internal.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/acrobat.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/acties.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/actie.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/actions_admin
+404      GET        0l        0w     4035c http://192.168.196.143:443/action-popup.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/actors.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/admin_old.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/admin_new.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/adventures.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/advertiser.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/adviser.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/advices.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/advscripts.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/advisor.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/ajax_calls.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/ajaxhtml.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/alexa
+404      GET        0l        0w     4035c http://192.168.196.143:443/alc.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/algeciras.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/ali.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/alfred.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/alice.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/alienform.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/aliens.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/alternate
+404      GET        0l        0w     4035c http://192.168.196.143:443/america7
+404      GET        0l        0w     4035c http://192.168.196.143:443/ana.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/amorphous.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/ams.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/anchor.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/ancien.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/anexos.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/anims
+404      GET        0l        0w     4035c http://192.168.196.143:443/animations.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/animation.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/ani.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/annonces.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/anonftp
+404      GET        0l        0w     4035c http://192.168.196.143:443/anons
+404      GET        0l        0w     4035c http://192.168.196.143:443/ans
+404      GET        0l        0w     4035c http://192.168.196.143:443/antic.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/anymedia.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/anymedia.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/apfeed.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/api2
+404      GET        0l        0w     4035c http://192.168.196.143:443/apartment.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/appstrudl.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/aqua_products.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/areariservata.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/art_global.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/arthritis.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/art_global.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/arthritis.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/aspnet-client.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/autotopup.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/banco.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/banman.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/bannertracker.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/baobaozhongxin.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/baramej.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/barney.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/baritone.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/bart.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/belgorod
+404      GET        0l        0w     4035c http://192.168.196.143:443/berri.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/bgt
+404      GET        0l        0w     4035c http://192.168.196.143:443/bib.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/blogold.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/bml_email.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/bmadmin.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/cancun
+404      GET        0l        0w     4035c http://192.168.196.143:443/cascades.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/casa.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/case-study
+404      GET        0l        0w     4035c http://192.168.196.143:443/ccc.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/cda
+404      GET        0l        0w     4035c http://192.168.196.143:443/cde.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/ccss.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/celeb
+404      GET        0l        0w     4035c http://192.168.196.143:443/cedic.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/cell-phones
+404      GET        0l        0w     4035c http://192.168.196.143:443/celebrity.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/chpurl.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/choose.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/claves.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/cmsecommerce.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/cmsformcontrols.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/cmsinstall.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/coastal.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/code-of-practice.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/cod.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/colab.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/color.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/commandfile.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/commoninc.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/comunicaciones.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/concesionarios.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/corel.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/coraltours.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/cos
+404      GET        0l        0w     4035c http://192.168.196.143:443/destroy.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/detailed.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/directedit.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/disc.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/discover.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/edm.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/eichart.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/es_es.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/foosun_data.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/francis
+404      GET        0l        0w     4035c http://192.168.196.143:443/globalsites.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/gn
+404      GET        0l        0w     4035c http://192.168.196.143:443/holiday08.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/htadmin.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/huggiesin
+404      GET        0l        0w     4035c http://192.168.196.143:443/huelva.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/human_resources.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/humanres.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/hunting.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/hwdphotos.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/images180
+404      GET        0l        0w     4035c http://192.168.196.143:443/images180.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/indiaplaza.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/ins
+404      GET        0l        0w     4035c http://192.168.196.143:443/jahia.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/jak-dodac-wpis.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/jake.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/jam
+404      GET        0l        0w     4035c http://192.168.196.143:443/janie
+404      GET        0l        0w     4035c http://192.168.196.143:443/jseditors.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/ks_inc.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/kursk
+404      GET        0l        0w     4035c http://192.168.196.143:443/members-area
+404      GET        0l        0w     4035c http://192.168.196.143:443/missions.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/mitchell.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/mitglieder.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/mivadata.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/mitjans.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/mj
+404      GET        0l        0w     4035c http://192.168.196.143:443/mixed.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/modifykarma.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/modulecreator.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/nss.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/outsource.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/quetalfue.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/quickbuy.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/questionnaire.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/web_services.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/manual-1
+404      GET        0l        0w     4035c http://192.168.196.143:443/Pub.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/1485.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/2757.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/25LH8.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/3rd.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/4449.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/4457.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/845.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/763.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/925.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/921.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/affiliatelinks.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/ernaehrung.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/preferred.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/3375.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/3494
+404      GET        0l        0w     4035c http://192.168.196.143:443/3472.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/partymgr
+404      GET        0l        0w     4035c http://192.168.196.143:443/user_agreement.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/user_index.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/userguides.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/userlogo.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/user_comments.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/using
+404      GET        0l        0w     4035c http://192.168.196.143:443/utile.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/3122.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/8599.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/8941.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/9058.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/Alcohol
+404      GET        0l        0w     4035c http://192.168.196.143:443/Order2.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/UM.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/UnitTests
+404      GET        0l        0w     4035c http://192.168.196.143:443/biog.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/cadres.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/incest.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/index123.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/index-d.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/index111.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/index404.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/index123.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/kuwait
+404      GET        0l        0w     4035c http://192.168.196.143:443/ripley.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/11507
+404      GET        0l        0w     4035c http://192.168.196.143:443/12940.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/15reasons.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/6943.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/BlogEngine.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/REC.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/US-Federal-code.html
+404      GET       67l      149w     2762c http://192.168.196.143:443/_meta
+404      GET        0l        0w     4035c http://192.168.196.143:443/alaune
+404      GET        0l        0w     4035c http://192.168.196.143:443/alajar.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/areaclientes.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/baptism.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/checkoutpromo.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/fnews.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/fotoalbom.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/foundLowerPrice.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/ingrosso.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/infragistics.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/inmobiliarias.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/inotes5.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/inscricao.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/inno.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/makeCoupon.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/memories.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/news-features.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/oropesa.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/osceola.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/page_i.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/taps.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/tbb.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/tcat.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/10488.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/3308.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/9083
+404      GET        0l        0w     4035c http://192.168.196.143:443/BIND.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/HouTai.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/Instr.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/UA_NewsAlert
+404      GET        0l        0w     4035c http://192.168.196.143:443/anet.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/article_read.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/boulevard.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/clic_dl.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/daftar-isi.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/discrimination.jsp
+404      GET        0l        0w     4035c http://192.168.196.143:443/guestcomment.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/kalifornien.txt
+404      GET        0l        0w     4035c http://192.168.196.143:443/kostenstellen.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/link12.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/mantra-amphora.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/mp_includes.asp
+404      GET        0l        0w     4035c http://192.168.196.143:443/myresp.php
+404      GET        0l        0w     4035c http://192.168.196.143:443/petshop.aspx
+404      GET        0l        0w     4035c http://192.168.196.143:443/proj1509.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/resourcelinks.html
+404      GET        0l        0w     4035c http://192.168.196.143:443/webcasts_old.aspx
+
+```

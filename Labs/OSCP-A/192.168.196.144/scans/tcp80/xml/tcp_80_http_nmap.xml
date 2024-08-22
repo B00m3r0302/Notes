@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Aug 21 13:00:44 2024 as: nmap -vv -&#45;reason -Pn -T4 -sV -p 80 &quot;-&#45;script=banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)&quot; -oN /home/kali/Notes/Labs/OSCP-A/192.168.196.144/scans/tcp80/tcp_80_http_nmap.txt -oX /home/kali/Notes/Labs/OSCP-A/192.168.196.144/scans/tcp80/xml/tcp_80_http_nmap.xml 192.168.196.144 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;reason -Pn -T4 -sV -p 80 &quot;-&#45;script=banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)&quot; -oN /home/kali/Notes/Labs/OSCP-A/192.168.196.144/scans/tcp80/tcp_80_http_nmap.txt -oX /home/kali/Notes/Labs/OSCP-A/192.168.196.144/scans/tcp80/xml/tcp_80_http_nmap.xml 192.168.196.144" start="1724259644" startstr="Wed Aug 21 13:00:44 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="80"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1724259645"/>
+<taskend task="NSE" time="1724259645"/>
+<taskbegin task="NSE" time="1724259645"/>
+<taskend task="NSE" time="1724259645"/>
+<taskbegin task="NSE" time="1724259645"/>
+<taskend task="NSE" time="1724259645"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1724259645"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1724259645"/>
+<taskbegin task="SYN Stealth Scan" time="1724259645"/>
+<taskend task="SYN Stealth Scan" time="1724259646" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1724259646"/>
+<taskbegin task="NSE" time="1724259646"/>
+<taskend task="NSE" time="1724259646"/>
+<taskbegin task="NSE" time="1724259646"/>
+<taskend task="NSE" time="1724259646"/>
+<taskbegin task="NSE" time="1724259646"/>
+<taskend task="NSE" time="1724259646"/>
+<host starttime="1724259645" endtime="1724259646"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.196.144" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3"/></port>
+</ports>
+</host>
+<taskbegin task="NSE" time="1724259646"/>
+<taskend task="NSE" time="1724259646"/>
+<taskbegin task="NSE" time="1724259646"/>
+<taskend task="NSE" time="1724259646"/>
+<taskbegin task="NSE" time="1724259646"/>
+<taskend task="NSE" time="1724259646"/>
+<runstats><finished time="1724259646" timestr="Wed Aug 21 13:00:46 2024" summary="Nmap done at Wed Aug 21 13:00:46 2024; 1 IP address (1 host up) scanned in 2.23 seconds" elapsed="2.23" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
