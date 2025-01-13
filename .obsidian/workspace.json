@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md",
+                "file": "Labs/htb/timelapse/Notes.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md",
+                "file": "Labs/htb/timelapse/Notes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md",
+                "file": "Labs/htb/timelapse/Notes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Course Notes/Chapter 16 windows Privilege Escalation.md"
+                "file": "Labs/htb/timelapse/Notes.md"
               }
             }
           }
@@ -148,6 +148,8 @@
   },
   "active": "ea33c929205ca331",
   "lastOpenFiles": [
+    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+    "Course Notes/Chapter 16 windows Privilege Escalation.md",
     "Labs/htb/timelapse/Notes.md",
     "Labs/htb/timelapse/scans/tcp445/legacyy_dev_auth.crt",
     "Labs/htb/timelapse/scans/tcp445/legacy.key",
@@ -182,7 +184,6 @@
     "Labs/htb/timelapse/scans/report.md/10.10.11.152/Services/Service - tcp-135-msrpc/rpcdump.md",
     "Labs/htb/timelapse/scans/report.md/10.10.11.152/Services/Service - tcp-135-msrpc/Nmap MSRPC.md",
     "Labs/htb/timelapse/scans/report.md/10.10.11.152/Services/Service - tcp-88-kerberos-sec",
-    "Labs/htb/timelapse/scans/report.md/10.10.11.152/Port Scans/PortScan - Top TCP Ports.md",
     "Labs/medtech/internal_ips/results/172.16.185.11/scans/tcp47001/tcp_47001_http_screenshot.png",
     "Labs/medtech/internal_ips/172.16.185.13/scans/tcp47001/tcp_47001_http_screenshot.png",
     "Untitled 1.canvas",
