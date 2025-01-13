@@ -1,0 +1,106 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN "/home/kali/Notes/Labs/htb/timelapse/scans/_quick_tcp_nmap.txt" -oX "/home/kali/Notes/Labs/htb/timelapse/scans/xml/_quick_tcp_nmap.xml" 10.10.11.152
+```
+
+[/home/kali/Notes/Labs/htb/timelapse/scans/_quick_tcp_nmap.txt](file:///home/kali/Notes/Labs/htb/timelapse/scans/_quick_tcp_nmap.txt):
+
+```
+# Nmap 7.95 scan initiated Mon Jan 13 12:34:15 2025 as: /usr/lib/nmap/nmap --privileged -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN /home/kali/Notes/Labs/htb/timelapse/scans/_quick_tcp_nmap.txt -oX /home/kali/Notes/Labs/htb/timelapse/scans/xml/_quick_tcp_nmap.xml 10.10.11.152
+Nmap scan report for 10.10.11.152
+Host is up, received user-set (0.056s latency).
+Scanned at 2025-01-13 12:34:15 EST for 235s
+Not shown: 988 filtered tcp ports (no-response)
+PORT     STATE SERVICE           REASON          VERSION
+53/tcp   open  domain            syn-ack ttl 127 Simple DNS Plus
+88/tcp   open  kerberos-sec      syn-ack ttl 127 Microsoft Windows Kerberos (server time: 2025-01-14 01:34:25Z)
+135/tcp  open  msrpc             syn-ack ttl 127 Microsoft Windows RPC
+139/tcp  open  netbios-ssn       syn-ack ttl 127 Microsoft Windows netbios-ssn
+389/tcp  open  ldap              syn-ack ttl 127 Microsoft Windows Active Directory LDAP (Domain: timelapse.htb0., Site: Default-First-Site-Name)
+445/tcp  open  microsoft-ds?     syn-ack ttl 127
+464/tcp  open  kpasswd5?         syn-ack ttl 127
+593/tcp  open  ncacn_http        syn-ack ttl 127 Microsoft Windows RPC over HTTP 1.0
+636/tcp  open  ldapssl?          syn-ack ttl 127
+3268/tcp open  ldap              syn-ack ttl 127 Microsoft Windows Active Directory LDAP (Domain: timelapse.htb0., Site: Default-First-Site-Name)
+3269/tcp open  globalcatLDAPssl? syn-ack ttl 127
+5986/tcp open  ssl/http          syn-ack ttl 127 Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+| ssl-cert: Subject: commonName=dc01.timelapse.htb
+| Issuer: commonName=dc01.timelapse.htb
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: sha256WithRSAEncryption
+| Not valid before: 2021-10-25T14:05:29
+| Not valid after:  2022-10-25T14:25:29
+| MD5:   e233:a199:4504:0859:013f:b9c5:e4f6:91c3
+| SHA-1: 5861:acf7:76b8:703f:d01e:e25d:fc7c:9952:a447:7652
+| -----BEGIN CERTIFICATE-----
+| MIIDCjCCAfKgAwIBAgIQLRY/feXALoZCPZtUeyiC4DANBgkqhkiG9w0BAQsFADAd
+| MRswGQYDVQQDDBJkYzAxLnRpbWVsYXBzZS5odGIwHhcNMjExMDI1MTQwNTI5WhcN
+| MjIxMDI1MTQyNTI5WjAdMRswGQYDVQQDDBJkYzAxLnRpbWVsYXBzZS5odGIwggEi
+| MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJdoIQMYt47skzf17SI7M8jubO
+| rD6sHg8yZw0YXKumOd5zofcSBPHfC1d/jtcHjGSsc5dQQ66qnlwdlOvifNW/KcaX
+| LqNmzjhwL49UGUw0MAMPAyi1hcYP6LG0dkU84zNuoNMprMpzya3+aU1u7YpQ6Dui
+| AzNKPa+6zJzPSMkg/TlUuSN4LjnSgIV6xKBc1qhVYDEyTUsHZUgkIYtN0+zvwpU5
+| isiwyp9M4RYZbxe0xecW39hfTvec++94VYkH4uO+ITtpmZ5OVvWOCpqagznTSXTg
+| FFuSYQTSjqYDwxPXHTK+/GAlq3uUWQYGdNeVMEZt+8EIEmyL4i4ToPkqjPF1AgMB
+| AAGjRjBEMA4GA1UdDwEB/wQEAwIFoDATBgNVHSUEDDAKBggrBgEFBQcDATAdBgNV
+| HQ4EFgQUZ6PTTN1pEmDFD6YXfQ1tfTnXde0wDQYJKoZIhvcNAQELBQADggEBAL2Y
+| /57FBUBLqUKZKp+P0vtbUAD0+J7bg4m/1tAHcN6Cf89KwRSkRLdq++RWaQk9CKIU
+| 4g3M3stTWCnMf1CgXax+WeuTpzGmITLeVA6L8I2FaIgNdFVQGIG1nAn1UpYueR/H
+| NTIVjMPA93XR1JLsW601WV6eUI/q7t6e52sAADECjsnG1p37NjNbmTwHabrUVjBK
+| 6Luol+v2QtqP6nY4DRH+XSk6xDaxjfwd5qN7DvSpdoz09+2ffrFuQkxxs6Pp8bQE
+| 5GJ+aSfE+xua2vpYyyGxO0Or1J2YA1CXMijise2tp+m9JBQ1wJ2suUS2wGv1Tvyh
+| lrrndm32+d0YeP/wb8E=
+|_-----END CERTIFICATE-----
+|_http-title: Not Found
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose
+Running (JUST GUESSING): Microsoft Windows 2019|10 (97%)
+OS CPE: cpe:/o:microsoft:windows_server_2019 cpe:/o:microsoft:windows_10
+OS fingerprint not ideal because: Missing a closed TCP port so results incomplete
+Aggressive OS guesses: Windows Server 2019 (97%), Microsoft Windows 10 1903 - 21H1 (91%)
+No exact OS matches for host (test conditions non-ideal).
+TCP/IP fingerprint:
+SCAN(V=7.95%E=4%D=1/13%OT=53%CT=%CU=%PV=Y%DS=2%DC=T%G=N%TM=67854F82%P=x86_64-pc-linux-gnu)
+SEQ(SP=104%GCD=1%ISR=109%TI=I%II=I%SS=S%TS=U)
+SEQ(SP=104%GCD=2%ISR=109%TI=I%II=I%SS=S%TS=U)
+OPS(O1=M53CNW8NNS%O2=M53CNW8NNS%O3=M53CNW8%O4=M53CNW8NNS%O5=M53CNW8NNS%O6=M53CNNS)
+WIN(W1=FFFF%W2=FFFF%W3=FFFF%W4=FFFF%W5=FFFF%W6=FF70)
+ECN(R=Y%DF=Y%TG=80%W=FFFF%O=M53CNW8NNS%CC=Y%Q=)
+T1(R=Y%DF=Y%TG=80%S=O%A=S+%F=AS%RD=0%Q=)
+T2(R=N)
+T3(R=N)
+T4(R=N)
+U1(R=N)
+IE(R=Y%DFI=N%TG=80%CD=Z)
+
+Network Distance: 2 hops
+TCP Sequence Prediction: Difficulty=260 (Good luck!)
+IP ID Sequence Generation: Incremental
+Service Info: Host: DC01; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: 7h59m57s
+| smb2-time: 
+|   date: 2025-01-14T01:35:28
+|_  start_date: N/A
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 32357/tcp): CLEAN (Timeout)
+|   Check 2 (port 40876/tcp): CLEAN (Timeout)
+|   Check 3 (port 22941/udp): CLEAN (Timeout)
+|   Check 4 (port 45145/udp): CLEAN (Timeout)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+
+TRACEROUTE (using port 53/tcp)
+HOP RTT      ADDRESS
+1   53.20 ms 10.10.14.1
+2   54.55 ms 10.10.11.152
+
+Read data files from: /usr/share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jan 13 12:38:10 2025 -- 1 IP address (1 host up) scanned in 235.26 seconds
+
+```

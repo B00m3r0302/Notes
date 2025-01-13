@@ -1,0 +1,43 @@
+```bash
+sslscan --show-certificate --no-colour 10.10.11.152:3269 2>&1
+```
+
+[/home/kali/Notes/Labs/htb/timelapse/scans/tcp3269/tcp_3269_sslscan.html](file:///home/kali/Notes/Labs/htb/timelapse/scans/tcp3269/tcp_3269_sslscan.html):
+
+```
+Version: 2.1.5
+OpenSSL 3.3.2 3 Sep 2024
+
+Connected to 10.10.11.152
+
+Testing SSL server 10.10.11.152 on port 3269 using SNI name 10.10.11.152
+
+  SSL/TLS Protocols:
+SSLv2     disabled
+SSLv3     disabled
+TLSv1.0   disabled
+TLSv1.1   disabled
+TLSv1.2   disabled
+TLSv1.3   disabled
+
+  TLS Fallback SCSV:
+Connection failed - unable to determine TLS Fallback SCSV support
+
+  TLS renegotiation:
+Session renegotiation not supported
+
+  TLS Compression:
+Compression disabled
+
+  Heartbleed:
+
+  Supported Server Cipher(s):
+    Unable to parse certificate
+    Unable to parse certificate
+    Unable to parse certificate
+    Unable to parse certificate
+Certificate information cannot be retrieved.
+
+
+
+```

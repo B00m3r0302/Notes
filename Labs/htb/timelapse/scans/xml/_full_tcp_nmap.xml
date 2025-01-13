@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Mon Jan 13 12:34:15 2025 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Notes/Labs/htb/timelapse/scans/_full_tcp_nmap.txt -oX /home/kali/Notes/Labs/htb/timelapse/scans/xml/_full_tcp_nmap.xml 10.10.11.152 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Notes/Labs/htb/timelapse/scans/_full_tcp_nmap.txt -oX /home/kali/Notes/Labs/htb/timelapse/scans/xml/_full_tcp_nmap.xml 10.10.11.152" start="1736789655" startstr="Mon Jan 13 12:34:15 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1736789655"/>
+<taskend task="NSE" time="1736789655"/>
+<taskbegin task="NSE" time="1736789655"/>
+<taskend task="NSE" time="1736789655"/>
+<taskbegin task="NSE" time="1736789655"/>
+<taskend task="NSE" time="1736789655"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1736789655"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1736789655"/>
+<taskbegin task="SYN Stealth Scan" time="1736789655"/>
+<taskprogress task="SYN Stealth Scan" time="1736789686" percent="22.25" remaining="109" etc="1736789794"/>
+<taskprogress task="SYN Stealth Scan" time="1736789692" percent="26.57" remaining="103" etc="1736789794"/>
+<taskprogress task="SYN Stealth Scan" time="1736789722" percent="46.43" remaining="78" etc="1736789799"/>
+<taskprogress task="SYN Stealth Scan" time="1736789752" percent="70.53" remaining="41" etc="1736789793"/>
+<taskprogress task="SYN Stealth Scan" time="1736789794" percent="76.33" remaining="44" etc="1736789837"/>
+<taskprogress task="SYN Stealth Scan" time="1736789839" percent="76.65" remaining="57" etc="1736789895"/>
+<taskprogress task="SYN Stealth Scan" time="1736789896" percent="77.74" remaining="70" etc="1736789965"/>
+<taskprogress task="SYN Stealth Scan" time="1736789965" percent="82.79" remaining="65" etc="1736790029"/>
+<taskprogress task="SYN Stealth Scan" time="1736790031" percent="84.70" remaining="68" etc="1736790099"/>
+<taskprogress task="SYN Stealth Scan" time="1736790100" percent="84.99" remaining="79" etc="1736790179"/>
+<taskprogress task="SYN Stealth Scan" time="1736790181" percent="89.29" remaining="64" etc="1736790244"/>
+<taskprogress task="SYN Stealth Scan" time="1736790244" percent="92.20" remaining="50" etc="1736790294"/>
+<taskprogress task="SYN Stealth Scan" time="1736790295" percent="92.32" remaining="54" etc="1736790348"/>
+<taskprogress task="SYN Stealth Scan" time="1736790349" percent="92.45" remaining="57" etc="1736790406"/>
+<taskend task="SYN Stealth Scan" time="1736790461" extrainfo="65535 total ports"/>
+<taskbegin task="Service scan" time="1736790461"/>
+<taskend task="Service scan" time="1736790477" extrainfo="17 services on 1 host"/>
+<taskbegin task="Traceroute" time="1736790485"/>
+<taskend task="Traceroute" time="1736790494"/>
+<taskbegin task="NSE" time="1736790495"/>
+<taskprogress task="NSE" time="1736790526" percent="98.27" remaining="1" etc="1736790527"/>
+<taskprogress task="NSE" time="1736790556" percent="98.44" remaining="1" etc="1736790557"/>
+<taskprogress task="NSE" time="1736790586" percent="98.52" remaining="2" etc="1736790587"/>
+<taskend task="NSE" time="1736790593"/>
+<taskbegin task="NSE" time="1736790593"/>
+<taskend task="NSE" time="1736790597"/>
+<taskbegin task="NSE" time="1736790597"/>
+<taskend task="NSE" time="1736790597"/>
+<host starttime="1736789655" endtime="1736790597"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.11.152" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65518">
+<extrareasons reason="no-response" count="65518" proto="tcp" ports="1-52,54-87,89-134,136-138,140-388,390-444,446-463,465-592,594-635,637-3268,3270-5985,5987-9388,9390-49666,49668-49672,49675-49692,49694-55750,55752-65535"/>
+</extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kerberos-sec" method="table" conf="3"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kpasswd5" method="table" conf="3"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldapssl" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="globalcatLDAPssl" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5986"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="wsmans" method="table" conf="3"/><script id="ssl-cert" output="Subject: commonName=dc01.timelapse.htb&#xa;Issuer: commonName=dc01.timelapse.htb&#xa;Public Key type: rsa&#xa;Public Key bits: 2048&#xa;Signature Algorithm: sha256WithRSAEncryption&#xa;Not valid before: 2021-10-25T14:05:29&#xa;Not valid after:  2022-10-25T14:25:29&#xa;MD5:   e233:a199:4504:0859:013f:b9c5:e4f6:91c3&#xa;SHA-1: 5861:acf7:76b8:703f:d01e:e25d:fc7c:9952:a447:7652&#xa;-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDCjCCAfKgAwIBAgIQLRY/feXALoZCPZtUeyiC4DANBgkqhkiG9w0BAQsFADAd&#xa;MRswGQYDVQQDDBJkYzAxLnRpbWVsYXBzZS5odGIwHhcNMjExMDI1MTQwNTI5WhcN&#xa;MjIxMDI1MTQyNTI5WjAdMRswGQYDVQQDDBJkYzAxLnRpbWVsYXBzZS5odGIwggEi&#xa;MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJdoIQMYt47skzf17SI7M8jubO&#xa;rD6sHg8yZw0YXKumOd5zofcSBPHfC1d/jtcHjGSsc5dQQ66qnlwdlOvifNW/KcaX&#xa;LqNmzjhwL49UGUw0MAMPAyi1hcYP6LG0dkU84zNuoNMprMpzya3+aU1u7YpQ6Dui&#xa;AzNKPa+6zJzPSMkg/TlUuSN4LjnSgIV6xKBc1qhVYDEyTUsHZUgkIYtN0+zvwpU5&#xa;isiwyp9M4RYZbxe0xecW39hfTvec++94VYkH4uO+ITtpmZ5OVvWOCpqagznTSXTg&#xa;FFuSYQTSjqYDwxPXHTK+/GAlq3uUWQYGdNeVMEZt+8EIEmyL4i4ToPkqjPF1AgMB&#xa;AAGjRjBEMA4GA1UdDwEB/wQEAwIFoDATBgNVHSUEDDAKBggrBgEFBQcDATAdBgNV&#xa;HQ4EFgQUZ6PTTN1pEmDFD6YXfQ1tfTnXde0wDQYJKoZIhvcNAQELBQADggEBAL2Y&#xa;/57FBUBLqUKZKp+P0vtbUAD0+J7bg4m/1tAHcN6Cf89KwRSkRLdq++RWaQk9CKIU&#xa;4g3M3stTWCnMf1CgXax+WeuTpzGmITLeVA6L8I2FaIgNdFVQGIG1nAn1UpYueR/H&#xa;NTIVjMPA93XR1JLsW601WV6eUI/q7t6e52sAADECjsnG1p37NjNbmTwHabrUVjBK&#xa;6Luol+v2QtqP6nY4DRH+XSk6xDaxjfwd5qN7DvSpdoz09+2ffrFuQkxxs6Pp8bQE&#xa;5GJ+aSfE+xua2vpYyyGxO0Or1J2YA1CXMijise2tp+m9JBQ1wJ2suUS2wGv1Tvyh&#xa;lrrndm32+d0YeP/wb8E=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;"><table key="subject">
+<elem key="commonName">dc01.timelapse.htb</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">dc01.timelapse.htb</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">C9768210318B78EEC9337F5ED223B33C8EE6CEAC3EAC1E0F32670D185CABA639DE73A1F71204F1DF0B577F8ED7078C64AC73975043AEAA9E5C1D94EBE27CD5BF29C6972EA366CE38702F8F54194C3430030F0328B585C60FE8B1B476453CE3336EA0D329ACCA73C9ADFE694D6EED8A50E83BA203334A3DAFBACC9CCF48C920FD3954B923782E39D280857AC4A05CD6A8556031324D4B07654824218B4DD3ECEFC295398AC8B0CA9F4CE116196F17B4C5E716DFD85F4EF79CFBEF78558907E2E3BE213B69999E4E56F58E0A9A9A8339D34974E0145B926104D28EA603C313D71D32BEFC6025AB7B9459060674D79530466DFBC108126C8BE22E13A0F92A8CF175</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">67:A3:D3:4C:DD:69:12:60:C5:0F:A6:17:7D:0D:6D:7D:39:D7:75:ED</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2021-10-25T14:05:29</elem>
+<elem key="notAfter">2022-10-25T14:25:29</elem>
+</table>
+<elem key="md5">e233a19945040859013fb9c5e4f691c3</elem>
+<elem key="sha1">5861acf776b8703fd01ee25dfc7c9952a4477652</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDCjCCAfKgAwIBAgIQLRY/feXALoZCPZtUeyiC4DANBgkqhkiG9w0BAQsFADAd&#xa;MRswGQYDVQQDDBJkYzAxLnRpbWVsYXBzZS5odGIwHhcNMjExMDI1MTQwNTI5WhcN&#xa;MjIxMDI1MTQyNTI5WjAdMRswGQYDVQQDDBJkYzAxLnRpbWVsYXBzZS5odGIwggEi&#xa;MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDJdoIQMYt47skzf17SI7M8jubO&#xa;rD6sHg8yZw0YXKumOd5zofcSBPHfC1d/jtcHjGSsc5dQQ66qnlwdlOvifNW/KcaX&#xa;LqNmzjhwL49UGUw0MAMPAyi1hcYP6LG0dkU84zNuoNMprMpzya3+aU1u7YpQ6Dui&#xa;AzNKPa+6zJzPSMkg/TlUuSN4LjnSgIV6xKBc1qhVYDEyTUsHZUgkIYtN0+zvwpU5&#xa;isiwyp9M4RYZbxe0xecW39hfTvec++94VYkH4uO+ITtpmZ5OVvWOCpqagznTSXTg&#xa;FFuSYQTSjqYDwxPXHTK+/GAlq3uUWQYGdNeVMEZt+8EIEmyL4i4ToPkqjPF1AgMB&#xa;AAGjRjBEMA4GA1UdDwEB/wQEAwIFoDATBgNVHSUEDDAKBggrBgEFBQcDATAdBgNV&#xa;HQ4EFgQUZ6PTTN1pEmDFD6YXfQ1tfTnXde0wDQYJKoZIhvcNAQELBQADggEBAL2Y&#xa;/57FBUBLqUKZKp+P0vtbUAD0+J7bg4m/1tAHcN6Cf89KwRSkRLdq++RWaQk9CKIU&#xa;4g3M3stTWCnMf1CgXax+WeuTpzGmITLeVA6L8I2FaIgNdFVQGIG1nAn1UpYueR/H&#xa;NTIVjMPA93XR1JLsW601WV6eUI/q7t6e52sAADECjsnG1p37NjNbmTwHabrUVjBK&#xa;6Luol+v2QtqP6nY4DRH+XSk6xDaxjfwd5qN7DvSpdoz09+2ffrFuQkxxs6Pp8bQE&#xa;5GJ+aSfE+xua2vpYyyGxO0Or1J2YA1CXMijise2tp+m9JBQ1wJ2suUS2wGv1Tvyh&#xa;lrrndm32+d0YeP/wb8E=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2025-01-14T01:49:54+00:00; +7h59m59s from scanner time."><elem key="delta">28799.0</elem>
+<elem key="date">2025-01-14T01:49:54+00:00</elem>
+</script><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script></port>
+<port protocol="tcp" portid="9389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="adws" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49673"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49674"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49693"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="55751"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="53"/>
+<osfingerprint fingerprint="SCAN(V=7.95%E=4%D=1/13%OT=53%CT=%CU=%PV=Y%G=N%TM=67855245%P=x86_64-pc-linux-gnu)&#xa;SEQ()&#xa;ECN(R=N)&#xa;T1(R=N)&#xa;T2(R=N)&#xa;T3(R=N)&#xa;T4(R=N)&#xa;U1(R=N)&#xa;IE(R=N)&#xa;"/>
+</os>
+<hostscript><script id="p2p-conficker" output="&#xa;  Checking for Conficker.C or higher...&#xa;  Check 1 (port 32357/tcp): CLEAN (Timeout)&#xa;  Check 2 (port 40876/tcp): CLEAN (Timeout)&#xa;  Check 3 (port 22941/udp): CLEAN (Timeout)&#xa;  Check 4 (port 45145/udp): CLEAN (Timeout)&#xa;  0/4 checks are positive: Host is CLEAN or ports are blocked&#xa;"/><script id="smb2-security-mode" output="Couldn&apos;t establish a SMBv2 connection."/><script id="smb2-time" output="Protocol negotiation failed (SMB2)"/><script id="clock-skew" output="7h59m58s"><elem key="mean">28798</elem>
+<elem key="count">1</elem>
+<elem key="median">28798</elem>
+<elem key="stddev">0</elem>
+</script></hostscript><trace port="445" proto="tcp">
+</trace>
+<times srtt="104948" rttvar="58047" to="337136"/>
+</host>
+<taskbegin task="NSE" time="1736790597"/>
+<taskend task="NSE" time="1736790597"/>
+<taskbegin task="NSE" time="1736790597"/>
+<taskend task="NSE" time="1736790597"/>
+<taskbegin task="NSE" time="1736790597"/>
+<taskend task="NSE" time="1736790597"/>
+<runstats><finished time="1736790597" timestr="Mon Jan 13 12:49:57 2025" summary="Nmap done at Mon Jan 13 12:49:57 2025; 1 IP address (1 host up) scanned in 942.37 seconds" elapsed="942.37" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
