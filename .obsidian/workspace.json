@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Course Notes/Recon & Enumeration Pasteables.md",
+                "file": "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Recon & Enumeration Pasteables"
+              "title": "Chapter 18 Port Redirection and SSH Tunneling"
             }
           }
         ]
@@ -164,6 +164,12 @@
   },
   "active": "ea33c929205ca331",
   "lastOpenFiles": [
+    "Course Notes/Chapter 19 Tunneling Through Deep Packet Inspection.md",
+    "Course Notes/Chapter 15 Password Attacks.md",
+    "Course Notes/Chapter 17 Linux Privilege Escalation.md",
+    "Course Notes/Chapter 16 windows Privilege Escalation.md",
+    "Course Notes/Windows Privilege Escalation.md",
+    "Course Notes/Linux Pasteables.md",
     "Course Notes/Windows Pasteables.md",
     "Course Notes/Recon & Enumeration Pasteables.md",
     "Course Notes/Low Hanging Fruit.md",
@@ -191,14 +197,8 @@
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-593-ncacn_http",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-464-kpasswd5/Nmap Kerberos.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-464-kpasswd5",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-445-microsoft-ds/SMBMap.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-445-microsoft-ds/Nmap SMB.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-445-microsoft-ds",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-389-ldap/Nmap LDAP.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-389-ldap",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-88-kerberos-sec/Nmap Kerberos.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-80-http/nikto.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-80-http/wkhtmltoimage.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-88-kerberos-sec",
     "Labs/htb/flight/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/medtech/internal_ips/results/172.16.185.11/scans/tcp47001/tcp_47001_http_screenshot.png",

@@ -78,6 +78,22 @@ sudo responder -l <INTERFACE>
 ```
 dir \\<IP>\secrets
 ```
-## Exercises To-Do
-
-- [ ] 2.1.1 (page 20)
+## John
+```
+unshadow /etc/passwd /etc/shadow > <HASHLIST>
+```
+```
+john <HASHES> --format=<TYPE> --wordlist=<WORDLIST>
+```
+```
+rm /etc/john/john.pot
+```
+- Rules
+- /etc/john/john.conf has all the rules
+- Add the following section with the header followed by hashcat style rules
+```
+[List.Rules:rulename]
+```
+```
+john --rules=<RULENAME>
+```

