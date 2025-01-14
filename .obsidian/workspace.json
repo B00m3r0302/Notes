@@ -13,10 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Labs/htb/timelapse/Notes.md",
+                "file": "Course Notes/Recon & Enumeration Pasteables.md",
                 "mode": "source",
                 "source": false
-              }
+              },
+              "icon": "lucide-file",
+              "title": "Recon & Enumeration Pasteables"
             }
           }
         ]
@@ -39,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -54,7 +58,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -62,14 +68,16 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 434.5
+    "width": 272.5
   },
   "right": {
     "id": "73a0d9940b5d0b2c",
@@ -85,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Labs/htb/timelapse/Notes.md",
+                "file": "Course Notes/Recon & Enumeration Pasteables.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -93,7 +101,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Recon & Enumeration Pasteables"
             }
           },
           {
@@ -102,10 +112,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Labs/htb/timelapse/Notes.md",
+                "file": "Course Notes/Recon & Enumeration Pasteables.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Recon & Enumeration Pasteables"
             }
           },
           {
@@ -116,7 +128,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -125,8 +139,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Labs/htb/timelapse/Notes.md"
-              }
+                "file": "Course Notes/Recon & Enumeration Pasteables.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Recon & Enumeration Pasteables"
             }
           }
         ]
@@ -148,6 +164,16 @@
   },
   "active": "ea33c929205ca331",
   "lastOpenFiles": [
+    "Course Notes/Windows Pasteables.md",
+    "Course Notes/Recon & Enumeration Pasteables.md",
+    "Course Notes/Low Hanging Fruit.md",
+    "Course Notes/Shells.md",
+    "Course Notes/Active Directory Pasteables.md",
+    "Course Notes/General Notes.md",
+    "Course Notes/MITM and Relaying.md",
+    "Course Notes/Spraying & Roasting.md",
+    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+    "Labs/htb/timelapse/Notes.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Commands.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Patterns.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Manual Commands.md",
@@ -173,16 +199,6 @@
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-88-kerberos-sec/Nmap Kerberos.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-80-http/nikto.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-80-http/wkhtmltoimage.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-80-http/whatweb.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-80-http/Curl Robots.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-80-http/Nmap HTTP.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-80-http/Known Security.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-80-http/Directory Buster.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-80-http/Curl.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-53-domain/Nmap DNS.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-53-domain/DNS Zone Transfer.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-53-domain/DNS Reverse Lookup.md",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-139-netbios-ssn/SMBMap.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-88-kerberos-sec",
     "Labs/htb/flight/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/medtech/internal_ips/results/172.16.185.11/scans/tcp47001/tcp_47001_http_screenshot.png",
