@@ -1,0 +1,19 @@
+;; communications error to 10.10.11.187#53: timed out
+
+; <<>> DiG 9.20.4-3-Debian <<>> -p 53 -x 10.10.11.187 @10.10.11.187
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 49263
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4000
+;; QUESTION SECTION:
+;187.11.10.10.in-addr.arpa.	IN	PTR
+
+;; Query time: 4211 msec
+;; SERVER: 10.10.11.187#53(10.10.11.187) (UDP)
+;; WHEN: Mon Jan 13 18:21:29 EST 2025
+;; MSG SIZE  rcvd: 54
+
+

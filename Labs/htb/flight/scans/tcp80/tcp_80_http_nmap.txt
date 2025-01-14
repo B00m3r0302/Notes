@@ -1,0 +1,305 @@
+# Nmap 7.95 scan initiated Mon Jan 13 18:21:20 2025 as: /usr/lib/nmap/nmap --privileged -vv --reason -Pn -T4 -sV -p 80 "--script=banner,(http* or ssl*) and not (brute or broadcast or dos or external or http-slowloris* or fuzzer)" -oN /home/kali/Notes/Labs/htb/flight/scans/tcp80/tcp_80_http_nmap.txt -oX /home/kali/Notes/Labs/htb/flight/scans/tcp80/xml/tcp_80_http_nmap.xml 10.10.11.187
+Nmap scan report for 10.10.11.187
+Host is up, received user-set (0.063s latency).
+Scanned at 2025-01-13 18:21:22 EST for 32s
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE REASON          VERSION
+80/tcp open  http    syn-ack ttl 127 Apache httpd 2.4.52 ((Win64) OpenSSL/1.1.1m PHP/8.1.1)
+|_http-jsonp-detection: Couldn't find any JSONP endpoints.
+|_http-date: Tue, 14 Jan 2025 06:21:32 GMT; +6h59m59s from local time.
+| http-php-version: Logo query returned unknown hash 422218d9739973472f0694ee98f2da5d
+|_Credits query returned unknown hash 422218d9739973472f0694ee98f2da5d
+| http-vhosts: 
+|_128 names had status 200
+| http-methods: 
+|   Supported Methods: OPTIONS HEAD GET POST TRACE
+|_  Potentially risky methods: TRACE
+|_http-litespeed-sourcecode-download: Request with null byte did not work. This web server might not be vulnerable
+|_http-wordpress-users: [Error] Wordpress installation was not found. We couldn't find wp-login.php
+|_http-malware-host: Host appears to be clean
+|_http-fetch: Please enter the complete path of the directory to save data in.
+| http-trace: TRACE is enabled
+| Headers:
+| Date: Tue, 14 Jan 2025 06:21:30 GMT
+| Server: Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.1.1
+| Connection: close
+| Transfer-Encoding: chunked
+|_Content-Type: message/http
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-headers: 
+|   Date: Tue, 14 Jan 2025 06:21:31 GMT
+|   Server: Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.1.1
+|   Last-Modified: Thu, 24 Feb 2022 05:58:10 GMT
+|   ETag: "1b9d-5d8bd444f0080"
+|   Accept-Ranges: bytes
+|   Content-Length: 7069
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-title: g0 Aviation
+|_http-feed: Couldn't find any feeds.
+|_http-chrono: Request times for /; avg: 211.43ms; min: 177.68ms; max: 265.10ms
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-grep: 
+|   (1) http://10.10.11.187:80/js/: 
+|     (1) ip: 
+|_      + 10.10.11.187
+|_http-drupal-enum: Nothing found amongst the top 100 resources,use --script-args number=<number|all> for deeper analysis)
+|_http-mobileversion-checker: No mobile version detected.
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     http://10.10.11.187:80/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/b.url;this.cc(c,j)}}}for(j=a?a.length%3A0%3Bthis.xa%28%22bgImage%22%2Bj%2B%2B%29%3B%29%3B%7D%2Ccc%3Afunction%28a%2Cb%29%7BD.q.ib%28a.fill.src%2Cfunction%28c%29%7Bvar=%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/ie6_warning/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/ie6_warning/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/ie6_warning/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/ie6_warning/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=S%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=D%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.11.187:80/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|_    http://10.10.11.187:80/js/?C=M%3BO%3DD%27%20OR%20sqlspider
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; html: 1
+|     /css/
+|       css: 3
+|     /images/
+|       gif: 3
+|     /js/
+|       Other: 1; js: 8
+|     /js/ie6_warning/
+|       jpg: 3
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /js/ie6_warning/
+|   Total files found (by extension):
+|_    Other: 2; css: 3; gif: 3; html: 1; jpg: 3; js: 8
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.11.187
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.10.11.187:80/
+|     Form id: form_1
+|     Form action: #
+|     
+|     Path: http://10.10.11.187:80/index.html
+|     Form id: form_1
+|_    Form action: #
+|_http-wordpress-enum: Nothing found amongst the top 100 resources,use --script-args search-limit=<number|all> for deeper analysis)
+|_http-server-header: Apache/2.4.52 (Win64) OpenSSL/1.1.1m PHP/8.1.1
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-errors: Couldn't find any error pages.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.11.187
+|     
+|     Path: http://10.10.11.187:80/index.html
+|     Line number: 15
+|     Comment: 
+|         
+|         
+|         
+|         <![endif]-->
+|     
+|     Path: http://10.10.11.187:80/js/Myriad_Pro_italic_400.font.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|          */
+|     
+|     Path: http://10.10.11.187:80/js/Myriad_Pro_400.font.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * The following copyright notice may not be removed under any circumstances.
+|          * 
+|          * Copyright:
+|          * Copyright \xA9 2000 Adobe Systems Incorporated. All Rights Reserved. U.S. Patent
+|          * Des. pending.
+|          * 
+|          * Trademark:
+|          * Myriad is a registered trademark of Adobe Systems Incorporated.
+|          * 
+|          * Full name:
+|          * MyriadPro-Regular
+|          * 
+|          * Designer:
+|          * Robert Slimbach and Carol Twombly
+|          * 
+|          * Vendor URL:
+|          * http://www.adobe.com/type
+|          * 
+|          * License information:
+|          * http://www.adobe.com/type/legal.html
+|          */
+|     
+|     Path: http://10.10.11.187:80/js/cufon-yui.js
+|     Line number: 1
+|     Comment: 
+|         /*
+|          * Copyright (c) 2009 Simo Kinnunen.
+|          * Licensed under the MIT license.
+|          *
+|          * @version 1.09
+|          */
+|     
+|     Path: http://10.10.11.187:80/index.html
+|     Line number: 21
+|     Comment: 
+|         <!-- START PAGE SOURCE -->
+|     
+|     Path: http://10.10.11.187:80/js/PIE.htc
+|     Line number: 1
+|     Comment: 
+|         <!--
+|         PIE: CSS3 rendering for IE
+|         Version 1.0beta2
+|         http://css3pie.com
+|         Dual-licensed for use under the Apache License Version 2.0 or the General Public License (GPL) Version 2.
+|         -->
+|     
+|     Path: http://10.10.11.187:80/js/jquery-1.4.2.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|          */
+|     
+|     Path: http://10.10.11.187:80/js/Myriad_Pro_italic_600.font.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|          */
+|     
+|     Path: http://10.10.11.187:80/js/html5.js
+|     Line number: 2
+|     Comment: 
+|         
+|         
+|     
+|     Path: http://10.10.11.187:80/js/jquery-1.4.2.js
+|     Line number: 123
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         c.lastModified[e.url]);c.etag[e.url]&&x.setRequestHeader("If-None-Match",c.etag[e.url])}r||x.setRequestHeader("X-Requested-With","XMLHttpRequest");x.setRequestHeader("Accept",e.dataType&&e.accepts[e.dataType]?e.accepts[e.dataType]+", */
+|     
+|     Path: http://10.10.11.187:80/js/cufon-yui.js
+|     Line number: 7
+|     Comment: 
+|         /**/
+|     
+|     Path: http://10.10.11.187:80/js/html5.js
+|     Line number: 4
+|     Comment: 
+|         
+|         
+|     
+|     Path: http://10.10.11.187:80/index.html
+|     Line number: 152
+|     Comment: 
+|_        <!-- END PAGE SOURCE -->
+| http-enum: 
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.52 (win64) openssl/1.1.1m php/8.1.1'
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /images/: Potentially interesting directory w/ listing on 'apache/2.4.52 (win64) openssl/1.1.1m php/8.1.1'
+|_  /js/: Potentially interesting directory w/ listing on 'apache/2.4.52 (win64) openssl/1.1.1m php/8.1.1'
+
+Read data files from: /usr/share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jan 13 18:21:54 2025 -- 1 IP address (1 host up) scanned in 33.57 seconds

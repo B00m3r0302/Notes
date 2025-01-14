@@ -1,0 +1,20 @@
+```bash
+dig AXFR -p 53 @10.10.11.187
+```
+
+[/home/kali/Notes/Labs/htb/flight/scans/tcp53/tcp_53_dns_zone-transfer.txt](file:///home/kali/Notes/Labs/htb/flight/scans/tcp53/tcp_53_dns_zone-transfer.txt):
+
+```
+;; communications error to 10.10.11.187#53: timed out
+
+; <<>> DiG 9.20.4-3-Debian <<>> AXFR -p 53 @10.10.11.187
+; (1 server found)
+;; global options: +cmd
+;; Query time: 4227 msec
+;; SERVER: 10.10.11.187#53(10.10.11.187) (UDP)
+;; WHEN: Mon Jan 13 18:21:29 EST 2025
+;; MSG SIZE  rcvd: 28
+
+
+
+```

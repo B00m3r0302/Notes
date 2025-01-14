@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Mon Jan 13 18:21:20 2025 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 53 &quot;-&#45;script=banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/flight/scans/tcp53/tcp_53_dns_nmap.txt -oX /home/kali/Notes/Labs/htb/flight/scans/tcp53/xml/tcp_53_dns_nmap.xml 10.10.11.187 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 53 &quot;-&#45;script=banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/flight/scans/tcp53/tcp_53_dns_nmap.txt -oX /home/kali/Notes/Labs/htb/flight/scans/tcp53/xml/tcp_53_dns_nmap.xml 10.10.11.187" start="1736810480" startstr="Mon Jan 13 18:21:20 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="53"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1736810481"/>
+<taskend task="NSE" time="1736810481"/>
+<taskbegin task="NSE" time="1736810481"/>
+<taskend task="NSE" time="1736810481"/>
+<taskbegin task="NSE" time="1736810481"/>
+<taskend task="NSE" time="1736810481"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1736810481"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1736810481"/>
+<taskbegin task="SYN Stealth Scan" time="1736810481"/>
+<taskend task="SYN Stealth Scan" time="1736810482" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1736810482"/>
+<taskend task="Service scan" time="1736810508" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1736810508"/>
+<taskend task="NSE" time="1736810523"/>
+<taskbegin task="NSE" time="1736810523"/>
+<taskend task="NSE" time="1736810523"/>
+<taskbegin task="NSE" time="1736810523"/>
+<taskend task="NSE" time="1736810523"/>
+<host starttime="1736810481" endtime="1736810523"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.11.187" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" extrainfo="generic dns response: SERVFAIL" servicefp="SF-Port53-TCP:V=7.95%I=7%D=1/13%Time=6785A007%P=x86_64-pc-linux-gnu%r(DNS-SD-TCP,30,&quot;\0\.\0\0\x80\x82\0\x01\0\0\0\0\0\0\t_services\x07_dns-sd\x04_udp\x05local\0\0\x0c\0\x01&quot;);" method="probed" conf="10"/><script id="dns-nsec-enum" output="Can&apos;t determine domain for host 10.10.11.187; use dns-nsec-enum.domains script arg."/><script id="dns-nsec3-enum" output="Can&apos;t determine domain for host 10.10.11.187; use dns-nsec3-enum.domains script arg."/><script id="fingerprint-strings" output="&#xa;  DNS-SD-TCP: &#xa;    _services&#xa;    _dns-sd&#xa;    _udp&#xa;    local"><elem key="DNS-SD-TCP">&#xa;    _services&#xa;    _dns-sd&#xa;    _udp&#xa;    local</elem>
+</script></port>
+</ports>
+<hostscript><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.11.187&quot;; use dns-brute.domain script argument."/></hostscript><times srtt="60667" rttvar="60667" to="303335"/>
+</host>
+<taskbegin task="NSE" time="1736810523"/>
+<taskend task="NSE" time="1736810523"/>
+<taskbegin task="NSE" time="1736810523"/>
+<taskend task="NSE" time="1736810523"/>
+<taskbegin task="NSE" time="1736810523"/>
+<taskend task="NSE" time="1736810523"/>
+<runstats><finished time="1736810523" timestr="Mon Jan 13 18:22:03 2025" summary="Nmap done at Mon Jan 13 18:22:03 2025; 1 IP address (1 host up) scanned in 43.28 seconds" elapsed="43.28" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

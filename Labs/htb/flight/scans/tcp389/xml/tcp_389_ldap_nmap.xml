@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Mon Jan 13 18:21:21 2025 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 389 &quot;-&#45;script=banner,(ldap* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/flight/scans/tcp389/tcp_389_ldap_nmap.txt -oX /home/kali/Notes/Labs/htb/flight/scans/tcp389/xml/tcp_389_ldap_nmap.xml 10.10.11.187 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 389 &quot;-&#45;script=banner,(ldap* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/flight/scans/tcp389/tcp_389_ldap_nmap.txt -oX /home/kali/Notes/Labs/htb/flight/scans/tcp389/xml/tcp_389_ldap_nmap.xml 10.10.11.187" start="1736810481" startstr="Mon Jan 13 18:21:21 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="389"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1736810482"/>
+<taskend task="NSE" time="1736810482"/>
+<taskbegin task="NSE" time="1736810482"/>
+<taskend task="NSE" time="1736810482"/>
+<taskbegin task="NSE" time="1736810482"/>
+<taskend task="NSE" time="1736810482"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1736810482"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1736810482"/>
+<taskbegin task="SYN Stealth Scan" time="1736810482"/>
+<taskend task="SYN Stealth Scan" time="1736810482" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1736810482"/>
+<taskend task="Service scan" time="1736810489" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1736810489"/>
+<taskend task="NSE" time="1736810499"/>
+<taskbegin task="NSE" time="1736810499"/>
+<taskend task="NSE" time="1736810499"/>
+<taskbegin task="NSE" time="1736810499"/>
+<taskend task="NSE" time="1736810499"/>
+<host starttime="1736810482" endtime="1736810499"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.11.187" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: flight.htb, Site: Default-First-Site-Name" hostname="G0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="ldap-rootdse" output="&#xa;LDAP Results&#xa;  &lt;ROOT&gt;&#xa;      domainFunctionality: 7&#xa;      forestFunctionality: 7&#xa;      domainControllerFunctionality: 7&#xa;      rootDomainNamingContext: DC=flight,DC=htb&#xa;      ldapServiceName: flight.htb:g0$@FLIGHT.HTB&#xa;      isGlobalCatalogReady: TRUE&#xa;      supportedSASLMechanisms: GSSAPI&#xa;      supportedSASLMechanisms: GSS-SPNEGO&#xa;      supportedSASLMechanisms: EXTERNAL&#xa;      supportedSASLMechanisms: DIGEST-MD5&#xa;      supportedLDAPVersion: 3&#xa;      supportedLDAPVersion: 2&#xa;      supportedLDAPPolicies: MaxPoolThreads&#xa;      supportedLDAPPolicies: MaxPercentDirSyncRequests&#xa;      supportedLDAPPolicies: MaxDatagramRecv&#xa;      supportedLDAPPolicies: MaxReceiveBuffer&#xa;      supportedLDAPPolicies: InitRecvTimeout&#xa;      supportedLDAPPolicies: MaxConnections&#xa;      supportedLDAPPolicies: MaxConnIdleTime&#xa;      supportedLDAPPolicies: MaxPageSize&#xa;      supportedLDAPPolicies: MaxBatchReturnMessages&#xa;      supportedLDAPPolicies: MaxQueryDuration&#xa;      supportedLDAPPolicies: MaxDirSyncDuration&#xa;      supportedLDAPPolicies: MaxTempTableSize&#xa;      supportedLDAPPolicies: MaxResultSetSize&#xa;      supportedLDAPPolicies: MinResultSets&#xa;      supportedLDAPPolicies: MaxResultSetsPerConn&#xa;      supportedLDAPPolicies: MaxNotificationPerConn&#xa;      supportedLDAPPolicies: MaxValRange&#xa;      supportedLDAPPolicies: MaxValRangeTransitive&#xa;      supportedLDAPPolicies: ThreadMemoryLimit&#xa;      supportedLDAPPolicies: SystemMemoryLimitPercent&#xa;      supportedControl: 1.2.840.113556.1.4.319&#xa;      supportedControl: 1.2.840.113556.1.4.801&#xa;      supportedControl: 1.2.840.113556.1.4.473&#xa;      supportedControl: 1.2.840.113556.1.4.528&#xa;      supportedControl: 1.2.840.113556.1.4.417&#xa;      supportedControl: 1.2.840.113556.1.4.619&#xa;      supportedControl: 1.2.840.113556.1.4.841&#xa;      supportedControl: 1.2.840.113556.1.4.529&#xa;      supportedControl: 1.2.840.113556.1.4.805&#xa;      supportedControl: 1.2.840.113556.1.4.521&#xa;      supportedControl: 1.2.840.113556.1.4.970&#xa;      supportedControl: 1.2.840.113556.1.4.1338&#xa;      supportedControl: 1.2.840.113556.1.4.474&#xa;      supportedControl: 1.2.840.113556.1.4.1339&#xa;      supportedControl: 1.2.840.113556.1.4.1340&#xa;      supportedControl: 1.2.840.113556.1.4.1413&#xa;      supportedControl: 2.16.840.1.113730.3.4.9&#xa;      supportedControl: 2.16.840.1.113730.3.4.10&#xa;      supportedControl: 1.2.840.113556.1.4.1504&#xa;      supportedControl: 1.2.840.113556.1.4.1852&#xa;      supportedControl: 1.2.840.113556.1.4.802&#xa;      supportedControl: 1.2.840.113556.1.4.1907&#xa;      supportedControl: 1.2.840.113556.1.4.1948&#xa;      supportedControl: 1.2.840.113556.1.4.1974&#xa;      supportedControl: 1.2.840.113556.1.4.1341&#xa;      supportedControl: 1.2.840.113556.1.4.2026&#xa;      supportedControl: 1.2.840.113556.1.4.2064&#xa;      supportedControl: 1.2.840.113556.1.4.2065&#xa;      supportedControl: 1.2.840.113556.1.4.2066&#xa;      supportedControl: 1.2.840.113556.1.4.2090&#xa;      supportedControl: 1.2.840.113556.1.4.2205&#xa;      supportedControl: 1.2.840.113556.1.4.2204&#xa;      supportedControl: 1.2.840.113556.1.4.2206&#xa;      supportedControl: 1.2.840.113556.1.4.2211&#xa;      supportedControl: 1.2.840.113556.1.4.2239&#xa;      supportedControl: 1.2.840.113556.1.4.2255&#xa;      supportedControl: 1.2.840.113556.1.4.2256&#xa;      supportedControl: 1.2.840.113556.1.4.2309&#xa;      supportedControl: 1.2.840.113556.1.4.2330&#xa;      supportedControl: 1.2.840.113556.1.4.2354&#xa;      supportedCapabilities: 1.2.840.113556.1.4.800&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1670&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1791&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1935&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2080&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2237&#xa;      subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=flight,DC=htb&#xa;      serverName: CN=G0,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=flight,DC=htb&#xa;      schemaNamingContext: CN=Schema,CN=Configuration,DC=flight,DC=htb&#xa;      namingContexts: DC=flight,DC=htb&#xa;      namingContexts: CN=Configuration,DC=flight,DC=htb&#xa;      namingContexts: CN=Schema,CN=Configuration,DC=flight,DC=htb&#xa;      namingContexts: DC=DomainDnsZones,DC=flight,DC=htb&#xa;      namingContexts: DC=ForestDnsZones,DC=flight,DC=htb&#xa;      isSynchronized: TRUE&#xa;      highestCommittedUSN: 122981&#xa;      dsServiceName: CN=NTDS Settings,CN=G0,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=flight,DC=htb&#xa;      dnsHostName: g0.flight.htb&#xa;      defaultNamingContext: DC=flight,DC=htb&#xa;      currentTime: 20250114062128.0Z&#xa;      configurationNamingContext: CN=Configuration,DC=flight,DC=htb&#xa;"/></port>
+</ports>
+<times srtt="91056" rttvar="91056" to="455280"/>
+</host>
+<taskbegin task="NSE" time="1736810499"/>
+<taskend task="NSE" time="1736810499"/>
+<taskbegin task="NSE" time="1736810499"/>
+<taskend task="NSE" time="1736810499"/>
+<taskbegin task="NSE" time="1736810499"/>
+<taskend task="NSE" time="1736810499"/>
+<runstats><finished time="1736810499" timestr="Mon Jan 13 18:21:39 2025" summary="Nmap done at Mon Jan 13 18:21:39 2025; 1 IP address (1 host up) scanned in 18.69 seconds" elapsed="18.69" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

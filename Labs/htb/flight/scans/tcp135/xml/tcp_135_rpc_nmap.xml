@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Mon Jan 13 18:21:21 2025 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 135 -&#45;script=banner,msrpc-enum,rpc-grind,rpcinfo -oN /home/kali/Notes/Labs/htb/flight/scans/tcp135/tcp_135_rpc_nmap.txt -oX /home/kali/Notes/Labs/htb/flight/scans/tcp135/xml/tcp_135_rpc_nmap.xml 10.10.11.187 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 135 -&#45;script=banner,msrpc-enum,rpc-grind,rpcinfo -oN /home/kali/Notes/Labs/htb/flight/scans/tcp135/tcp_135_rpc_nmap.txt -oX /home/kali/Notes/Labs/htb/flight/scans/tcp135/xml/tcp_135_rpc_nmap.xml 10.10.11.187" start="1736810481" startstr="Mon Jan 13 18:21:21 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="135"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1736810481"/>
+<taskend task="NSE" time="1736810481"/>
+<taskbegin task="NSE" time="1736810481"/>
+<taskend task="NSE" time="1736810481"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1736810481"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1736810481"/>
+<taskbegin task="SYN Stealth Scan" time="1736810481"/>
+<taskend task="SYN Stealth Scan" time="1736810481" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1736810482"/>
+<taskend task="Service scan" time="1736810488" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1736810488"/>
+<taskend task="NSE" time="1736810503"/>
+<taskbegin task="NSE" time="1736810503"/>
+<taskend task="NSE" time="1736810503"/>
+<host starttime="1736810481" endtime="1736810503"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.11.187" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+</ports>
+<times srtt="53267" rttvar="53267" to="266335"/>
+</host>
+<taskbegin task="NSE" time="1736810503"/>
+<taskend task="NSE" time="1736810503"/>
+<taskbegin task="NSE" time="1736810503"/>
+<taskend task="NSE" time="1736810503"/>
+<runstats><finished time="1736810503" timestr="Mon Jan 13 18:21:43 2025" summary="Nmap done at Mon Jan 13 18:21:43 2025; 1 IP address (1 host up) scanned in 23.00 seconds" elapsed="23.00" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
