@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Cybersecurity Notes.md",
+                "file": "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Cybersecurity Notes"
+              "title": "Chapter 21 Active Directory Introduction and Enumeration"
             }
           }
         ]
@@ -164,6 +164,7 @@
   },
   "active": "ea33c929205ca331",
   "lastOpenFiles": [
+    "Resources/Cybersecurity Notes.md",
     "Resources/domain_enum_function.ps1.md",
     "Resources/domain_enumeration_v2.ps1.md",
     "Resources/domain_enumeration.ps1.md",
@@ -189,7 +190,6 @@
     "Course Notes/Chapter 16 windows Privilege Escalation.md",
     "Course Notes/Active Directory Pasteables.md",
     "Course Notes/General Notes.md",
-    "Course Notes/MITM and Relaying.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-49700-msrpc",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-49693-msrpc",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-49674-msrpc",

