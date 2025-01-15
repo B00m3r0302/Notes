@@ -97,3 +97,10 @@ rm /etc/john/john.pot
 ```
 john --rules=<RULENAME>
 ```
+- Ssh
+```
+ssh2john.py id_rsa > hash
+```
+```
+john hashfile --wordlist=/usr/share/wordlists/rockyou.txt
+```

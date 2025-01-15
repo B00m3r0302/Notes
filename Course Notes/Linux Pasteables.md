@@ -68,3 +68,15 @@ crontab -e
 ```
 [minute] [hour] [day of month] [month] [day of week] [command]
 ```
+### Add Users
+- Interactive
+```
+adduser <USERNAME>
+```
+```
+useradd <USERNAME>
+```
+- To add a user to a specific group UID can be something new rather than existing
+```
+useradd -u <UID> -g <GROUP> <USERNAME>
+```

