@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Mon Jan 20 12:44:00 2025 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 53 &quot;-&#45;script=banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/forest/scans/tcp53/tcp_53_dns_nmap.txt -oX /home/kali/Notes/Labs/htb/forest/scans/tcp53/xml/tcp_53_dns_nmap.xml 10.10.10.161 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 53 &quot;-&#45;script=banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/forest/scans/tcp53/tcp_53_dns_nmap.txt -oX /home/kali/Notes/Labs/htb/forest/scans/tcp53/xml/tcp_53_dns_nmap.xml 10.10.10.161" start="1737395040" startstr="Mon Jan 20 12:44:00 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="53"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1737395040"/>
+<taskend task="NSE" time="1737395040"/>
+<taskbegin task="NSE" time="1737395040"/>
+<taskend task="NSE" time="1737395040"/>
+<taskbegin task="NSE" time="1737395040"/>
+<taskend task="NSE" time="1737395040"/>
+<taskbegin task="SYN Stealth Scan" time="1737395040"/>
+<taskend task="SYN Stealth Scan" time="1737395041" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1737395041"/>
+<taskend task="Service scan" time="1737395067" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1737395067"/>
+<taskend task="NSE" time="1737395082"/>
+<taskbegin task="NSE" time="1737395082"/>
+<taskend task="NSE" time="1737395082"/>
+<taskbegin task="NSE" time="1737395082"/>
+<taskend task="NSE" time="1737395082"/>
+<host starttime="1737395040" endtime="1737395082"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.161" addrtype="ipv4"/>
+<hostnames>
+<hostname name="forest.htb.local" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" extrainfo="generic dns response: SERVFAIL" servicefp="SF-Port53-TCP:V=7.95%I=7%D=1/20%Time=678E8B76%P=x86_64-pc-linux-gnu%r(DNS-SD-TCP,30,&quot;\0\.\0\0\x80\x82\0\x01\0\0\0\0\0\0\t_services\x07_dns-sd\x04_udp\x05local\0\0\x0c\0\x01&quot;);" method="probed" conf="10"/><script id="dns-nsec-enum" output="&#xa;  No NSEC records found&#xa;"/><script id="dns-nsec3-enum" output="&#xa;  DNSSEC NSEC3 not supported&#xa;"/><script id="fingerprint-strings" output="&#xa;  DNS-SD-TCP: &#xa;    _services&#xa;    _dns-sd&#xa;    _udp&#xa;    local"><elem key="DNS-SD-TCP">&#xa;    _services&#xa;    _dns-sd&#xa;    _udp&#xa;    local</elem>
+</script></port>
+</ports>
+<hostscript><script id="dns-brute" output="&#xa;  DNS Brute-force hostnames: No results."><table key="DNS Brute-force hostnames">
+</table>
+</script></hostscript><times srtt="62483" rttvar="62483" to="312415"/>
+</host>
+<taskbegin task="NSE" time="1737395082"/>
+<taskend task="NSE" time="1737395082"/>
+<taskbegin task="NSE" time="1737395082"/>
+<taskend task="NSE" time="1737395082"/>
+<taskbegin task="NSE" time="1737395082"/>
+<taskend task="NSE" time="1737395082"/>
+<runstats><finished time="1737395082" timestr="Mon Jan 20 12:44:42 2025" summary="Nmap done at Mon Jan 20 12:44:42 2025; 1 IP address (1 host up) scanned in 42.36 seconds" elapsed="42.36" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

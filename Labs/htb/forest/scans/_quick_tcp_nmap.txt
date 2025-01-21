@@ -1,0 +1,101 @@
+# Nmap 7.95 scan initiated Mon Jan 20 12:43:04 2025 as: /usr/lib/nmap/nmap --privileged -vv --reason -Pn -T4 -sV -sC --version-all -A --osscan-guess -oN /home/kali/Notes/Labs/htb/forest/scans/_quick_tcp_nmap.txt -oX /home/kali/Notes/Labs/htb/forest/scans/xml/_quick_tcp_nmap.xml 10.10.10.161
+adjust_timeouts2: packet supposedly had rtt of -715957 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -715957 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -715554 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -715554 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -720272 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -720272 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -719219 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -719219 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -712407 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -712407 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -711292 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -711292 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -453431 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -453431 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -709745 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -709745 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -710635 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -710635 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -634367 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -634367 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -633638 microseconds.  Ignoring time.
+adjust_timeouts2: packet supposedly had rtt of -633638 microseconds.  Ignoring time.
+Nmap scan report for forest.htb.local (10.10.10.161)
+Host is up, received user-set (0.054s latency).
+Scanned at 2025-01-20 12:43:04 EST for 55s
+Not shown: 988 closed tcp ports (reset)
+PORT     STATE SERVICE      REASON          VERSION
+53/tcp   open  domain       syn-ack ttl 127 Simple DNS Plus
+88/tcp   open  kerberos-sec syn-ack ttl 127 Microsoft Windows Kerberos (server time: 2025-01-20 17:50:09Z)
+135/tcp  open  msrpc        syn-ack ttl 127 Microsoft Windows RPC
+139/tcp  open  netbios-ssn  syn-ack ttl 127 Microsoft Windows netbios-ssn
+389/tcp  open  ldap         syn-ack ttl 127 Microsoft Windows Active Directory LDAP (Domain: htb.local, Site: Default-First-Site-Name)
+445/tcp  open  microsoft-ds syn-ack ttl 127 Windows Server 2016 Standard 14393 microsoft-ds (workgroup: HTB)
+464/tcp  open  kpasswd5?    syn-ack ttl 127
+593/tcp  open  ncacn_http   syn-ack ttl 127 Microsoft Windows RPC over HTTP 1.0
+636/tcp  open  tcpwrapped   syn-ack ttl 127
+3268/tcp open  ldap         syn-ack ttl 127 Microsoft Windows Active Directory LDAP (Domain: htb.local, Site: Default-First-Site-Name)
+3269/tcp open  tcpwrapped   syn-ack ttl 127
+5985/tcp open  http         syn-ack ttl 127 Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+Aggressive OS guesses: Microsoft Windows Server 2012 or 2012 R2 (97%), Microsoft Windows Server 2016 or Server 2019 (96%), Microsoft Windows Server 2016 (95%), Microsoft Windows Server 2012 (94%), Microsoft Windows Vista SP2 or Windows 7 or Windows Server 2008 R2 or Windows 8.1 (94%), Microsoft Windows 10 1703 or Windows 11 21H2 (94%), Microsoft Windows 10 (93%), Microsoft Windows 10 1507 (93%), Microsoft Windows 10 1507 - 1607 (93%), Microsoft Windows 10 1511 (93%)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.95%E=4%D=1/20%OT=53%CT=1%CU=41863%PV=Y%DS=2%DC=T%G=Y%TM=678E8B5
+OS:F%P=x86_64-pc-linux-gnu)SEQ(SP=101%GCD=1%ISR=10C%TS=A)SEQ(SP=103%GCD=1%I
+OS:SR=10B%TS=A)SEQ(SP=104%GCD=1%ISR=10A%TS=A)SEQ(SP=104%GCD=1%ISR=10B%CI=I%
+OS:TS=A)SEQ(SP=105%GCD=1%ISR=10A%TS=A)OPS(O1=M53CNW8ST11%O2=M53CNW8ST11%O3=
+OS:M53CNW8NNT11%O4=M53CNW8ST11%O5=M53CNW8ST11%O6=M53CST11)WIN(W1=2000%W2=20
+OS:00%W3=2000%W4=2000%W5=2000%W6=2000)ECN(R=Y%DF=Y%T=80%W=2000%O=M53CNW8NNS
+OS:%CC=Y%Q=)T1(R=Y%DF=Y%T=80%S=O%A=S+%F=AS%RD=0%Q=)T2(R=Y%DF=Y%T=80%W=0%S=Z
+OS:%A=S%F=AR%O=%RD=0%Q=)T3(R=N)T3(R=Y%DF=Y%T=80%W=0%S=Z%A=O%F=AR%O=%RD=0%Q=
+OS:)T4(R=N)T4(R=Y%DF=Y%T=80%W=0%S=A%A=O%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=80%W=0
+OS:%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=80%W=0%S=A%A=O%F=R%O=%RD=0%Q=)T7
+OS:(R=Y%DF=Y%T=80%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=80%IPL=164%UN=
+OS:0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=80%CD=Z)
+
+Uptime guess: 3.187 days (since Fri Jan 17 08:15:11 2025)
+Network Distance: 2 hops
+TCP Sequence Prediction: Difficulty=260 (Good luck!)
+IP ID Sequence Generation: Busy server or unknown class
+Service Info: Host: FOREST; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 32753/tcp): CLEAN (Couldn't connect)
+|   Check 2 (port 5568/tcp): CLEAN (Couldn't connect)
+|   Check 3 (port 44587/udp): CLEAN (Timeout)
+|   Check 4 (port 51719/udp): CLEAN (Timeout)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+| smb-security-mode: 
+|   account_used: <blank>
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: required
+| smb-os-discovery: 
+|   OS: Windows Server 2016 Standard 14393 (Windows Server 2016 Standard 6.3)
+|   Computer name: FOREST
+|   NetBIOS computer name: FOREST\x00
+|   Domain name: htb.local
+|   Forest name: htb.local
+|   FQDN: FOREST.htb.local
+|_  System time: 2025-01-20T09:50:41-08:00
+|_clock-skew: mean: 2h46m52s, deviation: 4h37m09s, median: 6m51s
+| smb2-time: 
+|   date: 2025-01-20T17:50:42
+|_  start_date: 2025-01-17T13:22:26
+
+TRACEROUTE (using port 8080/tcp)
+HOP RTT      ADDRESS
+1   52.62 ms 10.10.14.1
+2   52.79 ms forest.htb.local (10.10.10.161)
+
+Read data files from: /usr/share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jan 20 12:43:59 2025 -- 1 IP address (1 host up) scanned in 55.18 seconds

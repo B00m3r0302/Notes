@@ -1,0 +1,1974 @@
+```bash
+enum4linux-ng -A -d -v 10.10.10.161 2>&1
+```
+
+[/home/kali/Notes/Labs/htb/forest/scans/tcp139/enum4linux-ng.txt](file:///home/kali/Notes/Labs/htb/forest/scans/tcp139/enum4linux-ng.txt):
+
+```
+[92mENUM4LINUX - next generation (v1.3.4)[0m
+
+ ==========================
+|    Target Information    |
+ ==========================
+[94m[*] Target ........... 10.10.10.161[0m
+[94m[*] Username ......... ''[0m
+[94m[*] Random Username .. 'nyjiujhf'[0m
+[94m[*] Password ......... ''[0m
+[94m[*] Timeout .......... 5 second(s)[0m
+
+ =====================================
+|    Listener Scan on 10.10.10.161    |
+ =====================================
+[94m[*] Checking LDAP[0m
+[92m[+] LDAP is accessible on 389/tcp[0m
+[94m[*] Checking LDAPS[0m
+[92m[+] LDAPS is accessible on 636/tcp[0m
+[94m[*] Checking SMB[0m
+[92m[+] SMB is accessible on 445/tcp[0m
+[94m[*] Checking SMB over NetBIOS[0m
+[92m[+] SMB over NetBIOS is accessible on 139/tcp[0m
+
+ ====================================================
+|    Domain Information via LDAP for 10.10.10.161    |
+ ====================================================
+[94m[*] Trying LDAP[0m
+[92m[+] Appears to be root/parent DC[0m
+[92m[+] Long domain name is: htb.local[0m
+
+ ===========================================================
+|    NetBIOS Names and Workgroup/Domain for 10.10.10.161    |
+ ===========================================================
+[V] Trying to get NetBIOS names information, running command: nmblookup -s /tmp/tmp_82g9z_6 -A 10.10.10.161
+[91m[-] Could not get NetBIOS names information via 'nmblookup': timed out[0m
+
+ =========================================
+|    SMB Dialect Check on 10.10.10.161    |
+ =========================================
+[94m[*] Trying on 445/tcp[0m
+[92m[+] Supported dialects and settings:
+Supported dialects:
+  SMB 1.0: true
+  SMB 2.02: true
+  SMB 2.1: true
+  SMB 3.0: true
+  SMB 3.1.1: true
+Preferred dialect: SMB 3.0
+SMB1 only: false
+SMB signing required: true[0m
+
+ ===========================================================
+|    Domain Information via SMB session for 10.10.10.161    |
+ ===========================================================
+[94m[*] Enumerating via unauthenticated SMB session on 445/tcp[0m
+[92m[+] Found domain information via SMB
+NetBIOS computer name: FOREST
+NetBIOS domain name: HTB
+DNS domain: htb.local
+FQDN: FOREST.htb.local
+Derived membership: domain member
+Derived domain: HTB[0m
+
+ =========================================
+|    RPC Session Check on 10.10.10.161    |
+ =========================================
+[94m[*] Check for null session[0m
+[V] Attempting to make session, running command: smbclient -W HTB -U % -s /tmp/tmp_82g9z_6 -t 5 -c help '//10.10.10.161/ipc$'
+[92m[+] Server allows session using username '', password ''[0m
+[94m[*] Check for random user[0m
+[V] Attempting to make session, running command: smbclient -W HTB -U nyjiujhf% -s /tmp/tmp_82g9z_6 -t 5 -c help '//10.10.10.161/ipc$'
+[91m[-] Could not establish random user session: STATUS_LOGON_FAILURE[0m
+
+ ===================================================
+|    Domain Information via RPC for 10.10.10.161    |
+ ===================================================
+[V] Attempting to get domain SID, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c lsaquery 10.10.10.161
+[92m[+] Domain: HTB[0m
+[92m[+] Domain SID: S-1-5-21-3072663084-364016917-1341370565[0m
+[92m[+] Membership: domain member[0m
+
+ ===============================================
+|    OS Information via RPC for 10.10.10.161    |
+ ===============================================
+[94m[*] Enumerating via unauthenticated SMB session on 445/tcp[0m
+[92m[+] Found OS information via SMB[0m
+[94m[*] Enumerating via 'srvinfo'[0m
+[V] Attempting to get OS info with command, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c srvinfo 10.10.10.161
+[91m[-] Could not get OS info via 'srvinfo': STATUS_ACCESS_DENIED[0m
+[92m[+] After merging OS information we have the following result:
+OS: Windows Server 2016 Standard 14393
+OS version: '10.0'
+OS release: '1607'
+OS build: '14393'
+Native OS: Windows Server 2016 Standard 14393
+Native LAN manager: Windows Server 2016 Standard 6.3
+Platform id: null
+Server type: null
+Server type string: null[0m
+
+ =====================================
+|    Users via RPC on 10.10.10.161    |
+ =====================================
+[94m[*] Enumerating users via 'querydispinfo'[0m
+[V] Attempting to get userlist, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c querydispinfo 10.10.10.161
+[92m[+] Found 31 user(s) via 'querydispinfo'[0m
+[94m[*] Enumerating users via 'enumdomusers'[0m
+[V] Attempting to get userlist, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c enumdomusers 10.10.10.161
+[92m[+] Found 31 user(s) via 'enumdomusers'[0m
+[94m[*] Enumerating users details[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 500' 10.10.10.161
+[92m[+] Found details for user 'Administrator' (RID 500)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 501' 10.10.10.161
+[92m[+] Found details for user 'Guest' (RID 501)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 502' 10.10.10.161
+[92m[+] Found details for user 'krbtgt' (RID 502)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 503' 10.10.10.161
+[92m[+] Found details for user 'DefaultAccount' (RID 503)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1123' 10.10.10.161
+[92m[+] Found details for user '$331000-VK4ADACQNUCA' (RID 1123)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1124' 10.10.10.161
+[92m[+] Found details for user 'SM_2c8eef0a09b545acb' (RID 1124)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1125' 10.10.10.161
+[92m[+] Found details for user 'SM_ca8c2ed5bdab4dc9b' (RID 1125)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1126' 10.10.10.161
+[92m[+] Found details for user 'SM_75a538d3025e4db9a' (RID 1126)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1127' 10.10.10.161
+[92m[+] Found details for user 'SM_681f53d4942840e18' (RID 1127)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1128' 10.10.10.161
+[92m[+] Found details for user 'SM_1b41c9286325456bb' (RID 1128)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1129' 10.10.10.161
+[92m[+] Found details for user 'SM_9b69f1b9d2cc45549' (RID 1129)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1130' 10.10.10.161
+[92m[+] Found details for user 'SM_7c96b981967141ebb' (RID 1130)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1131' 10.10.10.161
+[92m[+] Found details for user 'SM_c75ee099d0a64c91b' (RID 1131)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1132' 10.10.10.161
+[92m[+] Found details for user 'SM_1ffab36a2f5f479cb' (RID 1132)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1134' 10.10.10.161
+[92m[+] Found details for user 'HealthMailboxc3d7722' (RID 1134)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1135' 10.10.10.161
+[92m[+] Found details for user 'HealthMailboxfc9daad' (RID 1135)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1136' 10.10.10.161
+[92m[+] Found details for user 'HealthMailboxc0a90c9' (RID 1136)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1137' 10.10.10.161
+[92m[+] Found details for user 'HealthMailbox670628e' (RID 1137)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1138' 10.10.10.161
+[92m[+] Found details for user 'HealthMailbox968e74d' (RID 1138)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1139' 10.10.10.161
+[92m[+] Found details for user 'HealthMailbox6ded678' (RID 1139)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1140' 10.10.10.161
+[92m[+] Found details for user 'HealthMailbox83d6781' (RID 1140)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1141' 10.10.10.161
+[92m[+] Found details for user 'HealthMailboxfd87238' (RID 1141)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1142' 10.10.10.161
+[92m[+] Found details for user 'HealthMailboxb01ac64' (RID 1142)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1143' 10.10.10.161
+[92m[+] Found details for user 'HealthMailbox7108a4e' (RID 1143)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1144' 10.10.10.161
+[92m[+] Found details for user 'HealthMailbox0659cc1' (RID 1144)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1145' 10.10.10.161
+[92m[+] Found details for user 'sebastien' (RID 1145)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1146' 10.10.10.161
+[92m[+] Found details for user 'lucinda' (RID 1146)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1147' 10.10.10.161
+[92m[+] Found details for user 'svc-alfresco' (RID 1147)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1150' 10.10.10.161
+[92m[+] Found details for user 'andy' (RID 1150)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1151' 10.10.10.161
+[92m[+] Found details for user 'mark' (RID 1151)[0m
+[V] Attempting to get detailed user info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'queryuser 1152' 10.10.10.161
+[92m[+] Found details for user 'santi' (RID 1152)[0m
+[92m[+] After merging user results we have 31 user(s) total:
+'1123':
+  username: $331000-VK4ADACQNUCA
+  name: (null)
+  acb: '0x00020015'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 31 Dec 1969 19:00:00 EST
+    unknown_2[0..31]: ''
+    user_rid: '0x463'
+    group_rid: '0x201'
+    acb_info: '0x00020015'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: false
+    Account locked out: false
+    Password expired: true
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1124':
+  username: SM_2c8eef0a09b545acb
+  name: Microsoft Exchange Approval Assistant
+  acb: '0x00020011'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 31 Dec 1969 19:00:00 EST
+    unknown_2[0..31]: ''
+    user_rid: '0x464'
+    group_rid: '0x201'
+    acb_info: '0x00020011'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: false
+    Account locked out: false
+    Password expired: true
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1125':
+  username: SM_ca8c2ed5bdab4dc9b
+  name: Microsoft Exchange
+  acb: '0x00020011'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 31 Dec 1969 19:00:00 EST
+    unknown_2[0..31]: ''
+    user_rid: '0x465'
+    group_rid: '0x201'
+    acb_info: '0x00020011'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: false
+    Account locked out: false
+    Password expired: true
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1126':
+  username: SM_75a538d3025e4db9a
+  name: Microsoft Exchange
+  acb: '0x00020011'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 31 Dec 1969 19:00:00 EST
+    unknown_2[0..31]: ''
+    user_rid: '0x466'
+    group_rid: '0x201'
+    acb_info: '0x00020011'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: false
+    Account locked out: false
+    Password expired: true
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1127':
+  username: SM_681f53d4942840e18
+  name: Discovery Search Mailbox
+  acb: '0x00020011'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 31 Dec 1969 19:00:00 EST
+    unknown_2[0..31]: ''
+    user_rid: '0x467'
+    group_rid: '0x201'
+    acb_info: '0x00020011'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: false
+    Account locked out: false
+    Password expired: true
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1128':
+  username: SM_1b41c9286325456bb
+  name: Microsoft Exchange Migration
+  acb: '0x00020011'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 31 Dec 1969 19:00:00 EST
+    unknown_2[0..31]: ''
+    user_rid: '0x468'
+    group_rid: '0x201'
+    acb_info: '0x00020011'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: false
+    Account locked out: false
+    Password expired: true
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1129':
+  username: SM_9b69f1b9d2cc45549
+  name: Microsoft Exchange Federation Mailbox
+  acb: '0x00020011'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 31 Dec 1969 19:00:00 EST
+    unknown_2[0..31]: ''
+    user_rid: '0x469'
+    group_rid: '0x201'
+    acb_info: '0x00020011'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: false
+    Account locked out: false
+    Password expired: true
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1130':
+  username: SM_7c96b981967141ebb
+  name: E4E Encryption Store - Active
+  acb: '0x00020011'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 31 Dec 1969 19:00:00 EST
+    unknown_2[0..31]: ''
+    user_rid: '0x46a'
+    group_rid: '0x201'
+    acb_info: '0x00020011'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: false
+    Account locked out: false
+    Password expired: true
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1131':
+  username: SM_c75ee099d0a64c91b
+  name: Microsoft Exchange
+  acb: '0x00020011'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 31 Dec 1969 19:00:00 EST
+    unknown_2[0..31]: ''
+    user_rid: '0x46b'
+    group_rid: '0x201'
+    acb_info: '0x00020011'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: false
+    Account locked out: false
+    Password expired: true
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1132':
+  username: SM_1ffab36a2f5f479cb
+  name: SystemMailbox{8cc370d3-822a-4ab8-a926-bb94bd0641a9}
+  acb: '0x00020011'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 31 Dec 1969 19:00:00 EST
+    unknown_2[0..31]: ''
+    user_rid: '0x46c'
+    group_rid: '0x201'
+    acb_info: '0x00020011'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: false
+    Account locked out: false
+    Password expired: true
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1134':
+  username: HealthMailboxc3d7722
+  name: HealthMailbox-EXCH01-Mailbox-Database-1118319013
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Mon, 23 Sep 2019 18:57:12 EDT
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Mon, 23 Sep 2019 18:51:32 EDT
+    Password can change Time: Tue, 24 Sep 2019 18:51:32 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x46e'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x000005be'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1135':
+  username: HealthMailboxfc9daad
+  name: HealthMailbox-EXCH01-001
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Mon, 23 Sep 2019 18:52:06 EDT
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Mon, 23 Sep 2019 18:51:35 EDT
+    Password can change Time: Tue, 24 Sep 2019 18:51:35 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x46f'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x0000003b'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1136':
+  username: HealthMailboxc0a90c9
+  name: HealthMailbox-EXCH01-002
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Thu, 19 Sep 2019 07:56:35 EDT
+    Password can change Time: Fri, 20 Sep 2019 07:56:35 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x470'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1137':
+  username: HealthMailbox670628e
+  name: HealthMailbox-EXCH01-003
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Thu, 19 Sep 2019 07:56:46 EDT
+    Password can change Time: Fri, 20 Sep 2019 07:56:46 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x471'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1138':
+  username: HealthMailbox968e74d
+  name: HealthMailbox-EXCH01-004
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Thu, 19 Sep 2019 07:56:56 EDT
+    Password can change Time: Fri, 20 Sep 2019 07:56:56 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x472'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1139':
+  username: HealthMailbox6ded678
+  name: HealthMailbox-EXCH01-005
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Thu, 19 Sep 2019 07:57:07 EDT
+    Password can change Time: Fri, 20 Sep 2019 07:57:07 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x473'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1140':
+  username: HealthMailbox83d6781
+  name: HealthMailbox-EXCH01-006
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Thu, 19 Sep 2019 07:57:17 EDT
+    Password can change Time: Fri, 20 Sep 2019 07:57:17 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x474'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1141':
+  username: HealthMailboxfd87238
+  name: HealthMailbox-EXCH01-007
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Thu, 19 Sep 2019 07:57:27 EDT
+    Password can change Time: Fri, 20 Sep 2019 07:57:27 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x475'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1142':
+  username: HealthMailboxb01ac64
+  name: HealthMailbox-EXCH01-008
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Thu, 19 Sep 2019 07:57:38 EDT
+    Password can change Time: Fri, 20 Sep 2019 07:57:38 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x476'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1143':
+  username: HealthMailbox7108a4e
+  name: HealthMailbox-EXCH01-009
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Thu, 19 Sep 2019 07:57:48 EDT
+    Password can change Time: Fri, 20 Sep 2019 07:57:48 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x477'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1144':
+  username: HealthMailbox0659cc1
+  name: HealthMailbox-EXCH01-010
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Thu, 19 Sep 2019 07:57:59 EDT
+    Password can change Time: Fri, 20 Sep 2019 07:57:59 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x478'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1145':
+  username: sebastien
+  name: Sebastien Caron
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Sun, 22 Sep 2019 18:29:30 EDT
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Thu, 19 Sep 2019 20:30:00 EDT
+    Password can change Time: Fri, 20 Sep 2019 20:30:00 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x479'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000008'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1146':
+  username: lucinda
+  name: Lucinda Berger
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Thu, 19 Sep 2019 20:44:13 EDT
+    Password can change Time: Fri, 20 Sep 2019 20:44:13 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x47a'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1147':
+  username: svc-alfresco
+  name: svc-alfresco
+  acb: '0x00010210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Mon, 20 Jan 2025 11:27:20 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password last set Time: Mon, 20 Jan 2025 08:23:17 EST
+    Password can change Time: Tue, 21 Jan 2025 08:23:17 EST
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x47b'
+    group_rid: '0x201'
+    acb_info: '0x00010210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000007'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1150':
+  username: andy
+  name: Andy Hislip
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Sun, 22 Sep 2019 18:44:16 EDT
+    Password can change Time: Mon, 23 Sep 2019 18:44:16 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x47e'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1151':
+  username: mark
+  name: Mark Brandt
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Fri, 20 Sep 2019 18:57:30 EDT
+    Password can change Time: Sat, 21 Sep 2019 18:57:30 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x47f'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'1152':
+  username: santi
+  name: Santi Rodriguez
+  acb: '0x00000210'
+  description: (null)
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: ''
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Fri, 20 Sep 2019 19:02:55 EDT
+    Password can change Time: Sat, 21 Sep 2019 19:02:55 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x480'
+    group_rid: '0x201'
+    acb_info: '0x00000210'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'500':
+  username: Administrator
+  name: Administrator
+  acb: '0x00000010'
+  description: Built-in account for administering the computer/domain
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: Built-in account for administering the computer/domain
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Fri, 17 Jan 2025 08:23:25 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password last set Time: Mon, 30 Aug 2021 20:51:59 EDT
+    Password can change Time: Tue, 31 Aug 2021 20:51:59 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x1f4'
+    group_rid: '0x201'
+    acb_info: '0x00000010'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x0000007f'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: false
+    Password not expired: false
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'501':
+  username: Guest
+  name: (null)
+  acb: '0x00000215'
+  description: Built-in account for guest access to the computer/domain
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: Built-in account for guest access to the computer/domain
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x1f5'
+    group_rid: '0x202'
+    acb_info: '0x00000215'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'502':
+  username: krbtgt
+  name: (null)
+  acb: '0x00000011'
+  description: Key Distribution Center Service Account
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: Key Distribution Center Service Account
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 18 Sep 2019 06:53:23 EDT
+    Password can change Time: Thu, 19 Sep 2019 06:53:23 EDT
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x1f6'
+    group_rid: '0x201'
+    acb_info: '0x00000011'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: false
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false
+'503':
+  username: DefaultAccount
+  name: (null)
+  acb: '0x00000215'
+  description: A user account managed by the system.
+  details:
+    Home Drive: ''
+    Dir Drive: ''
+    Profile Path: ''
+    Logon Script: ''
+    Description: A user account managed by the system.
+    Workstations: ''
+    Comment: ''
+    Remote Dial: ''
+    Logon Time: Wed, 31 Dec 1969 19:00:00 EST
+    Logoff Time: Wed, 31 Dec 1969 19:00:00 EST
+    Kickoff Time: Wed, 13 Sep 30828 22:48:05 EDT
+    Password last set Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password can change Time: Wed, 31 Dec 1969 19:00:00 EST
+    Password must change Time: Wed, 13 Sep 30828 22:48:05 EDT
+    unknown_2[0..31]: ''
+    user_rid: '0x1f7'
+    group_rid: '0x201'
+    acb_info: '0x00000215'
+    fields_present: '0x00ffffff'
+    logon_divs: '168'
+    bad_password_count: '0x00000000'
+    logon_count: '0x00000000'
+    padding1[0..7]: ''
+    logon_hrs[0..21]: ''
+    Account Disabled: true
+    Password not expired: true
+    Account locked out: false
+    Password expired: false
+    Interdomain trust account: false
+    Workstation trust account: false
+    Server trust account: false
+    Trusted for delegation: false[0m
+
+ ======================================
+|    Groups via RPC on 10.10.10.161    |
+ ======================================
+[94m[*] Enumerating local groups[0m
+[V] Attempting to get local groups, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'enumalsgroups domain' 10.10.10.161
+[92m[+] Found 5 group(s) via 'enumalsgroups domain'[0m
+[94m[*] Enumerating builtin groups[0m
+[V] Attempting to get builtin groups, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'enumalsgroups builtin' 10.10.10.161
+[92m[+] Found 29 group(s) via 'enumalsgroups builtin'[0m
+[94m[*] Enumerating domain groups[0m
+[V] Attempting to get domain groups, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c enumdomgroups 10.10.10.161
+[92m[+] Found 38 group(s) via 'enumdomgroups'[0m
+[94m[*] Enumerating group details[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 517' 10.10.10.161
+[91m[-] Could not get details for local group 'Cert Publishers' (RID 517): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 553' 10.10.10.161
+[91m[-] Could not get details for local group 'RAS and IAS Servers' (RID 553): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 571' 10.10.10.161
+[91m[-] Could not get details for local group 'Allowed RODC Password Replication Group' (RID 571): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 572' 10.10.10.161
+[91m[-] Could not get details for local group 'Denied RODC Password Replication Group' (RID 572): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1101' 10.10.10.161
+[91m[-] Could not get details for local group 'DnsAdmins' (RID 1101): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 548' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Account Operators' (RID 548): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 554' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Pre-Windows 2000 Compatible Access' (RID 554): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 557' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Incoming Forest Trust Builders' (RID 557): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 560' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Windows Authorization Access Group' (RID 560): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 561' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Terminal Server License Servers' (RID 561): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 544' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Administrators' (RID 544): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 545' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Users' (RID 545): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 546' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Guests' (RID 546): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 550' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Print Operators' (RID 550): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 551' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Backup Operators' (RID 551): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 552' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Replicator' (RID 552): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 555' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Remote Desktop Users' (RID 555): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 556' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Network Configuration Operators' (RID 556): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 558' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Performance Monitor Users' (RID 558): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 559' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Performance Log Users' (RID 559): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 562' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Distributed COM Users' (RID 562): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 568' 10.10.10.161
+[91m[-] Could not get details for builtin group 'IIS_IUSRS' (RID 568): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 569' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Cryptographic Operators' (RID 569): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 573' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Event Log Readers' (RID 573): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 574' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Certificate Service DCOM Access' (RID 574): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 575' 10.10.10.161
+[91m[-] Could not get details for builtin group 'RDS Remote Access Servers' (RID 575): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 576' 10.10.10.161
+[91m[-] Could not get details for builtin group 'RDS Endpoint Servers' (RID 576): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 577' 10.10.10.161
+[91m[-] Could not get details for builtin group 'RDS Management Servers' (RID 577): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 578' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Hyper-V Administrators' (RID 578): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 579' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Access Control Assistance Operators' (RID 579): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 580' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Remote Management Users' (RID 580): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 581' 10.10.10.161
+[91m[-] Could not get details for builtin group 'System Managed Accounts Group' (RID 581): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 582' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Storage Replica Administrators' (RID 582): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 549' 10.10.10.161
+[91m[-] Could not get details for builtin group 'Server Operators' (RID 549): STATUS_NO_SUCH_GROUP[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 498' 10.10.10.161
+[92m[+] Found details for domain group 'Enterprise Read-only Domain Controllers' (RID 498)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 512' 10.10.10.161
+[92m[+] Found details for domain group 'Domain Admins' (RID 512)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 513' 10.10.10.161
+[92m[+] Found details for domain group 'Domain Users' (RID 513)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 514' 10.10.10.161
+[92m[+] Found details for domain group 'Domain Guests' (RID 514)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 515' 10.10.10.161
+[92m[+] Found details for domain group 'Domain Computers' (RID 515)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 516' 10.10.10.161
+[92m[+] Found details for domain group 'Domain Controllers' (RID 516)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 518' 10.10.10.161
+[92m[+] Found details for domain group 'Schema Admins' (RID 518)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 519' 10.10.10.161
+[92m[+] Found details for domain group 'Enterprise Admins' (RID 519)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 520' 10.10.10.161
+[92m[+] Found details for domain group 'Group Policy Creator Owners' (RID 520)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 521' 10.10.10.161
+[92m[+] Found details for domain group 'Read-only Domain Controllers' (RID 521)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 522' 10.10.10.161
+[92m[+] Found details for domain group 'Cloneable Domain Controllers' (RID 522)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 525' 10.10.10.161
+[92m[+] Found details for domain group 'Protected Users' (RID 525)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 526' 10.10.10.161
+[92m[+] Found details for domain group 'Key Admins' (RID 526)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 527' 10.10.10.161
+[92m[+] Found details for domain group 'Enterprise Key Admins' (RID 527)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1102' 10.10.10.161
+[92m[+] Found details for domain group 'DnsUpdateProxy' (RID 1102)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1104' 10.10.10.161
+[92m[+] Found details for domain group 'Organization Management' (RID 1104)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1105' 10.10.10.161
+[92m[+] Found details for domain group 'Recipient Management' (RID 1105)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1106' 10.10.10.161
+[92m[+] Found details for domain group 'View-Only Organization Management' (RID 1106)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1107' 10.10.10.161
+[92m[+] Found details for domain group 'Public Folder Management' (RID 1107)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1108' 10.10.10.161
+[92m[+] Found details for domain group 'UM Management' (RID 1108)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1109' 10.10.10.161
+[92m[+] Found details for domain group 'Help Desk' (RID 1109)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1110' 10.10.10.161
+[92m[+] Found details for domain group 'Records Management' (RID 1110)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1111' 10.10.10.161
+[92m[+] Found details for domain group 'Discovery Management' (RID 1111)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1112' 10.10.10.161
+[92m[+] Found details for domain group 'Server Management' (RID 1112)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1113' 10.10.10.161
+[92m[+] Found details for domain group 'Delegated Setup' (RID 1113)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1114' 10.10.10.161
+[92m[+] Found details for domain group 'Hygiene Management' (RID 1114)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1115' 10.10.10.161
+[92m[+] Found details for domain group 'Compliance Management' (RID 1115)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1116' 10.10.10.161
+[92m[+] Found details for domain group 'Security Reader' (RID 1116)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1117' 10.10.10.161
+[92m[+] Found details for domain group 'Security Administrator' (RID 1117)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1118' 10.10.10.161
+[92m[+] Found details for domain group 'Exchange Servers' (RID 1118)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1119' 10.10.10.161
+[92m[+] Found details for domain group 'Exchange Trusted Subsystem' (RID 1119)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1120' 10.10.10.161
+[92m[+] Found details for domain group 'Managed Availability Servers' (RID 1120)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1121' 10.10.10.161
+[92m[+] Found details for domain group 'Exchange Windows Permissions' (RID 1121)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1122' 10.10.10.161
+[92m[+] Found details for domain group 'ExchangeLegacyInterop' (RID 1122)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1133' 10.10.10.161
+[92m[+] Found details for domain group '$D31000-NSEL5BRJ63V7' (RID 1133)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1148' 10.10.10.161
+[92m[+] Found details for domain group 'Service Accounts' (RID 1148)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 1149' 10.10.10.161
+[92m[+] Found details for domain group 'Privileged IT Accounts' (RID 1149)[0m
+[V] Attempting to get detailed group info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c 'querygroup 5101' 10.10.10.161
+[92m[+] Found details for domain group 'test' (RID 5101)[0m
+[92m[+] After merging groups results we have 72 group(s) total:
+'1101':
+  groupname: DnsAdmins
+  type: local
+  details: null
+'1102':
+  groupname: DnsUpdateProxy
+  type: domain
+  details:
+    Description: DNS clients who are permitted to perform dynamic updates on behalf of some other clients (such as DHCP servers).
+    Group Attribute: '7'
+    Num Members: '0'
+'1104':
+  groupname: Organization Management
+  type: domain
+  details:
+    Description: Members of this management role group have permissions to manage Exchange objects and their properties in the Exchange organization. Members can
+      also delegate role groups and management roles in the organization. This role group shouldn't be deleted.
+    Group Attribute: '7'
+    Num Members: '1'
+'1105':
+  groupname: Recipient Management
+  type: domain
+  details:
+    Description: Members of this management role group have rights to create, manage, and remove Exchange recipient objects in the Exchange organization.
+    Group Attribute: '7'
+    Num Members: '0'
+'1106':
+  groupname: View-Only Organization Management
+  type: domain
+  details:
+    Description: Members of this management role group can view recipient and configuration objects and their properties in the Exchange organization.
+    Group Attribute: '7'
+    Num Members: '0'
+'1107':
+  groupname: Public Folder Management
+  type: domain
+  details:
+    Description: Members of this management role group can manage public folders. Members can create and delete public folders and manage public folder settings such
+      as replicas, quotas, age limits, and permissions as well as mail-enable and mail-disable public folders.
+    Group Attribute: '7'
+    Num Members: '0'
+'1108':
+  groupname: UM Management
+  type: domain
+  details:
+    Description: Members of this management role group can manage Unified Messaging organization, server, and recipient configuration.
+    Group Attribute: '7'
+    Num Members: '0'
+'1109':
+  groupname: Help Desk
+  type: domain
+  details:
+    Description: Members of this management role group can view and manage the configuration for individual recipients and view recipients in an Exchange organization.
+      Members of this role group can only manage the configuration each user can manage on his or her own mailbox. Additional  permissions can be added by assigning
+      additional management roles to this role group.
+    Group Attribute: '7'
+    Num Members: '0'
+'1110':
+  groupname: Records Management
+  type: domain
+  details:
+    Description: Members of this management role group can configure compliance features such as retention policy tags, message classifications, transport rules,
+      and more.
+    Group Attribute: '7'
+    Num Members: '0'
+'1111':
+  groupname: Discovery Management
+  type: domain
+  details:
+    Description: Members of this management role group can perform searches of mailboxes in the Exchange organization for data that meets specific criteria.
+    Group Attribute: '7'
+    Num Members: '0'
+'1112':
+  groupname: Server Management
+  type: domain
+  details:
+    Description: Members of this management role group have permissions to manage all Exchange servers within the Exchange organization, but members don't have permissions
+      to perform operations that have global impact in the Exchange organization.
+    Group Attribute: '7'
+    Num Members: '0'
+'1113':
+  groupname: Delegated Setup
+  type: domain
+  details:
+    Description: Members of this management role group have permissions to install and uninstall Exchange on provisioned servers. This role group shouldn't be deleted.
+    Group Attribute: '7'
+    Num Members: '0'
+'1114':
+  groupname: Hygiene Management
+  type: domain
+  details:
+    Description: Members of this management role group can manage Exchange anti-spam features and grant permissions for antivirus products to integrate with Exchange.
+    Group Attribute: '7'
+    Num Members: '0'
+'1115':
+  groupname: Compliance Management
+  type: domain
+  details:
+    Description: This role group will allow a specified user, responsible for compliance, to properly configure and manage compliance settings within Exchange in
+      accordance with their policy.
+    Group Attribute: '7'
+    Num Members: '0'
+'1116':
+  groupname: Security Reader
+  type: domain
+  details:
+    Description: Membership in this role group is synchronized across services and managed centrally. This role group is not manageable through the administrator
+      portals. Members of this role group may include cross-service administrators, as well as external partner groups and Microsoft Support. By default, this group
+      may not be assigned any roles. However, it will be a member of the Security Reader role groups and will inherit the capabilities of that role group.
+    Group Attribute: '7'
+    Num Members: '0'
+'1117':
+  groupname: Security Administrator
+  type: domain
+  details:
+    Description: Membership in this role group is synchronized across services and managed centrally. This role group is not manageable through the administrator
+      portals. Members of this role group may include cross-service administrators, as well as external partner groups and Microsoft Support. By default, this group
+      may not be assigned any roles. However, it will be a member of the Security Administrators role groups and will inherit the capabilities of that role group.
+    Group Attribute: '7'
+    Num Members: '0'
+'1118':
+  groupname: Exchange Servers
+  type: domain
+  details:
+    Description: This group contains all the Exchange servers. This group shouldn't be deleted.
+    Group Attribute: '7'
+    Num Members: '2'
+'1119':
+  groupname: Exchange Trusted Subsystem
+  type: domain
+  details:
+    Description: This group contains Exchange servers that run Exchange cmdlets on behalf of users via the management service. Its members have permission to read
+      and modify all Exchange configuration, as well as user accounts and groups. This group should not be deleted.
+    Group Attribute: '7'
+    Num Members: '1'
+'1120':
+  groupname: Managed Availability Servers
+  type: domain
+  details:
+    Description: This group contains all the Managed Availability servers. This group shouldn't be deleted.
+    Group Attribute: '7'
+    Num Members: '2'
+'1121':
+  groupname: Exchange Windows Permissions
+  type: domain
+  details:
+    Description: This group contains Exchange servers that run Exchange cmdlets on behalf of users via the management service. Its members have permission to read
+      and modify all Windows accounts and groups. This group should not be deleted.
+    Group Attribute: '7'
+    Num Members: '1'
+'1122':
+  groupname: ExchangeLegacyInterop
+  type: domain
+  details:
+    Description: This group is for interoperability with Exchange 2003 servers within the same forest. This group should not be deleted.
+    Group Attribute: '7'
+    Num Members: '0'
+'1133':
+  groupname: $D31000-NSEL5BRJ63V7
+  type: domain
+  details:
+    Description: This group is used during Exchange setup and is not intended to be used for other purposes.
+    Group Attribute: '7'
+    Num Members: '1'
+'1148':
+  groupname: Service Accounts
+  type: domain
+  details:
+    Description: ''
+    Group Attribute: '7'
+    Num Members: '1'
+'1149':
+  groupname: Privileged IT Accounts
+  type: domain
+  details:
+    Description: ''
+    Group Attribute: '7'
+    Num Members: '1'
+'498':
+  groupname: Enterprise Read-only Domain Controllers
+  type: domain
+  details:
+    Description: Members of this group are Read-Only Domain Controllers in the enterprise
+    Group Attribute: '7'
+    Num Members: '0'
+'5101':
+  groupname: test
+  type: domain
+  details:
+    Description: ''
+    Group Attribute: '7'
+    Num Members: '0'
+'512':
+  groupname: Domain Admins
+  type: domain
+  details:
+    Description: Designated administrators of the domain
+    Group Attribute: '7'
+    Num Members: '1'
+'513':
+  groupname: Domain Users
+  type: domain
+  details:
+    Description: All domain users
+    Group Attribute: '7'
+    Num Members: '30'
+'514':
+  groupname: Domain Guests
+  type: domain
+  details:
+    Description: All domain guests
+    Group Attribute: '7'
+    Num Members: '1'
+'515':
+  groupname: Domain Computers
+  type: domain
+  details:
+    Description: All workstations and servers joined to the domain
+    Group Attribute: '7'
+    Num Members: '1'
+'516':
+  groupname: Domain Controllers
+  type: domain
+  details:
+    Description: All domain controllers in the domain
+    Group Attribute: '7'
+    Num Members: '1'
+'517':
+  groupname: Cert Publishers
+  type: local
+  details: null
+'518':
+  groupname: Schema Admins
+  type: domain
+  details:
+    Description: Designated administrators of the schema
+    Group Attribute: '7'
+    Num Members: '1'
+'519':
+  groupname: Enterprise Admins
+  type: domain
+  details:
+    Description: Designated administrators of the enterprise
+    Group Attribute: '7'
+    Num Members: '1'
+'520':
+  groupname: Group Policy Creator Owners
+  type: domain
+  details:
+    Description: Members in this group can modify group policy for the domain
+    Group Attribute: '7'
+    Num Members: '1'
+'521':
+  groupname: Read-only Domain Controllers
+  type: domain
+  details:
+    Description: Members of this group are Read-Only Domain Controllers in the domain
+    Group Attribute: '7'
+    Num Members: '0'
+'522':
+  groupname: Cloneable Domain Controllers
+  type: domain
+  details:
+    Description: Members of this group that are domain controllers may be cloned.
+    Group Attribute: '7'
+    Num Members: '0'
+'525':
+  groupname: Protected Users
+  type: domain
+  details:
+    Description: Members of this group are afforded additional protections against authentication security threats. See http://go.microsoft.com/fwlink/?LinkId=298939
+      for more information.
+    Group Attribute: '7'
+    Num Members: '0'
+'526':
+  groupname: Key Admins
+  type: domain
+  details:
+    Description: Members of this group can perform administrative actions on key objects within the domain.
+    Group Attribute: '7'
+    Num Members: '0'
+'527':
+  groupname: Enterprise Key Admins
+  type: domain
+  details:
+    Description: Members of this group can perform administrative actions on key objects within the forest.
+    Group Attribute: '7'
+    Num Members: '0'
+'544':
+  groupname: Administrators
+  type: builtin
+  details: null
+'545':
+  groupname: Users
+  type: builtin
+  details: null
+'546':
+  groupname: Guests
+  type: builtin
+  details: null
+'548':
+  groupname: Account Operators
+  type: builtin
+  details: null
+'549':
+  groupname: Server Operators
+  type: builtin
+  details: null
+'550':
+  groupname: Print Operators
+  type: builtin
+  details: null
+'551':
+  groupname: Backup Operators
+  type: builtin
+  details: null
+'552':
+  groupname: Replicator
+  type: builtin
+  details: null
+'553':
+  groupname: RAS and IAS Servers
+  type: local
+  details: null
+'554':
+  groupname: Pre-Windows 2000 Compatible Access
+  type: builtin
+  details: null
+'555':
+  groupname: Remote Desktop Users
+  type: builtin
+  details: null
+'556':
+  groupname: Network Configuration Operators
+  type: builtin
+  details: null
+'557':
+  groupname: Incoming Forest Trust Builders
+  type: builtin
+  details: null
+'558':
+  groupname: Performance Monitor Users
+  type: builtin
+  details: null
+'559':
+  groupname: Performance Log Users
+  type: builtin
+  details: null
+'560':
+  groupname: Windows Authorization Access Group
+  type: builtin
+  details: null
+'561':
+  groupname: Terminal Server License Servers
+  type: builtin
+  details: null
+'562':
+  groupname: Distributed COM Users
+  type: builtin
+  details: null
+'568':
+  groupname: IIS_IUSRS
+  type: builtin
+  details: null
+'569':
+  groupname: Cryptographic Operators
+  type: builtin
+  details: null
+'571':
+  groupname: Allowed RODC Password Replication Group
+  type: local
+  details: null
+'572':
+  groupname: Denied RODC Password Replication Group
+  type: local
+  details: null
+'573':
+  groupname: Event Log Readers
+  type: builtin
+  details: null
+'574':
+  groupname: Certificate Service DCOM Access
+  type: builtin
+  details: null
+'575':
+  groupname: RDS Remote Access Servers
+  type: builtin
+  details: null
+'576':
+  groupname: RDS Endpoint Servers
+  type: builtin
+  details: null
+'577':
+  groupname: RDS Management Servers
+  type: builtin
+  details: null
+'578':
+  groupname: Hyper-V Administrators
+  type: builtin
+  details: null
+'579':
+  groupname: Access Control Assistance Operators
+  type: builtin
+  details: null
+'580':
+  groupname: Remote Management Users
+  type: builtin
+  details: null
+'581':
+  groupname: System Managed Accounts Group
+  type: builtin
+  details: null
+'582':
+  groupname: Storage Replica Administrators
+  type: builtin
+  details: null[0m
+
+ ======================================
+|    Shares via RPC on 10.10.10.161    |
+ ======================================
+[V] Attempting to get share list using authentication, running command: smbclient -W HTB -U % -s /tmp/tmp_82g9z_6 -t 5 -L //10.10.10.161 -g
+[94m[*] Enumerating shares[0m
+[92m[+] Found 0 share(s) for user '' with password '', try a different user[0m
+
+ =========================================
+|    Policies via RPC for 10.10.10.161    |
+ =========================================
+[94m[*] Trying port 445/tcp[0m
+[92m[+] Found policy:
+Domain password information:
+  Password history length: 24
+  Minimum password length: 7
+  Maximum password age: not set
+  Password properties:
+  - DOMAIN_PASSWORD_COMPLEX: false
+  - DOMAIN_PASSWORD_NO_ANON_CHANGE: false
+  - DOMAIN_PASSWORD_NO_CLEAR_CHANGE: false
+  - DOMAIN_PASSWORD_LOCKOUT_ADMINS: false
+  - DOMAIN_PASSWORD_PASSWORD_STORE_CLEARTEXT: false
+  - DOMAIN_PASSWORD_REFUSE_PASSWORD_CHANGE: false
+Domain lockout information:
+  Lockout observation window: 30 minutes
+  Lockout duration: 30 minutes
+  Lockout threshold: None
+Domain logoff information:
+  Force logoff time: not set[0m
+
+ =========================================
+|    Printers via RPC for 10.10.10.161    |
+ =========================================
+[V] Attempting to get printer info, running command: rpcclient -W HTB -U % -s /tmp/tmp_82g9z_6 -c enumprinters 10.10.10.161
+[91m[-] Could not get printer info via 'enumprinters': STATUS_ACCESS_DENIED[0m
+
+Completed after 111.60 seconds
+
+
+```
