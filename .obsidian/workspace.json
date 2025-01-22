@@ -178,6 +178,7 @@
   },
   "active": "ea33c929205ca331",
   "lastOpenFiles": [
+    "Labs/htb/sauna/20250122185116_BloodHound.zip",
     "Resources/linux/docker-compose",
     "Labs/htb/sauna/scans/report.md/10.10.10.175/Commands.md",
     "Labs/htb/sauna/scans/report.md/10.10.10.175/Patterns.md",
@@ -213,7 +214,6 @@
     "Labs/htb/sauna/scans/report.md/10.10.10.175/Services/Service - tcp-80-http/Known Security.md",
     "Labs/htb/sauna/scans/report.md/10.10.10.175/Services/Service - tcp-80-http/Directory Buster.md",
     "Labs/htb/sauna/scans/report.md/10.10.10.175/Services/Service - tcp-80-http/Curl.md",
-    "Labs/htb/sauna/scans/report.md/10.10.10.175/Services/Service - tcp-80-http",
     "Labs/htb/sauna/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/htb/flight/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/medtech/internal_ips/results/172.16.185.11/scans/tcp47001/tcp_47001_http_screenshot.png",

