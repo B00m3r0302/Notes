@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+                "file": "Labs/htb/forest/Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 21 Active Directory Introduction and Enumeration"
+              "title": "Notes"
             }
           }
         ]
@@ -73,8 +73,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -163,8 +162,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e4d175e95e2d2644",
+  "active": "ea33c929205ca331",
   "lastOpenFiles": [
+    "Resources/secretsdump.py",
+    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
     "Labs/htb/forest/hashes.domain.txt",
     "Labs/htb/forest/Notes.md",
     "Course Notes/Active Directory Pasteables.md",
@@ -178,7 +179,6 @@
     "Course Notes/Chapter 16 windows Privilege Escalation.md",
     "Course Notes/Chapter 17 Linux Privilege Escalation.md",
     "Course Notes/Windows Privilege Escalation.md",
-    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
     "Course Notes/General Notes.md",
     "Course Notes/Chapter Y - Title 1 1 1 1 1 1 1 1 1 1.md",
     "Course Notes/Course Notes Index.md",
@@ -200,7 +200,6 @@
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-593-ncacn_http",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-464-kpasswd5",
     "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-445-microsoft-ds",
-    "Labs/htb/flight/scans/report.md/10.10.11.187/Services/Service - tcp-389-ldap",
     "Labs/htb/flight/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/medtech/internal_ips/results/172.16.185.11/scans/tcp47001/tcp_47001_http_screenshot.png",
     "Labs/medtech/internal_ips/172.16.185.13/scans/tcp47001/tcp_47001_http_screenshot.png",
