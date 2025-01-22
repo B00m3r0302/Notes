@@ -1,0 +1,26 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -p 53 --script="banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Notes/Labs/htb/sauna/scans/tcp53/tcp_53_dns_nmap.txt" -oX "/home/kali/Notes/Labs/htb/sauna/scans/tcp53/xml/tcp_53_dns_nmap.xml" 10.10.10.175
+```
+
+[/home/kali/Notes/Labs/htb/sauna/scans/tcp53/tcp_53_dns_nmap.txt](file:///home/kali/Notes/Labs/htb/sauna/scans/tcp53/tcp_53_dns_nmap.txt):
+
+```
+# Nmap 7.95 scan initiated Wed Jan 22 09:52:00 2025 as: /usr/lib/nmap/nmap --privileged -vv --reason -Pn -T4 -sV -p 53 "--script=banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN /home/kali/Notes/Labs/htb/sauna/scans/tcp53/tcp_53_dns_nmap.txt -oX /home/kali/Notes/Labs/htb/sauna/scans/tcp53/xml/tcp_53_dns_nmap.xml 10.10.10.175
+Nmap scan report for 10.10.10.175
+Host is up, received user-set (0.052s latency).
+Scanned at 2025-01-22 09:52:11 EST for 21s
+
+PORT   STATE SERVICE REASON          VERSION
+53/tcp open  domain  syn-ack ttl 127 Simple DNS Plus
+|_dns-nsec-enum: Can't determine domain for host 10.10.10.175; use dns-nsec-enum.domains script arg.
+|_dns-nsec3-enum: Can't determine domain for host 10.10.10.175; use dns-nsec3-enum.domains script arg.
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.10.10.175"; use dns-brute.domain script argument.
+
+Read data files from: /usr/share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jan 22 09:52:32 2025 -- 1 IP address (1 host up) scanned in 32.59 seconds
+
+```

