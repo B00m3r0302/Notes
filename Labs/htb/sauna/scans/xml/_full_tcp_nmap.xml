@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Wed Jan 22 09:48:47 2025 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Notes/Labs/htb/sauna/scans/_full_tcp_nmap.txt -oX /home/kali/Notes/Labs/htb/sauna/scans/xml/_full_tcp_nmap.xml 10.10.10.175 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Notes/Labs/htb/sauna/scans/_full_tcp_nmap.txt -oX /home/kali/Notes/Labs/htb/sauna/scans/xml/_full_tcp_nmap.xml 10.10.10.175" start="1737557327" startstr="Wed Jan 22 09:48:47 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1737557327"/>
+<taskend task="NSE" time="1737557327"/>
+<taskbegin task="NSE" time="1737557327"/>
+<taskend task="NSE" time="1737557327"/>
+<taskbegin task="NSE" time="1737557327"/>
+<taskend task="NSE" time="1737557327"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1737557327"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1737557338"/>
+<taskbegin task="SYN Stealth Scan" time="1737557338"/>
+<taskprogress task="SYN Stealth Scan" time="1737557369" percent="17.70" remaining="145" etc="1737557513"/>
+<taskprogress task="SYN Stealth Scan" time="1737557399" percent="44.23" remaining="77" etc="1737557476"/>
+<taskprogress task="SYN Stealth Scan" time="1737557429" percent="44.44" remaining="114" etc="1737557543"/>
+<taskprogress task="SYN Stealth Scan" time="1737557459" percent="44.66" remaining="150" etc="1737557609"/>
+<taskprogress task="SYN Stealth Scan" time="1737557489" percent="44.87" remaining="186" etc="1737557675"/>
+<taskprogress task="SYN Stealth Scan" time="1737557519" percent="45.16" remaining="220" etc="1737557739"/>
+<taskprogress task="SYN Stealth Scan" time="1737557558" percent="47.70" remaining="242" etc="1737557799"/>
+<taskprogress task="SYN Stealth Scan" time="1737557633" percent="52.75" remaining="265" etc="1737557897"/>
+<taskprogress task="SYN Stealth Scan" time="1737557666" percent="52.84" remaining="293" etc="1737557959"/>
+<taskprogress task="SYN Stealth Scan" time="1737557705" percent="52.94" remaining="327" etc="1737558031"/>
+<taskprogress task="SYN Stealth Scan" time="1737557747" percent="53.04" remaining="363" etc="1737558109"/>
+<taskprogress task="SYN Stealth Scan" time="1737557984" percent="61.65" remaining="402" etc="1737558386"/>
+<taskprogress task="SYN Stealth Scan" time="1737558092" percent="68.39" remaining="349" etc="1737558440"/>
+<taskprogress task="SYN Stealth Scan" time="1737558332" percent="77.30" remaining="292" etc="1737558624"/>
+<taskprogress task="SYN Stealth Scan" time="1737558539" percent="84.19" remaining="226" etc="1737558765"/>
+<taskprogress task="SYN Stealth Scan" time="1737558734" percent="90.13" remaining="153" etc="1737558887"/>
+<taskprogress task="SYN Stealth Scan" time="1737558803" percent="95.14" remaining="75" etc="1737558878"/>
+<taskprogress task="SYN Stealth Scan" time="1737558878" percent="96.14" remaining="62" etc="1737558940"/>
+<taskprogress task="SYN Stealth Scan" time="1737558941" percent="96.66" remaining="56" etc="1737558996"/>
+<taskend task="SYN Stealth Scan" time="1737558987" extrainfo="65535 total ports"/>
+<taskbegin task="Service scan" time="1737558987"/>
+<taskend task="Service scan" time="1737559054" extrainfo="19 services on 1 host"/>
+<taskbegin task="Traceroute" time="1737559060"/>
+<taskend task="Traceroute" time="1737559069"/>
+<taskbegin task="NSE" time="1737559069"/>
+<taskprogress task="NSE" time="1737559100" percent="98.30" remaining="1" etc="1737559101"/>
+<taskprogress task="NSE" time="1737559130" percent="98.45" remaining="1" etc="1737559131"/>
+<taskprogress task="NSE" time="1737559160" percent="98.53" remaining="2" etc="1737559161"/>
+<taskend task="NSE" time="1737559172"/>
+<taskbegin task="NSE" time="1737559172"/>
+<taskend task="NSE" time="1737559177"/>
+<taskbegin task="NSE" time="1737559177"/>
+<taskend task="NSE" time="1737559177"/>
+<host starttime="1737557338" endtime="1737559177"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.175" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65516">
+<extrareasons reason="no-response" count="65516" proto="tcp" ports="1-52,54-79,81-87,89-134,136-138,140-388,390-444,446-463,465-592,594-635,637-3268,3270-5984,5986-9388,9390-49666,49668-49672,49675-49676,49678-49694,49696-49717,49719-65535"/>
+</extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" product="Simple DNS Plus" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:jh_software:simple_dns_plus</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft IIS httpd" version="10.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:internet_information_services:10.0</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kerberos-sec" product="Microsoft Windows Kerberos" extrainfo="server time: 2025-01-22 23:16:35Z" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:kerberos</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: EGOTISTICAL-BANK.LOCAL0., Site: Default-First-Site-Name" hostname="SAUNA" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kpasswd5" method="table" conf="3"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="9389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="mc-nmf" product=".NET Message Framing" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49673"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49674"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49677"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49695"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49718"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="53"/>
+<osfingerprint fingerprint="SCAN(V=7.95%E=4%D=1/22%OT=53%CT=%CU=%PV=Y%G=N%TM=67910C89%P=x86_64-pc-linux-gnu)&#xa;SEQ()&#xa;ECN(R=N)&#xa;T1(R=N)&#xa;T2(R=N)&#xa;T3(R=N)&#xa;T4(R=N)&#xa;U1(R=N)&#xa;IE(R=N)&#xa;"/>
+</os>
+<hostscript><script id="smb2-time" output="Protocol negotiation failed (SMB2)"/><script id="p2p-conficker" output="&#xa;  Checking for Conficker.C or higher...&#xa;  Check 1 (port 35558/tcp): CLEAN (Timeout)&#xa;  Check 2 (port 50490/tcp): CLEAN (Timeout)&#xa;  Check 3 (port 57297/udp): CLEAN (Timeout)&#xa;  Check 4 (port 32549/udp): CLEAN (Timeout)&#xa;  0/4 checks are positive: Host is CLEAN or ports are blocked&#xa;"/><script id="smb2-security-mode" output="Couldn&apos;t establish a SMBv2 connection."/></hostscript><trace port="139" proto="tcp">
+</trace>
+<times srtt="58330" rttvar="3330" to="100000"/>
+</host>
+<taskbegin task="NSE" time="1737559177"/>
+<taskend task="NSE" time="1737559177"/>
+<taskbegin task="NSE" time="1737559177"/>
+<taskend task="NSE" time="1737559177"/>
+<taskbegin task="NSE" time="1737559177"/>
+<taskend task="NSE" time="1737559177"/>
+<runstats><finished time="1737559177" timestr="Wed Jan 22 10:19:37 2025" summary="Nmap done at Wed Jan 22 10:19:37 2025; 1 IP address (1 host up) scanned in 1849.45 seconds" elapsed="1849.45" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
