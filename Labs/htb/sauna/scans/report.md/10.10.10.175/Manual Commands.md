@@ -1,0 +1,91 @@
+```bash
+[*] domain on tcp/53
+
+	[-] Use dnsrecon to bruteforce subdomains of a DNS domain.
+
+		dnsrecon -n 10.10.10.175 -d <DOMAIN-NAME> -D /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t brt 2>&1 | tee /home/kali/Notes/Labs/htb/sauna/scans/tcp53/tcp_53_dnsrecon_subdomain_bruteforce.txt
+
+	[-] Use dnsrecon to automatically query data from the DNS server. You must specify the target domain name.
+
+		dnsrecon -n 10.10.10.175 -d <DOMAIN-NAME> 2>&1 | tee /home/kali/Notes/Labs/htb/sauna/scans/tcp53/tcp_53_dnsrecon_default_manual.txt
+
+[*] http on tcp/80
+
+	[-] (feroxbuster) Multi-threaded recursive directory/file enumeration for web servers using various wordlists:
+
+		feroxbuster -u http://10.10.10.175:80 -t 10 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -e -r -o /home/kali/Notes/Labs/htb/sauna/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt
+
+	[-] Credential bruteforcing commands (don't run these without modifying them):
+
+		hydra -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e nsr -s 80 -o "/home/kali/Notes/Labs/htb/sauna/scans/tcp80/tcp_80_http_auth_hydra.txt" http-get://10.10.10.175/path/to/auth/area
+
+		medusa -U "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e ns -n 80 -O "/home/kali/Notes/Labs/htb/sauna/scans/tcp80/tcp_80_http_auth_medusa.txt" -M http -h 10.10.10.175 -m DIR:/path/to/auth/area
+
+		hydra -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e nsr -s 80 -o "/home/kali/Notes/Labs/htb/sauna/scans/tcp80/tcp_80_http_form_hydra.txt" http-post-form://10.10.10.175/path/to/login.php:"username=^USER^&password=^PASS^":"invalid-login-message"
+
+		medusa -U "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e ns -n 80 -O "/home/kali/Notes/Labs/htb/sauna/scans/tcp80/tcp_80_http_form_medusa.txt" -M web-form -h 10.10.10.175 -m FORM:/path/to/login.php -m FORM-DATA:"post?username=&password=" -m DENY-SIGNAL:"invalid login message"
+
+	[-] (wpscan) WordPress Security Scanner (useful if WordPress is found):
+
+		wpscan --url http://10.10.10.175:80/ --no-update -e vp,vt,tt,cb,dbe,u,m --plugins-detection aggressive --plugins-version-detection aggressive -f cli-no-color 2>&1 | tee "/home/kali/Notes/Labs/htb/sauna/scans/tcp80/tcp_80_http_wpscan.txt"
+
+[*] msrpc on tcp/135
+
+	[-] RPC Client:
+
+		rpcclient -p 135 -U "" 10.10.10.175
+
+[*] netbios-ssn on tcp/139
+
+	[-] Bruteforce SMB
+
+		crackmapexec smb 10.10.10.175 --port=139 -u "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -p "/usr/share/seclists/Passwords/darkweb2017-top100.txt"
+
+	[-] Nmap scans for SMB vulnerabilities that could potentially cause a DoS if scanned (according to Nmap). Be careful:
+
+		nmap -vv --reason -Pn -T4 -sV -p 139 --script="smb-vuln-* and dos" --script-args="unsafe=1" -oN "/home/kali/Notes/Labs/htb/sauna/scans/tcp139/tcp_139_smb_vulnerabilities.txt" -oX "/home/kali/Notes/Labs/htb/sauna/scans/tcp139/xml/tcp_139_smb_vulnerabilities.xml" 10.10.10.175
+
+[*] ldap on tcp/389
+
+	[-] ldapsearch command (modify before running):
+
+		ldapsearch -x -D "<username>" -w "<password>" -H ldap://10.10.10.175:389 -b "dc=example,dc=com" -s sub "(objectclass=*)" 2>&1 | tee > "/home/kali/Notes/Labs/htb/sauna/scans/tcp389/tcp_389_ldap_all-entries.txt"
+
+[*] microsoft-ds on tcp/445
+
+	[-] Bruteforce SMB
+
+		crackmapexec smb 10.10.10.175 --port=445 -u "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -p "/usr/share/seclists/Passwords/darkweb2017-top100.txt"
+
+	[-] Lookup SIDs
+
+		impacket-lookupsid '[username]:[password]@10.10.10.175'
+
+	[-] Nmap scans for SMB vulnerabilities that could potentially cause a DoS if scanned (according to Nmap). Be careful:
+
+		nmap -vv --reason -Pn -T4 -sV -p 445 --script="smb-vuln-* and dos" --script-args="unsafe=1" -oN "/home/kali/Notes/Labs/htb/sauna/scans/tcp445/tcp_445_smb_vulnerabilities.txt" -oX "/home/kali/Notes/Labs/htb/sauna/scans/tcp445/xml/tcp_445_smb_vulnerabilities.xml" 10.10.10.175
+
+[*] ldap on tcp/3268
+
+	[-] ldapsearch command (modify before running):
+
+		ldapsearch -x -D "<username>" -w "<password>" -H ldap://10.10.10.175:3268 -b "dc=example,dc=com" -s sub "(objectclass=*)" 2>&1 | tee > "/home/kali/Notes/Labs/htb/sauna/scans/tcp3268/tcp_3268_ldap_all-entries.txt"
+
+[*] wsman on tcp/5985
+
+	[-] Bruteforce logins:
+
+		crackmapexec winrm 10.10.10.175 -d '<domain>' -u '/usr/share/seclists/Usernames/top-usernames-shortlist.txt' -p '/usr/share/seclists/Passwords/darkweb2017-top100.txt'
+
+	[-] Check login (requires credentials):
+
+		crackmapexec winrm 10.10.10.175 -d '<domain>' -u '<username>' -p '<password>'
+
+	[-] Evil WinRM (gem install evil-winrm):
+
+		evil-winrm -u '<user>' -p '<password>' -i 10.10.10.175
+
+		evil-winrm -u '<user>' -H '<hash>' -i 10.10.10.175
+
+
+```

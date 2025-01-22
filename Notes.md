@@ -1,0 +1,3 @@
+- Looking for subdomains with commands in notes 
+- No luck
+- 

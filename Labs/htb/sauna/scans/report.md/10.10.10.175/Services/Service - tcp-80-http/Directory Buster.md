@@ -1,3 +1,10 @@
+```bash
+feroxbuster -u http://10.10.10.175:80/ -t 10 -w /home/kali/.local/share/AutoRecon/wordlists/dirbuster.txt -x "txt,html,php,asp,aspx,jsp" -v -k -n -q -e -r -o "/home/kali/Notes/Labs/htb/sauna/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt"
+```
+
+[/home/kali/Notes/Labs/htb/sauna/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt](file:///home/kali/Notes/Labs/htb/sauna/scans/tcp80/tcp_80_http_feroxbuster_dirbuster.txt):
+
+```
 Configuration {
     kind: "configuration",
     wordlist: "/home/kali/.local/share/AutoRecon/wordlists/dirbuster.txt",
@@ -322,3 +329,5 @@ Configuration {
 403      GET       29l       92w     1233c http://10.10.10.175/FONTS/
 200      GET      684l     1814w    38059c http://10.10.10.175/Single.html
 404      GET        0l        0w     1245c http://10.10.10.175/instrucciones.txt
+
+```
