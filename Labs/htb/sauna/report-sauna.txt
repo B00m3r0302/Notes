@@ -1,0 +1,1031 @@
+------------------------------------------------------------------
+Title: Insecure Permissions On Files / Directories In Current User's PATH
+
+[ description ]
+
+Some programs/directories in the path of the user used to perform this audit have weak permissions.
+
+The following programs/DLLs in current user's PATH can be manipulated by non-administrator users:
+
+    File C:\Users\svc_loanmgr\AppData\Local\Microsoft\WindowsApps\wlbsctrl.dll has weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: FILE_WRITE_DATA FILE_APPEND_DATA DELETE WRITE_DAC WRITE_OWNER
+    File C:\Users\svc_loanmgr\AppData\Local\Microsoft\WindowsApps has weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: FILE_ADD_FILE FILE_ADD_SUBDIRECTORY FILE_WRITE_EA FILE_DELETE_CHILD FILE_WRITE_ATTRIBUTES DELETE WRITE_DAC WRITE_OWNER
+
+[ recommendation ]
+
+Review the permissions that have been granted to non-administrative users and revoke access where possible.
+
+------------------------------------------------------------------
+Title: Non-Admin Can Change File Paths In Registry
+
+[ description ]
+
+A walk of the registry found some registry keys that can be changed by non-admin users (KEY_SET_VALUE permission). The data in some of those keys appears to be a file or directory path (e.g. c:\..., \host\share, \.\pipe\...). This is a simple regular-expression match so may report false positives. In some instances it may be possible for an low-privilged user to cause other users to follow a malicious UNC file path, forcing disclosure of their netntlm password hash or SMB relay attack. Other path-based attacks may also be possible.
+
+The following registry value are affected:
+
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModel\CloudExtensions\Microsoft-Windows-Activation has data ''C:\\Windows\\SystemResources\\Windows.Foundation.Diagnostics.ErrorDetails\\Windows.Activation.pri'' and permissions:
+    ALLOW NT AUTHORITY\NETWORK SERVICE: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRoot has data ''C:\\Windows'' and permissions:
+    ALLOW NT SERVICE\sppsvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\PathName has data ''C:\\Windows'' and permissions:
+    ALLOW NT SERVICE\sppsvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\MirrorCompatBinaryExtension has data ''%SystemRoot%\\System32\\MirrorDrvCompat.dll'' and permissions:
+    ALLOW NT AUTHORITY\LOCAL SERVICE: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Search\InstallDirectory has data ''%systemroot%\\system32\\'' and permissions:
+    ALLOW NT SERVICE\WSearch: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Search\InstallDirectory\ has data ''%systemroot%\\system32\\'' and permissions:
+    ALLOW NT SERVICE\WSearch: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CID\76dabd2c-b7ef-4d7c-8d19-64258f22327b\CustomProperties\LOG\Path\ has data ''C:\\Windows\\system32\\MSDtc'' and permissions:
+    ALLOW NT SERVICE\MSDTC: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CID\76dabd2c-b7ef-4d7c-8d19-64258f22327b\CustomProperties\Service\Path\ has data ''C:\\Windows\\system32'' and permissions:
+    ALLOW NT SERVICE\MSDTC: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CID.Local\76dabd2c-b7ef-4d7c-8d19-64258f22327b\CustomProperties\LOG\Path\ has data ''C:\\Windows\\system32\\MSDtc'' and permissions:
+    ALLOW NT SERVICE\MSDTC: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CID.Local\76dabd2c-b7ef-4d7c-8d19-64258f22327b\CustomProperties\Service\Path\ has data ''C:\\Windows\\system32'' and permissions:
+    ALLOW NT SERVICE\MSDTC: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\AxInstSV\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\AxInstSV.dll'' and permissions:
+    ALLOW NT SERVICE\AxInstSV: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\BthAvctpSvc\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\BthAvctpSvc.dll'' and permissions:
+    ALLOW NT SERVICE\BthAvctpSvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\BthAvctpSvc\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\BthAvctpSvc.dll'' and permissions:
+    ALLOW NT SERVICE\BthAvctpSvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Dnscache\Parameters\extension has data ''%SystemRoot%\\System32\\dnsext.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Dnscache\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\dnsrslvr.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Eaphost\ImagePath has data ''%SystemRoot%\\System32\\svchost.exe -k netsvcs -p'' and permissions:
+    ALLOW [unknown]\S-1-5-21-3799463084-4290437372-2261193466-500: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\System\Dnsapi\EventMessageFile has data ''%Systemroot%\\system32\\netevent.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\System\Dnsapi\ParameterMessageFile has data ''%Systemroot%\\system32\\kernel32.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\System\Dnscache\EventMessageFile has data ''%Systemroot%\\system32\\netevent.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\System\Dnscache\ParameterMessageFile has data ''%Systemroot%\\system32\\kernel32.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\EventLog\System\W32Time\EventMessageFile has data ''%Systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\iphlpsvc\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\iphlpsvc.dll'' and permissions:
+    ALLOW NT SERVICE\iphlpsvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\NcbService\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\ncbservice.dll'' and permissions:
+    ALLOW NT SERVICE\NcbService: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Defaults\FirewallPolicy\DomainProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Defaults\FirewallPolicy\PublicProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Defaults\FirewallPolicy\StandardProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\SstpSvc\Parameters\ServiceDll has data ''%SystemRoot%\\system32\\sstpsvc.dll'' and permissions:
+    ALLOW NT SERVICE\SstpSvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Tcpip\Parameters\DataBasePath has data ''%SystemRoot%\\System32\\drivers\\etc'' and permissions:
+    ALLOW NT AUTHORITY\NETWORK SERVICE: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Tcpip\Parameters\DataBasePath has data ''%SystemRoot%\\System32\\drivers\\etc'' and permissions:
+    ALLOW NT SERVICE\Dhcp: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Tcpip\Parameters\DataBasePath has data ''%SystemRoot%\\System32\\drivers\\etc'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3981856537-581775623-1136376035-2066872258-409572886: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\W32Time\ImagePath has data ''%SystemRoot%\\system32\\svchost.exe -k LocalService'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\W32Time\Parameters\ServiceDll has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\W32Time\TimeProviders\NtpClient\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW NT SERVICE\W32Time: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\W32Time\TimeProviders\NtpClient\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\W32Time\TimeProviders\NtpServer\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW NT SERVICE\W32Time: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\W32Time\TimeProviders\NtpServer\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\W32Time\TimeProviders\VMICTimeProvider\DllName has data ''%SystemRoot%\\System32\\vmictimeprovider.dll'' and permissions:
+    ALLOW NT SERVICE\W32Time: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\W32Time\TimeProviders\VMICTimeProvider\DllName has data ''%SystemRoot%\\System32\\vmictimeprovider.dll'' and permissions:
+    ALLOW NT SERVICE\vmictimesync: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\AxInstSV\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\AxInstSV.dll'' and permissions:
+    ALLOW NT SERVICE\AxInstSV: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\BthAvctpSvc\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\BthAvctpSvc.dll'' and permissions:
+    ALLOW NT SERVICE\BthAvctpSvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\BthAvctpSvc\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\BthAvctpSvc.dll'' and permissions:
+    ALLOW NT SERVICE\BthAvctpSvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Dnscache\Parameters\extension has data ''%SystemRoot%\\System32\\dnsext.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Dnscache\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\dnsrslvr.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Eaphost\ImagePath has data ''%SystemRoot%\\System32\\svchost.exe -k netsvcs -p'' and permissions:
+    ALLOW [unknown]\S-1-5-21-3799463084-4290437372-2261193466-500: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\EventLog\System\Dnsapi\EventMessageFile has data ''%Systemroot%\\system32\\netevent.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\EventLog\System\Dnsapi\ParameterMessageFile has data ''%Systemroot%\\system32\\kernel32.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\EventLog\System\Dnscache\EventMessageFile has data ''%Systemroot%\\system32\\netevent.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\EventLog\System\Dnscache\ParameterMessageFile has data ''%Systemroot%\\system32\\kernel32.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\EventLog\System\W32Time\EventMessageFile has data ''%Systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\iphlpsvc\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\iphlpsvc.dll'' and permissions:
+    ALLOW NT SERVICE\iphlpsvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\NcbService\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\ncbservice.dll'' and permissions:
+    ALLOW NT SERVICE\NcbService: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\SharedAccess\Defaults\FirewallPolicy\DomainProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\SharedAccess\Defaults\FirewallPolicy\PublicProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\SharedAccess\Defaults\FirewallPolicy\StandardProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\SstpSvc\Parameters\ServiceDll has data ''%SystemRoot%\\system32\\sstpsvc.dll'' and permissions:
+    ALLOW NT SERVICE\SstpSvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Tcpip\Parameters\DataBasePath has data ''%SystemRoot%\\System32\\drivers\\etc'' and permissions:
+    ALLOW NT AUTHORITY\NETWORK SERVICE: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Tcpip\Parameters\DataBasePath has data ''%SystemRoot%\\System32\\drivers\\etc'' and permissions:
+    ALLOW NT SERVICE\Dhcp: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Tcpip\Parameters\DataBasePath has data ''%SystemRoot%\\System32\\drivers\\etc'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3981856537-581775623-1136376035-2066872258-409572886: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\W32Time\ImagePath has data ''%SystemRoot%\\system32\\svchost.exe -k LocalService'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\W32Time\Parameters\ServiceDll has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\W32Time\TimeProviders\NtpClient\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW NT SERVICE\W32Time: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\W32Time\TimeProviders\NtpClient\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\W32Time\TimeProviders\NtpServer\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW NT SERVICE\W32Time: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\W32Time\TimeProviders\NtpServer\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\W32Time\TimeProviders\VMICTimeProvider\DllName has data ''%SystemRoot%\\System32\\vmictimeprovider.dll'' and permissions:
+    ALLOW NT SERVICE\W32Time: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\W32Time\TimeProviders\VMICTimeProvider\DllName has data ''%SystemRoot%\\System32\\vmictimeprovider.dll'' and permissions:
+    ALLOW NT SERVICE\vmictimesync: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AxInstSV\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\AxInstSV.dll'' and permissions:
+    ALLOW NT SERVICE\AxInstSV: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\BthAvctpSvc\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\BthAvctpSvc.dll'' and permissions:
+    ALLOW NT SERVICE\BthAvctpSvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\BthAvctpSvc\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\BthAvctpSvc.dll'' and permissions:
+    ALLOW NT SERVICE\BthAvctpSvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters\extension has data ''%SystemRoot%\\System32\\dnsext.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\dnsrslvr.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Eaphost\ImagePath has data ''%SystemRoot%\\System32\\svchost.exe -k netsvcs -p'' and permissions:
+    ALLOW [unknown]\S-1-5-21-3799463084-4290437372-2261193466-500: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\System\Dnsapi\EventMessageFile has data ''%Systemroot%\\system32\\netevent.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\System\Dnsapi\ParameterMessageFile has data ''%Systemroot%\\system32\\kernel32.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\System\Dnscache\EventMessageFile has data ''%Systemroot%\\system32\\netevent.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\System\Dnscache\ParameterMessageFile has data ''%Systemroot%\\system32\\kernel32.dll'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\EventLog\System\W32Time\EventMessageFile has data ''%Systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\iphlpsvc\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\iphlpsvc.dll'' and permissions:
+    ALLOW NT SERVICE\iphlpsvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NcbService\Parameters\ServiceDll has data ''%SystemRoot%\\System32\\ncbservice.dll'' and permissions:
+    ALLOW NT SERVICE\NcbService: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Defaults\FirewallPolicy\DomainProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Defaults\FirewallPolicy\PublicProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Defaults\FirewallPolicy\StandardProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\Logging\LogFilePath has data ''%systemroot%\\system32\\LogFiles\\Firewall\\pfirewall.log'' and permissions:
+    ALLOW NT SERVICE\mpssvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SstpSvc\Parameters\ServiceDll has data ''%SystemRoot%\\system32\\sstpsvc.dll'' and permissions:
+    ALLOW NT SERVICE\SstpSvc: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\DataBasePath has data ''%SystemRoot%\\System32\\drivers\\etc'' and permissions:
+    ALLOW NT AUTHORITY\NETWORK SERVICE: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\DataBasePath has data ''%SystemRoot%\\System32\\drivers\\etc'' and permissions:
+    ALLOW NT SERVICE\Dhcp: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\DataBasePath has data ''%SystemRoot%\\System32\\drivers\\etc'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3981856537-581775623-1136376035-2066872258-409572886: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\ImagePath has data ''%SystemRoot%\\system32\\svchost.exe -k LocalService'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\Parameters\ServiceDll has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW NT SERVICE\W32Time: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders\NtpServer\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW NT SERVICE\W32Time: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders\NtpServer\DllName has data ''%systemroot%\\system32\\w32time.dll'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders\VMICTimeProvider\DllName has data ''%SystemRoot%\\System32\\vmictimeprovider.dll'' and permissions:
+    ALLOW NT SERVICE\W32Time: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders\VMICTimeProvider\DllName has data ''%SystemRoot%\\System32\\vmictimeprovider.dll'' and permissions:
+    ALLOW NT SERVICE\vmictimesync: KEY_SET_VALUE
+
+[ recommendation ]
+
+Set strong registry permissions on any values that high privileged processes use to determine paths.
+
+------------------------------------------------------------------
+Title: Non-Admin Can Change Registry Paths That Are Stored In The Registry
+
+[ description ]
+
+A walk of the registry found some registry keys that can be changed by non-admin users (KEY_SET_VALUE permission). The data in some of those keys appears to be a registry path (e.g. SYSTEM\...). This is a simple regular-expression match so may report false positives. In some instances it may be possible for an low-privilged user to cause other users to follow read malicious data from the registry. The may or may not lead to privilege escalation depending on the context.
+
+The following registry value are affected:
+
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Dhcp\Parameters\Options\46\RegLocation has data ''SYSTEM\\CurrentControlSet\\Services\\NetBT\\Parameters\\DhcpNodeType'' and permissions:
+    ALLOW NT SERVICE\Dhcp: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\Dhcp\Parameters\Options\47\RegLocation has data ''SYSTEM\\CurrentControlSet\\Services\\NetBT\\Parameters\\DhcpScopeID'' and permissions:
+    ALLOW NT SERVICE\Dhcp: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Dhcp\Parameters\Options\46\RegLocation has data ''SYSTEM\\CurrentControlSet\\Services\\NetBT\\Parameters\\DhcpNodeType'' and permissions:
+    ALLOW NT SERVICE\Dhcp: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\Dhcp\Parameters\Options\47\RegLocation has data ''SYSTEM\\CurrentControlSet\\Services\\NetBT\\Parameters\\DhcpScopeID'' and permissions:
+    ALLOW NT SERVICE\Dhcp: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dhcp\Parameters\Options\46\RegLocation has data ''SYSTEM\\CurrentControlSet\\Services\\NetBT\\Parameters\\DhcpNodeType'' and permissions:
+    ALLOW NT SERVICE\Dhcp: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dhcp\Parameters\Options\47\RegLocation has data ''SYSTEM\\CurrentControlSet\\Services\\NetBT\\Parameters\\DhcpScopeID'' and permissions:
+    ALLOW NT SERVICE\Dhcp: KEY_SET_VALUE
+
+[ recommendation ]
+
+Set strong registry permissions on any values that high privileged processes use to determine registry paths.
+
+------------------------------------------------------------------
+Title: SMB Client Does Not Mandate Packet Signing
+
+[ description ]
+
+SMB connection originating from this host might not negotiate pack signing. As signing protects data from modification in transit, clients may end up sending or receiving data that has been maliciously altered by an attacker. This could lead to a compromise of the client or server.
+
+The following registry key shows the current policy setting:
+
+    Reg key: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\LanmanWorkstation\Parameters\RequireSecuritySignature, Value: 0
+
+[ recommendation ]
+
+Set the security policy setting 'Microsoft network server: Digitally sign communications (always)' to Enabled.
+
+------------------------------------------------------------------
+Title: Non-Admin Can Change Usernames That Are Stored In The Registry
+
+[ description ]
+
+A walk of the registry found some registry keys that can be changed by non-admin users (KEY_SET_VALUE permission). The data in some of those keys appears to be a username. This is a simple regular-expression match so may report false positives. In some instances it may be possible for an low-privilged user to cause another process to run as or otherwise affect a different user account.
+
+The following registry value are affected:
+
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSDTC\Security\AccountName has data ''NT AUTHORITY\\NetworkService'' and permissions:
+    ALLOW NT SERVICE\MSDTC: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSDTC\Security\AccountName has data ''NT AUTHORITY\\NetworkService'' and permissions:
+    ALLOW NT SERVICE\KtmRm: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\W32Time\ObjectName has data ''NT AUTHORITY\\LocalService'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\W32Time\ObjectName has data ''NT AUTHORITY\\LocalService'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+    Registry value HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\ObjectName has data ''NT AUTHORITY\\LocalService'' and permissions:
+    ALLOW [unknown]\S-1-5-80-3169285310-278349998-1452333686-3865143136-4212226833: KEY_SET_VALUE
+
+[ recommendation ]
+
+Set strong registry permissions on any values that high privileged processes use to determine usernames.
+
+------------------------------------------------------------------
+Title: Directory Creation Allowed On Drive Root
+
+[ description ]
+
+Some of the local drive roots allow non-administrative users to create directories. This could provide attackers with a place to stash hacking tools, or proive legitimacy to malware they are seeking to get other users to run. It is relatively common to allow the creation of directories in the drive root, but it probably isn't required for normal operation. NB: This issue has only been reported for NTFS filesystems. Other non-NTFS file system may also allow this behaviour. A separate issue is reported for non-NTFS filesystems.
+
+The following drives allow non-administrative users to create directories in to their root:
+
+    Drive C:\ allows BUILTIN\Users to add directories
+
+[ recommendation ]
+
+Modify the permissions on the drive roots to only allow administrators to create directories. Revoke this permission from low-privileged users.
+
+------------------------------------------------------------------
+Title: Current Working Directory Used For DLL Search - Including Network Locations
+
+[ description ]
+
+CWDIllegalInDllSearch was set to 0. This causes applications (by default) to load DLLs from the current directory - even for network locations. This can lead to malicious DLLs being executed in some attack scenarios. Note that KB2264107 needs to be installed to enable more secure settings - not checked for. Also apps can be secured individually - also not checked for.
+
+The following registry key shows the current policy setting:
+
+    Reg key: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\CWDIllegalInDllSearch, Value: None
+
+[ recommendation ]
+
+Consider setting CWDIllegalInDllSearch to 1, 2 or 0xFFFFFFFF to improve security - though this may break some applications. See http://support.microsoft.com/kb/2264107 for further information including how to set CWDIllegalInDllSearch on a per-application basis.
+
+------------------------------------------------------------------
+Title: Securable Object (directory) Found With Weak Permissions
+
+[ description ]
+
+Some securable objects were found to allow write access to non-admin users. TODO: impact?
+
+The following directory objects are affected:
+
+    \Windows (Directory) has the following weak permissions: ALLOW [unknown]\S-1-5-90-0-0: DIRECTORY_CREATE_OBJECT DIRECTORY_CREATE_SUBDIRECTORY DELETE WRITE_DAC WRITE_OWNER:
+    \RPC Control (Directory) has the following weak permissions: ALLOW \Everyone: DIRECTORY_CREATE_OBJECT DIRECTORY_CREATE_SUBDIRECTORY:
+    \RPC Control (Directory) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: DIRECTORY_CREATE_OBJECT DIRECTORY_CREATE_SUBDIRECTORY:
+    \BaseNamedObjects (Directory) has the following weak permissions: ALLOW \Everyone: DIRECTORY_CREATE_OBJECT DIRECTORY_CREATE_SUBDIRECTORY:
+    \BaseNamedObjects (Directory) has the following weak permissions: ALLOW [unknown]\S-1-5-90-0-0: DIRECTORY_CREATE_OBJECT DIRECTORY_CREATE_SUBDIRECTORY DELETE WRITE_DAC WRITE_OWNER:
+    \BaseNamedObjects\Restricted (Directory) has the following weak permissions: ALLOW \Everyone: DIRECTORY_CREATE_OBJECT DIRECTORY_CREATE_SUBDIRECTORY:
+    \BaseNamedObjects\Restricted (Directory) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: DIRECTORY_CREATE_OBJECT DIRECTORY_CREATE_SUBDIRECTORY:
+    \BaseNamedObjects\Restricted (Directory) has the following weak permissions: ALLOW [unknown]\S-1-5-90-0-0: DIRECTORY_CREATE_OBJECT DIRECTORY_CREATE_SUBDIRECTORY DELETE WRITE_DAC WRITE_OWNER:
+
+[ recommendation ]
+
+Set strong permissions on all affected objects.
+
+------------------------------------------------------------------
+Title: Securable Object (section) Found With Weak Permissions
+
+[ description ]
+
+Some securable objects were found to allow write access to non-admin users. TODO: impact?
+
+The following section objects are affected:
+
+    \KnownDlls32\kernel32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\kernel32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\kernel32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\kernel32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\kernel.appcore.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\kernel.appcore.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\kernel.appcore.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\kernel.appcore.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\windows.storage.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\windows.storage.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\windows.storage.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\windows.storage.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\ucrtbase.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\ucrtbase.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\ucrtbase.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\ucrtbase.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\MSCTF.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\MSCTF.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\MSCTF.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\MSCTF.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\SHLWAPI.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\SHLWAPI.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\SHLWAPI.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\SHLWAPI.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\WS2_32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\WS2_32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\WS2_32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\WS2_32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\KERNELBASE.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\KERNELBASE.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\KERNELBASE.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\KERNELBASE.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\gdiplus.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\gdiplus.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\gdiplus.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\gdiplus.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\msvcp_win.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\msvcp_win.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\msvcp_win.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\msvcp_win.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\MSASN1.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\MSASN1.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\MSASN1.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\MSASN1.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\user32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\user32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\user32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\user32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\CRYPTBASE.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\CRYPTBASE.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\CRYPTBASE.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\CRYPTBASE.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\bcrypt.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\bcrypt.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\bcrypt.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\bcrypt.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\COMCTL32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\COMCTL32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\COMCTL32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\COMCTL32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\cfgmgr32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\cfgmgr32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\cfgmgr32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\cfgmgr32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\combase.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\combase.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\combase.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\combase.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\IMM32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\IMM32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\IMM32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\IMM32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\rpcrt4.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\rpcrt4.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\rpcrt4.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\rpcrt4.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\ntdll.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\ntdll.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\ntdll.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\ntdll.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\coml2.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\coml2.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\coml2.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\coml2.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\bcryptPrimitives.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\bcryptPrimitives.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\bcryptPrimitives.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\bcryptPrimitives.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\win32u.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\win32u.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\win32u.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\win32u.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\COMDLG32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\COMDLG32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\COMDLG32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\COMDLG32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\gdi32full.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\gdi32full.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\gdi32full.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\gdi32full.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\IMAGEHLP.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\IMAGEHLP.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\IMAGEHLP.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\IMAGEHLP.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\SHELL32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\SHELL32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\SHELL32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\SHELL32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\sechost.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\sechost.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\sechost.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\sechost.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\WINTRUST.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\WINTRUST.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\WINTRUST.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\WINTRUST.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\NORMALIZ.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\NORMALIZ.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\NORMALIZ.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\NORMALIZ.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\difxapi.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\difxapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\difxapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\difxapi.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\profapi.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\profapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\profapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\profapi.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\Setupapi.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\Setupapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\Setupapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\Setupapi.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\CRYPT32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\CRYPT32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\CRYPT32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\CRYPT32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\gdi32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\gdi32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\gdi32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\gdi32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\MSVCRT.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\MSVCRT.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\MSVCRT.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\MSVCRT.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\advapi32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\advapi32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\advapi32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\advapi32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\SspiCli.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\SspiCli.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\SspiCli.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\SspiCli.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\NSI.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\NSI.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\NSI.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\NSI.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\PSAPI.DLL (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\PSAPI.DLL (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\PSAPI.DLL (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\PSAPI.DLL (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\WLDAP32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\WLDAP32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\WLDAP32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\WLDAP32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\OLEAUT32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\OLEAUT32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\OLEAUT32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\OLEAUT32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\SHCORE.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\SHCORE.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\SHCORE.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\SHCORE.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\ole32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\ole32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\ole32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\ole32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\clbcatq.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\clbcatq.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\clbcatq.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\clbcatq.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\cryptsp.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\cryptsp.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\cryptsp.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\cryptsp.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls32\powrprof.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls32\powrprof.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\powrprof.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls32\powrprof.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \BaseNamedObjects\Rc4man_Read_USB (Section) has the following weak permissions: ALLOW \Everyone: DELETE WRITE_DAC WRITE_OWNER SECTION_MAP_WRITE SECTION_EXTEND_SIZE:
+    \BaseNamedObjects\UrlZonesSM_svc_loanmgr (Section) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SECTION_MAP_WRITE SECTION_EXTEND_SIZE:
+    \BaseNamedObjects\MSDTC_STATS_FILE (Section) has the following weak permissions: ALLOW NT SERVICE\MSDTC: SECTION_MAP_WRITE:
+    \BaseNamedObjects\Cor_Private_IPCBlock_v4_1480 (Section) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SECTION_MAP_WRITE SECTION_EXTEND_SIZE:
+    \BaseNamedObjects\Wmi Provider Sub System Counters (Section) has the following weak permissions: ALLOW NT AUTHORITY\NETWORK SERVICE: DELETE SECTION_MAP_WRITE SECTION_EXTEND_SIZE:
+    \BaseNamedObjects\Wmi Provider Sub System Counters (Section) has the following weak permissions: ALLOW NT AUTHORITY\LOCAL SERVICE: DELETE SECTION_MAP_WRITE SECTION_EXTEND_SIZE:
+    \BaseNamedObjects\Wmi Provider Sub System Counters (Section) has the following weak permissions: ALLOW \Everyone: SECTION_EXTEND_SIZE:
+    \BaseNamedObjects\Rc4man_Write_USB (Section) has the following weak permissions: ALLOW \Everyone: DELETE WRITE_DAC WRITE_OWNER SECTION_MAP_WRITE SECTION_EXTEND_SIZE:
+    \BaseNamedObjects\netfxcustomperfcounters.1.0adws (Section) has the following weak permissions: ALLOW NT AUTHORITY\Authenticated Users: SECTION_MAP_WRITE SECTION_EXTEND_SIZE:
+    \BaseNamedObjects\netfxcustomperfcounters.1.0adws (Section) has the following weak permissions: ALLOW NT AUTHORITY\WRITE RESTRICTED: SECTION_MAP_WRITE SECTION_EXTEND_SIZE:
+    \BaseNamedObjects\F932B6C7-3A20-46A0-B8A0-8894AA421973 (Section) has the following weak permissions: ALLOW NT AUTHORITY\LOCAL SERVICE: DELETE WRITE_DAC WRITE_OWNER SECTION_MAP_WRITE SECTION_EXTEND_SIZE:
+    \BaseNamedObjects\MpSvcMemory-81C3F87D-E38C-F3C1-EA51-7BF70276E56E (Section) has the following weak permissions: ALLOW NT SERVICE\WinDefend: SECTION_MAP_WRITE:
+    \KnownDlls\kernel32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\kernel32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\kernel32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\kernel32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\kernel.appcore.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\kernel.appcore.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\kernel.appcore.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\kernel.appcore.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\windows.storage.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\windows.storage.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\windows.storage.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\windows.storage.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\ucrtbase.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\ucrtbase.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\ucrtbase.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\ucrtbase.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\WS2_32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\WS2_32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\WS2_32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\WS2_32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\MSCTF.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\MSCTF.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\MSCTF.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\MSCTF.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\SHLWAPI.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\SHLWAPI.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\SHLWAPI.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\SHLWAPI.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\KERNELBASE.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\KERNELBASE.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\KERNELBASE.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\KERNELBASE.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\wow64.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\wow64.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\wow64.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\wow64.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\msvcp_win.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\msvcp_win.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\msvcp_win.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\msvcp_win.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\gdiplus.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\gdiplus.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\gdiplus.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\gdiplus.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\MSASN1.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\MSASN1.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\MSASN1.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\MSASN1.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\user32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\user32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\user32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\user32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\bcrypt.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\bcrypt.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\bcrypt.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\bcrypt.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\COMCTL32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\COMCTL32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\COMCTL32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\COMCTL32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\cfgmgr32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\cfgmgr32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\cfgmgr32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\cfgmgr32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\combase.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\combase.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\combase.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\combase.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\IMM32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\IMM32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\IMM32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\IMM32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\rpcrt4.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\rpcrt4.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\rpcrt4.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\rpcrt4.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\ntdll.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\ntdll.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\ntdll.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\ntdll.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\bcryptPrimitives.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\bcryptPrimitives.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\bcryptPrimitives.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\bcryptPrimitives.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\coml2.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\coml2.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\coml2.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\coml2.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\win32u.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\win32u.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\win32u.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\win32u.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\wow64cpu.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\wow64cpu.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\wow64cpu.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\wow64cpu.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\COMDLG32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\COMDLG32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\COMDLG32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\COMDLG32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\gdi32full.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\gdi32full.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\gdi32full.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\gdi32full.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\IMAGEHLP.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\IMAGEHLP.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\IMAGEHLP.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\IMAGEHLP.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\SHELL32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\SHELL32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\SHELL32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\SHELL32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\sechost.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\sechost.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\sechost.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\sechost.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\WINTRUST.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\WINTRUST.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\WINTRUST.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\WINTRUST.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\NORMALIZ.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\NORMALIZ.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\NORMALIZ.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\NORMALIZ.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\difxapi.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\difxapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\difxapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\difxapi.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\profapi.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\profapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\profapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\profapi.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\Setupapi.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\Setupapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\Setupapi.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\Setupapi.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\CRYPT32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\CRYPT32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\CRYPT32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\CRYPT32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\MSVCRT.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\MSVCRT.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\MSVCRT.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\MSVCRT.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\gdi32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\gdi32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\gdi32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\gdi32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\wow64win.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\wow64win.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\wow64win.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\wow64win.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\advapi32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\advapi32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\advapi32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\advapi32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\NSI.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\NSI.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\NSI.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\NSI.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\PSAPI.DLL (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\PSAPI.DLL (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\PSAPI.DLL (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\PSAPI.DLL (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\OLEAUT32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\OLEAUT32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\OLEAUT32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\OLEAUT32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\WLDAP32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\WLDAP32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\WLDAP32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\WLDAP32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\SHCORE.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\SHCORE.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\SHCORE.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\SHCORE.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\ole32.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\ole32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\ole32.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\ole32.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\clbcatq.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\clbcatq.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\clbcatq.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\clbcatq.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\powrprof.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\powrprof.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\powrprof.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\powrprof.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+    \KnownDlls\cryptsp.dll (Section) has the following weak permissions: ALLOW \Everyone: SECTION_MAP_WRITE:
+    \KnownDlls\cryptsp.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\cryptsp.dll (Section) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES: SECTION_MAP_WRITE:
+    \KnownDlls\cryptsp.dll (Section) has the following weak permissions: ALLOW NT AUTHORITY\RESTRICTED: SECTION_MAP_WRITE:
+
+[ recommendation ]
+
+Set strong permissions on all affected objects.
+
+------------------------------------------------------------------
+Title: Securable Object (semaphore) Found With Weak Permissions
+
+[ description ]
+
+Some securable objects were found to allow write access to non-admin users. TODO: impact?
+
+The following semaphore objects are affected:
+
+    \BaseNamedObjects\SM0:2624:304:WilStaging_02_p0 (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:2124:168:WilStaging_02_p0 (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:1480:304:WilStaging_02_p0h (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:1480:120:WilError_02_p0 (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:1480:304:WilStaging_02_p0 (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:1492:304:WilStaging_02_p0h (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:2624:304:WilStaging_02_p0h (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:1492:120:WilError_02_p0h (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:5752:168:WilStaging_02_p0 (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:2124:64:WilError_02_p0 (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:1492:120:WilError_02_p0 (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:1492:304:WilStaging_02_p0 (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+    \BaseNamedObjects\SM0:1480:120:WilError_02_p0h (Semaphore) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER SEMAPHORE_MODIFY_STATE:
+
+[ recommendation ]
+
+Set strong permissions on all affected objects.
+
+------------------------------------------------------------------
+Title: Securable Object (mutant) Found With Weak Permissions
+
+[ description ]
+
+Some securable objects were found to allow write access to non-admin users. TODO: impact?
+
+The following mutant objects are affected:
+
+    \BaseNamedObjects\SM0:2124:64:WilError_02 (Mutant) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER MUTANT_QUERY_STATE:
+    \BaseNamedObjects\SM0:5752:168:WilStaging_02 (Mutant) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER MUTANT_QUERY_STATE:
+    \BaseNamedObjects\SM0:1492:304:WilStaging_02 (Mutant) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER MUTANT_QUERY_STATE:
+    \BaseNamedObjects\DBWinMutex (Mutant) has the following weak permissions: ALLOW \Everyone: MUTANT_QUERY_STATE:
+    \BaseNamedObjects\SM0:1492:120:WilError_02 (Mutant) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER MUTANT_QUERY_STATE:
+    \BaseNamedObjects\RasPbFile (Mutant) has the following weak permissions: ALLOW \Everyone: DELETE MUTANT_QUERY_STATE:
+    \BaseNamedObjects\SM0:2624:304:WilStaging_02 (Mutant) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER MUTANT_QUERY_STATE:
+    \BaseNamedObjects\SM0:1480:304:WilStaging_02 (Mutant) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER MUTANT_QUERY_STATE:
+    \BaseNamedObjects\SM0:2124:168:WilStaging_02 (Mutant) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER MUTANT_QUERY_STATE:
+    \BaseNamedObjects\SM0:1480:120:WilError_02 (Mutant) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: DELETE WRITE_DAC WRITE_OWNER MUTANT_QUERY_STATE:
+
+[ recommendation ]
+
+Set strong permissions on all affected objects.
+
+------------------------------------------------------------------
+Title: Securable Object (symboliclink) Found With Weak Permissions
+
+[ description ]
+
+Some securable objects were found to allow write access to non-admin users. TODO: impact?
+
+The following symboliclink objects are affected:
+
+    \BaseNamedObjects\AppContainerNamedObjects (SymbolicLink) has the following weak permissions: ALLOW [unknown]\S-1-5-90-0-0: DELETE WRITE_DAC WRITE_OWNER:
+    \BaseNamedObjects\Local (SymbolicLink) has the following weak permissions: ALLOW [unknown]\S-1-5-90-0-0: DELETE WRITE_DAC WRITE_OWNER:
+    \BaseNamedObjects\Session (SymbolicLink) has the following weak permissions: ALLOW [unknown]\S-1-5-90-0-0: DELETE WRITE_DAC WRITE_OWNER:
+    \BaseNamedObjects\Global (SymbolicLink) has the following weak permissions: ALLOW [unknown]\S-1-5-90-0-0: DELETE WRITE_DAC WRITE_OWNER:
+
+[ recommendation ]
+
+Set strong permissions on all affected objects.
+
+------------------------------------------------------------------
+Title: Securable Object (event) Found With Weak Permissions
+
+[ description ]
+
+Some securable objects were found to allow write access to non-admin users. TODO: impact?
+
+The following event objects are affected:
+
+    \BaseNamedObjects\CPFATE_1480_v4.0.30319 (Event) has the following weak permissions: ALLOW EGOTISTICALBANK\svc_loanmgr: EVENT_MODIFY_STATE:
+    \BaseNamedObjects\Rc4Event_Done_USB (Event) has the following weak permissions: ALLOW \Everyone: DELETE WRITE_DAC WRITE_OWNER EVENT_MODIFY_STATE:
+    \BaseNamedObjects\Rc4Event_Start_USB (Event) has the following weak permissions: ALLOW \Everyone: DELETE WRITE_DAC WRITE_OWNER EVENT_MODIFY_STATE:
+    \BaseNamedObjects\UFH_{DC27E4C7-C59E-4710-927B-9F9C958092B1} (Event) has the following weak permissions: ALLOW \Everyone: DELETE WRITE_DAC WRITE_OWNER EVENT_MODIFY_STATE:
+    \BaseNamedObjects\ScmCreatedEvent (Event) has the following weak permissions: ALLOW NT AUTHORITY\SELF: WRITE_DAC WRITE_OWNER EVENT_MODIFY_STATE:
+
+[ recommendation ]
+
+Set strong permissions on all affected objects.
+
+------------------------------------------------------------------
+Title: Securable Object (device) Found With Weak Permissions
+
+[ description ]
+
+Some securable objects were found to allow write access to non-admin users. This situation is normal. While write access to these devices forms part of the attack surfce, allowing write access is not a vulnerability in itself.
+
+The following device objects are affected:
+
+    \Device\PEAuth (Device) has the following weak permissions: ALLOW \Everyone: FILE_WRITE_DATA FILE_APPEND_DATA FILE_WRITE_EA FILE_WRITE_ATTRIBUTES DELETE WRITE_DAC WRITE_OWNER:
+    \Device\PEAuth (Device) has the following weak permissions: ALLOW APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES: FILE_WRITE_DATA FILE_APPEND_DATA FILE_WRITE_EA FILE_WRITE_ATTRIBUTES DELETE WRITE_DAC WRITE_OWNER:
+    \Device\PEAuth (Device) has the following weak permissions: ALLOW [unknown]\S-1-15-3-1024-1692970155-4054893335-185714091-3362601943-3526593181-1159816984-2199008581-497492991: FILE_WRITE_DATA FILE_APPEND_DATA FILE_WRITE_EA FILE_WRITE_ATTRIBUTES DELETE WRITE_DAC WRITE_OWNER:
+
+[ recommendation ]
+
+Investigate if write access to the affected devices constitutes a vulnerability.
+
+------------------------------------------------------------------
+Title: Host Is In A Domain
+
+[ description ]
+
+The host audited is in a domain. While this is a not a security issue in itself, the inherent trust of other systems could mean that this host is vulnerable to attack even if the local security audit identifies no siginficant security issues.
+
+The following domain information was retrieved:
+
+    Domain Name: EGOTISTICAL-BANK.LOCAL
+
+[ recommendation ]
+
+Ensure that the systems and accounts trusted by this host are also secure. This may require significantly more auditing.
+
+------------------------------------------------------------------
+Title: User Password Is Too Old
+
+[ description ]
+
+TODO The password had not been changed for over 1 year for some accounts that were neither locked nor disabled.
+
+The following users are affected:
+
+    EGOTISTICALBANK\Administrator: 1275 days
+    EGOTISTICALBANK\HSmith: 1826 days
+    EGOTISTICALBANK\FSmith: 1825 days
+    EGOTISTICALBANK\svc_loanmgr: 1824 days
+
+[ recommendation ]
+
+TODO
+
+------------------------------------------------------------------
+Title: Some Users Have Passwords That Don't Expire
+
+[ description ]
+
+TODO UF_DONT_EXPIRE_PASSWD was set for some accounts that were neither locked nor disabled
+
+The following users are affected:
+
+    EGOTISTICALBANK\Administrator
+    EGOTISTICALBANK\HSmith
+    EGOTISTICALBANK\FSmith
+    EGOTISTICALBANK\svc_loanmgr
+
+[ recommendation ]
+
+TODO
+
+------------------------------------------------------------------
+Title: Some User Accounts Trusted For Delegation
+
+[ description ]
+
+TODO UF_TRUSTED_FOR_DELEGATION was set for some accounts that were neither locked nor disabled
+
+The following users are affected:
+
+    EGOTISTICALBANK\SAUNA$
+
+[ recommendation ]
+
+TODO
+
+------------------------------------------------------------------
+Title: Host Is A Domain Controller
+
+[ description ]
+
+The host audited is a domain controller. This is not a secuirty issue, just a note to take into account the status of this system during your audit.
+
+[ recommendation ]
+
+None.
+
+------------------------------------------------------------------
+Title: Windows Autologon Registry Keys Set
+
+[ description ]
+
+One or more of the registry keys for Windows autologon was found to be set. These can explose locally valid logon credentials in cleartext.
+
+The following information was retreived from the registry:
+
+    Registry key HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon had these values set: AutoAdminLogon=[not set] DefaultDomainName=EGOTISTICALBANK DefaultUserName=EGOTISTICALBANK\svc_loanmanager DefaultPassword=Moneymakestheworldgoround!
+
+[ recommendation ]
+
+Review the information below and determine if is exposes sensitive information. Avoid the use of autologin where possible.
+
+------------------------------------------------------------------
+Title: Network access: Do not allow anonymous enumeration of SAM accounts and shares => disabled
+
+[ description ]
+
+TODO
+
+TODO:
+
+    Reg key: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\RestrictAnonymous, Value: 0
+
+[ recommendation ]
+
+TODO
+
+------------------------------------------------------------------
+Title: Network security: Configure encryption types allowed for Kerberos => weak
+
+[ description ]
+
+Includes DES / CRC or empty. Applies to Win7/2008R2+ only - so will be false positive on earlier OSs.
+
+TODO:
+
+    Reg key: HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\SupportedEncryptionTypes, Value: None
+
+[ recommendation ]
+
+TODO
+
+------------------------------------------------------------------
+Title: Network security: Restrict NTLM: Outgoing NTLM traffic to remote servers => not Deny All
+
+[ description ]
+
+TODO (This setting applies to XP/2003+)
+
+TODO:
+
+    Reg key: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\MSV1_0\RestrictSendingNTLMTraffic, Value: None
+
+[ recommendation ]
+
+TODO
+
+------------------------------------------------------------------
+Title: Network security: Restrict NTLM: Incoming NTLM traffic => Allow All
+
+[ description ]
+
+TODO (This setting applies to XP/2003+)
+
+TODO:
+
+    Reg key: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\MSV1_0\RestrictReceivingNTLMTraffic, Value: None
+
+[ recommendation ]
+
+TODO
+
+------------------------------------------------------------------
+Title: Network access: Do not allow storage of passwords and credentials for network authentication => disabled
+
+[ description ]
+
+TODO
+
+TODO:
+
+    Reg key: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\disabledomaincreds, Value: None
+
+[ recommendation ]
+
+TODO
+

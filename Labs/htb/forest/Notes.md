@@ -1,4 +1,4 @@
-- Start responder 
+cd- Start responder 
 ```
 sudo responder -I tun0
 ```

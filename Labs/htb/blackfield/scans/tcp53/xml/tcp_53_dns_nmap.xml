@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Sat Jan 25 10:54:06 2025 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 53 &quot;-&#45;script=banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/blackfield/scans/tcp53/tcp_53_dns_nmap.txt -oX /home/kali/Notes/Labs/htb/blackfield/scans/tcp53/xml/tcp_53_dns_nmap.xml 10.10.10.192 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 53 &quot;-&#45;script=banner,(dns* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/blackfield/scans/tcp53/tcp_53_dns_nmap.txt -oX /home/kali/Notes/Labs/htb/blackfield/scans/tcp53/xml/tcp_53_dns_nmap.xml 10.10.10.192" start="1737820446" startstr="Sat Jan 25 10:54:06 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="53"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1737820447"/>
+<taskend task="NSE" time="1737820447"/>
+<taskbegin task="NSE" time="1737820447"/>
+<taskend task="NSE" time="1737820447"/>
+<taskbegin task="NSE" time="1737820447"/>
+<taskend task="NSE" time="1737820447"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1737820447"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1737820447"/>
+<taskbegin task="SYN Stealth Scan" time="1737820447"/>
+<taskend task="SYN Stealth Scan" time="1737820447" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1737820447"/>
+<taskend task="Service scan" time="1737820453" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1737820453"/>
+<taskend task="NSE" time="1737820468"/>
+<taskbegin task="NSE" time="1737820468"/>
+<taskend task="NSE" time="1737820468"/>
+<taskbegin task="NSE" time="1737820468"/>
+<taskend task="NSE" time="1737820468"/>
+<host starttime="1737820447" endtime="1737820468"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.192" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" product="Simple DNS Plus" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:jh_software:simple_dns_plus</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="dns-nsec-enum" output="Can&apos;t determine domain for host 10.10.10.192; use dns-nsec-enum.domains script arg."/><script id="dns-nsec3-enum" output="Can&apos;t determine domain for host 10.10.10.192; use dns-nsec3-enum.domains script arg."/></port>
+</ports>
+<hostscript><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.10.192&quot;; use dns-brute.domain script argument."/></hostscript><times srtt="58034" rttvar="58034" to="290170"/>
+</host>
+<taskbegin task="NSE" time="1737820468"/>
+<taskend task="NSE" time="1737820468"/>
+<taskbegin task="NSE" time="1737820468"/>
+<taskend task="NSE" time="1737820468"/>
+<taskbegin task="NSE" time="1737820468"/>
+<taskend task="NSE" time="1737820468"/>
+<runstats><finished time="1737820468" timestr="Sat Jan 25 10:54:28 2025" summary="Nmap done at Sat Jan 25 10:54:28 2025; 1 IP address (1 host up) scanned in 22.37 seconds" elapsed="22.37" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

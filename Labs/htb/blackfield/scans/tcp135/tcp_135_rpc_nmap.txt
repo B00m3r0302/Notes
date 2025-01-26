@@ -1,0 +1,12 @@
+# Nmap 7.95 scan initiated Sat Jan 25 10:54:06 2025 as: /usr/lib/nmap/nmap --privileged -vv --reason -Pn -T4 -sV -p 135 --script=banner,msrpc-enum,rpc-grind,rpcinfo -oN /home/kali/Notes/Labs/htb/blackfield/scans/tcp135/tcp_135_rpc_nmap.txt -oX /home/kali/Notes/Labs/htb/blackfield/scans/tcp135/xml/tcp_135_rpc_nmap.xml 10.10.10.192
+Nmap scan report for 10.10.10.192
+Host is up, received user-set (0.064s latency).
+Scanned at 2025-01-25 10:54:06 EST for 22s
+
+PORT    STATE SERVICE REASON          VERSION
+135/tcp open  msrpc   syn-ack ttl 127 Microsoft Windows RPC
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Read data files from: /usr/share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Jan 25 10:54:28 2025 -- 1 IP address (1 host up) scanned in 21.79 seconds
