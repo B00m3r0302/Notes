@@ -164,6 +164,7 @@
   },
   "active": "ea33c929205ca331",
   "lastOpenFiles": [
+    "Labs/htb/blackfield/loot/lsass.DMP",
     "Labs/htb/blackfield/loot/Administrator_hash.txt",
     "Labs/htb/blackfield/loot/cracked.out",
     "Labs/htb/blackfield/loot/ntlm-extract.ntds.cleartext",
@@ -176,7 +177,6 @@
     "Labs/htb/blackfield/sessionresume_oPcjHHku",
     "Labs/htb/blackfield/Notes.md",
     "Labs/htb/blackfield/valid_users.txt",
-    "Labs/htb/blackfield/bloodhound/20250126194748_BloodHound.zip",
     "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
     "Course Notes/Kerberos.md",
     "Labs/Lab Loot.md",
