@@ -13,3 +13,6 @@
 [submodule "Resources/opt/LinEnum"]
 	path = Resources/opt/LinEnum
 	url = https://github.com/rebootuser/LinEnum
+[submodule "Resources/opt/hacktricks"]
+	path = Resources/opt/hacktricks
+	url = https://github.com/HackTricks-wiki/hacktricks
