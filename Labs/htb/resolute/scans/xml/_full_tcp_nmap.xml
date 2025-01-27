@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Sun Jan 26 20:13:35 2025 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Notes/Labs/htb/resolute/scans/_full_tcp_nmap.txt -oX /home/kali/Notes/Labs/htb/resolute/scans/xml/_full_tcp_nmap.xml 10.10.10.169 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -sC -&#45;version-all -A -&#45;osscan-guess -p- -oN /home/kali/Notes/Labs/htb/resolute/scans/_full_tcp_nmap.txt -oX /home/kali/Notes/Labs/htb/resolute/scans/xml/_full_tcp_nmap.xml 10.10.10.169" start="1737940415" startstr="Sun Jan 26 20:13:35 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1737940415"/>
+<taskend task="NSE" time="1737940415"/>
+<taskbegin task="NSE" time="1737940415"/>
+<taskend task="NSE" time="1737940415"/>
+<taskbegin task="NSE" time="1737940415"/>
+<taskend task="NSE" time="1737940415"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1737940415"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1737940415"/>
+<taskbegin task="SYN Stealth Scan" time="1737940415"/>
+<taskprogress task="SYN Stealth Scan" time="1737940446" percent="0.45"/>
+<taskprogress task="SYN Stealth Scan" time="1737940476" percent="0.90"/>
+<taskprogress task="SYN Stealth Scan" time="1737940506" percent="4.30" remaining="2023" etc="1737942529"/>
+<taskprogress task="SYN Stealth Scan" time="1737940536" percent="8.42" remaining="1316" etc="1737941851"/>
+<taskprogress task="SYN Stealth Scan" time="1737940566" percent="12.48" remaining="1059" etc="1737941624"/>
+<taskprogress task="SYN Stealth Scan" time="1737940596" percent="16.91" remaining="890" etc="1737941486"/>
+<taskprogress task="SYN Stealth Scan" time="1737940626" percent="17.06" remaining="1026" etc="1737941652"/>
+<taskprogress task="SYN Stealth Scan" time="1737940656" percent="17.09" remaining="1170" etc="1737941825"/>
+<taskprogress task="SYN Stealth Scan" time="1737940686" percent="17.11" remaining="1313" etc="1737941998"/>
+<taskprogress task="SYN Stealth Scan" time="1737940716" percent="17.14" remaining="1455" etc="1737942171"/>
+<taskprogress task="SYN Stealth Scan" time="1737940746" percent="21.11" remaining="1238" etc="1737941983"/>
+<taskprogress task="SYN Stealth Scan" time="1737940776" percent="25.57" remaining="1051" etc="1737941827"/>
+<taskprogress task="SYN Stealth Scan" time="1737940806" percent="29.42" remaining="939" etc="1737941744"/>
+<taskprogress task="SYN Stealth Scan" time="1737940836" percent="33.23" remaining="846" etc="1737941682"/>
+<taskprogress task="SYN Stealth Scan" time="1737940869" percent="33.25" remaining="912" etc="1737941780"/>
+<taskprogress task="SYN Stealth Scan" time="1737940905" percent="33.27" remaining="983" etc="1737941888"/>
+<taskprogress task="SYN Stealth Scan" time="1737940944" percent="33.30" remaining="1060" etc="1737942004"/>
+<taskprogress task="SYN Stealth Scan" time="1737940977" percent="36.57" remaining="975" etc="1737941952"/>
+<taskprogress task="SYN Stealth Scan" time="1737941007" percent="41.06" remaining="850" etc="1737941857"/>
+<taskprogress task="SYN Stealth Scan" time="1737941037" percent="45.59" remaining="743" etc="1737941779"/>
+<taskprogress task="SYN Stealth Scan" time="1737941067" percent="49.87" remaining="656" etc="1737941722"/>
+<taskprogress task="SYN Stealth Scan" time="1737941133" percent="49.91" remaining="721" etc="1737941853"/>
+<taskprogress task="SYN Stealth Scan" time="1737941229" percent="55.91" remaining="642" etc="1737941871"/>
+<taskprogress task="SYN Stealth Scan" time="1737941259" percent="60.41" remaining="554" etc="1737941812"/>
+<taskprogress task="SYN Stealth Scan" time="1737941289" percent="64.90" remaining="473" etc="1737941762"/>
+<taskprogress task="SYN Stealth Scan" time="1737941460" percent="72.14" remaining="404" etc="1737941864"/>
+<taskprogress task="SYN Stealth Scan" time="1737941490" percent="76.67" remaining="328" etc="1737941817"/>
+<taskprogress task="SYN Stealth Scan" time="1737941520" percent="81.19" remaining="256" etc="1737941776"/>
+<taskprogress task="SYN Stealth Scan" time="1737941685" percent="87.51" remaining="182" etc="1737941866"/>
+<taskprogress task="SYN Stealth Scan" time="1737941718" percent="92.46" remaining="107" etc="1737941824"/>
+<taskprogress task="SYN Stealth Scan" time="1737941751" percent="97.42" remaining="36" etc="1737941786"/>
+<taskend task="SYN Stealth Scan" time="1737941850" extrainfo="65535 total ports"/>
+<taskbegin task="Service scan" time="1737941850"/>
+<taskend task="Service scan" time="1737941855" extrainfo="25 services on 1 host"/>
+<taskbegin task="Traceroute" time="1737941861"/>
+<taskend task="Traceroute" time="1737941870"/>
+<taskbegin task="NSE" time="1737941871"/>
+<taskprogress task="NSE" time="1737941902" percent="98.68" remaining="1" etc="1737941902"/>
+<taskend task="NSE" time="1737941909"/>
+<taskbegin task="NSE" time="1737941909"/>
+<taskend task="NSE" time="1737941910"/>
+<taskbegin task="NSE" time="1737941910"/>
+<taskend task="NSE" time="1737941910"/>
+<host starttime="1737940416" endtime="1737941910"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.169" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65220">
+<extrareasons reason="reset" count="65220" proto="tcp" ports="1-44,46-52,54-87,89-134,136-138,140-257,259-380,382-388,390,392-444,446-447,449-463,466-518,520-592,594-635,637-815,817-1418,1420-1495,1497-1595,1597-1671,1673-1818,1820-2160,2162-2725,2727-2752,2754-2827,2829-2978,2980-3267,3270-3387,3389-3483,3485-3671,3673-3870,3872-4253,4255-4489,4491-4681,4683-4686,4688-4710,4712-4770,4772-4858,4860-4961,4963-5290,5292-5423,5425-5474,5476-5771,5773-5815,5817-5984,5986-6060,6062-6087,6089-6107,6109-6529,6531-6545,6547-7046,7048-7267,7269-7315,7317-7726,7728-7758,7760-7837,7839-8140,8142-8154,8156-8253,8255-8373,8375-8496,8498-8511,8513-8824,8826-8924,8926-9039,9041-9347,9349-9388,9390-9493,9495-9900,9902-10055,10057-10215,10217-10279,10281-10434,10436-10439,10441-10705,10707-10879,10881-11004,11006-11524,11526-11555,11557-12004,12006-12093,12095-12277,12279-12894,12896-12909,12911-13288,13290-13509,13511-13532,13534-13654,13656-13913,13915-14034,14036-14135,14137-14348,14350-14527,14529-14661,14663-14698,14700-15949,15951-16107,16109-16187,16189-16193,16195-16453,16455-16543,16545-16557,16559-17012,17014-17053,17055-17077,17079-17281,17283-17328,17330-17481,17483-18076,18078-18328,18330-18388,18390-18529,18531-18680,18682,18684-19185,19187-19414,19416-19453,19455-19525,19527-19611,19613-19650,19652-19850,19852-20044,20046-20383,20385-20683,20685-20686,20688-21039,21041-21100,21102-21133,21135-21190,21192-21285,21287-21439,21441-21516,21518-21742,21744-22688,22690-22869,22871-22908,22910-23097,23099-23148,23150-23270,23272-23804,23806-23841,23843-23864,23866-24468,24470-24473,24475-24639,24641-24749,24751-24920,24922-25020,25022-25478,25480-25531,25533-25562,25564-25937,25939-26140,26142-26225,26227-26448,26450-26501,26503-26808,26810-27093,27095-27251,27253-27372,27374-27477,27479-27516,27518-27560,27562-27783,27785-27801,27803-27973,27975-28787,28789-28992,28994-29063,29065-29471,29473-29481,29483-29587,29589-29802,29804-30281,30283-30530,30532-30539,30541-31018,31020-31881,31883-31988,31990-32154,32156-32523,32525-32571,32573-33236,33238-34152,34154-34272,34274-34463,34465-34467,34469-34494,34496-34772,34774-35033,35035-35063,35065-35070,35072-35180,35182-35207,35209-35273,35275-35640,35642-35965,35967-36050,36052,36054-36070,36072-36302,36304-36424,36426-36479,36481-36605,36607-36902,36904-39284,39286-39818,39820-39925,39927-40067,40069-40335,40337-40491,40493-40543,40545-40829,40831-42125,42127-42226,42228-42389,42391-42501,42503-42751,42753-42886,42888-42959,42961-43499,43501-43877,43879-44052,44054-44385,44387-45019,45021-45111,45113-45165,45167-46181,46183-46204,46206-46461,46463-46478,46480-46588,46590-46889,46891-47000,47002-47290,47292-47335,47337-48007,48009,48011-48171,48173-48319,48321-48371,48373-48683,48685-49342,49344-49360,49362-49422,49424-49590,49592-49663,49668-49670,49672-49675,49678-49687,49689-49745,49747-49918,49920-50023,50025-50247,50249-50293,50295-50512,50514-50674,50676-50959,50961-51376,51378-51408,51410-52026,52028-52179,52181-52488,52490-52612,52614-52852,52854-53327,53329-53614,53616-54314,54316-54917,54919-55045,55047-55363,55365-55432,55434-55527,55529-55695,55697-55826,55828-55872,55874-56602,56604-56623,56625-56656,56658-56763,56765-56819,56821-57071,57073-57114,57116-57832,57834-58666,58668-58928,58930-59222,59224-59628,59630-59783,59785-60202,60204-60273,60275-60454,60456-60606,60608-60756,60758-60817,60819-61107,61109-61563,61565-61766,61768-63074,63076-63222,63224-63479,63481-63667,63669-63798,63800-63830,63832-64007,64009-64345,64347-64650,64652-64847,64849-65299,65301-65535"/>
+</extraports>
+<extraports state="filtered" count="290">
+<extrareasons reason="no-response" count="290" proto="tcp" ports="45,258,381,391,448,465,519,816,1419,1496,1596,1672,1819,2161,2726,2753,2828,2979,3388,3484,3672,3871,4254,4490,4682,4687,4711,4771,4859,4962,5291,5424,5475,5772,5816,6061,6088,6108,6530,6546,7047,7268,7316,7727,7759,7838,8141,8155,8254,8374,8497,8512,8825,8925,9040,9348,9494,9901,10056,10216,10280,10435,10440,10706,10880,11005,11525,11556,12005,12094,12278,12895,12910,13289,13510,13533,13655,13914,14035,14136,14349,14528,14662,14699,15950,16108,16188,16194,16454,16544,16558,17013,17054,17078,17282,17329,17482,18077,18329,18389,18530,18681,18683,19186,19415,19454,19526,19612,19651,19851,20045,20384,20684,20687,21040,21101,21134,21191,21286,21440,21517,21743,22689,22870,22909,23098,23149,23271,23805,23842,23865,24469,24474,24640,24750,24921,25021,25479,25532,25563,25938,26141,26226,26449,26502,26809,27094,27252,27373,27478,27517,27561,27784,27802,27974,28788,28993,29064,29472,29482,29588,29803,30282,30531,30540,31019,31882,31989,32155,32524,32572,33237,34153,34273,34464,34468,34495,34773,35034,35064,35071,35181,35208,35274,35641,35966,36051,36053,36071,36303,36425,36480,36606,36903,39285,39819,39926,40068,40336,40492,40544,40830,42126,42227,42390,42502,42752,42887,42960,43500,43878,44053,44386,45020,45112,45166,46182,46205,46462,46479,46589,46890,47291,47336,48008,48010,48172,48320,48372,48684,49343,49361,49423,49591,49746,50024,50248,50675,50960,51377,51409,52027,52180,52489,52613,52853,53328,53615,54315,54918,55046,55364,55433,55528,55696,55827,55873,56603,56624,56657,56764,56820,57072,57115,57833,58667,58929,59223,59629,59784,60203,60274,60455,60607,60757,60818,61108,61564,61767,63075,63223,63480,63668,63799,63831,64008,64346,64651,64848,65300"/>
+</extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="9389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="47001"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49671"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49676"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49677"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49688"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="49919"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="50294"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="50513"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="50513"/>
+<portused state="closed" proto="tcp" portid="1"/>
+<osfingerprint fingerprint="SCAN(V=7.95%E=4%D=1/26%OT=50513%CT=1%CU=%PV=Y%G=N%TM=6796E396%P=x86_64-pc-linux-gnu)&#xa;SEQ()&#xa;ECN(R=N)&#xa;T1(R=N)&#xa;T2(R=N)&#xa;T3(R=N)&#xa;T4(R=N)&#xa;T5(R=N)&#xa;T6(R=N)&#xa;T7(R=N)&#xa;U1(R=N)&#xa;IE(R=N)&#xa;"/>
+</os>
+<hostscript><script id="smb2-time" output="&#xa;  date: 2025-01-27T01:45:29&#xa;  start_date: 2025-01-27T01:13:52"><elem key="date">2025-01-27T01:45:29</elem>
+<elem key="start_date">2025-01-27T01:13:52</elem>
+</script><script id="clock-skew" output="6m59s"><elem key="median">419</elem>
+<elem key="stddev">0</elem>
+<elem key="count">1</elem>
+<elem key="mean">419</elem>
+</script><script id="smb2-security-mode" output="&#xa;  3:1:1: &#xa;    Message signing enabled and required"><table key="3:1:1">
+<elem>Message signing enabled and required</elem>
+</table>
+</script><script id="p2p-conficker" output="&#xa;  Checking for Conficker.C or higher...&#xa;  Check 1 (port 52471/tcp): CLEAN (Timeout)&#xa;  Check 2 (port 47337/tcp): CLEAN (Failed to receive data)&#xa;  Check 3 (port 55070/udp): CLEAN (Data received, but checksum was invalid (possibly INFECTED))&#xa;  Check 4 (port 30335/udp): CLEAN (Failed to receive data)&#xa;  0/4 checks are positive: Host is CLEAN or ports are blocked&#xa;"/></hostscript><trace port="49673" proto="tcp">
+</trace>
+<times srtt="82988" rttvar="45126" to="263492"/>
+</host>
+<taskbegin task="NSE" time="1737941910"/>
+<taskend task="NSE" time="1737941910"/>
+<taskbegin task="NSE" time="1737941910"/>
+<taskend task="NSE" time="1737941910"/>
+<taskbegin task="NSE" time="1737941910"/>
+<taskend task="NSE" time="1737941910"/>
+<runstats><finished time="1737941910" timestr="Sun Jan 26 20:38:30 2025" summary="Nmap done at Sun Jan 26 20:38:30 2025; 1 IP address (1 host up) scanned in 1494.53 seconds" elapsed="1494.53" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
