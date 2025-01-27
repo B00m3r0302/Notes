@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Labs/htb/blackfield/Notes.md",
+                "file": "Course Notes/Low Hanging Fruit.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Notes"
+              "title": "Low Hanging Fruit"
             }
           }
         ]
@@ -52,7 +52,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "000000000000",
+                "query": "userspn",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -164,6 +164,15 @@
   },
   "active": "ea33c929205ca331",
   "lastOpenFiles": [
+    "Course Notes/Active Directory Pasteables.md",
+    "Labs/htb/resolute/notes.md",
+    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+    "Labs/htb/resolute/scans/tcp445/credentials.txt",
+    "Course Notes/Spraying & Roasting.md",
+    "Labs/htb/forest/Notes.md",
+    "Labs/htb/sauna/Notes.md",
+    "Labs/htb/resolute/hashes_domain.txt",
+    "Labs/htb/blackfield/Notes.md",
     "Labs/htb/blackfield/loot/lsass.DMP",
     "Labs/htb/blackfield/loot/Administrator_hash.txt",
     "Labs/htb/blackfield/loot/cracked.out",
@@ -173,16 +182,9 @@
     "Labs/htb/blackfield/loot/system",
     "Labs/htb/blackfield/loot/ntds.dit",
     "Course Notes/Chapter 15 Password Attacks.md",
-    "Resources/priv.dsh",
-    "Labs/htb/blackfield/sessionresume_oPcjHHku",
-    "Labs/htb/blackfield/Notes.md",
-    "Labs/htb/blackfield/valid_users.txt",
-    "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
     "Course Notes/Kerberos.md",
     "Labs/Lab Loot.md",
     "Course Notes/Windows Pasteables.md",
-    "Course Notes/Active Directory Pasteables.md",
-    "Labs/htb/sauna/Notes.md",
     "Labs/medtech/report.md/192.168.227.121/Commands.md",
     "Untitled 1.md",
     "Labs/htb/blackfield/scans/report.md/10.10.10.192/Commands.md",
@@ -197,9 +199,6 @@
     "Labs/htb/blackfield/scans/report.md/10.10.10.192/Services/Service - tcp-389-ldap/Nmap LDAP.md",
     "Labs/htb/blackfield/scans/report.md/10.10.10.192/Services/Service - tcp-389-ldap/Enum4Linux.md",
     "Labs/htb/blackfield/scans/report.md/10.10.10.192/Services/Service - tcp-88-kerberos-sec/Nmap Kerberos.md",
-    "Labs/htb/blackfield/scans/report.md/10.10.10.192/Services/Service - tcp-53-domain/Nmap DNS.md",
-    "Labs/htb/blackfield/scans/report.md/10.10.10.192/Services/Service - tcp-53-domain/DNS Zone Transfer.md",
-    "Labs/htb/blackfield/scans/report.md/10.10.10.192/Services/Service - tcp-53-domain/DNS Reverse Lookup.md",
     "Labs/htb/sauna/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/htb/flight/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/medtech/internal_ips/results/172.16.185.11/scans/tcp47001/tcp_47001_http_screenshot.png",
