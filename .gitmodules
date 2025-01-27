@@ -1,0 +1,15 @@
+[submodule "Resources/opt/GTFOBins.github.io"]
+	path = Resources/opt/GTFOBins.github.io
+	url = https://github.com/GTFOBins/GTFOBins.github.io
+[submodule "Resources/opt/LOLBAS"]
+	path = Resources/opt/LOLBAS
+	url = https://github.com/LOLBAS-Project/LOLBAS
+[submodule "Resources/opt/HTTPUploadExfil"]
+	path = Resources/opt/HTTPUploadExfil
+	url = https://github.com/IngoKl/HTTPUploadExfil
+[submodule "Resources/opt/volatility3"]
+	path = Resources/opt/volatility3
+	url = https://github.com/volatilityfoundation/volatility3
+[submodule "Resources/opt/LinEnum"]
+	path = Resources/opt/LinEnum
+	url = https://github.com/rebootuser/LinEnum
