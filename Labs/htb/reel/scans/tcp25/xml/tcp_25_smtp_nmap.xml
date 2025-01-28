@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Mon Jan 27 20:52:45 2025 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 25 &quot;-&#45;script=banner,(smtp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/reel/scans/tcp25/tcp_25_smtp_nmap.txt -oX /home/kali/Notes/Labs/htb/reel/scans/tcp25/xml/tcp_25_smtp_nmap.xml 10.10.10.77 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 25 &quot;-&#45;script=banner,(smtp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/reel/scans/tcp25/tcp_25_smtp_nmap.txt -oX /home/kali/Notes/Labs/htb/reel/scans/tcp25/xml/tcp_25_smtp_nmap.xml 10.10.10.77" start="1738029165" startstr="Mon Jan 27 20:52:45 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="25"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1738029166"/>
+<taskend task="NSE" time="1738029166"/>
+<taskbegin task="NSE" time="1738029166"/>
+<taskend task="NSE" time="1738029166"/>
+<taskbegin task="NSE" time="1738029166"/>
+<taskend task="NSE" time="1738029166"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1738029166"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1738029166"/>
+<taskbegin task="SYN Stealth Scan" time="1738029166"/>
+<taskend task="SYN Stealth Scan" time="1738029166" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1738029166"/>
+<taskend task="Service scan" time="1738029332" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1738029332"/>
+<taskend task="NSE" time="1738029332"/>
+<taskbegin task="NSE" time="1738029332"/>
+<taskend task="NSE" time="1738029333"/>
+<taskbegin task="NSE" time="1738029333"/>
+<taskend task="NSE" time="1738029333"/>
+<host starttime="1738029166" endtime="1738029333"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.77" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="25"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="smtp" servicefp="SF-Port25-TCP:V=7.95%I=7%D=1/27%Time=67983874%P=x86_64-pc-linux-gnu%r(NULL,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(Hello,3A,&quot;220\x20Mail\x20Service\x20ready\r\n501\x20EHLO\x20Invalid\x20domain\x20address\.\r\n&quot;)%r(Help,54,&quot;220\x20Mail\x20Service\x20ready\r\n211\x20DATA\x20HELO\x20EHLO\x20MAIL\x20NOOP\x20QUIT\x20RCPT\x20RSET\x20SAML\x20TURN\x20VRFY\r\n&quot;)%r(GenericLines,54,&quot;220\x20Mail\x20Service\x20ready\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n&quot;)%r(GetRequest,54,&quot;220\x20Mail\x20Service\x20ready\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n&quot;)%r(HTTPOptions,54,&quot;220\x20Mail\x20Service\x20ready\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n&quot;)%r(RTSPRequest,54,&quot;220\x20Mail\x20Service\x20ready\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n&quot;)%r(RPCCheck,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(DNSVersionBindReqTCP,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(DNSStatusRequestTCP,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(SSLSessionReq,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(TerminalServerCookie,36,&quot;220\x20Mail\x20Service\x20ready\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n&quot;)%r(TLSSessionReq,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(Kerberos,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(SMBProgNeg,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(X11Probe,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(FourOhFourRequest,54,&quot;220\x20Mail\x20Service\x20ready\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n&quot;)%r(LPDString,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(LDAPSearchReq,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(LDAPBindReq,18,&quot;220\x20Mail\x20Service\x20ready\r\n&quot;)%r(SIPOptions,162,&quot;220\x20Mail\x20Service\x20ready\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n&quot;);" method="table" conf="3"/><script id="smtp-vuln-cve2010-4344" output="&#xa;  The SMTP server is not Exim: NOT VULNERABLE&#xa;"/><script id="smtp-commands" output="REEL, SIZE 20480000, AUTH LOGIN PLAIN, HELP&#xa; 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY"/><script id="banner" output="220 Mail Service ready"/><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, Kerberos, LDAPBindReq, LDAPSearchReq, LPDString, NULL, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, X11Probe: &#xa;    220 Mail Service ready&#xa;  FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, RTSPRequest: &#xa;    220 Mail Service ready&#xa;    sequence of commands&#xa;    sequence of commands&#xa;  Hello: &#xa;    220 Mail Service ready&#xa;    EHLO Invalid domain address.&#xa;  Help: &#xa;    220 Mail Service ready&#xa;    DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY&#xa;  SIPOptions: &#xa;    220 Mail Service ready&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;  TerminalServerCookie: &#xa;    220 Mail Service ready&#xa;    sequence of commands"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, Kerberos, LDAPBindReq, LDAPSearchReq, LPDString, NULL, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, X11Probe">&#xa;    220 Mail Service ready</elem>
+<elem key="FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, RTSPRequest">&#xa;    220 Mail Service ready&#xa;    sequence of commands&#xa;    sequence of commands</elem>
+<elem key="Hello">&#xa;    220 Mail Service ready&#xa;    EHLO Invalid domain address.</elem>
+<elem key="Help">&#xa;    220 Mail Service ready&#xa;    DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY</elem>
+<elem key="SIPOptions">&#xa;    220 Mail Service ready&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands&#xa;    sequence of commands</elem>
+<elem key="TerminalServerCookie">&#xa;    220 Mail Service ready&#xa;    sequence of commands</elem>
+</script></port>
+</ports>
+<times srtt="54557" rttvar="54557" to="272785"/>
+</host>
+<taskbegin task="NSE" time="1738029333"/>
+<taskend task="NSE" time="1738029333"/>
+<taskbegin task="NSE" time="1738029333"/>
+<taskend task="NSE" time="1738029333"/>
+<taskbegin task="NSE" time="1738029333"/>
+<taskend task="NSE" time="1738029333"/>
+<runstats><finished time="1738029333" timestr="Mon Jan 27 20:55:33 2025" summary="Nmap done at Mon Jan 27 20:55:33 2025; 1 IP address (1 host up) scanned in 168.22 seconds" elapsed="168.22" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

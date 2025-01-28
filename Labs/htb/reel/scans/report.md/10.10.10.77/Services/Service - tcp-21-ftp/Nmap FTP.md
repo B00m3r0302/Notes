@@ -1,0 +1,26 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -p 21 --script="banner,(ftp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Notes/Labs/htb/reel/scans/tcp21/tcp_21_ftp_nmap.txt" -oX "/home/kali/Notes/Labs/htb/reel/scans/tcp21/xml/tcp_21_ftp_nmap.xml" 10.10.10.77
+```
+
+[/home/kali/Notes/Labs/htb/reel/scans/tcp21/tcp_21_ftp_nmap.txt](file:///home/kali/Notes/Labs/htb/reel/scans/tcp21/tcp_21_ftp_nmap.txt):
+
+```
+# Nmap 7.95 scan initiated Mon Jan 27 20:52:45 2025 as: /usr/lib/nmap/nmap --privileged -vv --reason -Pn -T4 -sV -p 21 "--script=banner,(ftp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN /home/kali/Notes/Labs/htb/reel/scans/tcp21/tcp_21_ftp_nmap.txt -oX /home/kali/Notes/Labs/htb/reel/scans/tcp21/xml/tcp_21_ftp_nmap.xml 10.10.10.77
+Nmap scan report for 10.10.10.77
+Host is up, received user-set (0.058s latency).
+Scanned at 2025-01-27 20:52:46 EST for 1s
+
+PORT   STATE SERVICE REASON          VERSION
+21/tcp open  ftp     syn-ack ttl 127 Microsoft ftpd
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_05-28-18  11:19PM       <DIR>          documents
+| ftp-syst: 
+|_  SYST: Windows_NT
+|_banner: 220 Microsoft FTP Service
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Read data files from: /usr/share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jan 27 20:52:47 2025 -- 1 IP address (1 host up) scanned in 2.00 seconds
+
+```

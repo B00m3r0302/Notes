@@ -1,0 +1,85 @@
+```bash
+nmap -vv --reason -Pn -T4 -sV -p 445 --script="banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN "/home/kali/Notes/Labs/htb/reel/scans/tcp445/tcp_445_smb_nmap.txt" -oX "/home/kali/Notes/Labs/htb/reel/scans/tcp445/xml/tcp_445_smb_nmap.xml" 10.10.10.77
+```
+
+[/home/kali/Notes/Labs/htb/reel/scans/tcp445/tcp_445_smb_nmap.txt](file:///home/kali/Notes/Labs/htb/reel/scans/tcp445/tcp_445_smb_nmap.txt):
+
+```
+# Nmap 7.95 scan initiated Mon Jan 27 20:52:45 2025 as: /usr/lib/nmap/nmap --privileged -vv --reason -Pn -T4 -sV -p 445 "--script=banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)" -oN /home/kali/Notes/Labs/htb/reel/scans/tcp445/tcp_445_smb_nmap.txt -oX /home/kali/Notes/Labs/htb/reel/scans/tcp445/xml/tcp_445_smb_nmap.xml 10.10.10.77
+Nmap scan report for 10.10.10.77
+Host is up, received user-set (0.063s latency).
+Scanned at 2025-01-27 20:52:46 EST for 338s
+
+PORT    STATE SERVICE      REASON          VERSION
+445/tcp open  microsoft-ds syn-ack ttl 127 Windows Server 2012 R2 Standard 9600 microsoft-ds (workgroup: HTB)
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+Service Info: Host: REEL; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   3:0:2: 
+|_    Message signing enabled and required
+|_smb-vuln-ms10-061: NT_STATUS_ACCESS_DENIED
+| smb-security-mode: 
+|   account_used: <blank>
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: required
+| smb-os-discovery: 
+|   OS: Windows Server 2012 R2 Standard 9600 (Windows Server 2012 R2 Standard 6.3)
+|   OS CPE: cpe:/o:microsoft:windows_server_2012::-
+|   Computer name: REEL
+|   NetBIOS computer name: REEL\x00
+|   Domain name: HTB.LOCAL
+|   Forest name: HTB.LOCAL
+|   FQDN: REEL.HTB.LOCAL
+|_  System time: 2025-01-28T01:53:10+00:00
+| smb2-capabilities: 
+|   2:0:2: 
+|     Distributed File System
+|   2:1:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:2: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb-mbenum: 
+|_  ERROR: Call to Browser Service failed with status = 2184
+|_smb-print-text: false
+| smb-enum-shares: 
+|   note: ERROR: Enumerating shares failed, guessing at common ones (NT_STATUS_ACCESS_DENIED)
+|   account_used: <blank>
+|   \\10.10.10.77\ADMIN$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: <none>
+|   \\10.10.10.77\C$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: <none>
+|   \\10.10.10.77\IPC$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: READ
+|   \\10.10.10.77\NETLOGON: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|_    Anonymous access: <none>
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|     2:0:2
+|     2:1:0
+|     3:0:0
+|_    3:0:2
+| smb2-time: 
+|   date: 2025-01-28T01:53:03
+|_  start_date: 2025-01-27T16:27:13
+
+Read data files from: /usr/share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Jan 27 20:58:24 2025 -- 1 IP address (1 host up) scanned in 338.38 seconds
+
+```

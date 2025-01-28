@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Mon Jan 27 20:52:45 2025 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 445 &quot;-&#45;script=banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/reel/scans/tcp445/tcp_445_smb_nmap.txt -oX /home/kali/Notes/Labs/htb/reel/scans/tcp445/xml/tcp_445_smb_nmap.xml 10.10.10.77 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 445 &quot;-&#45;script=banner,(nbstat or smb* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/reel/scans/tcp445/tcp_445_smb_nmap.txt -oX /home/kali/Notes/Labs/htb/reel/scans/tcp445/xml/tcp_445_smb_nmap.xml 10.10.10.77" start="1738029165" startstr="Mon Jan 27 20:52:45 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="445"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1738029166"/>
+<taskend task="NSE" time="1738029166"/>
+<taskbegin task="NSE" time="1738029166"/>
+<taskend task="NSE" time="1738029166"/>
+<taskbegin task="NSE" time="1738029166"/>
+<taskend task="NSE" time="1738029166"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1738029166"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1738029166"/>
+<taskbegin task="SYN Stealth Scan" time="1738029166"/>
+<taskend task="SYN Stealth Scan" time="1738029166" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1738029167"/>
+<taskend task="Service scan" time="1738029173" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1738029173"/>
+<taskprogress task="NSE" time="1738029204" percent="93.06" remaining="3" etc="1738029206"/>
+<taskprogress task="NSE" time="1738029234" percent="97.22" remaining="2" etc="1738029236"/>
+<taskprogress task="NSE" time="1738029264" percent="97.22" remaining="3" etc="1738029267"/>
+<taskprogress task="NSE" time="1738029294" percent="97.22" remaining="4" etc="1738029297"/>
+<taskprogress task="NSE" time="1738029324" percent="97.22" remaining="5" etc="1738029328"/>
+<taskprogress task="NSE" time="1738029354" percent="97.22" remaining="6" etc="1738029359"/>
+<taskprogress task="NSE" time="1738029384" percent="97.22" remaining="7" etc="1738029390"/>
+<taskprogress task="NSE" time="1738029414" percent="97.22" remaining="7" etc="1738029421"/>
+<taskprogress task="NSE" time="1738029444" percent="97.22" remaining="8" etc="1738029452"/>
+<taskprogress task="NSE" time="1738029474" percent="97.22" remaining="9" etc="1738029483"/>
+<taskend task="NSE" time="1738029497"/>
+<taskbegin task="NSE" time="1738029497"/>
+<taskend task="NSE" time="1738029504"/>
+<taskbegin task="NSE" time="1738029504"/>
+<taskend task="NSE" time="1738029504"/>
+<host starttime="1738029166" endtime="1738029504"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.77" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" product="Windows Server 2012 R2 Standard 9600 microsoft-ds" extrainfo="workgroup: HTB" hostname="REEL" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+</ports>
+<hostscript><script id="smb2-security-mode" output="&#xa;  3:0:2: &#xa;    Message signing enabled and required"><table key="3:0:2">
+<elem>Message signing enabled and required</elem>
+</table>
+</script><script id="smb-vuln-ms10-061" output="NT_STATUS_ACCESS_DENIED">false</script><script id="smb-security-mode" output="&#xa;  account_used: &lt;blank&gt;&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: required"><elem key="account_used">&lt;blank&gt;</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">required</elem>
+</script><script id="smb-os-discovery" output="&#xa;  OS: Windows Server 2012 R2 Standard 9600 (Windows Server 2012 R2 Standard 6.3)&#xa;  OS CPE: cpe:/o:microsoft:windows_server_2012::-&#xa;  Computer name: REEL&#xa;  NetBIOS computer name: REEL\x00&#xa;  Domain name: HTB.LOCAL&#xa;  Forest name: HTB.LOCAL&#xa;  FQDN: REEL.HTB.LOCAL&#xa;  System time: 2025-01-28T01:53:10+00:00&#xa;"><elem key="os">Windows Server 2012 R2 Standard 9600</elem>
+<elem key="lanmanager">Windows Server 2012 R2 Standard 6.3</elem>
+<elem key="server">REEL\x00</elem>
+<elem key="date">2025-01-28T01:53:10+00:00</elem>
+<elem key="fqdn">REEL.HTB.LOCAL</elem>
+<elem key="domain_dns">HTB.LOCAL</elem>
+<elem key="forest_dns">HTB.LOCAL</elem>
+<elem key="workgroup">HTB\x00</elem>
+<elem key="cpe">cpe:/o:microsoft:windows_server_2012::-</elem>
+</script><script id="smb2-capabilities" output="&#xa;  2:0:2: &#xa;    Distributed File System&#xa;  2:1:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2:0:2">
+<elem>Distributed File System</elem>
+</table>
+<table key="2:1:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:2">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="smb-mbenum" output="&#xa;  ERROR: Call to Browser Service failed with status = 2184"/><script id="smb-print-text" output="false">false</script><script id="smb-enum-shares" output="&#xa;  note: ERROR: Enumerating shares failed, guessing at common ones (NT_STATUS_ACCESS_DENIED)&#xa;  account_used: &lt;blank&gt;&#xa;  \\10.10.10.77\ADMIN$: &#xa;    warning: Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED&#xa;    Anonymous access: &lt;none&gt;&#xa;  \\10.10.10.77\C$: &#xa;    warning: Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED&#xa;    Anonymous access: &lt;none&gt;&#xa;  \\10.10.10.77\IPC$: &#xa;    warning: Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED&#xa;    Anonymous access: READ&#xa;  \\10.10.10.77\NETLOGON: &#xa;    warning: Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED&#xa;    Anonymous access: &lt;none&gt;"><elem key="note">ERROR: Enumerating shares failed, guessing at common ones (NT_STATUS_ACCESS_DENIED)</elem>
+<elem key="account_used">&lt;blank&gt;</elem>
+<table key="\\10.10.10.77\ADMIN$">
+<elem key="warning">Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED</elem>
+<elem key="Anonymous access">&lt;none&gt;</elem>
+</table>
+<table key="\\10.10.10.77\C$">
+<elem key="warning">Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED</elem>
+<elem key="Anonymous access">&lt;none&gt;</elem>
+</table>
+<table key="\\10.10.10.77\IPC$">
+<elem key="warning">Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED</elem>
+<elem key="Anonymous access">READ</elem>
+</table>
+<table key="\\10.10.10.77\NETLOGON">
+<elem key="warning">Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED</elem>
+<elem key="Anonymous access">&lt;none&gt;</elem>
+</table>
+</script><script id="smb-protocols" output="&#xa;  dialects: &#xa;    NT LM 0.12 (SMBv1) [dangerous, but default]&#xa;    2:0:2&#xa;    2:1:0&#xa;    3:0:0&#xa;    3:0:2"><table key="dialects">
+<elem>NT LM 0.12 (SMBv1) [dangerous, but default]</elem>
+<elem>2:0:2</elem>
+<elem>2:1:0</elem>
+<elem>3:0:0</elem>
+<elem>3:0:2</elem>
+</table>
+</script><script id="smb2-time" output="&#xa;  date: 2025-01-28T01:53:03&#xa;  start_date: 2025-01-27T16:27:13"><elem key="date">2025-01-28T01:53:03</elem>
+<elem key="start_date">2025-01-27T16:27:13</elem>
+</script></hostscript><times srtt="63445" rttvar="63445" to="317225"/>
+</host>
+<taskbegin task="NSE" time="1738029504"/>
+<taskend task="NSE" time="1738029504"/>
+<taskbegin task="NSE" time="1738029504"/>
+<taskend task="NSE" time="1738029504"/>
+<taskbegin task="NSE" time="1738029504"/>
+<taskend task="NSE" time="1738029504"/>
+<runstats><finished time="1738029504" timestr="Mon Jan 27 20:58:24 2025" summary="Nmap done at Mon Jan 27 20:58:24 2025; 1 IP address (1 host up) scanned in 338.38 seconds" elapsed="338.38" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

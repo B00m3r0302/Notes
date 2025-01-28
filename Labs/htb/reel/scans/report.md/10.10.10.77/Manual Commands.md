@@ -1,0 +1,61 @@
+```bash
+[*] ftp on tcp/21
+
+	[-] Bruteforce logins:
+
+		hydra -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e nsr -s 21 -o "/home/kali/Notes/Labs/htb/reel/scans/tcp21/tcp_21_ftp_hydra.txt" ftp://10.10.10.77
+
+		medusa -U "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e ns -n 21 -O "/home/kali/Notes/Labs/htb/reel/scans/tcp21/tcp_21_ftp_medusa.txt" -M ftp -h 10.10.10.77
+
+[*] ssh on tcp/22
+
+	[-] Bruteforce logins:
+
+		hydra -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e nsr -s 22 -o "/home/kali/Notes/Labs/htb/reel/scans/tcp22/tcp_22_ssh_hydra.txt" ssh://10.10.10.77
+
+		medusa -U "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -P "/usr/share/seclists/Passwords/darkweb2017-top100.txt" -e ns -n 22 -O "/home/kali/Notes/Labs/htb/reel/scans/tcp22/tcp_22_ssh_medusa.txt" -M ssh -h 10.10.10.77
+
+[*] smtp on tcp/25
+
+	[-] Try User Enumeration using "RCPT TO". Replace <TARGET-DOMAIN> with the target's domain name:
+
+		hydra smtp-enum://10.10.10.77:25/rcpt -L "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -o "/home/kali/Notes/Labs/htb/reel/scans/tcp25/tcp_25_smtp_user-enum_hydra_rcpt.txt" -p <TARGET-DOMAIN>
+
+[*] msrpc on tcp/135
+
+	[-] RPC Client:
+
+		rpcclient -p 135 -U "" 10.10.10.77
+
+[*] netbios-ssn on tcp/139
+
+	[-] Bruteforce SMB
+
+		crackmapexec smb 10.10.10.77 --port=139 -u "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -p "/usr/share/seclists/Passwords/darkweb2017-top100.txt"
+
+	[-] Nmap scans for SMB vulnerabilities that could potentially cause a DoS if scanned (according to Nmap). Be careful:
+
+		nmap -vv --reason -Pn -T4 -sV -p 139 --script="smb-vuln-* and dos" --script-args="unsafe=1" -oN "/home/kali/Notes/Labs/htb/reel/scans/tcp139/tcp_139_smb_vulnerabilities.txt" -oX "/home/kali/Notes/Labs/htb/reel/scans/tcp139/xml/tcp_139_smb_vulnerabilities.xml" 10.10.10.77
+
+[*] microsoft-ds on tcp/445
+
+	[-] Bruteforce SMB
+
+		crackmapexec smb 10.10.10.77 --port=445 -u "/usr/share/seclists/Usernames/top-usernames-shortlist.txt" -p "/usr/share/seclists/Passwords/darkweb2017-top100.txt"
+
+	[-] Lookup SIDs
+
+		impacket-lookupsid '[username]:[password]@10.10.10.77'
+
+	[-] Nmap scans for SMB vulnerabilities that could potentially cause a DoS if scanned (according to Nmap). Be careful:
+
+		nmap -vv --reason -Pn -T4 -sV -p 445 --script="smb-vuln-* and dos" --script-args="unsafe=1" -oN "/home/kali/Notes/Labs/htb/reel/scans/tcp445/tcp_445_smb_vulnerabilities.txt" -oX "/home/kali/Notes/Labs/htb/reel/scans/tcp445/xml/tcp_445_smb_vulnerabilities.xml" 10.10.10.77
+
+[*] msrpc on tcp/49159
+
+	[-] RPC Client:
+
+		rpcclient -p 49159 -U "" 10.10.10.77
+
+
+```
