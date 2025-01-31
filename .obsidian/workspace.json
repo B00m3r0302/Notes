@@ -13,30 +13,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+                "file": "Labs/htb-challenges/racecar.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 21 Active Directory Introduction and Enumeration"
-            }
-          },
-          {
-            "id": "b01c8fec02e62ae5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Labs/htb/reel/notes.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "notes"
+              "title": "racecar"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -177,9 +162,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b01c8fec02e62ae5",
+  "active": "ea33c929205ca331",
   "lastOpenFiles": [
+    "Pasted image 20250130103122.png",
+    "Labs/htb-challenges/Questionnaire.md",
+    "Labs/htb-challenges/racecar.md",
     "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+    "Labs/htb-challenges",
     "Labs/htb/reel/notes.md",
     "Labs/htb/reel/loot/creds.txt",
     "Labs/htb/reel/loot/readme.txt",
@@ -191,7 +180,6 @@
     "Labs/htb/reel/scans/report.md/10.10.10.77/Port Scans/PortScan - All TCP Ports.md",
     "Labs/htb/reel/users.txt",
     "Labs/htb/reel/Windows Event Forwarding.docx",
-    "Labs/htb/reel/readme.txt",
     "Labs/htb/resolute/notes.md",
     "Course Notes/Pass The Hash.md",
     "Course Notes/Windows Privilege Escalation.md",
@@ -212,8 +200,6 @@
     "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-445-microsoft-ds/Nmap SMB.md",
     "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-389-ldap/Nmap LDAP.md",
     "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-3268-ldap/Nmap LDAP.md",
-    "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-139-netbios-ssn/nbtscan.md",
-    "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-139-netbios-ssn/SMBMap.md",
     "Labs/htb/sauna/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/htb/flight/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/medtech/internal_ips/results/172.16.185.11/scans/tcp47001/tcp_47001_http_screenshot.png",
