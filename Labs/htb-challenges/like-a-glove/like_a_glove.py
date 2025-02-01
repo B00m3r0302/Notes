@@ -1,74 +1,68 @@
 import gensim.downloader as api
-import os
 import re
-import unicodedata
 import string
 
-# Set the model for the llm
+# Load the GloVe model for word vectors
 model = api.load("glove-twitter-25")
 
-# Open the text file as an object
-doc = open('chal.txt', encoding = 'utf-8')
+# File path to the challenge file
+file_path = "chal.txt"
 
-# filter out non-ASCII characters with regular expressions using re
-def remove_non_ascii(text):
-    # First you have to normalize full-width characters to their ASCII equivelants to preserve meaning, give imporved readability and get better data processing
-    text = unicodedata.normalize('NFKC', text) # Converts full-width characters and converts special unicode forms
-    #Define allowed characters: ASCII letters, digits, punctuation and whitespace
-    allowed_characters = string.ascii_letters + string.digits + string.punctuation + string.whitespace
+# Variable to accumulate the flag (result) string
+flag = ""
 
-    # Remove any remaining characters that are not in the allowed set
-    return ''.join(c for c in text if c in allowed_characters)
+# Mapping full-width characters to ASCII characters
+full_width_map = {
+    "０": "0", "１": "1", "２": "2", "３": "3", "４": "4", "５": "5",
+    "６": "6", "７": "7", "８": "8", "９": "9",
+    # You can add any other full-width characters here if needed
+}
 
-# Regex pattern to match analogies in the format:
-# "Like X is to Y, A is to?"
-pattern = r"""
-        \bLike\s+               # Match "Like " at the beginning, ensuring it's a full word (\b) and ensures spaces after it \s+
-        ([\w\s]+?)\s+           # Capture X: one or more word characters (\w) or spaces lazily (+?)
-        is\s+to\s+              # Match " is to " exactly
-        ([\w\s]+?),\s+          # Capture Y: One or more word characters or spaces, followed by a comma and space
-        ([\w\s]+?)\s+           # Capture A: One or more word characters or spaces lazily
-        is\s+to                 # Match " is to " exactly
-        \?                      # Match the ? at the end of each analogy
-"""
+# Helper function to remove non-ASCII characters and map full-width characters to ASCII
+def keep_ascii_and_digits(text):
+    # Normalize full-width characters to ASCII equivalents (e.g., ０ → 0)
+    normalized_text = "".join(full_width_map.get(c, c) for c in text)
+    # Return only ASCII letters, digits, punctuation, and whitespace
+    return "".join(c for c in normalized_text if c in string.ascii_letters + string.digits + string.punctuation + string.whitespace)
 
+# Regex pattern to match analogies in the format "Like X is to Y, A is to?"
+pattern = re.compile(r"^Like ([^\s]+) is to ([^\s]+), ([^\s]+) is to\?$")
 
-# Open the input file chal.txt, process the text and save the cleaned output
-with open("chal.txt", "r", encoding = "utf-8") as infile, open("chall.txt", "w", encoding = "ascii") as outfile:
-    content = infile.read() # Read the entire file into a string
+# Open and read the input file line by line
+with open(file_path, "r") as file:
+    for line in file:
+        try:
+            # Use regex to extract the words from the analogy format
+            match = pattern.match(line.strip())
+            if not match:
+                print(f"Skipping line due to incorrect format: {line}")
+                continue  # Skip lines that don't match the expected analogy format
 
-    # Uses re.findall to extract all matching analogies from the file contents
-    matches = re.findall(pattern, content, re.VERBOSE)
+            # Extract words from the matched groups
+            word1, word2_target, target = match.groups()
 
-    # Open the output file "chall.txt" for writing extracted analogies
-    with open("chall.txt", "w", encoding="utf-8") as outfile:
-        for match in matches:
-            # Extract and print the words being compared
-            X, Y, A = match
+            # Retrieve the word vectors for the three words (X, Y, A) from the model
+            vec1 = model[word1]  # Vector for X
+            vec2 = model[word2_target]  # Vector for Y
+            vec_target = model[target]  # Vector for A
+
+            # Perform the analogy calculation: B = Y - X + A
+            analogy_vector = vec_target + (vec2 - vec1)
+
+            # Find the most similar word to the resulting vector
+            result = model.similar_by_vector(analogy_vector, topn=1)
+            result_word = keep_ascii_and_digits(result[0][0])  # Clean the result word
+
+            # Print the analogy result
+            print(f"Target word for analogy '{target}' ({word2_target} - {word1} + {target}): {result_word}")
             
-            # Try to find the word vectors for X, Y, A
-            try:
-                # Get the word vectors for X, Y, A
-                vec_X = model[X.lower()]
-                vec_Y = model[Y.lower()]
-                vec_A = model[A.lower()]
+            # Accumulate the result word into the 'flag' variable
+            flag += result_word
 
-                # Perform the analogy calculation: B = Y - X + A
-                analogy_vector = vec_Y - vec_X + vec_A
+        except KeyError as e:
+            # Handle the case where a word is not found in the model
+            print(f"Word not found in model: {e}")
 
-                # Find the most similar word to the resulting vector (top 1 most similar word)
-                result = model.similar_by_bector(analogy_vector, topn=1)
+# After processing all lines, print the accumulated flag
+print(f"[+] Flag: {flag}")
 
-                # the word that is most similar to the resulting vector
-                B = result[0][0]
-
-                # Print the result (X is to Y as A is to B)
-                print(f"Analogy: {X} is to {Y} as {A} is to {B}")
-
-                # Write the result to the output file
-                outfile.write(f"Analogy: {X} is to {Y} as {A} is to {B}")
-
-            except KeyError as e:
-                # Handle the case where one of the words is not in the model
-                print(f"Word not found in model: {e}")
-                continue
