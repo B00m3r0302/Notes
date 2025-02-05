@@ -1,0 +1,14 @@
+[Unit]
+Description=RustDesk Relay Server (hbbr)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/hbbr
+WorkingDirectory=/home/kali
+Restart=always
+User=kali
+Group=kali
+Environment=HOME=/home/kali
+
+[Install]
+WantedBy=multi-user.target
