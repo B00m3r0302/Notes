@@ -54,6 +54,17 @@ shapes = {key: data[key].shape for key in keys}
 # Shape is 512-dimensional vectors
 embeddings = data['embeddings']
 
+# Extract the 'tokens' array from the loaded data
+# Shape is 110
+tokens = data['tokens']
+
+# Create a tesseract-like structure (a 4D tensor)
+# Here you might want to combine the tokens and embeddings in some form
+# tesseract = np.expand_dims(embeddings, axis=-1) # Adding a dimension to make it 3D
+# tesseract = np.repeat(tesseract, 10, axis=-1) # Repeat to create a 4D structure
+
+# print(f'Tesseract shape: {tesseract.shape}')
+
 # get the overall min and max values
 min_value = np.min(embeddings)
 max_value = np.max(embeddings)
@@ -108,37 +119,55 @@ print(f'Maximum value: {max_value}')
 
 # trying to show 3d image with shadows using plotly
 # Reduce to 3D using PCA
-pca = PCA(n_components=3)
-embeddings_3d = pca.fit_transform(embeddings)
+# pca = PCA(n_components=3)
+# embeddings_3d = pca.fit_transform(embeddings)
 
-# Create a 3D scatter plot
-fig = go.Figure(
-    data=[go.Scatter3d(
-        x=embeddings_3d[:, 0],
-        y=embeddings_3d[:, 1],
-        z=embeddings_3d[:, 2],
-        mode='markers',
-        marker=dict(
-            size=5,
-            color=embeddings_3d[:, 2], # Color by Z value
-            colorscale='Viridis',
-            opacity=0.8
-        )
-    )]
-)
+# # Create a 3D scatter plot
+# fig = go.Figure(
+#     data=[go.Scatter3d(
+#         x=embeddings_3d[:, 0],
+#         y=embeddings_3d[:, 1],
+#         z=embeddings_3d[:, 2],
+#         mode='markers',
+#         marker=dict(
+#             size=5,
+#             color=embeddings_3d[:, 2], # Color by Z value
+#             colorscale='Viridis',
+#             opacity=0.8
+#         )
+#     )]
+# )
 
-# Add shadow effect with lighting
-fig.update_layout(
-    scene=dict(
-        xaxis_title='PCA 1',
-        yaxis_title='PCA 2',
-        zaxis_title='PCA 3',
-        aspectmode='cube',
-        camera=dict(
-            eye=dict(x=1.5, y=1.5, z=0.5) # Adjust camera angle for better depth
-        )
-    ),
-    template='plotly_dark' # Dark theme for better contrast
-)
+# # Add shadow effect with lighting
+# fig.update_layout(
+#     scene=dict(
+#         xaxis_title='PCA 1',
+#         yaxis_title='PCA 2',
+#         zaxis_title='PCA 3',
+#         aspectmode='cube',
+#         camera=dict(
+#             eye=dict(x=1.5, y=1.5, z=0.5) # Adjust camera angle for better depth
+#         )
+#     ),
+#     template='plotly_dark' # Dark theme for better contrast
+# )
 
-fig.show()
+# fig.show()
+
+# Transforming embeddings into a two-dimensional space
+# Fit method computes the components from the data by determining the axes. it learns the structure of the data
+# Transform method reduces the dimensionality by providing new coordinates
+pca = PCA(n_components=2)
+re_embeddings = pca.fit_transform(embeddings)
+
+# Create a scatter plot of the embeddings
+plt.figure(figsize=(20, 12))
+plt.scatter(re_embeddings[:, 0], re_embeddings[:, 1], alpha=0.6, s=100, edgecolor='k')
+for i, token in enumerate(tokens):
+    plt.text(re_embeddings[i, 0] + 0.02, re_embeddings[i, 1], str(token), fontsize=12, fontweight='bold')
+    
+plt.title('Token Embeddings PCA:')
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2') 
+plt.grid(False)
+plt.show()
