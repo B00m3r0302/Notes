@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.95 scan initiated Tue Feb 11 10:21:29 2025 as: /usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 21 &quot;-&#45;script=banner,(ftp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/sizzle/scans/tcp21/tcp_21_ftp_nmap.txt -oX /home/kali/Notes/Labs/htb/sizzle/scans/tcp21/xml/tcp_21_ftp_nmap.xml 10.10.10.103 -->
+<nmaprun scanner="nmap" args="/usr/lib/nmap/nmap -&#45;privileged -vv -&#45;reason -Pn -T4 -sV -p 21 &quot;-&#45;script=banner,(ftp* or ssl*) and not (brute or broadcast or dos or external or fuzzer)&quot; -oN /home/kali/Notes/Labs/htb/sizzle/scans/tcp21/tcp_21_ftp_nmap.txt -oX /home/kali/Notes/Labs/htb/sizzle/scans/tcp21/xml/tcp_21_ftp_nmap.xml 10.10.10.103" start="1739287289" startstr="Tue Feb 11 10:21:29 2025" version="7.95" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="21"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1739287289"/>
+<taskend task="NSE" time="1739287289"/>
+<taskbegin task="NSE" time="1739287289"/>
+<taskend task="NSE" time="1739287289"/>
+<taskbegin task="NSE" time="1739287289"/>
+<taskend task="NSE" time="1739287289"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1739287289"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1739287289"/>
+<taskbegin task="SYN Stealth Scan" time="1739287289"/>
+<taskend task="SYN Stealth Scan" time="1739287289" extrainfo="1 total ports"/>
+<taskbegin task="Service scan" time="1739287289"/>
+<taskend task="Service scan" time="1739287289" extrainfo="1 service on 1 host"/>
+<taskbegin task="NSE" time="1739287289"/>
+<taskend task="NSE" time="1739287290"/>
+<taskbegin task="NSE" time="1739287290"/>
+<taskend task="NSE" time="1739287291"/>
+<taskbegin task="NSE" time="1739287291"/>
+<taskend task="NSE" time="1739287291"/>
+<host starttime="1739287289" endtime="1739287291"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.10.103" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ftp" product="Microsoft ftpd" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:ftp_service</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="ftp-anon" output="Anonymous FTP login allowed (FTP code 230)"/><script id="ftp-syst" output="&#xa;  SYST: Windows_NT"><elem key="SYST">Windows_NT</elem>
+</script><script id="banner" output="220 Microsoft FTP Service"/></port>
+</ports>
+<times srtt="55478" rttvar="55478" to="277390"/>
+</host>
+<taskbegin task="NSE" time="1739287291"/>
+<taskend task="NSE" time="1739287291"/>
+<taskbegin task="NSE" time="1739287291"/>
+<taskend task="NSE" time="1739287291"/>
+<taskbegin task="NSE" time="1739287291"/>
+<taskend task="NSE" time="1739287291"/>
+<runstats><finished time="1739287291" timestr="Tue Feb 11 10:21:31 2025" summary="Nmap done at Tue Feb 11 10:21:31 2025; 1 IP address (1 host up) scanned in 1.93 seconds" elapsed="1.93" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
