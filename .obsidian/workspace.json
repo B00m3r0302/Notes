@@ -8,21 +8,21 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ea33c929205ca331",
+            "id": "ff64e6f8409b0aa8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Labs/htb/reel/notes.md",
+                "file": "Labs/htb/sizzle/Notes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "notes"
+              "title": "Notes"
             }
           },
           {
-            "id": "ff64e6f8409b0aa8",
+            "id": "563bdeecfe7d18ae",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -33,6 +33,20 @@
               },
               "icon": "lucide-file",
               "title": "Chapter 21 Active Directory Introduction and Enumeration"
+            }
+          },
+          {
+            "id": "04a1e0115387aefa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Labs/htb/resolute/notes.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "notes"
             }
           }
         ]
@@ -177,25 +191,31 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ea33c929205ca331",
+  "active": "ff64e6f8409b0aa8",
   "lastOpenFiles": [
+    "Labs/htb/sizzle/users.txt",
+    "Labs/htb/resolute/notes.md",
     "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
+    "Labs/htb/sauna/Notes.md",
     "Labs/htb/reel/notes.md",
+    "Labs/htb/sizzle/scans/tcp47001/tcp_47001_http_screenshot.png",
+    "Labs/htb/sizzle/scans/tcp47001/tcp_47001_http_feroxbuster_dirbuster.txt",
+    "Labs/htb/sizzle/scans/tcp49714/xml/tcp_49714_rpc_nmap.xml",
+    "Labs/htb/sizzle/scans/tcp49714/tcp_49714_rpc_nmap.txt",
+    "Labs/htb/sizzle/scans/tcp49693/xml/tcp_49693_rpc_nmap.xml",
+    "Labs/htb/sizzle/scans/tcp49693/tcp_49693_rpc_nmap.txt",
+    "Labs/htb/sizzle/scans/tcp49708/xml/tcp_49708_rpc_nmap.xml",
+    "Labs/htb/sizzle/scans/tcp49696/xml/tcp_49696_rpc_nmap.xml",
+    "Labs/htb/sizzle/scans/tcp49708/tcp_49708_rpc_nmap.txt",
+    "Labs/htb/sizzle/scans/tcp49696/tcp_49696_rpc_nmap.txt",
+    "Labs/htb/sizzle/scans/tcp49673/xml/tcp_49673_rpc_nmap.xml",
+    "Labs/htb/sizzle/Notes.md",
+    "Labs/htb/sizzle/scans/tcp443/tcp_443_https_screenshot.png",
+    "Labs/htb/sizzle/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/htb-challenges/racecar.md",
     "Pasted image 20250130103122.png",
     "Labs/htb-challenges/Questionnaire.md",
-    "Labs/htb-challenges",
-    "Labs/htb/reel/loot/creds.txt",
-    "Labs/htb/reel/loot/readme.txt",
-    "Labs/htb/reel/loot/cred.xml",
-    "Labs/htb/reel/loot/Windows Event Forwarding.docx",
-    "Labs/htb/reel/loot/AppLocker.docx",
-    "Labs/htb/reel/loot",
-    "Labs/htb/reel/cred.xml",
     "Labs/htb/reel/scans/report.md/10.10.10.77/Port Scans/PortScan - All TCP Ports.md",
-    "Labs/htb/reel/users.txt",
-    "Labs/htb/reel/Windows Event Forwarding.docx",
-    "Labs/htb/resolute/notes.md",
     "Course Notes/Pass The Hash.md",
     "Course Notes/Windows Privilege Escalation.md",
     "Labs/htb/timelapse/Notes.md",
@@ -213,8 +233,6 @@
     "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-464-kpasswd5/Nmap Kerberos.md",
     "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-445-microsoft-ds/SMBMap.md",
     "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-445-microsoft-ds/Nmap SMB.md",
-    "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-389-ldap/Nmap LDAP.md",
-    "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-3268-ldap/Nmap LDAP.md",
     "Labs/htb/sauna/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/htb/flight/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/medtech/internal_ips/results/172.16.185.11/scans/tcp47001/tcp_47001_http_screenshot.png",
@@ -222,9 +240,6 @@
     "Untitled 1.canvas",
     "Labs/medtech/192.168.227.121/scans/tcp47001/tcp_47001_http_screenshot.png",
     "Labs/medtech/192.168.227.121/scans/tcp80/tcp_80_http_screenshot.png",
-    "Labs/medtech/192.168.227.120/scans/tcp80/tcp_80_http_screenshot.png",
-    "Untitled.canvas",
-    "Pasted image 20231111150658.png",
-    "Pasted image 20231111144000.png"
+    "Untitled.canvas"
   ]
 }
