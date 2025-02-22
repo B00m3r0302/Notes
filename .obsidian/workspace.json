@@ -40,7 +40,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -162,8 +163,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ea33c929205ca331",
+  "active": "6b56727c0304a287",
   "lastOpenFiles": [
+    "Resources/Azure",
     "Pasted image 20250130103122.png",
     "Labs/htb-challenges/Questionnaire.md",
     "Labs/htb-challenges/racecar.md",
@@ -210,7 +212,6 @@
     "Labs/medtech/192.168.227.120/scans/tcp80/tcp_80_http_screenshot.png",
     "Untitled.canvas",
     "Pasted image 20231111150658.png",
-    "Pasted image 20231111144000.png",
-    "Pasted image 20231111143346.png"
+    "Pasted image 20231111144000.png"
   ]
 }
