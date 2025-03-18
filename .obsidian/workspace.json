@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/SSH Tunneling.md",
+                "file": "Resources/remote ops/RDP Servers.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SSH Tunneling"
+              "title": "RDP Servers"
             }
           }
         ]
@@ -163,14 +163,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6b56727c0304a287",
+  "active": "04a1e0115387aefa",
   "lastOpenFiles": [
+    "Resources/remote ops/VNC.md",
+    "Resources/remote ops/RDP Servers.md",
+    "Resources/remote ops",
+    "Resources/remote ops/SSH Tunneling.md",
     "Attachments/Pasted image 20250318113402.png",
     "Attachments/Pasted image 20250318112739.png",
     "Attachments/Pasted image 20250318112443.png",
     "Attachments/Pasted image 20250318112200.png",
-    "Resources/Remote Access RAD.md",
-    "Resources/SSH Tunneling.md",
+    "Resources/remote ops/Remote Access RAD.md",
     "Resources/Terminal Routing & Networks.md",
     "Labs/htb/resolute/notes.md",
     "Resources/SSH-Tunneling",
@@ -194,7 +197,6 @@
     "Resources/domain enumeration/domain_information_complete.ps1.md",
     "Pasted image 20231111150658.png",
     "Pasted image 20231111135129.png",
-    "Pasted image 20250130103122.png",
     "2023-11-11.md",
     "Notes.md",
     "Untitled.canvas",
@@ -203,7 +205,6 @@
     "Untitled 1.md",
     "Resources/Tools.md",
     "Resources/domain enumeration/domain_enum_function.ps1.md",
-    "Resources/domain enumeration/Get_domain_information.ps1.md",
     "Resources/domain enumeration",
     "Labs/htb/sizzle/sizzle.HTB.LOCAL_HTB-SIZZLE-CA.crt",
     "Labs/htb/sizzle/payload.scf",
@@ -211,7 +212,6 @@
     "Labs/htb/sizzle/nsrev_HTB-SIZZLE-CA.asp",
     "Labs/htb/sizzle/hashes_domain.txt",
     "Labs/htb/sizzle/amanda-ntlmv2",
-    "Labs/htb/sizzle/HTB-SIZZLE-CA.crl",
-    "Labs/htb/sizzle/HTB-SIZZLE-CA+.crl"
+    "Labs/htb/sizzle/HTB-SIZZLE-CA.crl"
   ]
 }
