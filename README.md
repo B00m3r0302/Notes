@@ -11,60 +11,6 @@ The [[Course Notes Index|Course Notes]], [[Exam Index|Exam]], and [[Labs Index|L
 I cannot upload my OSCP notes due to OffSec policy, but I still wanted to share a useful resource. There are plenty of [[Report Templates]] out there, and some good [note-taking advice](https://www.youtube.com/watch?v=MQGozZzHUwQ), but I haven't seen a structured notes template before. Hopefully this will be useful for future students who want to supplement their learning.
 
 I've added a few resources to each of the notes, but they are there for you to flesh out (or delete) at your will. This is simply a template, and more detailed notes are available in my [[Cybersecurity Notes]] repository.
-
-## Installation
-
-### Installing Obsidian
-
-#### On Windows
-
-Go to [the download page](https://obsidian.md/download)... and click Download. Once it's downloaded, double click the executable to run it.
-
-#### On Linux
-
-Go to [the download page](https://obsidian.md/download), and download the AppImage. Put it in any directory you want (I went with `~/Applications`)
-
-You can either double click the file to run it, or run it with `/path/to/Obsidian-0.11.9.AppImage`
-
-You may get the following error while running:
-
-```bash
-$ ./Obsidian-0.11.9.AppImage  
-\[2122:0327/193255.690087:FATAL:setuid\_sandbox\_host.cc(158)\] The SUID sandbox helper binary was found, but is not configured correctly. Rather than run without sandboxing I'm aborting now. You need to make sure that /tmp/.mount\_Obsidi1nvAuD/chrome-sandbox is owned by root and has mode 4755.  
-Trace/breakpoint trap
-```
-
-To fix this, run obsidian with the `--no-sandbox` flag.
-
-I setup this alias in `~/.bashrc`:
-
-```bash
-alias obsidian="~/Applications/Obsidian-0.11.9.AppImage --no-sandbox"
-```
-
-Finally, if Obsidian stops responding on launch, you may need to update your machine:
-
-```bash
-$ sudo apt update
-$ sudo apt full-upgrade -y
-```
-
-### Downloading the Vault
-
-You will need to [download git](https://git-scm.com/downloads). This is a quick and easy process.
-
-On Windows, open the Start Menu and search for 'Git Bash', then click it to open a bash terminal (or navigate to the folder you want to install the notes into, then right-click and press 'Git Bash Here'). On Unix, open a terminal of your choice.
-
-In this Git Bash/terminal, type the following:
-
-```bash
-git clone git@github.com:Twigonometry/OSCP-Notes-Template.git
-```
-
-If you are uncomfortable using the command line, you can install [GitHub Desktop](https://desktop.github.com/) instead (but you'll need to learn it soon enough!)
-
-Once you have cloned the repository, open Obsidian and click `Open folder as vault`, then select the `OSCP-Notes-Template` folder that was just created by Git. You're ready to go!
-
 ## Usage
 
 ### Approach
