@@ -163,8 +163,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "04a1e0115387aefa",
+  "active": "6b56727c0304a287",
   "lastOpenFiles": [
+    "Attachments/Pasted image 20250318113402.png",
+    "Attachments/Pasted image 20250318112739.png",
+    "Attachments/Pasted image 20250318112443.png",
+    "Attachments/Pasted image 20250318112200.png",
     "Resources/Remote Access RAD.md",
     "Resources/SSH Tunneling.md",
     "Resources/Terminal Routing & Networks.md",
@@ -191,9 +195,6 @@
     "Pasted image 20231111150658.png",
     "Pasted image 20231111135129.png",
     "Pasted image 20250130103122.png",
-    "Pasted image 20231111144000.png",
-    "Pasted image 20231111143346.png",
-    "Pasted image 20231111143333.png",
     "2023-11-11.md",
     "Notes.md",
     "Untitled.canvas",
@@ -204,7 +205,6 @@
     "Resources/domain enumeration/domain_enum_function.ps1.md",
     "Resources/domain enumeration/Get_domain_information.ps1.md",
     "Resources/domain enumeration",
-    "Resources/domain enumeration/domain_enumeration.ps1.md",
     "Labs/htb/sizzle/sizzle.HTB.LOCAL_HTB-SIZZLE-CA.crt",
     "Labs/htb/sizzle/payload.scf",
     "Labs/htb/sizzle/passwords.txt",
