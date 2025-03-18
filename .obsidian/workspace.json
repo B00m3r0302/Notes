@@ -8,17 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ff64e6f8409b0aa8",
+            "id": "04a1e0115387aefa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Labs/htb/sizzle/Notes.md",
+                "file": "Resources/SSH Tunneling.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Notes"
+              "title": "SSH Tunneling"
             }
           }
         ]
@@ -53,7 +53,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "spray",
+                "query": "impacket-smbclient",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,8 +74,7 @@
               "title": "Bookmarks"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -164,55 +163,55 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ff64e6f8409b0aa8",
+  "active": "04a1e0115387aefa",
   "lastOpenFiles": [
-    "Labs/htb/sizzle/domain_users_by_group.html",
-    "Labs/htb/sizzle/domain_computers_by_os.html",
-    "Labs/htb/sizzle/domain_trusts.json",
-    "Labs/htb/sizzle/domain_trusts.grep",
-    "Labs/htb/sizzle/domain_trusts.html",
-    "Labs/htb/sizzle/domain_policy.json",
-    "Labs/htb/sizzle/domain_policy.grep",
-    "Labs/htb/sizzle/domain_policy.html",
-    "Labs/htb/sizzle/domain_computers.json",
-    "Labs/htb/sizzle/domain_computers.grep",
-    "Labs/htb/sizzle/domain_computers.html",
+    "Resources/Remote Access RAD.md",
+    "Resources/SSH Tunneling.md",
+    "Resources/Terminal Routing & Networks.md",
     "Labs/htb/resolute/notes.md",
-    "Labs/htb/sizzle/Notes.md",
-    "Labs/htb/sauna/Notes.md",
-    "Labs/htb/forest/Notes.md",
-    "Course Notes/Pass The Hash.md",
+    "Resources/SSH-Tunneling",
+    "Attachments/Pasted image 20230324145839.png",
+    "Attachments/Pasted image 20210813180944.png",
+    "Attachments/Pasted image 20210813173305.png",
+    "Attachments/Pasted image 20210418203944.png",
+    "Exam/Exam Index.md",
     "Course Notes/Chapter 21 Active Directory Introduction and Enumeration.md",
-    "Labs/htb/reel/notes.md",
-    "Labs/htb/sizzle/scans/tcp47001/tcp_47001_http_screenshot.png",
-    "Labs/htb/sizzle/scans/tcp443/tcp_443_https_screenshot.png",
-    "Labs/htb/sizzle/scans/tcp80/tcp_80_http_screenshot.png",
-    "Labs/htb-challenges/racecar.md",
+    "Exam/AD Set/AD Set Domain Index.md",
+    "Exam/AD Set/Password Spray (example.corp).md",
+    "Exam/Independent Machine 3/Exam Machine 3 Index.md",
+    "Exam/Independent Machine 3/00 - Overview.md",
+    "README.md",
+    "Resources/domain enumeration/AddUser.c.md",
+    "Resources/Communities.md",
+    "Resources/Report Templates.md",
+    "Resources/Exam Tips.md",
+    "Resources/Exam Details.md",
+    "Resources/Cybersecurity Notes.md",
+    "Resources/domain enumeration/domain_information_complete.ps1.md",
+    "Pasted image 20231111150658.png",
+    "Pasted image 20231111135129.png",
     "Pasted image 20250130103122.png",
-    "Labs/htb-challenges/Questionnaire.md",
-    "Labs/htb/reel/scans/report.md/10.10.10.77/Port Scans/PortScan - All TCP Ports.md",
-    "Course Notes/Windows Privilege Escalation.md",
-    "Labs/htb/timelapse/Notes.md",
-    "Course Notes/Chapter 16 windows Privilege Escalation.md",
-    "Course Notes/Chapter 15 Password Attacks.md",
-    "Course Notes/Windows Pasteables.md",
-    "Course Notes/Chapter 18 Port Redirection and SSH Tunneling.md",
-    "Labs/htb/10.10.11.214 (pc)/05 - Enumeration.md",
-    "Labs/htb/blackfield/Notes.md",
-    "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-88-kerberos-sec/Nmap Kerberos.md",
-    "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-593-ncacn_http/rpcdump.md",
-    "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-53-domain/Nmap DNS.md",
-    "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-53-domain/DNS Zone Transfer.md",
-    "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-53-domain/DNS Reverse Lookup.md",
-    "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-464-kpasswd5/Nmap Kerberos.md",
-    "Labs/htb/resolute/scans/report.md/10.10.10.169/Services/Service - tcp-445-microsoft-ds/SMBMap.md",
-    "Labs/htb/sauna/scans/tcp80/tcp_80_http_screenshot.png",
-    "Labs/htb/flight/scans/tcp80/tcp_80_http_screenshot.png",
-    "Labs/medtech/internal_ips/results/172.16.185.11/scans/tcp47001/tcp_47001_http_screenshot.png",
-    "Labs/medtech/internal_ips/172.16.185.13/scans/tcp47001/tcp_47001_http_screenshot.png",
+    "Pasted image 20231111144000.png",
+    "Pasted image 20231111143346.png",
+    "Pasted image 20231111143333.png",
+    "2023-11-11.md",
+    "Notes.md",
+    "Untitled.canvas",
+    "Untitled.md",
     "Untitled 1.canvas",
-    "Labs/medtech/192.168.227.121/scans/tcp47001/tcp_47001_http_screenshot.png",
-    "Labs/medtech/192.168.227.121/scans/tcp80/tcp_80_http_screenshot.png",
-    "Untitled.canvas"
+    "Untitled 1.md",
+    "Resources/Tools.md",
+    "Resources/domain enumeration/domain_enum_function.ps1.md",
+    "Resources/domain enumeration/Get_domain_information.ps1.md",
+    "Resources/domain enumeration",
+    "Resources/domain enumeration/domain_enumeration.ps1.md",
+    "Labs/htb/sizzle/sizzle.HTB.LOCAL_HTB-SIZZLE-CA.crt",
+    "Labs/htb/sizzle/payload.scf",
+    "Labs/htb/sizzle/passwords.txt",
+    "Labs/htb/sizzle/nsrev_HTB-SIZZLE-CA.asp",
+    "Labs/htb/sizzle/hashes_domain.txt",
+    "Labs/htb/sizzle/amanda-ntlmv2",
+    "Labs/htb/sizzle/HTB-SIZZLE-CA.crl",
+    "Labs/htb/sizzle/HTB-SIZZLE-CA+.crl"
   ]
 }
