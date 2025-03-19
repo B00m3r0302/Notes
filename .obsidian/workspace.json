@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/remote ops/File Transfers.md",
+                "file": "Resources/Useful Repos.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "File Transfers"
+              "title": "Useful Repos"
             }
           }
         ]
@@ -165,12 +165,15 @@
   },
   "active": "04a1e0115387aefa",
   "lastOpenFiles": [
-    "Resources/remote ops/RDP Clients.md",
+    "Resources/remote ops/Upgrading \"Dumb-Shells\".md",
+    "Resources/Useful Repos.md",
+    "Resources/remote ops/SSH Tunneling.md",
+    "Resources/remote ops/Persistence & C2.md",
     "Resources/remote ops/File Transfers.md",
+    "Resources/remote ops/RDP Clients.md",
     "Resources/remote ops/RDP Servers.md",
     "Resources/remote ops/VNC.md",
     "Resources/remote ops",
-    "Resources/remote ops/SSH Tunneling.md",
     "Attachments/Pasted image 20250318113402.png",
     "Attachments/Pasted image 20250318112739.png",
     "Attachments/Pasted image 20250318112443.png",
@@ -200,11 +203,8 @@
     "Pasted image 20231111150658.png",
     "Pasted image 20231111135129.png",
     "2023-11-11.md",
-    "Notes.md",
     "Untitled.canvas",
-    "Untitled.md",
     "Untitled 1.canvas",
-    "Untitled 1.md",
     "Resources/domain enumeration",
     "Labs/htb/sizzle/sizzle.HTB.LOCAL_HTB-SIZZLE-CA.crt",
     "Labs/htb/sizzle/payload.scf",

