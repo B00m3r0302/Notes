@@ -19,3 +19,12 @@ nm toomuch | grep " win"
 ```
 0x4011d5
 ```
+# Exploit
+## Notes
+- The buffer is 20 bytes because of char buffer[20]
+- The saved RBP is 8 bytes
+- The return address is the next 8 bytes (which we want to overwrite with win())
+## Goals
+- Overwrite 20 bytes of buffer
+- Overwrite saved RBP (8 bytes of junk)
+- Overwrite the retuyrn address (next 8 bytes) with win()
