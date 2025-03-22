@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Binary Exploitation.md",
+                "file": "Labs/BAH CTF/toomuch/toomuch.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Binary Exploitation"
+              "title": "toomuch"
             }
           }
         ]
@@ -165,8 +165,10 @@
   },
   "active": "59fe31e2dac49290",
   "lastOpenFiles": [
-    "Resources/GDB Setup.md",
+    "Labs/BAH CTF/toomuch/toomuch",
+    "Labs/BAH CTF/toomuch/toomuch.c",
     "Resources/Binary Exploitation.md",
+    "Resources/GDB Setup.md",
     "Labs/BAH CTF/toomuch/toomuch.md",
     "Labs/BAH CTF/toomuch/exploit.py",
     "Labs/BAH CTF/toomuch.md",
@@ -188,7 +190,6 @@
     "Resources/remote ops/RDP Clients.md",
     "Resources/remote ops/Persistence & C2.md",
     "Resources/remote ops/File Transfers.md",
-    "Resources/remote ops",
     "Resources/domain enumeration/domain_information_complete.ps1.md",
     "Resources/domain enumeration/domain_enumeration_v2.ps1.md",
     "Resources/domain enumeration/domain_enumeration.ps1.md",
@@ -200,7 +201,6 @@
     "Labs/htb/sizzle/scans/report.md/10.10.10.103/Services/Service - tcp-47001-http/Curl.md",
     "Labs/htb/sizzle/scans/report.md/10.10.10.103/Services/Service - tcp-49693-msrpc/Nmap MSRPC.md",
     "Labs/htb/sizzle/scans/report.md/10.10.10.103/Services/Service - tcp-49696-msrpc/Nmap MSRPC.md",
-    "Labs/htb/sizzle/scans/report.md/10.10.10.103/Services/Service - tcp-80-http/wkhtmltoimage.md",
     "Labs/htb/sizzle/scans/tcp80/tcp_80_http_screenshot.png",
     "Labs/htb/sizzle/scans/tcp47001/tcp_47001_http_screenshot.png",
     "Labs/htb/sizzle/scans/tcp443/tcp_443_https_screenshot.png",
