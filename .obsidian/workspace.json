@@ -165,6 +165,12 @@
   },
   "active": "ea33c929205ca331",
   "lastOpenFiles": [
+    "Attachments/mmgt_zero.png",
+    "Attachments/mmgt_zero.png.crdownload",
+    "Attachments/mmgt_debug.png",
+    "Attachments/mmgt_debug.png.crdownload",
+    "Attachments/virtual-memory.png",
+    "Attachments/virtual-memory.png.crdownload",
     "Resources/Tools.md",
     "Resources/MalwareDev Academy/Windows Memory Management.md",
     "README.md",
@@ -183,9 +189,7 @@
     "Resources/MalwareDev Academy/Windows Architecture.md",
     "Pasted image 20231111135704.png",
     "Pasted image 20231111135129.png",
-    "Attachments/syscall.png",
     "Attachments/syscall.png.crdownload",
-    "Attachments/ntcreatefile-dbg.png",
     "Attachments/ntcreatefile-dbg.png.crdownload",
     "Attachments/createfilew.png.crdownload",
     "Attachments/function_flow_call_1.png.crdownload",
@@ -193,9 +197,6 @@
     "Resources/MalwareDev Academy/Coding Basics.md",
     "Attachments/bitwise_NOT.png.crdownload",
     "Attachments/bitwise_XOR.png.crdownload",
-    "Attachments/bitwise_AND.png.crdownload",
-    "Attachments/bitwise_OR.png.crdownload",
-    "Attachments/shift_left.png.crdownload",
     "Resources/Azure/Automate SSL Certs/azure_certbot_credentials.ini.md",
     "Resources/Azure/Automate SSL Certs/Automate SSL Certificate Creation & Renewal.md",
     "Resources/Azure/Automate SSL Certs/main-AzureDNS.bicep_edited.md",
@@ -211,7 +212,6 @@
     "Labs/htb/resolute/notes.md",
     "Course Notes/Pass The Hash.md",
     "Course Notes/Windows Privilege Escalation.md",
-    "Labs/htb/timelapse/Notes.md",
-    "Course Notes/Chapter 16 windows Privilege Escalation.md"
+    "Labs/htb/timelapse/Notes.md"
   ]
 }
