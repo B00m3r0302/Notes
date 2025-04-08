@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/MalwareDev Academy/Introduction to the Windows API.md",
+                "file": "Resources/MalwareDev Academy/Portable Executable Format.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Introduction to the Windows API"
+              "title": "Portable Executable Format"
             }
           }
         ]
@@ -165,8 +165,11 @@
   },
   "active": "ea33c929205ca331",
   "lastOpenFiles": [
-    "Resources/MalwareDev Academy/Windows Memory Management.md",
+    "Attachments/pe-structure.png",
+    "Attachments/pe-structure.png.crdownload",
     "Resources/MalwareDev Academy/Introduction to the Windows API.md",
+    "Resources/MalwareDev Academy/Portable Executable Format.md",
+    "Resources/MalwareDev Academy/Windows Memory Management.md",
     "Attachments/mmgt_heapfree_2.png",
     "Attachments/mmgt_heapfree_2.png.crdownload",
     "Attachments/mmgt_heapfree.png",
@@ -195,7 +198,6 @@
     "Attachments/ntcreatefile-dbg.png.crdownload",
     "Attachments/createfilew.png.crdownload",
     "Attachments/function_flow_call_1.png.crdownload",
-    "Attachments/intro_windows_architecture.png.crdownload",
     "Resources/MalwareDev Academy/Coding Basics.md",
     "Resources/Azure/Automate SSL Certs/azure_certbot_credentials.ini.md",
     "Resources/Azure/Automate SSL Certs/Automate SSL Certificate Creation & Renewal.md",
@@ -210,8 +212,6 @@
     "Labs/htb/reel/notes.md",
     "Labs/htb/reel/scans/report.md/10.10.10.77/Port Scans/PortScan - All TCP Ports.md",
     "Labs/htb/resolute/notes.md",
-    "Course Notes/Pass The Hash.md",
-    "Course Notes/Windows Privilege Escalation.md",
-    "Labs/htb/timelapse/Notes.md"
+    "Course Notes/Pass The Hash.md"
   ]
 }
