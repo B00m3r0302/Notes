@@ -63,7 +63,25 @@ rustup component add clippy                                                     
 ```
 - .NET based
 ```
+sudo apt remove --purge 'dotnet*' 'aspnetcore*'
+sudo rm -rf /usr/share/dotnet /etc/dotnet
+```
+```
+# Add Microsoft package signing key
+wget https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+
+# Install required dependencies
+sudo apt update
+sudo apt install -y dotnet-sdk-8.0
+```
+```
 dotnet tool install -g csharpier                                                    # C# code style fixer
+```
+```
+echo 'export PATH="$PATH:$HOME/.dotnet/tools"' >> ~/.bashrc
+source ~/.bashrc
 ```
 ### Verify
 ```
