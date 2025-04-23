@@ -165,6 +165,16 @@
   },
   "active": "58894aaa2fa93c44",
   "lastOpenFiles": [
+    "TailGunner/Source/linux_nibble/main.go",
+    "TailGunner/Source/linux_nibble/go.mod",
+    "TailGunner/Source/implant/implant.nim",
+    "TailGunner/Source/implant/build.bat",
+    "TailGunner/Source/linux_nibble",
+    "TailGunner/Source/implant",
+    "TailGunner/Uploads",
+    "TailGunner/Source",
+    "TailGunner/Payloads",
+    "TailGunner",
     "Resources/MalwareDev Academy/Detection Mechanisms.md",
     "Resources/MalwareDev Academy/Windows Processes.md",
     "Attachments/dumpbin-imports.png",
@@ -187,12 +197,6 @@
     "Resources/NeoVim",
     "Resources/Untitled.md",
     "Labs/htb/forest/Notes.md",
-    "Attachments/pe-structure.png.crdownload",
-    "Attachments/mmgt_heapfree_2.png.crdownload",
-    "Attachments/mmgt_heapfree.png.crdownload",
-    "Attachments/mmgt_zero.png.crdownload",
-    "Attachments/mmgt_debug.png.crdownload",
-    "Attachments/virtual-memory.png.crdownload",
     "Resources/Tools.md",
     "README.md",
     "Untitled.canvas",
@@ -201,9 +205,6 @@
     "2023-11-11.md",
     "Notes.md",
     "Untitled 1.canvas",
-    "Attachments/syscall.png.crdownload",
-    "Attachments/ntcreatefile-dbg.png.crdownload",
-    "Attachments/createfilew.png.crdownload",
     "Resources/MalwareDev Academy/Coding Basics.md",
     "Resources/Azure/Automate SSL Certs/azure_certbot_credentials.ini.md",
     "Resources/Azure/Automate SSL Certs/Automate SSL Certificate Creation & Renewal.md",
@@ -211,7 +212,6 @@
     "Resources/Azure/Automate SSL Certs/create-certificate-azuredns.sh.md",
     "Resources/Azure/Automate SSL Certs/config.ps1.md",
     "Resources/Azure/Automate SSL Certs/Main-AzureDNS.bicep.md",
-    "Resources/Azure/Automate SSL Certs/modified_config.ps1.md",
-    "Labs/htb-challenges/racecar.md"
+    "Resources/Azure/Automate SSL Certs/modified_config.ps1.md"
   ]
 }
