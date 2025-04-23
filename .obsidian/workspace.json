@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/MalwareDev Academy/Detection Mechanisms.md",
+                "file": "Resources/MalwareDev Academy/Windows Processes.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Detection Mechanisms"
+              "title": "Windows Processes"
             }
           }
         ]
@@ -165,10 +165,11 @@
   },
   "active": "58894aaa2fa93c44",
   "lastOpenFiles": [
+    "Resources/MalwareDev Academy/Detection Mechanisms.md",
+    "Resources/MalwareDev Academy/Windows Processes.md",
     "Attachments/dumpbin-imports.png",
     "Attachments/api-hooking.png",
     "Resources/MalwareDev Academy/Dynamic-Link Library.md",
-    "Resources/MalwareDev Academy/Detection Mechanisms.md",
     "Attachments/create-dll-6.png",
     "Attachments/create-dll-5.png",
     "Attachments/create-dll-4.png",
@@ -180,7 +181,6 @@
     "Attachments/create-dll-2.png",
     "Attachments/create-dll-1.png",
     "Attachments/dll-new.png",
-    "Attachments/loaded-libraries.png",
     "Resources/MalwareDev Academy/Introduction to the Windows API.md",
     "Resources/NeoVim/README.md",
     "Course Notes/Chapter 15 Password Attacks.md",
